@@ -109,7 +109,7 @@ const styles = `
     position: relative;
     background: transparent;
     color: #111;
-    border: 1.5px solid rgba(0,0,0,0.15);
+    border: 1.5px solid rgba(0,0,0,0.1);
     border-radius: 12px;
     padding: 13px 28px;
     font-size: 14px;
@@ -124,8 +124,8 @@ const styles = `
     white-space: nowrap;
   }
   .btn-secondary:hover {
-    border-color: rgba(0,0,0,0.35);
-    background: rgba(0,0,0,0.03);
+    border-color: rgba(0,0,0,0.1);
+    background: rgba(0,0,0,0.1);
     transform: translateY(-1px);
   }
   .btn-secondary:active { transform: scale(0.98); }
@@ -134,27 +134,27 @@ const styles = `
     background: rgba(255,255,255,0.92);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(0,0,0,0.09);
+    border: 1px solid rgba(0,0,0,0.1);
     border-radius: 20px;
-    box-: 0 8px 48px rgba(0,0,0,0.10), 0 1px 0 rgba(255,255,255,0.8) inset;
+    box-: 0 8px 48px rgba(0,0,0,0.1), 0 1px 0 rgba(255,255,255,0.8) inset;
   }
 
   .stat-card {
     background: rgba(255,255,255,0.85);
-    border: 1px solid rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.1);
     border-radius: 16px;
     padding: 16px 20px;
     backdrop-filter: blur(8px);
     transition: box- 0.2s, transform 0.2s;
   }
   .stat-card:hover {
-    box-: 0 8px 32px rgba(0,0,0,0.09);
+    box-: 0 8px 32px rgba(0,0,0,0.1);
     transform: translateY(-2px);
   }
 
   .progress-bar {
     height: 3px;
-    background: rgba(0,0,0,0.08);
+    background: rgba(0,0,0,0.1);
     border-radius: 99px;
     overflow: hidden;
   }
@@ -174,7 +174,7 @@ const styles = `
     align-items: center;
     gap: 10px;
     padding: 10px 18px;
-    border: 1px solid rgba(0,0,0,0.09);
+    border: 1px solid rgba(0,0,0,0.1);
     border-radius: 12px;
     background: rgba(255,255,255,0.9);
     transition: border-color 0.2s, box- 0.2s;
@@ -182,8 +182,8 @@ const styles = `
     user-select: none;
   }
   .reg-logo:hover {
-    border-color: rgba(0,0,0,0.2);
-    box-: 0 4px 16px rgba(0,0,0,0.06);
+    border-color: rgba(0,0,0,0.1);
+    box-: 0 4px 16px rgba(0,0,0,0.1);
   }
 
   .abstract-line {
@@ -194,8 +194,8 @@ const styles = `
 
   .hero-grid-bg {
     background-image:
-      linear-gradient(rgba(0,0,0,0.042) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,0,0,0.042) 1px, transparent 1px);
+      linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px);
     background-size: 48px 48px;
   }
 
@@ -289,7 +289,7 @@ const FloatingUICard = () => {
         {/* Header row */}
         <div className="flex items-center justify-between mb-4">
           <div>
-            <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(0,0,0,0.35)", fontFamily: "var(--font-sans)" }}>Dana Escrow</p>
+            <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(0,0,0,0.1)", fontFamily: "var(--font-sans)" }}>Dana Escrow</p>
             <p style={{ fontSize: 22, fontWeight: 800, color: "#000", fontFamily: "var(--font-sans)", letterSpacing: "-0.03em", marginTop: 2 }}>Rp 12.500.000</p>
           </div>
           <div style={{ width: 40, height: 40, borderRadius: 12, background: "#000", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -303,7 +303,7 @@ const FloatingUICard = () => {
         {/* Progress */}
         <div className="mb-4">
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
-            <span style={{ fontSize: 12, fontWeight: 500, color: "rgba(0,0,0,0.45)", fontFamily: "var(--font-sans)" }}>Verifikasi pengiriman</span>
+            <span style={{ fontSize: 12, fontWeight: 500, color: "rgba(0,0,0,0.1)", fontFamily: "var(--font-sans)" }}>Verifikasi pengiriman</span>
             <span style={{ fontSize: 12, fontWeight: 700, color: "#000", fontFamily: "var(--font-sans)" }}>{Math.round(progress)}%</span>
           </div>
           <div className="progress-bar">
@@ -318,11 +318,11 @@ const FloatingUICard = () => {
           { label: "Pembeli konfirmasi terima", done: false, active: true },
           { label: "Dana dilepaskan ke penjual", done: false },
         ].map((step, i) => (
-          <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, padding: "7px 0", borderBottom: i < 3 ? "1px solid rgba(0,0,0,0.05)" : "none" }}>
+          <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, padding: "7px 0", borderBottom: i < 3 ? "1px solid rgba(0,0,0,0.1)" : "none" }}>
             <div style={{
               width: 20, height: 20, borderRadius: "50%", flexShrink: 0,
-              background: step.done ? "#000" : step.active ? "rgba(0,0,0,0.08)" : "transparent",
-              border: step.done ? "none" : step.active ? "none" : "1.5px solid rgba(0,0,0,0.15)",
+              background: step.done ? "#000" : step.active ? "rgba(0,0,0,0.1)" : "transparent",
+              border: step.done ? "none" : step.active ? "none" : "1.5px solid rgba(0,0,0,0.1)",
               display: "flex", alignItems: "center", justifyContent: "center"
             }}>
               {step.done && (
@@ -337,7 +337,7 @@ const FloatingUICard = () => {
             <span style={{
               fontSize: 12.5,
               fontWeight: step.active ? 600 : 400,
-              color: step.done ? "rgba(0,0,0,0.55)" : step.active ? "#000" : "rgba(0,0,0,0.3)",
+              color: step.done ? "rgba(0,0,0,0.1)" : step.active ? "#000" : "rgba(0,0,0,0.1)",
               fontFamily: "var(--font-sans)",
               textDecoration: step.done ? "line-through" : "none"
             }}>
@@ -345,7 +345,7 @@ const FloatingUICard = () => {
             </span>
             {step.active && (
               <div style={{ marginLeft: "auto" }}>
-                <span style={{ fontSize: 9.5, fontWeight: 700, color: "#000", background: "rgba(0,0,0,0.07)", padding: "3px 7px", borderRadius: 99, letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "var(--font-sans)" }}>
+                <span style={{ fontSize: 9.5, fontWeight: 700, color: "#000", background: "rgba(0,0,0,0.1)", padding: "3px 7px", borderRadius: 99, letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "var(--font-sans)" }}>
                   Menunggu
                 </span>
               </div>
@@ -354,22 +354,22 @@ const FloatingUICard = () => {
         ))}
 
         {/* Parties */}
-        <div style={{ marginTop: 14, display: "flex", alignItems: "center", justifyContent: "space-between", background: "rgba(0,0,0,0.03)", borderRadius: 12, padding: "10px 12px" }}>
+        <div style={{ marginTop: 14, display: "flex", alignItems: "center", justifyContent: "space-between", background: "rgba(0,0,0,0.1)", borderRadius: 12, padding: "10px 12px" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <div style={{ width: 28, height: 28, borderRadius: "50%", background: "#000", display: "flex", alignItems: "center", justifyContent: "center" }}>
               <span style={{ fontSize: 11, fontWeight: 700, color: "#fff", fontFamily: "var(--font-sans)" }}>AR</span>
             </div>
             <div>
-              <p style={{ fontSize: 10, color: "rgba(0,0,0,0.35)", fontFamily: "var(--font-sans)", fontWeight: 500 }}>Pembeli</p>
+              <p style={{ fontSize: 10, color: "rgba(0,0,0,0.1)", fontFamily: "var(--font-sans)", fontWeight: 500 }}>Pembeli</p>
               <p style={{ fontSize: 11.5, fontWeight: 600, color: "#000", fontFamily: "var(--font-sans)" }}>Ari Ramadhan</p>
             </div>
           </div>
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M4 10H16M16 10L12 6M16 10L12 14" stroke="rgba(0,0,0,0.3)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M4 10H16M16 10L12 6M16 10L12 14" stroke="rgba(0,0,0,0.1)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <div>
-              <p style={{ fontSize: 10, color: "rgba(0,0,0,0.35)", fontFamily: "var(--font-sans)", fontWeight: 500, textAlign: "right" }}>Penjual</p>
+              <p style={{ fontSize: 10, color: "rgba(0,0,0,0.1)", fontFamily: "var(--font-sans)", fontWeight: 500, textAlign: "right" }}>Penjual</p>
               <p style={{ fontSize: 11.5, fontWeight: 600, color: "#000", fontFamily: "var(--font-sans)" }}>Toko Budi</p>
             </div>
             <div style={{ width: 28, height: 28, borderRadius: "50%", background: "rgba(0,0,0,0.1)", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -388,7 +388,7 @@ const FloatingUICard = () => {
         </div>
         <div>
           <p style={{ fontSize: 10, fontWeight: 600, color: "#000", fontFamily: "var(--font-sans)", lineHeight: 1 }}>Dana Aman</p>
-          <p style={{ fontSize: 9.5, color: "rgba(0,0,0,0.4)", fontFamily: "var(--font-sans)", marginTop: 2 }}>Terproteksi 100%</p>
+          <p style={{ fontSize: 9.5, color: "rgba(0,0,0,0.1)", fontFamily: "var(--font-sans)", marginTop: 2 }}>Terproteksi 100%</p>
         </div>
       </div>
 
@@ -403,7 +403,7 @@ const FloatingUICard = () => {
 
       {/* Floating badge — top right */}
       <div className="float-badge card-ui absolute -right-6 top-6 px-3 py-2.5" style={{ animationDelay: "0.5s", zIndex: 10 }}>
-        <p style={{ fontSize: 9, fontWeight: 600, color: "rgba(0,0,0,0.4)", fontFamily: "var(--font-sans)", textTransform: "uppercase", letterSpacing: "0.08em" }}>Monitoring</p>
+        <p style={{ fontSize: 9, fontWeight: 600, color: "rgba(0,0,0,0.1)", fontFamily: "var(--font-sans)", textTransform: "uppercase", letterSpacing: "0.08em" }}>Monitoring</p>
         <p style={{ fontSize: 13, fontWeight: 800, color: "#000", fontFamily: "var(--font-sans)", letterSpacing: "-0.02em" }}>24/7</p>
       </div>
     </div>
@@ -421,8 +421,7 @@ const RegLogos = [
         <circle cx="11" cy="11" r="2.8" stroke="#000" strokeWidth="1.5" strokeOpacity="0.7" />
         <path d="M1 9h20M1 13h20" stroke="#000" strokeWidth="1" strokeOpacity="0.25" />
       </svg>
-    ),
-  },
+    ) },
   {
     abbr: "PPATK",
     name: "Anti Pencucian Uang",
@@ -432,8 +431,7 @@ const RegLogos = [
         <path d="M11 6v5.5l3 2" stroke="#000" strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.7" />
         <circle cx="11" cy="11" r="1.5" fill="#000" fillOpacity="0.5" />
       </svg>
-    ),
-  },
+    ) },
   {
     abbr: "KYC",
     name: "Kementerian Kominfo",
@@ -443,8 +441,7 @@ const RegLogos = [
         <path d="M7 17l1.5-2h5L15 17" stroke="#000" strokeWidth="1.4" strokeLinecap="round" strokeOpacity="0.7" />
         <path d="M8 9h6M8 12h4" stroke="#000" strokeWidth="1.3" strokeLinecap="round" strokeOpacity="0.4" />
       </svg>
-    ),
-  },
+    ) },
   {
     abbr: "KUMHAM",
     name: "Kemenkumham RI",
@@ -453,8 +450,7 @@ const RegLogos = [
         <path d="M11 3L4 7v5c0 3.87 3.13 7 7 7s7-3.13 7-7V7L11 3z" stroke="#000" strokeWidth="1.5" strokeLinejoin="round" strokeOpacity="0.7" />
         <path d="M8 11l2 2 4-4" stroke="#000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" strokeOpacity="0.7" />
       </svg>
-    ),
-  },
+    ) },
 ];
 
 // ─── Stats ────────────────────────────────────────────────────────────────────
@@ -505,12 +501,12 @@ export default function HeroSection() {
             <div className="flex flex-col gap-7 max-w-xl">
 
               {/* Trust pill */}
-              <div className={`anim-fade-up d-100 inline-flex items-center gap-2 self-start px-3.5 py-2 rounded-full border border-black/10 bg-white/80 
+              <div className={`anim-fade-up d-100 inline-flex items-center gap-2 self-start px-3.5 py-2 rounded-full border border-black/10 bg-white/80`}>
                 <span style={{ position: "relative", display: "flex", width: 7, height: 7 }}>
                   <span style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "#000", opacity: 0.35, animation: "ping-slow 1.8s ease infinite" }} />
                   <span style={{ position: "relative", width: 7, height: 7, borderRadius: "50%", background: "#000", display: "block" }} />
                 </span>
-                <span style={{ fontSize: 11.5, fontWeight: 600, color: "rgba(0,0,0,0.6)", fontFamily: "var(--font-sans)", letterSpacing: "0.03em" }}>
+                <span style={{ fontSize: 11.5, fontWeight: 600, color: "rgba(0,0,0,0.1)", fontFamily: "var(--font-sans)", letterSpacing: "0.03em" }}>
                   Platform escrow untuk transaksi bernilai tinggi
                 </span>
               </div>
@@ -526,8 +522,7 @@ export default function HeroSection() {
                     lineHeight: 1.08,
                     letterSpacing: "-0.04em",
                     color: "#000",
-                    margin: 0,
-                  }}
+                    margin: 0 }}
                 >
                   <span style={{ display: "block" }}>Kurangi Penipuan.</span>
                   <span style={{ display: "block", position: "relative" }}>
@@ -561,10 +556,9 @@ export default function HeroSection() {
                   fontSize: "clamp(15px, 1.6vw, 17px)",
                   fontWeight: 400,
                   lineHeight: 1.75,
-                  color: "rgba(0,0,0,0.5)",
+                  color: "rgba(0,0,0,0.1)",
                   margin: 0,
-                  maxWidth: 440,
-                }}
+                  maxWidth: 440 }}
               >
                 Dana Anda kami pegang erat — baru dilepas saat transaksi benar-benar selesai dan kedua pihak sepakat. Tidak ada celah untuk penipuan.
               </p>
@@ -611,7 +605,7 @@ export default function HeroSection() {
                         <path d="M5.5 1L6.8 4H10L7.2 6.1L8.2 9.3L5.5 7.4L2.8 9.3L3.8 6.1L1 4H4.2L5.5 1Z" />
                       </svg>
                     ))}
-                    <span style={{ fontSize: 11, color: "rgba(0,0,0,0.4)", fontFamily: "var(--font-sans)", marginLeft: 4 }}>Alur lebih tenang</span>
+                    <span style={{ fontSize: 11, color: "rgba(0,0,0,0.1)", fontFamily: "var(--font-sans)", marginLeft: 4 }}>Alur lebih tenang</span>
                   </div>
                 </div>
               </div>
@@ -621,18 +615,18 @@ export default function HeroSection() {
             <div className="hero-visual anim-fade-in d-600 flex items-center justify-center relative py-10" style={{ minHeight: 460 }}>
               {/* Outer glow */}
               <div className="absolute inset-0 pointer-events-none" style={{
-                background: "radial-gradient(ellipse 65% 65% at 55% 50%, rgba(0,0,0,0.035) 0%, transparent 70%)"
+                background: "radial-gradient(ellipse 65% 65% at 55% 50%, rgba(0,0,0,0.1) 0%, transparent 70%)"
               }} />
               {/* Spinning ring */}
               <div className="spin-slow absolute" style={{
                 width: 380, height: 380,
-                border: "1px dashed rgba(0,0,0,0.08)",
+                border: "1px dashed rgba(0,0,0,0.1)",
                 borderRadius: "50%",
                 pointerEvents: "none"
               }} />
               <div style={{
                 width: 300, height: 300,
-                border: "1px dashed rgba(0,0,0,0.05)",
+                border: "1px dashed rgba(0,0,0,0.1)",
                 borderRadius: "50%",
                 position: "absolute",
                 pointerEvents: "none",
@@ -664,7 +658,7 @@ export default function HeroSection() {
                 <p style={{
                   fontFamily: "var(--font-sans)",
                   fontSize: 12,
-                  color: "rgba(0,0,0,0.4)",
+                  color: "rgba(0,0,0,0.1)",
                   fontWeight: 500,
                   margin: "0 0 10px 0"
                 }}>{s.sub}</p>
@@ -681,13 +675,13 @@ export default function HeroSection() {
           <div className="anim-fade-up d-1100">
             {/* Label */}
             <div className="flex items-center gap-4 mb-5">
-              <div style={{ flex: 1, height: 1, background: "rgba(0,0,0,0.08)" }} />
+              <div style={{ flex: 1, height: 1, background: "rgba(0,0,0,0.1)" }} />
               <span style={{
                 fontSize: 10.5,
                 fontWeight: 700,
                 letterSpacing: "0.15em",
                 textTransform: "uppercase",
-                color: "rgba(0,0,0,0.3)",
+                color: "rgba(0,0,0,0.1)",
                 fontFamily: "var(--font-sans)",
                 whiteSpace: "nowrap",
                 display: "flex",
@@ -695,11 +689,11 @@ export default function HeroSection() {
                 gap: 6
               }}>
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                  <path d="M6 1L2 3.5V6c0 2.2 1.8 4 4 4s4-1.8 4-4V3.5L6 1Z" stroke="rgba(0,0,0,0.35)" strokeWidth="1.4" strokeLinejoin="round" />
+                  <path d="M6 1L2 3.5V6c0 2.2 1.8 4 4 4s4-1.8 4-4V3.5L6 1Z" stroke="rgba(0,0,0,0.1)" strokeWidth="1.4" strokeLinejoin="round" />
                 </svg>
                 Dirancang untuk kebutuhan operasional & keamanan
               </span>
-              <div style={{ flex: 1, height: 1, background: "rgba(0,0,0,0.08)" }} />
+              <div style={{ flex: 1, height: 1, background: "rgba(0,0,0,0.1)" }} />
             </div>
 
             {/* Logo grid */}
@@ -712,7 +706,7 @@ export default function HeroSection() {
                 >
                   <div style={{
                     width: 36, height: 36, borderRadius: 10,
-                    background: "rgba(0,0,0,0.04)",
+                    background: "rgba(0,0,0,0.1)",
                     display: "flex", alignItems: "center", justifyContent: "center",
                     flexShrink: 0
                   }}>
@@ -731,7 +725,7 @@ export default function HeroSection() {
                     <p style={{
                       fontFamily: "var(--font-sans)",
                       fontSize: 10.5,
-                      color: "rgba(0,0,0,0.38)",
+                      color: "rgba(0,0,0,0.1)",
                       fontWeight: 500,
                       margin: "2px 0 0 0",
                       lineHeight: 1.3

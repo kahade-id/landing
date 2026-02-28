@@ -7,15 +7,15 @@ import { homeAnchors, supportLinks } from "@/lib/site";
 // ─── Icons ────────────────────────────────────────────────────────────────────
 const CheckCircle = ({ white = false }) => (
   <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style={{ flexShrink: 0 }}>
-    <circle cx="9" cy="9" r="9" fill={white ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.06)"} />
+    <circle cx="9" cy="9" r="9" fill={white ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)"} />
     <path d="M5.5 9L7.5 11L12.5 6.5" stroke={white ? "rgba(255,255,255,.8)" : "#000"} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 
 const CrossCircle = () => (
   <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style={{ flexShrink: 0 }}>
-    <circle cx="9" cy="9" r="9" fill="rgba(0,0,0,0.04)" />
-    <path d="M6.5 6.5L11.5 11.5M11.5 6.5L6.5 11.5" stroke="rgba(0,0,0,0.25)" strokeWidth="1.5" strokeLinecap="round" />
+    <circle cx="9" cy="9" r="9" fill="rgba(0,0,0,0.1)" />
+    <path d="M6.5 6.5L11.5 11.5M11.5 6.5L6.5 11.5" stroke="rgba(0,0,0,0.1)" strokeWidth="1.5" strokeLinecap="round" />
   </svg>
 );
 
@@ -33,27 +33,27 @@ const ArrowRight = () => (
 );
 
 const ZapIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="rgba(0,0,0,.55)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="rgba(0,0,0,0.1)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
     <path d="M9 2L4.5 8.5H8L7 14L11.5 7.5H8L9 2Z" />
   </svg>
 );
 
 const ShieldCheck = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 16 16" fill="none" stroke="rgba(0,0,0,.55)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+  <svg width={size} height={size} viewBox="0 0 16 16" fill="none" stroke="rgba(0,0,0,0.1)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
     <path d="M8 2L3 4.5V8C3 11.1 5.2 13.8 8 14.5C10.8 13.8 13 11.1 13 8V4.5L8 2Z" />
     <path d="M5.5 8L7 9.5L10.5 6" />
   </svg>
 );
 
 const ClockIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="rgba(0,0,0,.55)" strokeWidth="1.5" strokeLinecap="round" style={{ flexShrink: 0 }}>
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="rgba(0,0,0,0.1)" strokeWidth="1.5" strokeLinecap="round" style={{ flexShrink: 0 }}>
     <circle cx="8" cy="8" r="6" />
     <path d="M8 5v3.5l2 1.5" />
   </svg>
 );
 
 const HeadsetIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="rgba(0,0,0,.55)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="rgba(0,0,0,0.1)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
     <path d="M3 9V7.5a5 5 0 0110 0V9" />
     <rect x="2" y="9" width="3" height="4" rx="1.5" />
     <rect x="11" y="9" width="3" height="4" rx="1.5" />
@@ -61,14 +61,14 @@ const HeadsetIcon = () => (
 );
 
 const CodeIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="rgba(0,0,0,.55)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="rgba(0,0,0,0.1)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
     <polyline points="5,4 1,8 5,12" /><polyline points="11,4 15,8 11,12" />
     <line x1="9.5" y1="2" x2="6.5" y2="14" />
   </svg>
 );
 
 const BuildingIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="rgba(0,0,0,.55)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="rgba(0,0,0,0.1)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
     <rect x="2" y="3" width="12" height="12" rx="1" />
     <path d="M6 15V9h4v6M2 7h12" />
   </svg>
@@ -220,8 +220,7 @@ function FeeCalculator() {
 
   // track fill for slider
   const trackStyle = {
-    background: `linear-gradient(to right, rgba(255,255,255,.7) 0%, rgba(255,255,255,.7) ${sliderPct}%, rgba(255,255,255,.15) ${sliderPct}%, rgba(255,255,255,.15) 100%)`,
-  };
+    background: `linear-gradient(to right, rgba(255,255,255,.7) 0%, rgba(255,255,255,.7) ${sliderPct}%, rgba(255,255,255,.15) ${sliderPct}%, rgba(255,255,255,.15) 100%)` };
 
   return (
     <div className="pr-calc-card">
@@ -353,8 +352,7 @@ function FeeCalculator() {
                   <div style={{
                     height: "100%", borderRadius: 99, background: "rgba(255,255,255,.6)",
                     width: `${Math.min(100, pct / 2.5 * 100)}%`,
-                    transition: "width .35s cubic-bezier(.22,.68,0,1.1)",
-                  }} />
+                    transition: "width .35s cubic-bezier(.22,.68,0,1.1)" }} />
                 </div>
                 <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6 }}>
                   <span style={{ fontSize: 10, color: "rgba(255,255,255,.22)", fontFamily: "var(--font-sans)" }}>0%</span>
@@ -393,8 +391,7 @@ function FeeCalculator() {
           flexWrap: "wrap",
           gap: 12,
           alignItems: "center",
-          justifyContent: "space-between",
-        }}>
+          justifyContent: "space-between" }}>
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
             {[
               { label: "Rate", val: "2,5%" },
@@ -446,14 +443,14 @@ export default function PricingSection() {
               <div style={{
                 display: "inline-flex", alignItems: "center", gap: 8,
                 padding: "7px 16px", borderRadius: 99,
-                border: "1px solid rgba(0,0,0,.09)",
-                background: "rgba(0,0,0,.02)"
+                border: "1px solid rgba(0,0,0,0.1)",
+                background: "rgba(0,0,0,0.1)"
               }}>
                 <span style={{ position: "relative", display: "inline-flex", width: 7, height: 7 }}>
                   <span style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "#000", opacity: .35, animation: "prPing 1.8s ease infinite" }} />
                   <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#000", display: "block", position: "relative" }} />
                 </span>
-                <span style={{ fontSize: 11.5, fontWeight: 600, color: "rgba(0,0,0,.4)", fontFamily: "var(--font-sans)", letterSpacing: ".04em", textTransform: "uppercase" }}>
+                <span style={{ fontSize: 11.5, fontWeight: 600, color: "rgba(0,0,0,0.1)", fontFamily: "var(--font-sans)", letterSpacing: ".04em", textTransform: "uppercase" }}>
                   Harga Transparan, Tanpa Kejutan
                 </span>
               </div>
@@ -468,10 +465,9 @@ export default function PricingSection() {
                 letterSpacing: "-.04em",
                 lineHeight: 1.06,
                 margin: "0 auto 18px",
-                maxWidth: 580,
-              }}>
+                maxWidth: 580 }}>
                 Bayar Saat Berhasil.<br />
-                <span style={{ color: "rgba(0,0,0,.22)" }}>Tidak Lebih.</span>
+                <span style={{ color: "rgba(0,0,0,0.1)" }}>Tidak Lebih.</span>
               </h2>
             </div>
 
@@ -479,11 +475,10 @@ export default function PricingSection() {
               <p style={{
                 fontFamily: "var(--font-sans)",
                 fontSize: "clamp(14px,1.5vw,16.5px)",
-                color: "rgba(0,0,0,.45)",
+                color: "rgba(0,0,0,0.1)",
                 lineHeight: 1.78,
                 maxWidth: 460,
-                margin: "0 auto",
-              }}>
+                margin: "0 auto" }}>
                 Tidak ada biaya bulanan, tidak ada biaya setup. Kami hanya mengambil komisi kecil ketika transaksi Anda berhasil diselesaikan.
               </p>
             </div>
@@ -496,8 +491,7 @@ export default function PricingSection() {
               borderRadius: 28,
               overflow: "hidden",
               position: "relative",
-              padding: "52px 48px",
-            }}>
+              padding: "52px 48px" }}>
               {/* BG elements */}
               <svg className="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
                 <pattern id="hero-dot" width="28" height="28" patternUnits="userSpaceOnUse">
@@ -514,8 +508,7 @@ export default function PricingSection() {
                 display: "grid",
                 gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
                 gap: "40px 60px",
-                alignItems: "center",
-              }}>
+                alignItems: "center" }}>
                 {/* Main fee display */}
                 <div>
                   <p style={{ fontFamily: "var(--font-sans)", fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,.35)", textTransform: "uppercase", letterSpacing: ".15em", margin: "0 0 12px 0" }}>
@@ -564,8 +557,7 @@ export default function PricingSection() {
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 420px), 1fr))",
             gap: 20,
-            marginBottom: 20,
-          }}>
+            marginBottom: 20 }}>
 
             {/* Features card */}
             <div className={`pr-main-card pr-fade-up pr-d3 ${inView ? "pv" : ""}`}>
@@ -573,19 +565,19 @@ export default function PricingSection() {
                 <p style={{ fontFamily: "var(--font-sans)", fontSize: 14, fontWeight: 700, color: "#000", letterSpacing: "-.02em", margin: "0 0 4px 0" }}>
                   Apa yang Sudah Termasuk
                 </p>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: 12.5, color: "rgba(0,0,0,.38)", margin: 0 }}>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: 12.5, color: "rgba(0,0,0,0.1)", margin: 0 }}>
                   Semuanya gratis — hanya bayar fee saat transaksi berhasil.
                 </p>
               </div>
               <div style={{ padding: "0 24px 24px 24px" }}>
                 {FEATURES.map((f, i) => (
                   <div key={i} className="pr-feat-row">
-                    <div style={{ width: 34, height: 34, borderRadius: 10, background: "rgba(0,0,0,.04)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                    <div style={{ width: 34, height: 34, borderRadius: 10, background: "rgba(0,0,0,0.1)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                       {f.icon}
                     </div>
                     <div>
                       <span style={{ fontFamily: "var(--font-sans)", fontSize: 13.5, fontWeight: 600, color: "#000", display: "block", lineHeight: 1.3 }}>{f.label}</span>
-                      <span style={{ fontFamily: "var(--font-sans)", fontSize: 11.5, color: "rgba(0,0,0,.38)", display: "block", marginTop: 2 }}>{f.sub}</span>
+                      <span style={{ fontFamily: "var(--font-sans)", fontSize: 11.5, color: "rgba(0,0,0,0.1)", display: "block", marginTop: 2 }}>{f.sub}</span>
                     </div>
                     <div style={{ marginLeft: "auto" }}><CheckCircle /></div>
                   </div>
@@ -608,13 +600,13 @@ export default function PricingSection() {
                 <p style={{ fontFamily: "var(--font-sans)", fontSize: 15, fontWeight: 700, color: "#000", letterSpacing: "-.02em", margin: "0 0 4px 0" }}>
                   Perbandingan Biaya
                 </p>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: 12.5, color: "rgba(0,0,0,.38)", margin: "0 0 20px 0" }}>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: 12.5, color: "rgba(0,0,0,0.1)", margin: "0 0 20px 0" }}>
                   Mengapa Kahade lebih hemat dari kompetitor?
                 </p>
               </div>
 
               {/* Column headers */}
-              <div className="pr-tbl-row" style={{ background: "rgba(0,0,0,.025)", borderBottom: "1px solid rgba(0,0,0,.07)" }}>
+              <div className="pr-tbl-row" style={{ background: "rgba(0,0,0,0.1)", borderBottom: "1px solid rgba(0,0,0,0.1)" }}>
                 <div className="pr-tbl-cell head">Komponen</div>
                 <div className="pr-tbl-cell head" style={{ justifyContent: "center" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
@@ -626,16 +618,16 @@ export default function PricingSection() {
                     <span style={{ color: "#000", fontWeight: 800 }}>Kahade</span>
                   </div>
                 </div>
-                <div className="pr-tbl-cell head" style={{ justifyContent: "center", color: "rgba(0,0,0,.22)" }}>Kompetitor Lain</div>
+                <div className="pr-tbl-cell head" style={{ justifyContent: "center", color: "rgba(0,0,0,0.1)" }}>Kompetitor Lain</div>
               </div>
 
               {COMPARE_ROWS.map((row, i) => (
                 <div key={i} className="pr-tbl-row">
-                  <div className="pr-tbl-cell" style={{ fontWeight: 500, color: "rgba(0,0,0,.6)" }}>{row.label}</div>
+                  <div className="pr-tbl-cell" style={{ fontWeight: 500, color: "rgba(0,0,0,0.1)" }}>{row.label}</div>
                   <div className="pr-tbl-cell" style={{ justifyContent: "center", fontWeight: 700, color: "#000", fontFamily: "var(--font-sans)", fontSize: 13, letterSpacing: "-.02em" }}>
                     <CheckCircle /> {row.trust}
                   </div>
-                  <div className="pr-tbl-cell" style={{ justifyContent: "center", color: "rgba(0,0,0,.38)" }}>
+                  <div className="pr-tbl-cell" style={{ justifyContent: "center", color: "rgba(0,0,0,0.1)" }}>
                     <CrossCircle /> {row.competitor1}
                   </div>
                 </div>
@@ -646,21 +638,20 @@ export default function PricingSection() {
           {/* ── Bottom CTA strip ─────────────────────────────────────────────── */}
           <div className={c("pr-fade-up pr-d7")} style={{ marginTop: 20 }}>
             <div style={{
-              border: "1px solid rgba(0,0,0,.08)",
+              border: "1px solid rgba(0,0,0,0.1)",
               borderRadius: 20,
               padding: "28px 32px",
-              background: "rgba(0,0,0,.015)",
+              background: "rgba(0,0,0,0.1)",
               display: "flex",
               flexWrap: "wrap",
               alignItems: "center",
               justifyContent: "space-between",
-              gap: 18,
-            }}>
+              gap: 18 }}>
               <div>
                 <p style={{ fontFamily: "var(--font-sans)", fontSize: 17, fontWeight: 700, color: "#000", letterSpacing: "-.03em", margin: "0 0 4px 0" }}>
                   Butuh volume besar atau integrasi enterprise?
                 </p>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: 13, color: "rgba(0,0,0,.4)", margin: 0 }}>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: 13, color: "rgba(0,0,0,0.1)", margin: 0 }}>
                   Kami siapkan harga khusus, SLA premium, dan onboarding dedicated untuk bisnis Anda.
                 </p>
               </div>
@@ -670,8 +661,7 @@ export default function PricingSection() {
                   padding: "12px 24px", background: "#000", color: "#fff",
                   borderRadius: 12, fontSize: 13.5, fontWeight: 700,
                   fontFamily: "var(--font-sans)", textDecoration: "none",
-                  letterSpacing: "-.02em", transition: "all .2s",
-                }}
+                  letterSpacing: "-.02em", transition: "all .2s" }}
                   onMouseOver={e => { e.currentTarget.style.background = "#1a1a1a"; e.currentTarget.style.transform = "translateY(-1px)"; }}
                   onMouseOut={e => { e.currentTarget.style.background = "#000"; e.currentTarget.style.transform = "none"; }}
                 >
@@ -679,13 +669,12 @@ export default function PricingSection() {
                 </Link>
                 <Link href={supportLinks.contact} style={{
                   display: "inline-flex", alignItems: "center", gap: 8,
-                  padding: "11px 22px", background: "transparent", color: "rgba(0,0,0,.6)",
-                  border: "1.5px solid rgba(0,0,0,.12)", borderRadius: 12,
+                  padding: "11px 22px", background: "transparent", color: "rgba(0,0,0,0.1)",
+                  border: "1.5px solid rgba(0,0,0,0.1)", borderRadius: 12,
                   fontSize: 13.5, fontWeight: 600, fontFamily: "var(--font-sans)",
-                  textDecoration: "none", transition: "all .2s",
-                }}
-                  onMouseOver={e => { e.currentTarget.style.borderColor = "rgba(0,0,0,.28)"; e.currentTarget.style.color = "#000"; }}
-                  onMouseOut={e => { e.currentTarget.style.borderColor = "rgba(0,0,0,.12)"; e.currentTarget.style.color = "rgba(0,0,0,.6)"; }}
+                  textDecoration: "none", transition: "all .2s" }}
+                  onMouseOver={e => { e.currentTarget.style.borderColor = "rgba(0,0,0,0.1)"; e.currentTarget.style.color = "#000"; }}
+                  onMouseOut={e => { e.currentTarget.style.borderColor = "rgba(0,0,0,0.1)"; e.currentTarget.style.color = "rgba(0,0,0,0.1)"; }}
                 >
                   Hubungi Sales
                 </Link>

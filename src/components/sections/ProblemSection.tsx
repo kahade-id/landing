@@ -16,9 +16,9 @@ const XIcon = ({ size = 20, op = .75 }) => (
 
 const CheckIcon = ({ white = false }) => (
   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-    <circle cx="10" cy="10" r="10" fill={white ? "rgba(255,255,255,.1)" : "rgba(0,0,0,.06)"}/>
+    <circle cx="10" cy="10" r="10" fill={white ? "rgba(255,255,255,.1)" : "rgba(0,0,0,0.1)"}/>
     <path d="M6.5 10L8.8 12.3L13.5 7.5"
-      stroke={white ? "rgba(255,255,255,.85)" : "rgba(0,0,0,.7)"}
+      stroke={white ? "rgba(255,255,255,.85)" : "rgba(0,0,0,0.1)"}
       strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 );
@@ -40,17 +40,17 @@ const ArrowRightIcon = () => (
 
 const WalletIcon = ({ size = 22, white = false }) => (
   <svg width={size} height={size} viewBox="0 0 22 22" fill="none"
-    stroke={white ? "rgba(255,255,255,.75)" : "rgba(0,0,0,.65)"}
+    stroke={white ? "rgba(255,255,255,.75)" : "rgba(0,0,0,0.1)"}
     strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round">
     <rect x="2" y="5" width="18" height="14" rx="2.5"/>
     <path d="M2 10h18"/>
-    <circle cx="16" cy="15" r="1.2" fill={white ? "rgba(255,255,255,.75)" : "rgba(0,0,0,.65)"} stroke="none"/>
+    <circle cx="16" cy="15" r="1.2" fill={white ? "rgba(255,255,255,.75)" : "rgba(0,0,0,0.1)"} stroke="none"/>
   </svg>
 );
 
 const BoxIcon = ({ size = 22, white = false }) => (
   <svg width={size} height={size} viewBox="0 0 22 22" fill="none"
-    stroke={white ? "rgba(255,255,255,.75)" : "rgba(0,0,0,.65)"}
+    stroke={white ? "rgba(255,255,255,.75)" : "rgba(0,0,0,0.1)"}
     strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round">
     <path d="M4 8L11 4L18 8V16L11 20L4 16V8Z"/>
     <path d="M11 4V20M4 8L11 12L18 8"/>
@@ -59,7 +59,7 @@ const BoxIcon = ({ size = 22, white = false }) => (
 
 const AlertIcon = ({ size = 16 }) => (
   <svg width={size} height={size} viewBox="0 0 16 16" fill="none"
-    stroke="rgba(0,0,0,.5)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    stroke="rgba(0,0,0,0.1)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M8 2L15 14H1L8 2Z"/>
     <path d="M8 6.5v3.5M8 12v.5"/>
   </svg>
@@ -67,7 +67,7 @@ const AlertIcon = ({ size = 16 }) => (
 
 const UserIcon = ({ white = false }) => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-    stroke={white ? "rgba(255,255,255,.65)" : "rgba(0,0,0,.5)"}
+    stroke={white ? "rgba(255,255,255,.65)" : "rgba(0,0,0,0.1)"}
     strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <circle cx="8" cy="5" r="3"/>
     <path d="M2 14c0-3.314 2.686-6 6-6s6 2.686 6 6"/>
@@ -76,11 +76,11 @@ const UserIcon = ({ white = false }) => (
 
 const LockIcon = ({ white = false, size = 16 }) => (
   <svg width={size} height={size} viewBox="0 0 16 16" fill="none"
-    stroke={white ? "rgba(255,255,255,.75)" : "rgba(0,0,0,.65)"}
+    stroke={white ? "rgba(255,255,255,.75)" : "rgba(0,0,0,0.1)"}
     strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
     <rect x="3" y="7" width="10" height="8" rx="1.5"/>
     <path d="M5.5 7V5a2.5 2.5 0 015 0v2"/>
-    <circle cx="8" cy="11" r="1.2" fill={white ? "rgba(255,255,255,.75)" : "rgba(0,0,0,.65)"} stroke="none"/>
+    <circle cx="8" cy="11" r="1.2" fill={white ? "rgba(255,255,255,.75)" : "rgba(0,0,0,0.1)"} stroke="none"/>
   </svg>
 );
 
@@ -144,7 +144,7 @@ const MoneyGoneVisual = ({ inView }: { inView: boolean }) => (
     {/* Base wallet */}
     <div className="pb-float-s" style={{
       width:68, height:68, borderRadius:18,
-      background:"rgba(0,0,0,.06)", border:"1.5px solid rgba(0,0,0,.1)",
+      background:"rgba(0,0,0,0.1)", border:"1.5px solid rgba(0,0,0,0.1)",
       display:"flex", alignItems:"center", justifyContent:"center",
       position:"relative", zIndex:2
     }}>
@@ -153,13 +153,12 @@ const MoneyGoneVisual = ({ inView }: { inView: boolean }) => (
       <div style={{
         position:"absolute", top:-8, right:-8,
         width:22, height:22, borderRadius:"50%",
-        background:"#fff", border:"1.5px solid rgba(0,0,0,.12)",
-        display:"flex", alignItems:"center", justifyContent:"center",
-        ,0,0,.1)"
+        background:"#fff", border:"1.5px solid rgba(0,0,0,0.1)",
+        display:"flex", alignItems:"center", justifyContent:"center"
       }}>
         <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-          <line x1="2.5" y1="2.5" x2="7.5" y2="7.5" stroke="rgba(0,0,0,.5)" strokeWidth="1.5" strokeLinecap="round"/>
-          <line x1="7.5" y1="2.5" x2="2.5" y2="7.5" stroke="rgba(0,0,0,.5)" strokeWidth="1.5" strokeLinecap="round"/>
+          <line x1="2.5" y1="2.5" x2="7.5" y2="7.5" stroke="rgba(0,0,0,0.1)" strokeWidth="1.5" strokeLinecap="round"/>
+          <line x1="7.5" y1="2.5" x2="2.5" y2="7.5" stroke="rgba(0,0,0,0.1)" strokeWidth="1.5" strokeLinecap="round"/>
         </svg>
       </div>
     </div>
@@ -173,23 +172,22 @@ const MoneyGoneVisual = ({ inView }: { inView: boolean }) => (
       <div key={i} className="pb-float" style={{
         position:"absolute", ...{ top:p.top, left:p.left, right:p.right },
         animationDelay: p.delay,
-        background:"#fff", border:"1px solid rgba(0,0,0,.1)",
+        background:"#fff", border:"1px solid rgba(0,0,0,0.1)",
         borderRadius:10, padding:"5px 10px",
-        ,0,0,.08)",
         transform:`rotate(${p.rot})`,
         display:"flex", alignItems:"center", gap:5,
         opacity:.75
       }}>
         <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-          <circle cx="6" cy="6" r="5.5" stroke="rgba(0,0,0,.35)" strokeWidth="1"/>
-          <path d="M4 7.5c0-.8.9-1.5 2-1.5s2-.7 2-1.5S9 3 6 3M6 3V2M6 9v1M4.5 8.5h3" stroke="rgba(0,0,0,.4)" strokeWidth="1" strokeLinecap="round"/>
+          <circle cx="6" cy="6" r="5.5" stroke="rgba(0,0,0,0.1)" strokeWidth="1"/>
+          <path d="M4 7.5c0-.8.9-1.5 2-1.5s2-.7 2-1.5S9 3 6 3M6 3V2M6 9v1M4.5 8.5h3" stroke="rgba(0,0,0,0.1)" strokeWidth="1" strokeLinecap="round"/>
         </svg>
-        <span style={{ fontSize:10, fontWeight:700, color:"rgba(0,0,0,.55)", fontFamily:"var(--font-sans)" }}>
+        <span style={{ fontSize:10, fontWeight:700, color:"rgba(0,0,0,0.1)", fontFamily:"var(--font-sans)" }}>
           {p.val}
         </span>
         {/* Arrow flying away */}
         <svg width="10" height="10" viewBox="0 0 10 10" fill="none" className="pb-arrow-ani">
-          <path d="M1 9L9 1M9 1H4M9 1V6" stroke="rgba(0,0,0,.4)" strokeWidth="1.4" strokeLinecap="round"/>
+          <path d="M1 9L9 1M9 1H4M9 1V6" stroke="rgba(0,0,0,0.1)" strokeWidth="1.4" strokeLinecap="round"/>
         </svg>
       </div>
     ))}
@@ -198,7 +196,7 @@ const MoneyGoneVisual = ({ inView }: { inView: boolean }) => (
     <div className="pb-float" style={{
       position:"absolute", bottom:"8%", left:"18%",
       width:50, height:50, borderRadius:14,
-      background:"rgba(0,0,0,.05)", border:"1.5px dashed rgba(0,0,0,.15)",
+      background:"rgba(0,0,0,0.1)", border:"1.5px dashed rgba(0,0,0,0.1)",
       display:"flex", alignItems:"center", justifyContent:"center",
       animationDelay:".6s"
     }}>
@@ -208,22 +206,21 @@ const MoneyGoneVisual = ({ inView }: { inView: boolean }) => (
     {/* Bottom label */}
     <div style={{
       position:"absolute", bottom:"0%", right:"15%",
-      background:"rgba(0,0,0,.06)", borderRadius:10,
+      background:"rgba(0,0,0,0.1)", borderRadius:10,
       padding:"4px 10px", display:"flex", alignItems:"center", gap:5
     }}>
-      <div className="pb-blink" style={{ width:6, height:6, borderRadius:"50%", background:"rgba(0,0,0,.35)" }}/>
-      <span style={{ fontSize:10, fontWeight:600, color:"rgba(0,0,0,.45)", fontFamily:"var(--font-sans)" }}>Tidak ada jaminan</span>
+      <div className="pb-blink" style={{ width:6, height:6, borderRadius:"50%", background:"rgba(0,0,0,0.1)" }}/>
+      <span style={{ fontSize:10, fontWeight:600, color:"rgba(0,0,0,0.1)", fontFamily:"var(--font-sans)" }}>Tidak ada jaminan</span>
     </div>
   </div>
 );
 
-// ─── Floating Box Shipped Illustration ───────────────────────────────────────
 const BoxShippedVisual = ({ inView }: { inView: boolean }) => (
   <div style={{ position:"relative", height:180, display:"flex", alignItems:"center", justifyContent:"center", margin:"4px 0 20px" }}>
     {/* Truck / box going away */}
     <div className="pb-float-s" style={{
       width:68, height:68, borderRadius:18,
-      background:"rgba(0,0,0,.06)", border:"1.5px solid rgba(0,0,0,.1)",
+      background:"rgba(0,0,0,0.1)", border:"1.5px solid rgba(0,0,0,0.1)",
       display:"flex", alignItems:"center", justifyContent:"center",
       position:"relative", zIndex:2
     }}>
@@ -232,12 +229,11 @@ const BoxShippedVisual = ({ inView }: { inView: boolean }) => (
       <div style={{
         position:"absolute", top:-8, right:-8,
         width:22, height:22, borderRadius:"50%",
-        background:"#fff", border:"1.5px solid rgba(0,0,0,.12)",
-        display:"flex", alignItems:"center", justifyContent:"center",
-        ,0,0,.1)"
+        background:"#fff", border:"1.5px solid rgba(0,0,0,0.1)",
+        display:"flex", alignItems:"center", justifyContent:"center"
       }}>
         <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-          <path d="M2 5.5L4 7.5L8 3" stroke="rgba(0,0,0,.55)" strokeWidth="1.5" strokeLinecap="round"/>
+          <path d="M2 5.5L4 7.5L8 3" stroke="rgba(0,0,0,0.1)" strokeWidth="1.5" strokeLinecap="round"/>
         </svg>
       </div>
     </div>
@@ -245,17 +241,16 @@ const BoxShippedVisual = ({ inView }: { inView: boolean }) => (
     {/* Floating "terkirim" badge */}
     <div className="pb-float" style={{
       position:"absolute", top:"10%", right:"12%",
-      background:"#fff", border:"1px solid rgba(0,0,0,.1)",
+      background:"#fff", border:"1px solid rgba(0,0,0,0.1)",
       borderRadius:10, padding:"6px 12px",
-      ,0,0,.08)",
       display:"flex", alignItems:"center", gap:6,
       animationDelay:".3s"
     }}>
       <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
-        <circle cx="5.5" cy="5.5" r="5" stroke="rgba(0,0,0,.3)" strokeWidth=".8"/>
-        <path d="M3 5.5l2 2 3-3" stroke="rgba(0,0,0,.5)" strokeWidth="1.3" strokeLinecap="round"/>
+        <circle cx="5.5" cy="5.5" r="5" stroke="rgba(0,0,0,0.1)" strokeWidth=".8"/>
+        <path d="M3 5.5l2 2 3-3" stroke="rgba(0,0,0,0.1)" strokeWidth="1.3" strokeLinecap="round"/>
       </svg>
-      <span style={{ fontSize:10, fontWeight:700, color:"rgba(0,0,0,.55)", fontFamily:"var(--font-sans)" }}>Barang terkirim</span>
+      <span style={{ fontSize:10, fontWeight:700, color:"rgba(0,0,0,0.1)", fontFamily:"var(--font-sans)" }}>Barang terkirim</span>
     </div>
 
     {/* Empty wallet floating */}
@@ -265,7 +260,7 @@ const BoxShippedVisual = ({ inView }: { inView: boolean }) => (
     ].map((p,i) => (
       <div key={i} className="pb-float" style={{
         position:"absolute", bottom:p.bottom, left:p.left,
-        background:"rgba(0,0,0,.04)", border:"1px dashed rgba(0,0,0,.12)",
+        background:"rgba(0,0,0,0.1)", border:"1px dashed rgba(0,0,0,0.1)",
         borderRadius:10, padding:"5px 10px",
         display:"flex", alignItems:"center", gap:5,
         transform:`rotate(${p.rot})`, animationDelay:p.delay,
@@ -273,21 +268,21 @@ const BoxShippedVisual = ({ inView }: { inView: boolean }) => (
       }}>
         <WalletIcon size={12}/>
         <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-          <line x1="2.5" y1="2.5" x2="7.5" y2="7.5" stroke="rgba(0,0,0,.4)" strokeWidth="1.4" strokeLinecap="round"/>
-          <line x1="7.5" y1="2.5" x2="2.5" y2="7.5" stroke="rgba(0,0,0,.4)" strokeWidth="1.4" strokeLinecap="round"/>
+          <line x1="2.5" y1="2.5" x2="7.5" y2="7.5" stroke="rgba(0,0,0,0.1)" strokeWidth="1.4" strokeLinecap="round"/>
+          <line x1="7.5" y1="2.5" x2="2.5" y2="7.5" stroke="rgba(0,0,0,0.1)" strokeWidth="1.4" strokeLinecap="round"/>
         </svg>
-        <span style={{ fontSize:10, fontWeight:600, color:"rgba(0,0,0,.45)", fontFamily:"var(--font-sans)" }}>Belum cair</span>
+        <span style={{ fontSize:10, fontWeight:600, color:"rgba(0,0,0,0.1)", fontFamily:"var(--font-sans)" }}>Belum cair</span>
       </div>
     ))}
 
     {/* Waiting indicator */}
     <div style={{
       position:"absolute", bottom:"0%", right:"16%",
-      background:"rgba(0,0,0,.06)", borderRadius:10,
+      background:"rgba(0,0,0,0.1)", borderRadius:10,
       padding:"4px 10px", display:"flex", alignItems:"center", gap:5
     }}>
-      <div className="pb-blink" style={{ width:6, height:6, borderRadius:"50%", background:"rgba(0,0,0,.35)" }}/>
-      <span style={{ fontSize:10, fontWeight:600, color:"rgba(0,0,0,.45)", fontFamily:"var(--font-sans)" }}>Menunggu tanpa kepastian</span>
+      <div className="pb-blink" style={{ width:6, height:6, borderRadius:"50%", background:"rgba(0,0,0,0.1)" }}/>
+      <span style={{ fontSize:10, fontWeight:600, color:"rgba(0,0,0,0.1)", fontFamily:"var(--font-sans)" }}>Menunggu tanpa kepastian</span>
     </div>
   </div>
 );
@@ -312,9 +307,7 @@ const SolutionVisual = () => (
       background:"rgba(255,255,255,.1)",
       border:"1px solid rgba(255,255,255,.14)",
       display:"flex", alignItems:"center", justifyContent:"center",
-      position:"relative", zIndex:2,
-      ,0,0,.3)",
-    }}>
+      position:"relative", zIndex:2 }}>
       <div className="pb-glow" style={{
         position:"absolute", inset:0, borderRadius:26,
         background:"radial-gradient(circle at 35% 35%, rgba(255,255,255,.12) 0%, transparent 70%)",
@@ -426,13 +419,13 @@ const c = (base: string, d = ""): string => `${base} ${d} ${inView ? "pv" : ""}`
               <div style={{
                 display:"inline-flex", alignItems:"center", gap:8,
                 padding:"7px 16px", borderRadius:99,
-                border:"1px solid rgba(0,0,0,.1)",
-                background:"rgba(0,0,0,.03)",
+                border:"1px solid rgba(0,0,0,0.1)",
+                background:"rgba(0,0,0,0.1)",
                 display: "none"
               }}>
                 <AlertIcon size={13}/>
                 <span style={{
-                  fontSize:11.5, fontWeight:700, color:"rgba(0,0,0,.45)",
+                  fontSize:11.5, fontWeight:700, color:"rgba(0,0,0,0.1)",
                   fontFamily:"var(--font-sans)", letterSpacing:".05em", textTransform:"uppercase"
                 }}>
                   Masalah yang Kami Selesaikan
@@ -450,7 +443,7 @@ const c = (base: string, d = ""): string => `${base} ${d} ${inView ? "pv" : ""}`
                 margin:"0 auto 20px", maxWidth:640
               }}>
                 Transaksi Online
-                {" "}<span style={{ color:"rgba(0,0,0,.2)" }}>Penuh</span>
+                {" "}<span style={{ color:"rgba(0,0,0,0.1)" }}>Penuh</span>
                 <br/>Risiko Yang Nyata.
               </h2>
             </div>
@@ -460,7 +453,7 @@ const c = (base: string, d = ""): string => `${base} ${d} ${inView ? "pv" : ""}`
               <p style={{
                 fontFamily:"var(--font-sans)",
                 fontSize:"clamp(14px,1.5vw,16.5px)",
-                color:"rgba(0,0,0,.45)", lineHeight:1.78,
+                color:"rgba(0,0,0,0.1)", lineHeight:1.78,
                 maxWidth:500, margin:"0 auto"
               }}>
                 Setiap hari jutaan transaksi P2P terjadi tanpa perlindungan. Kedua pihak menanggung risiko besar — dan tidak harus begitu.
@@ -474,11 +467,9 @@ const c = (base: string, d = ""): string => `${base} ${d} ${inView ? "pv" : ""}`
               display:"grid",
               gridTemplateColumns:"repeat(auto-fit,minmax(160px,1fr))",
               borderRadius:20,
-              border:"1px solid rgba(0,0,0,.09)",
+              border:"1px solid rgba(0,0,0,0.1)",
               background:"#fff",
-              overflow:"hidden",
-              ,0,0,.05)"
-            }}>
+              overflow:"hidden" }}>
               {stats.map((s,i) => (
                 <div key={i} className="pb-stat">
                   <p style={{
@@ -490,7 +481,7 @@ const c = (base: string, d = ""): string => `${base} ${d} ${inView ? "pv" : ""}`
                   }}>{s.val}</p>
                   <p style={{
                     fontFamily:"var(--font-sans)",
-                    fontSize:11.5, color:"rgba(0,0,0,.4)",
+                    fontSize:11.5, color:"rgba(0,0,0,0.1)",
                     fontWeight:500, margin:0,
                     textAlign:"center", lineHeight:1.5,
                     whiteSpace:"pre-line"
@@ -515,19 +506,19 @@ const c = (base: string, d = ""): string => `${base} ${d} ${inView ? "pv" : ""}`
               {/* Card header */}
               <div style={{
                 padding:"26px 28px 20px",
-                borderBottom:"1px solid rgba(0,0,0,.06)",
+                borderBottom:"1px solid rgba(0,0,0,0.1)",
                 display:"flex", alignItems:"center", gap:14
               }}>
                 <div style={{
                   width:46, height:46, borderRadius:14,
-                  background:"rgba(0,0,0,.05)",
+                  background:"rgba(0,0,0,0.1)",
                   display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0
                 }}>
                   <WalletIcon size={22}/>
                 </div>
                 <div>
                   <div style={{ display:"flex", alignItems:"center", gap:8, marginBottom:4 }}>
-                    <div className="pb-badge" style={{ background:"rgba(0,0,0,.05)", border:"1px solid rgba(0,0,0,.09)", color:"rgba(0,0,0,.5)" }}>
+                    <div className="pb-badge" style={{ background:"rgba(0,0,0,0.1)", border:"1px solid rgba(0,0,0,0.1)", color:"rgba(0,0,0,0.1)" }}>
                       <UserIcon/>
                       Pembeli
                     </div>
@@ -568,7 +559,7 @@ const c = (base: string, d = ""): string => `${base} ${d} ${inView ? "pv" : ""}`
                       }}>{r.title}</p>
                       <p style={{
                         fontFamily:"var(--font-sans)",
-                        fontSize:12, color:"rgba(0,0,0,.4)",
+                        fontSize:12, color:"rgba(0,0,0,0.1)",
                         margin:0, lineHeight:1.5
                       }}>{r.sub}</p>
                     </div>
@@ -585,12 +576,11 @@ const c = (base: string, d = ""): string => `${base} ${d} ${inView ? "pv" : ""}`
                 display:"flex", alignItems:"center",
                 justifyContent:"center", gap:16, padding:"8px 0"
               }}>
-                <div style={{ flex:1, height:1, background:"rgba(0,0,0,.07)" }}/>
+                <div style={{ flex:1, height:1, background:"rgba(0,0,0,0.1)" }}/>
                 <div style={{
                   width:44, height:44, borderRadius:"50%",
                   background:"#000",
                   display:"flex", alignItems:"center", justifyContent:"center",
-                  ,0,0,.2)",
                   flexShrink:0
                 }}>
                   <span style={{
@@ -599,7 +589,7 @@ const c = (base: string, d = ""): string => `${base} ${d} ${inView ? "pv" : ""}`
                     letterSpacing:".06em"
                   }}>VS</span>
                 </div>
-                <div style={{ flex:1, height:1, background:"rgba(0,0,0,.07)" }}/>
+                <div style={{ flex:1, height:1, background:"rgba(0,0,0,0.1)" }}/>
               </div>
 
               {/* Solution card */}
@@ -692,12 +682,11 @@ const c = (base: string, d = ""): string => `${base} ${d} ${inView ? "pv" : ""}`
                       fontFamily:"var(--font-sans)",
                       fontSize:14, fontWeight:700, letterSpacing:"-.02em",
                       textDecoration:"none",
-                      ,0,0,.25)",
                       transition:"all .2s",
                       width:"100%"
                     }}
-                      onMouseOver={e=>{e.currentTarget.style.transform="translateY(-2px)";e.currentTarget.style.boxShadow="0 16px 48px rgba(0,0,0,.3)";}}
-                      onMouseOut={e=>{e.currentTarget.style.transform="none";e.currentTarget.style.boxShadow="0 8px 32px rgba(0,0,0,.25)";}}
+                      onMouseOver={e=>{e.currentTarget.style.transform="translateY(-2px)";e.currentTarget.style.boxShadow="0 16px 48px rgba(0,0,0,0.1)";}}
+                      onMouseOut={e=>{e.currentTarget.style.transform="none";e.currentTarget.style.boxShadow="0 8px 32px rgba(0,0,0,0.1)";}}
                     >
                       Mulai Bertransaksi Aman
                       <ArrowRightIcon/>
@@ -714,19 +703,19 @@ const c = (base: string, d = ""): string => `${base} ${d} ${inView ? "pv" : ""}`
               {/* Card header */}
               <div style={{
                 padding:"26px 28px 20px",
-                borderBottom:"1px solid rgba(0,0,0,.06)",
+                borderBottom:"1px solid rgba(0,0,0,0.1)",
                 display:"flex", alignItems:"center", gap:14
               }}>
                 <div style={{
                   width:46, height:46, borderRadius:14,
-                  background:"rgba(0,0,0,.05)",
+                  background:"rgba(0,0,0,0.1)",
                   display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0
                 }}>
                   <BoxIcon size={22}/>
                 </div>
                 <div>
                   <div style={{ display:"flex", alignItems:"center", gap:8, marginBottom:4 }}>
-                    <div className="pb-badge" style={{ background:"rgba(0,0,0,.05)", border:"1px solid rgba(0,0,0,.09)", color:"rgba(0,0,0,.5)" }}>
+                    <div className="pb-badge" style={{ background:"rgba(0,0,0,0.1)", border:"1px solid rgba(0,0,0,0.1)", color:"rgba(0,0,0,0.1)" }}>
                       <UserIcon/>
                       Penjual
                     </div>
@@ -767,7 +756,7 @@ const c = (base: string, d = ""): string => `${base} ${d} ${inView ? "pv" : ""}`
                       }}>{r.title}</p>
                       <p style={{
                         fontFamily:"var(--font-sans)",
-                        fontSize:12, color:"rgba(0,0,0,.4)",
+                        fontSize:12, color:"rgba(0,0,0,0.1)",
                         margin:0, lineHeight:1.5
                       }}>{r.sub}</p>
                     </div>
@@ -783,9 +772,8 @@ const c = (base: string, d = ""): string => `${base} ${d} ${inView ? "pv" : ""}`
               display:"inline-block",
               padding:"18px 32px",
               borderRadius:16,
-              border:"1px solid rgba(0,0,0,.08)",
+              border:"1px solid rgba(0,0,0,0.1)",
               background:"#fff",
-              ,0,0,.05)",
               maxWidth:580
             }}>
               <p style={{
@@ -799,7 +787,7 @@ const c = (base: string, d = ""): string => `${base} ${d} ${inView ? "pv" : ""}`
               </p>
               <p style={{
                 fontFamily:"var(--font-sans)",
-                fontSize:13, color:"rgba(0,0,0,.38)",
+                fontSize:13, color:"rgba(0,0,0,0.1)",
                 margin:0, fontStyle:"italic"
               }}>
                 Kahade hadir sebagai pihak ketiga yang netral, adil, dan terpercaya — melindungi semua pihak sekaligus.

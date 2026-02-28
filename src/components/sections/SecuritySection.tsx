@@ -115,21 +115,21 @@ const ShieldViz = ({ inView }: { inView: boolean }) => {
   return (
     <div className="relative flex items-center justify-center" style={{ width: 320, height: 320 }}>
       {/* Outer pulse ring */}
-      <div className="absolute inset-0 rounded-full sec-pulse-ring" style={{ border: "1px solid rgba(0,0,0,.07)" }} />
+      <div className="absolute inset-0 rounded-full sec-pulse-ring" style={{ border: "1px solid rgba(0,0,0,0.1)" }} />
       {/* Orbit rings */}
       <svg className="absolute inset-0 w-full h-full" viewBox="0 0 320 320">
         {/* Ring 1 */}
-        <circle cx="160" cy="160" r="130" fill="none" stroke="rgba(0,0,0,.06)" strokeWidth="1" strokeDasharray="4 6" />
+        <circle cx="160" cy="160" r="130" fill="none" stroke="rgba(0,0,0,0.1)" strokeWidth="1" strokeDasharray="4 6" />
         {/* Ring 2 */}
-        <circle cx="160" cy="160" r="95" fill="none" stroke="rgba(0,0,0,.08)" strokeWidth="1" strokeDasharray="2 8" />
+        <circle cx="160" cy="160" r="95" fill="none" stroke="rgba(0,0,0,0.1)" strokeWidth="1" strokeDasharray="2 8" />
         {/* Animated orbit line */}
         <g className={inView ? "sec-layer-orbit" : ""} style={{ transformOrigin: "160px 160px" }}>
-          <circle cx="290" cy="160" r="4.5" fill="rgba(0,0,0,.18)" />
-          <circle cx="30" cy="160" r="3" fill="rgba(0,0,0,.1)" />
+          <circle cx="290" cy="160" r="4.5" fill="rgba(0,0,0,0.1)" />
+          <circle cx="30" cy="160" r="3" fill="rgba(0,0,0,0.1)" />
         </g>
         <g className={inView ? "sec-layer-orbit-rev" : ""} style={{ transformOrigin: "160px 160px" }}>
-          <circle cx="160" cy="65" r="3.5" fill="rgba(0,0,0,.15)" />
-          <circle cx="160" cy="255" r="2.5" fill="rgba(0,0,0,.09)" />
+          <circle cx="160" cy="65" r="3.5" fill="rgba(0,0,0,0.1)" />
+          <circle cx="160" cy="255" r="2.5" fill="rgba(0,0,0,0.1)" />
         </g>
         {/* Lock node dots */}
         {[0, 60, 120, 180, 240, 300].map((deg, i) => {
@@ -138,8 +138,8 @@ const ShieldViz = ({ inView }: { inView: boolean }) => {
           const cy = 160 + 130 * Math.sin(rad);
           return (
             <g key={i}>
-              <circle cx={cx} cy={cy} r="6" fill="white" stroke="rgba(0,0,0,.12)" strokeWidth="1" />
-              <circle cx={cx} cy={cy} r="2.5" fill="rgba(0,0,0,.2)" />
+              <circle cx={cx} cy={cy} r="6" fill="white" stroke="rgba(0,0,0,0.1)" strokeWidth="1" />
+              <circle cx={cx} cy={cy} r="2.5" fill="rgba(0,0,0,0.1)" />
             </g>
           );
         })}
@@ -190,8 +190,7 @@ const ShieldViz = ({ inView }: { inView: boolean }) => {
 const UptimeBar = ({ inView }: { inView: boolean }) => {
   const weeks = Array.from({ length: 52 }, (_, i) => ({
     filled: i < 51 || Math.random() > 0.1,
-    partial: i === 11 || i === 34,
-  }));
+    partial: i === 11 || i === 34 }));
   return (
     <div className="flex gap-0.5 flex-wrap">
       {weeks.map((w, i) => (
@@ -200,10 +199,9 @@ const UptimeBar = ({ inView }: { inView: boolean }) => {
           className="rounded-sm"
           style={{
             width: 7, height: 20,
-            background: w.partial ? "rgba(0,0,0,.25)" : w.filled ? "rgba(0,0,0,.85)" : "rgba(0,0,0,.06)",
+            background: w.partial ? "rgba(0,0,0,0.1)" : w.filled ? "rgba(0,0,0,0.1)" : "rgba(0,0,0,0.1)",
             opacity: inView ? 1 : 0,
-            transition: `opacity .3s ${.01 * i}s`,
-          }}
+            transition: `opacity .3s ${.01 * i}s` }}
         />
       ))}
     </div>
@@ -217,29 +215,25 @@ const features = [
     label: "Enkripsi Saat Transit",
     desc: "Koneksi layanan dirancang memakai praktik enkripsi modern agar data transaksi tidak mudah dibaca pihak yang tidak berwenang.",
     stats: "TLS",
-    statsLabel: "Transport",
-  },
+    statsLabel: "Transport" },
   {
     icon: <EyeIcon size={22} />,
     label: "Monitoring Operasional",
     desc: "Tim dan sistem pemantauan membantu meninjau sinyal operasional penting, insiden, dan aktivitas yang perlu ditindaklanjuti.",
     stats: "Live",
-    statsLabel: "Observability",
-  },
+    statsLabel: "Observability" },
   {
     icon: <ZapIcon size={22} />,
     label: "Pemeriksaan Risiko",
     desc: "Pemeriksaan bertahap membantu menandai transaksi yang perlu verifikasi tambahan sebelum dana diteruskan.",
     stats: "Review",
-    statsLabel: "Rule Check",
-  },
+    statsLabel: "Rule Check" },
   {
     icon: <ActivityIcon size={22} />,
     label: "Audit Trail Lengkap",
     desc: "Perubahan status transaksi, komunikasi penting, dan langkah verifikasi dirangkum agar mudah ditinjau ulang.",
     stats: "Log",
-    statsLabel: "History",
-  },
+    statsLabel: "History" },
 ];
 
 // ─── Certifications ────────────────────────────────────────────────────────────
@@ -248,26 +242,22 @@ const certs = [
     label: "Workflow Review",
     sub: "Operational Readiness",
     desc: "Alur layanan, bantuan, dan komunikasi produk disajikan lebih transparan untuk pengguna.",
-    num: "Reviewed",
-  },
+    num: "Reviewed" },
   {
     label: "Keamanan Data",
     sub: "Information Security",
     desc: "Praktik keamanan informasi ditinjau secara berkala melalui proses internal, dokumentasi, dan checklist operasional.",
-    num: "Internal Review",
-  },
+    num: "Internal Review" },
   {
     label: "Kontrol Akses",
     sub: "Payment Security",
     desc: "Kontrol akses dibangun dengan prinsip pembatasan hak, pemisahan peran, dan peninjauan berkala.",
-    num: "Access Policy",
-  },
+    num: "Access Policy" },
   {
     label: "Monitoring",
     sub: "Operational Oversight",
     desc: "Monitoring layanan dan status operasional ditampilkan agar pengguna punya visibilitas lebih baik terhadap perubahan penting.",
-    num: "Status Review",
-  },
+    num: "Status Review" },
 ];
 
 // ─── Infrastructure Items ──────────────────────────────────────────────────────
@@ -293,9 +283,9 @@ const AbstractBg = () => (
     </defs>
     <rect width="100%" height="100%" fill="url(#sec-bg1)" />
     <rect width="100%" height="100%" fill="url(#sec-bg2)" />
-    <circle cx="8%" cy="18%" r="200" fill="none" stroke="rgba(0,0,0,.04)" strokeWidth="1" />
-    <circle cx="8%" cy="18%" r="130" fill="none" stroke="rgba(0,0,0,.03)" strokeWidth="1" />
-    <circle cx="95%" cy="85%" r="180" fill="none" stroke="rgba(0,0,0,.04)" strokeWidth="1" />
+    <circle cx="8%" cy="18%" r="200" fill="none" stroke="rgba(0,0,0,0.1)" strokeWidth="1" />
+    <circle cx="8%" cy="18%" r="130" fill="none" stroke="rgba(0,0,0,0.1)" strokeWidth="1" />
+    <circle cx="95%" cy="85%" r="180" fill="none" stroke="rgba(0,0,0,0.1)" strokeWidth="1" />
   </svg>
 );
 

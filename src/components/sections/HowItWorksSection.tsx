@@ -7,7 +7,7 @@ import { homeAnchors, supportLinks } from "@/lib/site";
 // ─── Icons ────────────────────────────────────────────────────────────────────
 const Icon = ({ d, white = false, size = 22 }: { d: React.ReactNode; white?: boolean; size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 22 22" fill="none"
-    stroke={white ? "rgba(255,255,255,.85)" : "rgba(0,0,0,.7)"}
+    stroke={white ? "rgba(255,255,255,.85)" : "rgba(0,0,0,0.1)"}
     strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
     {d}
   </svg>
@@ -15,15 +15,14 @@ const Icon = ({ d, white = false, size = 22 }: { d: React.ReactNode; white?: boo
 
 const icons: Record<string, (w: boolean) => React.ReactNode> = {
   deal: (w) => <Icon white={w} d={<><path d="M4 11C4 7.13 7.13 4 11 4s7 3.13 7 7-3.13 7-7 7H4l3-3"/><path d="M11 8v3l2 2"/></>} />,
-  lock: (w) => <Icon white={w} d={<><rect x="4" y="9" width="14" height="10" rx="2"/><path d="M7.5 9V7a3.5 3.5 0 017 0v2"/><circle cx="11" cy="14" r="1.2" fill={w?"rgba(255,255,255,.85)":"rgba(0,0,0,.7)"} stroke="none"/></>} />,
+  lock: (w) => <Icon white={w} d={<><rect x="4" y="9" width="14" height="10" rx="2"/><path d="M7.5 9V7a3.5 3.5 0 017 0v2"/><circle cx="11" cy="14" r="1.2" fill={w?"rgba(255,255,255,.85)":"rgba(0,0,0,0.1)"} stroke="none"/></>} />,
   truck: (w) => <Icon white={w} d={<><rect x="2" y="7" width="13" height="10" rx="1.5"/><path d="M15 9.5h2.5l2 3V17H15V9.5z"/><circle cx="6" cy="18" r="1.5"/><circle cx="18" cy="18" r="1.5"/></>} />,
   check: (w) => <Icon white={w} d={<><circle cx="11" cy="11" r="7.5"/><path d="M8 11l2 2 4-4"/></>} />,
-  unlock: (w) => <Icon white={w} d={<><path d="M11 3.5a4 4 0 014 4V9H5v10a2 2 0 002 2h8a2 2 0 002-2V9h-2V7.5a4 4 0 00-4-4z" opacity=".35" stroke="none" fill={w?"rgba(255,255,255,.2)":"rgba(0,0,0,.08)"}/><rect x="3" y="9" width="16" height="10" rx="2"/><path d="M11 13v3M9.5 16.5l1.5-1 1.5 1"/><path d="M7.5 9V7.5a3.5 3.5 0 015.9-2.5"/></>} />,
-};
+  unlock: (w) => <Icon white={w} d={<><path d="M11 3.5a4 4 0 014 4V9H5v10a2 2 0 002 2h8a2 2 0 002-2V9h-2V7.5a4 4 0 00-4-4z" opacity=".35" stroke="none" fill={w?"rgba(255,255,255,.2)":"rgba(0,0,0,0.1)"}/><rect x="3" y="9" width="16" height="10" rx="2"/><path d="M11 13v3M9.5 16.5l1.5-1 1.5 1"/><path d="M7.5 9V7.5a3.5 3.5 0 015.9-2.5"/></>} /> };
 
 const ArrowRight = ({ white = false }) => (
   <svg width="13" height="13" viewBox="0 0 13 13" fill="none"
-    stroke={white ? "rgba(255,255,255,.6)" : "rgba(0,0,0,.35)"}
+    stroke={white ? "rgba(255,255,255,.6)" : "rgba(0,0,0,0.1)"}
     strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M3 6.5h7M7 3l3.5 3.5L7 10" />
   </svg>
@@ -31,8 +30,8 @@ const ArrowRight = ({ white = false }) => (
 
 const CheckSmall = ({ white = false }) => (
   <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-    <circle cx="6" cy="6" r="6" fill={white ? "rgba(255,255,255,.12)" : "rgba(0,0,0,.07)"} />
-    <path d="M3.5 6L5 7.5L8.5 4" stroke={white ? "rgba(255,255,255,.8)" : "rgba(0,0,0,.65)"}
+    <circle cx="6" cy="6" r="6" fill={white ? "rgba(255,255,255,.12)" : "rgba(0,0,0,0.1)"} />
+    <path d="M3.5 6L5 7.5L8.5 4" stroke={white ? "rgba(255,255,255,.8)" : "rgba(0,0,0,0.1)"}
       strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
@@ -47,8 +46,7 @@ const steps = [
     desc: "Pembeli dan penjual menyepakati detail transaksi — nominal, barang atau jasa, tenggat waktu, dan syarat penyelesaian secara tertulis di platform.",
     details: ["Buat transaksi dalam 60 detik", "Syarat & kondisi tersimpan permanen", "Notifikasi instan ke kedua pihak"],
     tag: "Mulai Transaksi",
-    time: "~1 menit",
-  },
+    time: "~1 menit" },
   {
     num: "02",
     label: "Dana Masuk Escrow",
@@ -58,8 +56,7 @@ const steps = [
     details: ["Transfer via 15+ metode pembayaran", "Konfirmasi real-time dalam detik", "Dana ditahan sampai syarat transaksi selesai"],
     tag: "Dana Terkunci",
     time: "~2 menit",
-    featured: true,
-  },
+    featured: true },
   {
     num: "03",
     label: "Penjual Berkirim",
@@ -68,8 +65,7 @@ const steps = [
     desc: "Dengan dana sudah aman di escrow, penjual mengirimkan barang atau melaksanakan jasa sesuai kesepakatan. Keduanya bisa tracking status real-time.",
     details: ["Upload bukti pengiriman langsung", "Tracking status transparan", "Reminder otomatis jika melewati batas"],
     tag: "Dalam Proses",
-    time: "Sesuai kesepakatan",
-  },
+    time: "Sesuai kesepakatan" },
   {
     num: "04",
     label: "Pembeli Konfirmasi",
@@ -78,8 +74,7 @@ const steps = [
     desc: "Pembeli menerima barang atau jasa, memeriksa sesuai kesepakatan, lalu memberikan konfirmasi. Jika ada masalah, bisa ajukan dispute dengan bukti.",
     details: ["Periode konfirmasi dapat dikustomisasi", "Dispute system adil & terstruktur", "Tim mediasi siap membantu"],
     tag: "Verifikasi",
-    time: "1-3 hari",
-  },
+    time: "1-3 hari" },
   {
     num: "05",
     label: "Dana Dilepaskan",
@@ -88,8 +83,7 @@ const steps = [
     desc: "Setelah konfirmasi, dana otomatis dicairkan ke rekening penjual dikurangi platform fee. Transaksi selesai — aman, cepat, dan terdokumentasi penuh.",
     details: ["Pencairan ke 50+ bank lokal", "Rekap transaksi otomatis dikirim", "Riwayat tersimpan selamanya"],
     tag: "Selesai ✓",
-    time: "Instan – 1x24 jam",
-  },
+    time: "Instan – 1x24 jam" },
 ];
 
 // ─── Intersection hook ────────────────────────────────────────────────────────
@@ -162,14 +156,14 @@ const HwAbstractBg = () => (
 const StepCard = ({ step, inView, delayIdx }: { step: any; inView: boolean; delayIdx: number }) => {
   const isF = step.featured;
   const textPrimary  = isF ? "#fff"                   : "#000";
-  const textSecond   = isF ? "rgba(255,255,255,.45)"  : "rgba(0,0,0,.45)";
-  const textBody     = isF ? "rgba(255,255,255,.68)"  : "rgba(0,0,0,.58)";
-  const borderColor  = isF ? "rgba(255,255,255,.1)"   : "rgba(0,0,0,.07)";
-  const iconBg       = isF ? "rgba(255,255,255,.1)"   : "rgba(0,0,0,.05)";
-  const numBg        = isF ? "rgba(255,255,255,.1)"   : "rgba(0,0,0,.06)";
-  const tagBg        = isF ? "rgba(255,255,255,.1)"   : "rgba(0,0,0,.04)";
-  const tagBorder    = isF ? "rgba(255,255,255,.15)"  : "rgba(0,0,0,.09)";
-  const timeBg       = isF ? "rgba(255,255,255,.07)"  : "rgba(0,0,0,.03)";
+  const textSecond   = isF ? "rgba(255,255,255,.45)"  : "rgba(0,0,0,0.1)";
+  const textBody     = isF ? "rgba(255,255,255,.68)"  : "rgba(0,0,0,0.1)";
+  const borderColor  = isF ? "rgba(255,255,255,.1)"   : "rgba(0,0,0,0.1)";
+  const iconBg       = isF ? "rgba(255,255,255,.1)"   : "rgba(0,0,0,0.1)";
+  const numBg        = isF ? "rgba(255,255,255,.1)"   : "rgba(0,0,0,0.1)";
+  const tagBg        = isF ? "rgba(255,255,255,.1)"   : "rgba(0,0,0,0.1)";
+  const tagBorder    = isF ? "rgba(255,255,255,.15)"  : "rgba(0,0,0,0.1)";
+  const timeBg       = isF ? "rgba(255,255,255,.07)"  : "rgba(0,0,0,0.1)";
 
   return (
     <div
@@ -192,7 +186,7 @@ const StepCard = ({ step, inView, delayIdx }: { step: any; inView: boolean; dela
         <div style={{ display:"flex", alignItems:"center", gap:12 }}>
           {/* Number badge */}
           <div className="hw-num-badge" style={{ background:numBg }}>
-            <span style={{ fontFamily:"var(--font-sans)", fontSize:12, fontWeight:800, color:isF?"rgba(255,255,255,.6)":"rgba(0,0,0,.4)", letterSpacing:".02em" }}>
+            <span style={{ fontFamily:"var(--font-sans)", fontSize:12, fontWeight:800, color:isF?"rgba(255,255,255,.6)":"rgba(0,0,0,0.1)", letterSpacing:".02em" }}>
               {step.num}
             </span>
           </div>
@@ -205,7 +199,7 @@ const StepCard = ({ step, inView, delayIdx }: { step: any; inView: boolean; dela
         <div style={{
           padding:"5px 11px", borderRadius:99,
           background:tagBg, border:`1px solid ${tagBorder}`,
-          fontSize:10.5, fontWeight:700, color:isF?"rgba(255,255,255,.55)":"rgba(0,0,0,.45)",
+          fontSize:10.5, fontWeight:700, color:isF?"rgba(255,255,255,.55)":"rgba(0,0,0,0.1)",
           fontFamily:"var(--font-sans)", letterSpacing:".04em", textTransform:"uppercase",
           whiteSpace:"nowrap"
         }}>
@@ -250,11 +244,11 @@ const StepCard = ({ step, inView, delayIdx }: { step: any; inView: boolean; dela
       <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", paddingTop:14, borderTop:`1px solid ${borderColor}` }}>
         <div style={{ display:"flex", alignItems:"center", gap:7, padding:"5px 11px", borderRadius:99, background:timeBg }}>
           <svg width="11" height="11" viewBox="0 0 11 11" fill="none"
-            stroke={isF?"rgba(255,255,255,.4)":"rgba(0,0,0,.35)"} strokeWidth="1.4" strokeLinecap="round">
+            stroke={isF?"rgba(255,255,255,.4)":"rgba(0,0,0,0.1)"} strokeWidth="1.4" strokeLinecap="round">
             <circle cx="5.5" cy="5.5" r="4.5"/>
             <path d="M5.5 3v2.8l1.5 1.2"/>
           </svg>
-          <span style={{ fontSize:11, fontWeight:600, color:isF?"rgba(255,255,255,.4)":"rgba(0,0,0,.35)", fontFamily:"var(--font-sans)" }}>
+          <span style={{ fontSize:11, fontWeight:600, color:isF?"rgba(255,255,255,.4)":"rgba(0,0,0,0.1)", fontFamily:"var(--font-sans)" }}>
             {step.time}
           </span>
         </div>
@@ -277,27 +271,27 @@ const FeatureRow = ({ step, idx, inView }: { step: any; idx: number; inView: boo
       <div style={{ display:"flex", alignItems:"center", gap:12 }}>
         <div style={{
           width:44, height:44, borderRadius:14,
-          background: isF ? "#000" : "rgba(0,0,0,.06)",
+          background: isF ? "#000" : "rgba(0,0,0,0.1)",
           display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0
         }}>
           <span style={{ fontFamily:"var(--font-sans)", fontSize:13, fontWeight:800,
-            color: isF ? "rgba(255,255,255,.55)" : "rgba(0,0,0,.4)",
+            color: isF ? "rgba(255,255,255,.55)" : "rgba(0,0,0,0.1)",
             letterSpacing:".03em"
           }}>{step.num}</span>
         </div>
         <div style={{
           padding:"5px 12px", borderRadius:99,
-          border:"1px solid rgba(0,0,0,.09)",
-          background:"rgba(0,0,0,.025)",
-          fontSize:10.5, fontWeight:700, color:"rgba(0,0,0,.4)",
+          border:"1px solid rgba(0,0,0,0.1)",
+          background:"rgba(0,0,0,0.1)",
+          fontSize:10.5, fontWeight:700, color:"rgba(0,0,0,0.1)",
           fontFamily:"var(--font-sans)", letterSpacing:".05em", textTransform:"uppercase"
         }}>{step.tag}</div>
         <div style={{ display:"flex", alignItems:"center", gap:6 }}>
           <svg width="11" height="11" viewBox="0 0 11 11" fill="none"
-            stroke="rgba(0,0,0,.3)" strokeWidth="1.4" strokeLinecap="round">
+            stroke="rgba(0,0,0,0.1)" strokeWidth="1.4" strokeLinecap="round">
             <circle cx="5.5" cy="5.5" r="4.5"/><path d="M5.5 3v2.8l1.5 1.2"/>
           </svg>
-          <span style={{ fontSize:11, fontWeight:600, color:"rgba(0,0,0,.3)", fontFamily:"var(--font-sans)" }}>{step.time}</span>
+          <span style={{ fontSize:11, fontWeight:600, color:"rgba(0,0,0,0.1)", fontFamily:"var(--font-sans)" }}>{step.time}</span>
         </div>
       </div>
 
@@ -314,7 +308,7 @@ const FeatureRow = ({ step, idx, inView }: { step: any; idx: number; inView: boo
       <p style={{
         fontFamily:"var(--font-sans)",
         fontSize:"clamp(14px,1.3vw,15.5px)",
-        lineHeight:1.78, color:"rgba(0,0,0,.52)",
+        lineHeight:1.78, color:"rgba(0,0,0,0.1)",
         margin:0, maxWidth:420
       }}>{step.desc}</p>
 
@@ -323,7 +317,7 @@ const FeatureRow = ({ step, idx, inView }: { step: any; idx: number; inView: boo
         {step.details.map((d: string, i: number) => (
           <div key={i} style={{ display:"flex", alignItems:"center", gap:10 }}>
             <CheckSmall/>
-            <span style={{ fontSize:13.5, fontWeight:500, color:"rgba(0,0,0,.55)", fontFamily:"var(--font-sans)" }}>{d}</span>
+            <span style={{ fontSize:13.5, fontWeight:500, color:"rgba(0,0,0,0.1)", fontFamily:"var(--font-sans)" }}>{d}</span>
           </div>
         ))}
       </div>
@@ -337,13 +331,13 @@ const FeatureRow = ({ step, idx, inView }: { step: any; idx: number; inView: boo
       <div className="hw-spin" style={{
         position:"absolute",
         width:220, height:220,
-        border:"1px dashed rgba(0,0,0,.08)",
+        border:"1px dashed rgba(0,0,0,0.1)",
         borderRadius:"50%", pointerEvents:"none"
       }}/>
       <div style={{
         position:"absolute",
         width:160, height:160,
-        border:"1px dashed rgba(0,0,0,.05)",
+        border:"1px dashed rgba(0,0,0,0.1)",
         borderRadius:"50%", pointerEvents:"none",
         animation:"hwSpin 20s linear infinite reverse"
       }}/>
@@ -352,10 +346,7 @@ const FeatureRow = ({ step, idx, inView }: { step: any; idx: number; inView: boo
       <div className="hw-float" style={{
         width:100, height:100, borderRadius:28,
         background: isF ? "#000" : "#fff",
-        border: isF ? "none" : "1.5px solid rgba(0,0,0,.1)",
-        
-          ? "0 20px 60px rgba(0,0,0,.3)"
-          : "0 12px 40px rgba(0,0,0,.09), 0 2px 8px rgba(0,0,0,.06)",
+        border: isF ? "none" : "1.5px solid rgba(0,0,0,0.1)",
         display:"flex", alignItems:"center", justifyContent:"center",
         position:"relative", zIndex:2
       }}>
@@ -373,12 +364,11 @@ const FeatureRow = ({ step, idx, inView }: { step: any; idx: number; inView: boo
       {/* Mini floating badges */}
       <div className="hw-float" style={{
         position:"absolute", top:"12%", right:"8%",
-        background:"#fff", border:"1px solid rgba(0,0,0,.09)",
+        background:"#fff", border:"1px solid rgba(0,0,0,0.1)",
         borderRadius:12, padding:"8px 12px",
-        ,0,0,.08)",
         animationDelay:"1.2s", zIndex:3
       }}>
-        <div style={{ fontSize:10, fontWeight:700, color:"rgba(0,0,0,.35)", fontFamily:"var(--font-sans)", textTransform:"uppercase", letterSpacing:".08em", marginBottom:2 }}>
+        <div style={{ fontSize:10, fontWeight:700, color:"rgba(0,0,0,0.1)", fontFamily:"var(--font-sans)", textTransform:"uppercase", letterSpacing:".08em", marginBottom:2 }}>
           Status
         </div>
         <div style={{ fontSize:12.5, fontWeight:800, color:"#000", fontFamily:"var(--font-sans)", letterSpacing:"-.02em" }}>
@@ -389,7 +379,6 @@ const FeatureRow = ({ step, idx, inView }: { step: any; idx: number; inView: boo
       <div className="hw-float" style={{
         position:"absolute", bottom:"12%", left:"6%",
         background:"#000", borderRadius:12, padding:"8px 14px",
-        ,0,0,.25)",
         animationDelay:"0.7s", zIndex:3,
         display:"flex", alignItems:"center", gap:7
       }}>
@@ -411,7 +400,7 @@ const FeatureRow = ({ step, idx, inView }: { step: any; idx: number; inView: boo
       gap:"60px 80px",
       alignItems:"center",
       padding:"56px 0",
-      borderBottom:"1px solid rgba(0,0,0,.06)"
+      borderBottom:"1px solid rgba(0,0,0,0.1)"
     }}>
       {isEven ? <>{content}{visual}</> : <>{visual}{content}</>}
     </div>
@@ -440,8 +429,8 @@ export default function HowItWorksSection() {
         <HwAbstractBg/>
 
         {/* Ambient glow spots */}
-        <div className="hw-glow" style={{ position:"absolute", top:"15%", left:"5%", width:400, height:400, borderRadius:"50%", background:"radial-gradient(circle, rgba(0,0,0,.025) 0%, transparent 70%)", pointerEvents:"none" }}/>
-        <div className="hw-glow" style={{ position:"absolute", bottom:"10%", right:"5%", width:350, height:350, borderRadius:"50%", background:"radial-gradient(circle, rgba(0,0,0,.02) 0%, transparent 70%)", pointerEvents:"none", animationDelay:"2s" }}/>
+        <div className="hw-glow" style={{ position:"absolute", top:"15%", left:"5%", width:400, height:400, borderRadius:"50%", background:"radial-gradient(circle, rgba(0,0,0,0.1) 0%, transparent 70%)", pointerEvents:"none" }}/>
+        <div className="hw-glow" style={{ position:"absolute", bottom:"10%", right:"5%", width:350, height:350, borderRadius:"50%", background:"radial-gradient(circle, rgba(0,0,0,0.1) 0%, transparent 70%)", pointerEvents:"none", animationDelay:"2s" }}/>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -453,14 +442,14 @@ export default function HowItWorksSection() {
               <div style={{
                 display:"inline-flex", alignItems:"center", gap:8,
                 padding:"7px 16px", borderRadius:99,
-                border:"1px solid rgba(0,0,0,.09)",
-                background:"rgba(0,0,0,.02)"
+                border:"1px solid rgba(0,0,0,0.1)",
+                background:"rgba(0,0,0,0.1)"
               }}>
                 <span style={{ position:"relative", display:"inline-flex", width:7, height:7 }}>
                   <span style={{ position:"absolute", inset:0, borderRadius:"50%", background:"#000", opacity:.35, animation:"hwPing 1.9s ease infinite" }}/>
                   <span style={{ width:7, height:7, borderRadius:"50%", background:"#000", display:"block", position:"relative" }}/>
                 </span>
-                <span style={{ fontSize:11.5, fontWeight:600, color:"rgba(0,0,0,.4)", fontFamily:"var(--font-sans)", letterSpacing:".04em", textTransform:"uppercase" }}>
+                <span style={{ fontSize:11.5, fontWeight:600, color:"rgba(0,0,0,0.1)", fontFamily:"var(--font-sans)", letterSpacing:".04em", textTransform:"uppercase" }}>
                   5 Langkah Sederhana
                 </span>
               </div>
@@ -477,7 +466,7 @@ export default function HowItWorksSection() {
               }}>
                 Dari Kesepakatan
                 <br/>
-                <span style={{ color:"rgba(0,0,0,.22)" }}>Hingga Dana Cair.</span>
+                <span style={{ color:"rgba(0,0,0,0.1)" }}>Hingga Dana Cair.</span>
               </h2>
             </div>
 
@@ -486,7 +475,7 @@ export default function HowItWorksSection() {
               <p style={{
                 fontFamily:"var(--font-sans)",
                 fontSize:"clamp(14px,1.5vw,16.5px)",
-                color:"rgba(0,0,0,.45)", lineHeight:1.78,
+                color:"rgba(0,0,0,0.1)", lineHeight:1.78,
                 maxWidth:460, margin:"0 auto 32px"
               }}>
                 Proses escrow yang sederhana, transparan, dan terlindungi di setiap tahapnya. Tidak perlu saling percaya buta — sistem yang menjaminnya.
@@ -531,10 +520,10 @@ export default function HowItWorksSection() {
                 <svg width="60%" height="40" viewBox="0 0 600 40" fill="none"
                   xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
                   <path d="M50 0 C50 25 200 25 300 25 C400 25 550 25 550 0"
-                    fill="none" stroke="rgba(0,0,0,.1)" strokeWidth="1.5" strokeDasharray="6 4"/>
-                  <circle cx="50"  cy="0"  r="4" fill="rgba(0,0,0,.15)"/>
-                  <circle cx="300" cy="25" r="4" fill="rgba(0,0,0,.15)"/>
-                  <circle cx="550" cy="0"  r="4" fill="rgba(0,0,0,.15)"/>
+                    fill="none" stroke="rgba(0,0,0,0.1)" strokeWidth="1.5" strokeDasharray="6 4"/>
+                  <circle cx="50"  cy="0"  r="4" fill="rgba(0,0,0,0.1)"/>
+                  <circle cx="300" cy="25" r="4" fill="rgba(0,0,0,0.1)"/>
+                  <circle cx="550" cy="0"  r="4" fill="rgba(0,0,0,0.1)"/>
                 </svg>
               </div>
 
@@ -559,7 +548,7 @@ export default function HowItWorksSection() {
                 {/* Vertical line */}
                 <div style={{
                   position:"absolute", left:19, top:0, bottom:0, width:1,
-                  background:"rgba(0,0,0,.07)", pointerEvents:"none"
+                  background:"rgba(0,0,0,0.1)", pointerEvents:"none"
                 }}/>
 
                 {steps.map((s,i)=>(
@@ -572,14 +561,11 @@ export default function HowItWorksSection() {
                     <div style={{
                       width:40, height:40, borderRadius:12,
                       background: s.featured ? "#000" : "#fff",
-                      border: s.featured ? "none" : "1.5px solid rgba(0,0,0,.1)",
-                      display:"flex", alignItems:"center", justifyContent:"center",
-                      flexShrink:0, position:"relative", zIndex:1,
-                      ,0,0,.2)" : "0 2px 8px rgba(0,0,0,.06)"
-                    }}>
+                      border: s.featured ? "none" : "1.5px solid rgba(0,0,0,0.1)",
+                      display:"flex", alignItems:"center", justifyContent:"center" }}>
                       <span style={{
                         fontFamily:"var(--font-sans)", fontSize:11, fontWeight:800,
-                        color: s.featured ? "rgba(255,255,255,.6)" : "rgba(0,0,0,.4)",
+                        color: s.featured ? "rgba(255,255,255,.6)" : "rgba(0,0,0,0.1)",
                         letterSpacing:".02em"
                       }}>{s.num}</span>
                     </div>
@@ -636,11 +622,9 @@ export default function HowItWorksSection() {
                   padding:"13px 26px", background:"#fff", color:"#000",
                   borderRadius:12, fontSize:14, fontWeight:700,
                   fontFamily:"var(--font-sans)", textDecoration:"none",
-                  letterSpacing:"-.02em", transition:"all .2s",
-                  ,0,0,.25)"
-                }}
-                  onMouseOver={e=>{e.currentTarget.style.transform="translateY(-2px)";e.currentTarget.style.boxShadow="0 8px 32px rgba(0,0,0,.35)";}}
-                  onMouseOut={e=>{e.currentTarget.style.transform="none";e.currentTarget.style.boxShadow="0 4px 20px rgba(0,0,0,.25)";}}
+                  letterSpacing:"-.02em", transition:"all .2s" }}
+                  onMouseOver={e=>{e.currentTarget.style.transform="translateY(-2px)";e.currentTarget.style.boxShadow="0 8px 32px rgba(0,0,0,0.1)";}}
+                  onMouseOut={e=>{e.currentTarget.style.transform="none";e.currentTarget.style.boxShadow="0 4px 20px rgba(0,0,0,0.1)";}}
                 >
                   Mulai Sekarang
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 7h8M7 3l4 4-4 4"/></svg>

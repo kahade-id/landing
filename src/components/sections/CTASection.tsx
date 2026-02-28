@@ -189,8 +189,7 @@ export default function CTASection() {
         className="cta-root relative overflow-hidden"
         style={{
           background: "linear-gradient(160deg, #0a0a0a 0%, #111 40%, #0d0d0d 70%, #080808 100%)",
-          padding: "96px 0 0 0",
-        }}
+          padding: "96px 0 0 0" }}
       >
         <CtaAbstractBg />
 
@@ -222,8 +221,7 @@ export default function CTASection() {
               color: "#fff",
               letterSpacing: "-0.04em",
               lineHeight: 1.06,
-              margin: 0,
-            }}>
+              margin: 0 }}>
               <span style={{ display: "block" }}>Transaksi Aman.</span>
               <span style={{ display: "block", color: "rgba(255,255,255,0.38)" }}>Dimulai Hari Ini.</span>
             </h2>
@@ -238,8 +236,7 @@ export default function CTASection() {
               color: "rgba(255,255,255,0.42)",
               lineHeight: 1.75,
               maxWidth: 480,
-              margin: "0 auto",
-            }}>
+              margin: "0 auto" }}>
               Daftar gratis dalam 2 menit. Tanpa biaya setup, tanpa kontrak jangka panjang — bayar hanya saat transaksi berhasil.
             </p>
           </div>
@@ -275,8 +272,7 @@ export default function CTASection() {
               borderRadius: 20,
               overflow: "hidden",
               border: "1px solid rgba(255,255,255,0.08)",
-              background: "rgba(255,255,255,0.04)",
-            }}>
+              background: "rgba(255,255,255,0.04)" }}>
               {[
                 { label: "Aktivitas Demo", val: `${txCount.toLocaleString("id-ID")}`, suffix: "", icon: <ZapIcon /> },
                 { label: "Workflow", val: `${(successRate / 10).toFixed(1)}`, suffix: "/10", icon: <ShieldIcon /> },
@@ -293,8 +289,7 @@ export default function CTASection() {
                     color: "#fff",
                     letterSpacing: "-0.04em",
                     lineHeight: 1,
-                    marginBottom: 8,
-                  }}>
+                    marginBottom: 8 }}>
                     {stat.val}<span style={{ fontSize: "0.55em", color: "rgba(255,255,255,0.4)" }}>{stat.suffix}</span>
                   </div>
                   <div style={{ fontSize: 11.5, fontWeight: 500, color: "rgba(255,255,255,0.35)", fontFamily: "var(--font-sans)", textTransform: "uppercase", letterSpacing: "0.1em" }}>
@@ -348,8 +343,7 @@ export default function CTASection() {
           marginTop: 0,
           borderTop: "1px solid rgba(255,255,255,0.07)",
           background: "rgba(255,255,255,0.02)",
-          padding: "24px 0",
-        }}>
+          padding: "24px 0" }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
               {/* Left — brand mark */}
@@ -372,7 +366,7 @@ export default function CTASection() {
               </p>
 
               {/* Right — CTA micro */}
-              <Link href={supportLinks.contact} className="cta-btn-primary" style={{ fontSize: 12.5, padding: "10px 20px", borderRadius: 10, }}>
+              <Link href={supportLinks.contact} className="cta-btn-primary" style={{ fontSize: 12.5, padding: "10px 20px", borderRadius: 10 }}>
                 Hubungi Tim <ArrowRight />
               </Link>
             </div>

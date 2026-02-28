@@ -52,8 +52,7 @@ const testimonials = [
     text: "Sudah 3 tahun jualan online, baru sekarang bisa tidur tenang. Dana masuk ke escrow dulu, barang saya kirim, begitu pembeli konfirmasi baru cair. Tidak ada lagi istilah 'kabur setelah transfer'.",
     amount: "Rp 18.5jt",
     txLabel: "Transaksi terlindungi",
-    featured: false,
-  },
+    featured: false },
   {
     id: 2,
     name: "Siti Rahayu",
@@ -66,8 +65,7 @@ const testimonials = [
     text: "Saya sempat ragu di awal — apakah platform ini benar-benar aman? Ternyata jauh melampaui ekspektasi saya. Uang saya dijaga ketat, proses transparan, dan tim support-nya responsif banget. Ini yang saya cari selama bertahun-tahun.",
     amount: "Rp 47.2jt",
     txLabel: "Total transaksi aman",
-    featured: true,
-  },
+    featured: true },
   {
     id: 3,
     name: "Budi Santoso",
@@ -80,8 +78,7 @@ const testimonials = [
     text: "Beli laptop second senilai 12 juta lewat Kahade — barang datang sesuai deskripsi, kondisi mulus. Kalau ada masalah, dana tidak langsung cair. Peace of mind yang tak ternilai.",
     amount: "Rp 12jt",
     txLabel: "Pembelian terlindungi",
-    featured: false,
-  },
+    featured: false },
   {
     id: 4,
     name: "Diana Putri",
@@ -94,8 +91,7 @@ const testimonials = [
     text: "Jualan preset dan template digital, pembayarannya selalu lewat sini sekarang. Klien lebih percaya, konversi naik 40%. Terima kasih Kahade!",
     amount: "Rp 8.3jt",
     txLabel: "Produk digital terjual",
-    featured: false,
-  },
+    featured: false },
   {
     id: 5,
     name: "Reza Pratama",
@@ -108,8 +104,7 @@ const testimonials = [
     text: "Kami pakai API Kahade untuk ratusan transaksi per bulan. Integrasinya mudah, dokumentasinya lengkap, dan tim teknisnya siap bantu kapanpun. Highly recommended untuk bisnis skala besar.",
     amount: "Rp 280jt",
     txLabel: "Volume bulan ini",
-    featured: false,
-  },
+    featured: false },
   {
     id: 6,
     name: "Mega Lestari",
@@ -122,8 +117,7 @@ const testimonials = [
     text: "Pertama kali beli barang branded dari reseller yang belum saya kenal. Khawatir kena tipu, tapi pakai escrow jadi aman. Barang asli, sesuai foto. Penjualnya juga jadi lebih profesional.",
     amount: "Rp 3.8jt",
     txLabel: "Pembelian fashion aman",
-    featured: false,
-  },
+    featured: false },
 ];
 
 // Extended set for marquee rows
@@ -159,9 +153,9 @@ const Stars = ({ count = 5, white = false }) => (
 // ─── Single Card (reusable) ───────────────────────────────────────────────────
 const TestimonialCard = ({ t, compact = false }: { t: (typeof testimonials)[number]; compact?: boolean }) => {
   const isF = t.featured;
-  const textColor = isF ? "rgba(255,255,255,0.78)" : "rgba(0,0,0,0.65)";
+  const textColor = isF ? "rgba(255,255,255,0.78)" : "rgba(0,0,0,0.1)";
   const nameColor = isF ? "#fff" : "#000";
-  const metaColor = isF ? "rgba(255,255,255,0.38)" : "rgba(0,0,0,0.35)";
+  const metaColor = isF ? "rgba(255,255,255,0.38)" : "rgba(0,0,0,0.1)";
 
   return (
     <div className={`tm-card${isF ? " featured" : ""}`} style={compact ? { minWidth: 300, maxWidth: 320, flexShrink: 0 } : {}}>
@@ -202,17 +196,15 @@ const TestimonialCard = ({ t, compact = false }: { t: (typeof testimonials)[numb
         fontStyle: "italic",
         fontWeight: 400,
         position: "relative",
-        zIndex: 1,
-      }}>
+        zIndex: 1 }}>
         "{t.text}"
       </p>
 
       {/* Bottom amount */}
       <div style={{
         display: "flex", alignItems: "center", justifyContent: "space-between",
-        borderTop: `1px solid ${isF ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.06)"}`,
-        paddingTop: 14, marginTop: 4,
-      }}>
+        borderTop: `1px solid ${isF ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.1)"}`,
+        paddingTop: 14, marginTop: 4 }}>
         <div>
           <p style={{ fontSize: 11, color: metaColor, margin: "0 0 2px 0", fontFamily: "var(--font-sans)", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.08em" }}>
             {t.txLabel}
@@ -224,10 +216,9 @@ const TestimonialCard = ({ t, compact = false }: { t: (typeof testimonials)[numb
         <div style={{
           display: "flex", alignItems: "center", gap: 5,
           padding: "6px 10px", borderRadius: 99,
-          background: isF ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.04)",
-        }}>
+          background: isF ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)" }}>
           <span style={{ width: 6, height: 6, borderRadius: "50%", background: isF ? "rgba(255,255,255,0.7)" : "#000", display: "block" }} />
-          <span style={{ fontSize: 10.5, fontWeight: 600, color: isF ? "rgba(255,255,255,0.6)" : "rgba(0,0,0,0.45)", fontFamily: "var(--font-sans)" }}>
+          <span style={{ fontSize: 10.5, fontWeight: 600, color: isF ? "rgba(255,255,255,0.6)" : "rgba(0,0,0,0.1)", fontFamily: "var(--font-sans)" }}>
             Terverifikasi
           </span>
         </div>
@@ -238,12 +229,12 @@ const TestimonialCard = ({ t, compact = false }: { t: (typeof testimonials)[numb
 
 // ─── Marquee Card (compact) ───────────────────────────────────────────────────
 const MarqueeCard = ({ t }: { t: (typeof testimonials)[number] }) => {
-  const textColor = "rgba(0,0,0,0.6)";
+  const textColor = "rgba(0,0,0,0.1)";
   return (
     <div style={{
       minWidth: 290, maxWidth: 310, flexShrink: 0,
       background: "#fff",
-      border: "1px solid rgba(0,0,0,0.08)",
+      border: "1px solid rgba(0,0,0,0.1)",
       borderRadius: 16,
       padding: "20px 22px",
       marginRight: 14,
@@ -251,9 +242,8 @@ const MarqueeCard = ({ t }: { t: (typeof testimonials)[number] }) => {
       flexDirection: "column",
       gap: 12,
       position: "relative",
-      overflow: "hidden",
-    }}>
-      <div style={{ position: "absolute", top: 14, right: 18, fontSize: 44, lineHeight: 0.6, color: "rgba(0,0,0,0.04)", fontFamily: "var(--font-sans)", fontWeight: 800, pointerEvents: "none" }}>"</div>
+      overflow: "hidden" }}>
+      <div style={{ position: "absolute", top: 14, right: 18, fontSize: 44, lineHeight: 0.6, color: "rgba(0,0,0,0.1)", fontFamily: "var(--font-sans)", fontWeight: 800, pointerEvents: "none" }}>"</div>
       <div style={{ display: "flex", alignItems: "center", gap: 9 }}>
         <div style={{ width: 34, height: 34, borderRadius: "50%", background: t.avatarBg, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
           <span style={{ fontSize: 11, fontWeight: 700, color: "#fff", fontFamily: "var(--font-sans)" }}>{t.avatar}</span>
@@ -263,7 +253,7 @@ const MarqueeCard = ({ t }: { t: (typeof testimonials)[number] }) => {
             <span style={{ fontSize: 12.5, fontWeight: 700, color: "#000", fontFamily: "var(--font-sans)", letterSpacing: "-0.02em" }}>{t.name}</span>
             <VerifiedIcon />
           </div>
-          <p style={{ fontSize: 10.5, color: "rgba(0,0,0,0.35)", margin: 0, fontFamily: "var(--font-sans)" }}>{t.role}</p>
+          <p style={{ fontSize: 10.5, color: "rgba(0,0,0,0.1)", margin: 0, fontFamily: "var(--font-sans)" }}>{t.role}</p>
         </div>
         <div style={{ marginLeft: "auto" }}>
           <Stars count={5} />
@@ -345,13 +335,12 @@ export default function TestimonialsSection() {
               <div style={{
                 display: "inline-flex", alignItems: "center", gap: 8,
                 padding: "7px 16px", borderRadius: 99,
-                border: "1px solid rgba(0,0,0,0.09)",
-                background: "rgba(0,0,0,0.02)",
-              }}>
+                border: "1px solid rgba(0,0,0,0.1)",
+                background: "rgba(0,0,0,0.1)" }}>
                 <div style={{ display: "flex", gap: 2 }}>
                   {[...Array(5)].map((_, i) => <StarFilled key={i} size={11} />)}
                 </div>
-                <span style={{ fontSize: 11.5, fontWeight: 600, color: "rgba(0,0,0,0.45)", fontFamily: "var(--font-sans)", letterSpacing: "0.04em", textTransform: "uppercase" }}>
+                <span style={{ fontSize: 11.5, fontWeight: 600, color: "rgba(0,0,0,0.1)", fontFamily: "var(--font-sans)", letterSpacing: "0.04em", textTransform: "uppercase" }}>
                   12.000+ Ulasan Terverifikasi
                 </span>
               </div>
@@ -367,10 +356,9 @@ export default function TestimonialsSection() {
                 letterSpacing: "-0.04em",
                 lineHeight: 1.08,
                 margin: "0 auto 16px auto",
-                maxWidth: 560,
-              }}>
+                maxWidth: 560 }}>
                 Dipercaya Ratusan Ribu
-                <span style={{ color: "rgba(0,0,0,0.22)" }}> Transaksi.</span>
+                <span style={{ color: "rgba(0,0,0,0.1)" }}> Transaksi.</span>
               </h2>
             </div>
 
@@ -379,11 +367,10 @@ export default function TestimonialsSection() {
               <p style={{
                 fontFamily: "var(--font-sans)",
                 fontSize: "clamp(14px, 1.5vw, 16px)",
-                color: "rgba(0,0,0,0.45)",
+                color: "rgba(0,0,0,0.1)",
                 lineHeight: 1.75,
                 maxWidth: 440,
-                margin: "0 auto",
-              }}>
+                margin: "0 auto" }}>
                 Bukan sekadar kata-kata. Ini pengalaman nyata para pengguna yang sudah merasakan ketenangan bertransaksi bersama Kahade.
               </p>
             </div>
@@ -397,8 +384,8 @@ export default function TestimonialsSection() {
               ].map((s, i) => (
                 <div key={i} style={{ textAlign: "center" }}>
                   <p style={{ fontFamily: "var(--font-sans)", fontSize: 24, fontWeight: 800, color: "#000", letterSpacing: "-0.04em", margin: "0 0 2px 0" }}>{s.val}</p>
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: 12, fontWeight: 600, color: "rgba(0,0,0,0.55)", margin: "0 0 1px 0" }}>{s.label}</p>
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: 10.5, color: "rgba(0,0,0,0.28)", margin: 0 }}>{s.sub}</p>
+                  <p style={{ fontFamily: "var(--font-sans)", fontSize: 12, fontWeight: 600, color: "rgba(0,0,0,0.1)", margin: "0 0 1px 0" }}>{s.label}</p>
+                  <p style={{ fontFamily: "var(--font-sans)", fontSize: 10.5, color: "rgba(0,0,0,0.1)", margin: 0 }}>{s.sub}</p>
                 </div>
               ))}
             </div>
@@ -438,19 +425,18 @@ export default function TestimonialsSection() {
             marginTop: 64,
             padding: "32px 36px",
             borderRadius: 20,
-            border: "1px solid rgba(0,0,0,0.08)",
-            background: "rgba(0,0,0,0.02)",
+            border: "1px solid rgba(0,0,0,0.1)",
+            background: "rgba(0,0,0,0.1)",
             display: "flex",
             flexWrap: "wrap",
             alignItems: "center",
             justifyContent: "space-between",
-            gap: 20,
-          }}>
+            gap: 20 }}>
             <div>
               <p style={{ fontFamily: "var(--font-sans)", fontSize: 18, fontWeight: 700, color: "#000", letterSpacing: "-0.03em", margin: "0 0 5px 0" }}>
                 Lihat bagaimana pengguna memakai alur Kahade
               </p>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: 13.5, color: "rgba(0,0,0,0.4)", margin: 0 }}>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: 13.5, color: "rgba(0,0,0,0.1)", margin: 0 }}>
                 Daftar gratis, mulai bertransaksi dengan aman hari ini juga.
               </p>
             </div>
@@ -462,8 +448,7 @@ export default function TestimonialsSection() {
                 borderRadius: 12, fontSize: 13.5, fontWeight: 700,
                 fontFamily: "var(--font-sans)", textDecoration: "none",
                 letterSpacing: "-0.02em",
-                transition: "all .2s",
-              }}
+                transition: "all .2s" }}
                 onMouseOver={(e: React.MouseEvent<HTMLAnchorElement>) => { e.currentTarget.style.background = "#1a1a1a"; e.currentTarget.style.transform = "translateY(-1px)"; }}
                 onMouseOut={(e: React.MouseEvent<HTMLAnchorElement>) => { e.currentTarget.style.background = "#000"; e.currentTarget.style.transform = "none"; }}
               >
@@ -473,14 +458,13 @@ export default function TestimonialsSection() {
               <Link href={supportLinks.contact} style={{
                 display: "inline-flex", alignItems: "center", gap: 8,
                 padding: "12px 24px",
-                background: "transparent", color: "rgba(0,0,0,0.6)",
-                border: "1.5px solid rgba(0,0,0,0.12)",
+                background: "transparent", color: "rgba(0,0,0,0.1)",
+                border: "1.5px solid rgba(0,0,0,0.1)",
                 borderRadius: 12, fontSize: 13.5, fontWeight: 600,
                 fontFamily: "var(--font-sans)", textDecoration: "none",
-                transition: "all .2s",
-              }}
-                onMouseOver={(e: React.MouseEvent<HTMLAnchorElement>) => { e.currentTarget.style.borderColor = "rgba(0,0,0,0.28)"; e.currentTarget.style.color = "#000"; }}
-                onMouseOut={(e: React.MouseEvent<HTMLAnchorElement>) => { e.currentTarget.style.borderColor = "rgba(0,0,0,0.12)"; e.currentTarget.style.color = "rgba(0,0,0,0.6)"; }}
+                transition: "all .2s" }}
+                onMouseOver={(e: React.MouseEvent<HTMLAnchorElement>) => { e.currentTarget.style.borderColor = "rgba(0,0,0,0.1)"; e.currentTarget.style.color = "#000"; }}
+                onMouseOut={(e: React.MouseEvent<HTMLAnchorElement>) => { e.currentTarget.style.borderColor = "rgba(0,0,0,0.1)"; e.currentTarget.style.color = "rgba(0,0,0,0.1)"; }}
               >
                 Baca Lebih Banyak Ulasan
               </Link>
