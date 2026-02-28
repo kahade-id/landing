@@ -438,22 +438,7 @@ export default function PricingSection() {
           {/* ── Header ──────────────────────────────────────────────────────── */}
           <div style={{ textAlign: "center", marginBottom: 72 }}>
 
-            <div className={c("pr-fade-up pr-d0")} style={{ display: "none", justifyContent: "center", marginBottom: 20 }}>
-              <div style={{
-                display: "inline-flex", alignItems: "center", gap: 8,
-                padding: "7px 16px", borderRadius: 99,
-                border: "1px solid rgba(0,0,0,0.1)",
-                background: "rgba(0,0,0,0.05)"
-              }}>
-                <span style={{ position: "relative", display: "inline-flex", width: 7, height: 7 }}>
-                  <span style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "#000", opacity: .35, animation: "prPing 1.8s ease infinite" }} />
-                  <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#000", display: "block", position: "relative" }} />
-                </span>
-                <span style={{ fontSize: 11.5, fontWeight: 600, color: "rgba(0,0,0,0.45)", fontFamily: "var(--font-sans)", letterSpacing: ".04em", textTransform: "uppercase" }}>
-                  Harga Transparan, Tanpa Kejutan
-                </span>
-              </div>
-            </div>
+            {/* FIX: Removed dead display:none eyebrow element — was hidden and untriggered */}
 
             <div className={c("pr-fade-up pr-d1")}>
               <h2 style={{
