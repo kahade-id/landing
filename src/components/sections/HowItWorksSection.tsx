@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import Link from "next/link";
 import { useState, useEffect, useRef, type RefObject } from "react";
 import { homeAnchors, supportLinks } from "@/lib/site";
@@ -407,9 +408,6 @@ const FeatureRow = ({ step, idx, inView }: { step: any; idx: number; inView: boo
   );
 };
 
-// Need React for createElement
-import React from "react";
-
 // ─── Main Component ───────────────────────────────────────────────────────────
 export default function HowItWorksSection() {
   const [sectionRef, inView] = useInView(0.08);
@@ -438,7 +436,7 @@ export default function HowItWorksSection() {
           <div style={{ textAlign:"center", marginBottom:56 }}>
 
             {/* Eyebrow */}
-            <div className={c("hw-fu hw-d0")} style={{ display:"none", justifyContent:"center", marginBottom:20 }}>
+            <div className={c("hw-fu hw-d0")} style={{ display:"flex", justifyContent:"center", marginBottom:20 }}>
               <div style={{
                 display:"inline-flex", alignItems:"center", gap:8,
                 padding:"7px 16px", borderRadius:99,
@@ -500,7 +498,7 @@ export default function HowItWorksSection() {
           {view === "cards" && (<>
 
             {/* ── Desktop: 3-col then 2-col centered grid ──────────────────── */}
-            <div className="hw-desktop-grid" style={{ display:"none" }}>
+            <div className="hw-desktop-grid">
 
               {/* Row 1: steps 1-3 */}
               <div style={{
@@ -542,7 +540,7 @@ export default function HowItWorksSection() {
             </div>
 
             {/* ── Mobile: vertical list ─────────────────────────────────────── */}
-            <div className="hw-mobile-list" style={{ display:"none" }}>
+            <div className="hw-mobile-list">
               {/* Timeline track */}
               <div style={{ position:"relative" }}>
                 {/* Vertical line */}
