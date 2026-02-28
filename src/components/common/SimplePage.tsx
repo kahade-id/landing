@@ -1,8 +1,11 @@
+"use client";
+
 import Link from "next/link";
-import { site, supportLinks } from "@/lib/site";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 
 interface SimplePageProps {
-  eyebrow: string;
+  eyebrow?: string;
   title: string;
   description: string;
   points?: string[];
@@ -15,75 +18,69 @@ export default function SimplePage({
   title,
   description,
   points = [],
-  detailTitle = "Yang bisa dilakukan dari halaman ini",
-  detailBody = "Gunakan halaman ini sebagai titik rujukan singkat sebelum melanjutkan ke pusat bantuan, dokumentasi, atau tim operasional.",
+  detailTitle,
+  detailBody,
 }: SimplePageProps) {
   return (
-    <main id="main-content" className="min-h-screen bg-white text-black">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-black/60 hover:text-black transition-colors"
-        >
-          ← Kembali ke beranda
-        </Link>
+    <>
+      <Header />
+      <main id="main-content">
+        <section className="pt-32 pb-20 px-4 max-w-4xl mx-auto">
+          {eyebrow && (
+            <p className="text-xs font-bold uppercase tracking-widest text-black/40 mb-4">
+              {eyebrow}
+            </p>
+          )}
+          <h1
+            className="text-4xl md:text-5xl font-black tracking-tight mb-6 leading-[1.08]"
+            style={{ letterSpacing: "-0.03em" }}
+          >
+            {title}
+          </h1>
+          <p className="text-lg text-black/60 max-w-2xl leading-relaxed">{description}</p>
+        </section>
 
-        <div className="mt-10 rounded-3xl border border-black/10 bg-white p-8 sm:p-10 ">
-          <div className="inline-flex items-center rounded-full border border-black/10 bg-black/[0.03] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-black/45">
-            {eyebrow}
-          </div>
-          <h1 className="mt-5 text-3xl sm:text-5xl font-extrabold tracking-tight">{title}</h1>
-          <p className="mt-4 max-w-2xl text-base leading-8 text-black/60">{description}</p>
-
-          <div className="mt-10 grid gap-6 lg:grid-cols-[1.35fr_.95fr]">
-            <section className="rounded-3xl border border-black/8 bg-black/[0.02] p-6">
-              <h2 className="text-lg font-bold tracking-tight">{detailTitle}</h2>
-              <p className="mt-2 text-sm leading-7 text-black/55">{detailBody}</p>
-
+        {(points.length > 0 || detailTitle || detailBody) && (
+          <section className="pb-24 px-4 max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-12">
               {points.length > 0 && (
-                <ul className="mt-6 grid gap-3 text-sm text-black/65 sm:grid-cols-2">
-                  {points.map((point) => (
-                    <li key={point} className="rounded-2xl border border-black/8 bg-white px-4 py-3">
-                      {point}
-                    </li>
-                  ))}
-                </ul>
+                <div>
+                  <ul className="space-y-4">
+                    {points.map((point, i) => (
+                      <li key={i} className="flex items-start gap-3">
+                        <span className="mt-0.5 w-5 h-5 rounded-full bg-black flex items-center justify-center flex-shrink-0">
+                          <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                            <path d="M1 4L3.5 6.5L9 1" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        </span>
+                        <span className="text-black/75 leading-relaxed">{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               )}
-            </section>
+              {(detailTitle || detailBody) && (
+                <div>
+                  {detailTitle && <h2 className="text-xl font-bold mb-3 tracking-tight">{detailTitle}</h2>}
+                  {detailBody && <p className="text-black/60 leading-relaxed">{detailBody}</p>}
+                </div>
+              )}
+            </div>
+          </section>
+        )}
 
-            <aside className="rounded-3xl border border-black/8 bg-white p-6">
-              <h2 className="text-lg font-bold tracking-tight">Kontak & rute lanjutan</h2>
-              <div className="mt-5 space-y-3 text-sm">
-                <Link href={supportLinks.supportEmail} className="flex items-center justify-between rounded-2xl border border-black/10 px-4 py-3 text-black/70 transition-colors hover:border-black/20 hover:text-black">
-                  <span>Email support</span>
-                  <span>{site.email}</span>
-                </Link>
-                <Link href={supportLinks.phone} className="flex items-center justify-between rounded-2xl border border-black/10 px-4 py-3 text-black/70 transition-colors hover:border-black/20 hover:text-black">
-                  <span>Telepon</span>
-                  <span>{site.phone}</span>
-                </Link>
-                <Link href={supportLinks.support} className="flex items-center justify-between rounded-2xl border border-black/10 px-4 py-3 text-black/70 transition-colors hover:border-black/20 hover:text-black">
-                  <span>Pusat bantuan</span>
-                  <span>→</span>
-                </Link>
-                <Link href={supportLinks.docs} className="flex items-center justify-between rounded-2xl border border-black/10 px-4 py-3 text-black/70 transition-colors hover:border-black/20 hover:text-black">
-                  <span>Dokumentasi</span>
-                  <span>→</span>
-                </Link>
-              </div>
-            </aside>
-          </div>
-
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="/support" className="inline-flex items-center rounded-xl bg-black px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-black/85">
-              Pusat Bantuan
+        <section className="pb-24 px-4 max-w-4xl mx-auto" style={{ borderTop: "1px solid rgba(0,0,0,0.07)", paddingTop: "64px", marginTop: "0" }}>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <Link href="/" className="inline-flex items-center gap-2 bg-black text-white text-sm font-bold rounded-xl px-5 py-3 hover:-translate-y-0.5 transition-transform">
+              Mulai Sekarang →
             </Link>
-            <Link href="/contact" className="inline-flex items-center rounded-xl border border-black/12 px-4 py-2.5 text-sm font-semibold text-black/70 transition-colors hover:border-black/20 hover:text-black">
-              Hubungi Tim
+            <Link href="/contact" className="text-sm font-semibold text-black/50 hover:text-black transition-colors">
+              Hubungi Kami →
             </Link>
           </div>
-        </div>
-      </div>
-    </main>
+        </section>
+      </main>
+      <Footer />
+    </>
   );
 }
