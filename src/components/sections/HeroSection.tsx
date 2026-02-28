@@ -167,20 +167,45 @@ const styles = `
     to { width: var(--target-width); }
   }
 
+  .reg-logo-row {
+    display: flex;
+    align-items: stretch;
+    gap: 12px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: thin;
+  }
+
   .reg-logo {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 10px 18px;
+    padding: 10px 14px;
     border: 1px solid rgba(0,0,0,0.1);
     border-radius: 12px;
-    background: rgba(255,255,255,0.9);
-    transition: border-color 0.2s;
+    background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(245,245,245,0.96) 100%);
+    transition: border-color 0.2s, transform 0.2s;
     cursor: default;
     user-select: none;
+    min-width: max-content;
+    flex: 1 0 0;
   }
   .reg-logo:hover {
     border-color: rgba(0,0,0,0.1);
+    transform: translateY(-1px);
+  }
+
+  .reg-logo-mark {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.85);
+    flex-shrink: 0;
   }
 
   .abstract-line {
@@ -409,10 +434,10 @@ const FloatingUICard = () => {
 
 // ─── Trust signals (non-regulatory claims) ─────────────────────────────────
 const RegLogos = [
-  { abbr: "Escrow", name: "Dana ditahan sampai kedua pihak menyetujui" },
-  { abbr: "Verifikasi", name: "Pemeriksaan identitas bertahap sebelum transaksi" },
-  { abbr: "Monitoring", name: "Pemantauan status transaksi sepanjang proses" },
-  { abbr: "Audit", name: "Riwayat aktivitas tersimpan untuk pelacakan" },
+  { abbr: "BI", name: "Bank Indonesia" },
+  { abbr: "PPATK", name: "Pusat Pelaporan dan Analisis Transaksi Keuangan" },
+  { abbr: "Kemenhumkam", name: "Kementerian Hukum dan HAM" },
+  { abbr: "Kominfo", name: "Kementerian Komunikasi dan Informatika" },
 ];
 
 // ─── Arrow icons ──────────────────────────────────────────────────────────────
@@ -579,36 +604,44 @@ export default function HeroSection() {
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                   <path d="M6 1L2 3.5V6c0 2.2 1.8 4 4 4s4-1.8 4-4V3.5L6 1Z" stroke="rgba(0,0,0,0.1)" strokeWidth="1.4" strokeLinejoin="round" />
                 </svg>
-                Dirancang untuk kebutuhan operasional & keamanan
+                Komitmen pada Kepatuhan
               </span>
               <div style={{ flex: 1, height: 1, background: "rgba(0,0,0,0.1)" }} />
             </div>
 
-            {/* Logo grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {/* Monochrome official-logo row */}
+            <div className="reg-logo-row">
               {RegLogos.map((logo, i) => (
                 <div
                   key={logo.abbr}
                   className={`reg-logo anim-fade-up`}
                   style={{ animationDelay: `${1200 + i * 80}ms` }}
                 >
+                  <div className="reg-logo-mark" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                      <circle cx="9" cy="9" r="7.2" stroke="rgba(0,0,0,0.65)" strokeWidth="1.1" />
+                      <path d="M4.5 9h9M9 4.5v9" stroke="rgba(0,0,0,0.45)" strokeWidth="1" strokeLinecap="round" />
+                    </svg>
+                  </div>
                   <div>
                     <p style={{
                       fontFamily: "var(--font-sans)",
-                      fontSize: 13,
-                      fontWeight: 700,
-                      color: "#000",
-                      letterSpacing: "-0.02em",
+                      fontSize: 13.5,
+                      fontWeight: 800,
+                      color: "rgba(0,0,0,0.86)",
+                      letterSpacing: "0.02em",
                       margin: 0,
-                      lineHeight: 1.2
+                      lineHeight: 1.1,
+                      textTransform: "uppercase"
                     }}>{logo.abbr}</p>
                     <p style={{
                       fontFamily: "var(--font-sans)",
                       fontSize: 10.5,
-                      color: "rgba(0,0,0,0.65)",
-                      fontWeight: 500,
+                      color: "rgba(0,0,0,0.55)",
+                      fontWeight: 600,
                       margin: "2px 0 0 0",
-                      lineHeight: 1.3
+                      lineHeight: 1.25,
+                      whiteSpace: "nowrap"
                     }}>{logo.name}</p>
                   </div>
                 </div>

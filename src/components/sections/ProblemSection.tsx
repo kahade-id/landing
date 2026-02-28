@@ -57,15 +57,6 @@ const BoxIcon = ({ size = 22, white = false }) => (
   </svg>
 );
 
-const AlertIcon = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 16 16" fill="none"
-    stroke="rgba(0,0,0,0.1)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M8 2L15 14H1L8 2Z"/>
-    <path d="M8 6.5v3.5M8 12v.5"/>
-  </svg>
-);
-
-
 const LockIcon = ({ white = false, size = 16 }) => (
   <svg width={size} height={size} viewBox="0 0 16 16" fill="none"
     stroke={white ? "rgba(255,255,255,.75)" : "rgba(0,0,0,0.1)"}
@@ -371,13 +362,6 @@ const solutions = [
   { label:"Rekam Jejak Transaksi Permanen",        sub:"Semua bukti tersimpan, terlindungi hukum" },
 ];
 
-// ─── Stats ────────────────────────────────────────────────────────────────────
-const stats = [
-  { val:"3.2M+",  label:"Kasus Penipuan Online\ndi Indonesia (2023)" },
-  { val:"Rp 2.5T", label:"Kerugian Konsumen\nper Tahun" },
-  { val:"67%",    label:"Transaksi P2P Tanpa\nPerlindungan" },
-];
-
 // ─── Main Component ───────────────────────────────────────────────────────────
 export default function ProblemSection() {
   const [sectionRef, inView] = useInView(0.08);
@@ -406,24 +390,6 @@ const c = (base: string, d = ""): string => `${base} ${d} ${inView ? "pv" : ""}`
           {/* ── Header ──────────────────────────────────────────────────────── */}
           <div style={{ textAlign:"center", marginBottom:72 }}>
 
-            {/* Eyebrow */}
-            <div className={c("pb-fu pb-d0")} style={{ display:"flex", justifyContent:"center", marginBottom:20 }}>
-              <div style={{
-                display:"inline-flex", alignItems:"center", gap:8,
-                padding:"7px 16px", borderRadius:99,
-                border:"1px solid rgba(0,0,0,0.1)",
-                background:"rgba(0,0,0,0.1)"
-              }}>
-                <AlertIcon size={13}/>
-                <span style={{
-                  fontSize:11.5, fontWeight:700, color:"rgba(0,0,0,0.1)",
-                  fontFamily:"var(--font-sans)", letterSpacing:".05em", textTransform:"uppercase"
-                }}>
-                  Masalah yang Kami Selesaikan
-                </span>
-              </div>
-            </div>
-
             {/* Headline */}
             <div className={c("pb-fu pb-d1")}>
               <h2 style={{
@@ -449,36 +415,6 @@ const c = (base: string, d = ""): string => `${base} ${d} ${inView ? "pv" : ""}`
               }}>
                 Setiap hari jutaan transaksi P2P terjadi tanpa perlindungan. Kedua pihak menanggung risiko besar — dan tidak harus begitu.
               </p>
-            </div>
-          </div>
-
-          {/* ── Statistics Bar ────────────────────────────────────────────────── */}
-          <div className={c("pb-fu pb-d2")} style={{ marginBottom:56 }}>
-            <div style={{
-              display:"grid",
-              gridTemplateColumns:"repeat(auto-fit,minmax(160px,1fr))",
-              borderRadius:20,
-              border:"1px solid rgba(0,0,0,0.1)",
-              background:"#fff",
-              overflow:"hidden" }}>
-              {stats.map((s,i) => (
-                <div key={i} className="pb-stat">
-                  <p style={{
-                    fontFamily:"var(--font-sans)",
-                    fontSize:"clamp(22px,3.5vw,34px)",
-                    fontWeight:800, color:"#000",
-                    letterSpacing:"-.04em", lineHeight:1,
-                    margin:"0 0 6px"
-                  }}>{s.val}</p>
-                  <p style={{
-                    fontFamily:"var(--font-sans)",
-                    fontSize:11.5, color:"rgba(0,0,0,0.1)",
-                    fontWeight:500, margin:0,
-                    textAlign:"center", lineHeight:1.5,
-                    whiteSpace:"pre-line"
-                  }}>{s.label}</p>
-                </div>
-              ))}
             </div>
           </div>
 
