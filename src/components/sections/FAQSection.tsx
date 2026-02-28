@@ -33,6 +33,7 @@ function useInView(threshold = 0.12): [RefObject<any>, boolean] {
   return [ref, inView];
 }
 
+
 function FAQItem({ faq, index, inView }: { faq: (typeof faqs)[number]; index: number; inView: boolean }) {
   const [open, setOpen] = useState(false);
   const delayClass = `faq-d${Math.min(index, 8)}`;
@@ -40,7 +41,7 @@ function FAQItem({ faq, index, inView }: { faq: (typeof faqs)[number]; index: nu
   const buttonId = `faq-button-${index}`;
 
   return (
-    <div className={`faq-item faq-fade-up ${inView ? "fv" : ""} ${delayClass} px-0`}>
+    <div className={`faq-item faq-fade-up ${inView ? "fv" : ""} ${delayClass} px-0 border-b border-black/10 ${index === 0 ? "border-t" : ""}`}>
       <button onClick={() => setOpen(!open)} id={buttonId} className="w-full flex items-center justify-between py-5 text-left gap-4 group" aria-expanded={open} aria-controls={panelId}>
         <div className="flex items-start gap-3 flex-1 min-w-0">
           <span className="text-[11px] font-bold text-black/20 tabular-nums mt-0.5 w-5 flex-shrink-0" style={{ fontFamily: "var(--font-sans)" }}>{String(index + 1).padStart(2, "0")}</span>
@@ -98,7 +99,7 @@ export default function FAQSection() {
         </div>
 
         <div className="max-w-4xl mx-auto">
-          <div className="divide-y-0">
+          <div>
             {faqs.map((faq, i) => (
               <FAQItem key={faq.q} faq={faq} index={i} inView={inView} />
             ))}

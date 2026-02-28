@@ -46,6 +46,23 @@ const securityItems = [
 
 const badges = ["SOC 2", "CASA", "GDPR", "CCPA"];
 
+const SectionDivider = ({ tone = "light" }: { tone?: "light" | "dark" }) => {
+  const dotColor = tone === "light" ? "rgba(255,255,255,0.35)" : "rgba(0,0,0,0.28)";
+
+  return (
+    <div
+      aria-hidden="true"
+      className="h-[2px] w-full"
+      style={{
+        backgroundImage: `radial-gradient(circle, ${dotColor} 2px, transparent 2.2px)`,
+        backgroundSize: "16px 2px",
+        backgroundRepeat: "repeat-x",
+        backgroundPosition: "left center",
+      }}
+    />
+  );
+};
+
 export default function SecuritySection() {
   return (
     <section id="keamanan" className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
@@ -56,7 +73,11 @@ export default function SecuritySection() {
           </h2>
         </header>
 
-        <div className="mt-14 grid gap-10 sm:mt-16 sm:grid-cols-2 sm:gap-x-12 sm:gap-y-14">
+        <div className="mt-10 sm:mt-12">
+          <SectionDivider />
+        </div>
+
+        <div className="mt-10 grid gap-10 sm:mt-12 sm:grid-cols-2 sm:gap-x-12 sm:gap-y-14">
           {securityItems.map((item) => (
             <article key={item.title} className="max-w-md">
               <div className="mb-5 text-[#c7b4ff]">{item.icon}</div>
@@ -66,7 +87,9 @@ export default function SecuritySection() {
           ))}
         </div>
 
-        <div className="my-12 border-t border-dashed border-white/30 sm:my-14" />
+        <div className="my-12 sm:my-14">
+          <SectionDivider />
+        </div>
 
         <div className="flex flex-wrap items-center justify-center gap-5 sm:gap-8">
           {badges.map((badge) => (
@@ -77,6 +100,10 @@ export default function SecuritySection() {
               {badge}
             </div>
           ))}
+        </div>
+
+        <div className="my-12 sm:my-14">
+          <SectionDivider />
         </div>
 
         <div className="mx-auto mt-12 max-w-3xl text-center">
