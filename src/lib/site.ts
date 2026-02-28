@@ -3,78 +3,51 @@ import type { Metadata } from "next";
 export const site = {
   name: "Kahade",
   url: "https://kahade.id",
-  email: "support@kahade.id",
-  phone: "+62 21 3000 9000",
-  location: "Jakarta, Indonesia",
   description:
-    "Kahade membantu proses transaksi escrow terasa lebih aman dengan alur dana yang transparan, pengalaman pengguna yang rapi, dan dukungan operasional yang jelas.",
+    "Platform Escrow P2P Indonesia yang aman, transparan, dan terdaftar resmi. Lindungi transaksi online Anda dengan sistem rekening bersama yang teregulasi.",
   ogImage: "/og-image.svg",
-};
-
-export const homeAnchors = {
-  home: "/#home",
-  platform: "/#platform",
-  howItWorks: "/#cara-kerja",
-  pricing: "/#harga",
-  testimonials: "/#testimoni",
-  security: "/#keamanan",
-  faq: "/#faq",
-  cta: "/#mulai",
-};
-
-export const supportLinks = {
-  about: "/about",
-  contact: "/contact",
-  privacy: "/privacy",
-  terms: "/terms",
-  cookies: "/cookies",
-  status: "/status",
-  docs: "/docs",
-  blog: "/blog",
-  careers: "/careers",
-  partners: "/partners",
-  support: "/support",
-  salesEmail: `mailto:${site.email}?subject=Konsultasi%20Kahade`,
-  supportEmail: `mailto:${site.email}`,
-  phone: `tel:${site.phone.replace(/\s+/g, "")}`,
-};
+  email: "halo@kahade.id",
+  phone: "+62 21 1234 5678",
+  address: "Jakarta, Indonesia",
+  socials: {
+    instagram: "https://instagram.com/kahade.id",
+    twitter: "https://twitter.com/kahade_id",
+    linkedin: "https://linkedin.com/company/kahade",
+  },
+} as const;
 
 export function createPageMetadata({
   title,
   description,
   path,
+  image,
 }: {
   title: string;
-  description: string;
+  description?: string;
   path: string;
+  image?: string;
 }): Metadata {
-  const url = new URL(path, site.url).toString();
+  const desc = description ?? site.description;
+  const img = image ?? site.ogImage;
 
   return {
     title,
-    description,
-    alternates: { canonical: path },
+    description: desc,
+    alternates: { canonical: `${site.url}${path}` },
     openGraph: {
-      title,
-      description,
-      url,
+      title: `${title} | ${site.name}`,
+      description: desc,
+      url: `${site.url}${path}`,
       type: "website",
       locale: "id_ID",
       siteName: site.name,
-      images: [
-        {
-          url: site.ogImage,
-          width: 1200,
-          height: 630,
-          alt: `${site.name} — ${title}`,
-        },
-      ],
+      images: [{ url: img, width: 1200, height: 630, alt: title }],
     },
     twitter: {
       card: "summary_large_image",
-      title,
-      description,
-      images: [site.ogImage],
+      title: `${title} | ${site.name}`,
+      description: desc,
+      images: [img],
     },
   };
 }
