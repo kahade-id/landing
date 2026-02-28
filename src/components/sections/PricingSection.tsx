@@ -1,8 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { useState, useEffect, useRef, useCallback, type RefObject } from "react";
-import { homeAnchors, supportLinks } from "@/lib/site";
+import { homeAnchors } from "@/lib/site";
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
 const CheckCircle = ({ white = false }) => (
@@ -635,52 +634,6 @@ export default function PricingSection() {
             </div>
           </div>
 
-          {/* ── Bottom CTA strip ─────────────────────────────────────────────── */}
-          <div className={c("pr-fade-up pr-d7")} style={{ marginTop: 20 }}>
-            <div style={{
-              border: "1px solid rgba(0,0,0,0.1)",
-              borderRadius: 20,
-              padding: "28px 32px",
-              background: "rgba(0,0,0,0.1)",
-              display: "flex",
-              flexWrap: "wrap",
-              alignItems: "center",
-              justifyContent: "space-between",
-              gap: 18 }}>
-              <div>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: 17, fontWeight: 700, color: "#000", letterSpacing: "-.03em", margin: "0 0 4px 0" }}>
-                  Butuh volume besar atau integrasi enterprise?
-                </p>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: 13, color: "rgba(0,0,0,0.1)", margin: 0 }}>
-                  Kami siapkan harga khusus, SLA premium, dan onboarding dedicated untuk bisnis Anda.
-                </p>
-              </div>
-              <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-                <Link href={homeAnchors.cta} style={{
-                  display: "inline-flex", alignItems: "center", gap: 8,
-                  padding: "12px 24px", background: "#000", color: "#fff",
-                  borderRadius: 12, fontSize: 13.5, fontWeight: 700,
-                  fontFamily: "var(--font-sans)", textDecoration: "none",
-                  letterSpacing: "-.02em", transition: "all .2s" }}
-                  onMouseOver={e => { e.currentTarget.style.background = "#1a1a1a"; e.currentTarget.style.transform = "translateY(-1px)"; }}
-                  onMouseOut={e => { e.currentTarget.style.background = "#000"; e.currentTarget.style.transform = "none"; }}
-                >
-                  Mulai Gratis <ArrowRight />
-                </Link>
-                <Link href={supportLinks.contact} style={{
-                  display: "inline-flex", alignItems: "center", gap: 8,
-                  padding: "11px 22px", background: "transparent", color: "rgba(0,0,0,0.1)",
-                  border: "1.5px solid rgba(0,0,0,0.1)", borderRadius: 12,
-                  fontSize: 13.5, fontWeight: 600, fontFamily: "var(--font-sans)",
-                  textDecoration: "none", transition: "all .2s" }}
-                  onMouseOver={e => { e.currentTarget.style.borderColor = "rgba(0,0,0,0.1)"; e.currentTarget.style.color = "#000"; }}
-                  onMouseOut={e => { e.currentTarget.style.borderColor = "rgba(0,0,0,0.1)"; e.currentTarget.style.color = "rgba(0,0,0,0.1)"; }}
-                >
-                  Hubungi Sales
-                </Link>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
     </>

@@ -415,13 +415,6 @@ const RegLogos = [
   { abbr: "Audit", name: "Riwayat aktivitas tersimpan untuk pelacakan" },
 ];
 
-// ─── Stats ────────────────────────────────────────────────────────────────────
-const stats = [
-  { value: "Escrow", sub: "Alur dana transparan", bar: 84 },
-  { value: "KYC", sub: "Verifikasi bertahap", bar: 70 },
-  { value: "24/7", sub: "Monitoring sistem", bar: 98 },
-];
-
 // ─── Arrow icons ──────────────────────────────────────────────────────────────
 const ArrowRightSm = () => (
   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round">
@@ -537,40 +530,6 @@ export default function HeroSection() {
                 </Link>
               </div>
 
-              {/* Social proof avatars */}
-              <div className="anim-fade-up d-500 flex items-center gap-4">
-                {/* Stacked avatars */}
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  {["#1a1a1a", "#3a3a3a", "#555", "#777", "#999"].map((c, i) => (
-                    <div
-                      key={i}
-                      style={{
-                        width: 28, height: 28, borderRadius: "50%",
-                        background: c, border: "2px solid #fff",
-                        marginLeft: i === 0 ? 0 : -8,
-                        display: "flex", alignItems: "center", justifyContent: "center",
-                        zIndex: 5 - i,
-                        position: "relative"
-                      }}
-                    >
-                      <span style={{ fontSize: 9, fontWeight: 700, color: "#fff", fontFamily: "var(--font-sans)" }}>
-                        {["AR", "BW", "CD", "EF", "+"][i]}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-                <div>
-                  <p style={{ fontSize: 12.5, fontWeight: 600, color: "#000", fontFamily: "var(--font-sans)", margin: 0 }}>Dipakai seller, buyer, dan bisnis</p>
-                  <div style={{ display: "flex", gap: 2, marginTop: 3 }}>
-                    {[...Array(5)].map((_, i) => (
-                      <svg key={i} width="11" height="11" viewBox="0 0 11 11" fill="#000" fillOpacity="0.85">
-                        <path d="M5.5 1L6.8 4H10L7.2 6.1L8.2 9.3L5.5 7.4L2.8 9.3L3.8 6.1L1 4H4.2L5.5 1Z" />
-                      </svg>
-                    ))}
-                    <span style={{ fontSize: 11, color: "rgba(0,0,0,0.1)", fontFamily: "var(--font-sans)", marginLeft: 4 }}>Alur lebih tenang</span>
-                  </div>
-                </div>
-              </div>
             </div>
 
             {/* ── Right Column — UI Mockup ────────────────────────────────── */}
@@ -596,39 +555,6 @@ export default function HeroSection() {
               }} />
               <FloatingUICard />
             </div>
-          </div>
-        </div>
-
-        {/* ── Stats Row ────────────────────────────────────────────────────── */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 lg:mt-12">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {stats.map((s, i) => (
-              <div
-                key={i}
-                className={`stat-card anim-fade-up`}
-                style={{ animationDelay: `${700 + i * 100}ms` }}
-              >
-                <p style={{
-                  fontFamily: "var(--font-sans)",
-                  fontSize: 26,
-                  fontWeight: 800,
-                  color: "#000",
-                  letterSpacing: "-0.04em",
-                  margin: "0 0 2px 0",
-                  lineHeight: 1
-                }}>{s.value}</p>
-                <p style={{
-                  fontFamily: "var(--font-sans)",
-                  fontSize: 12,
-                  color: "rgba(0,0,0,0.1)",
-                  fontWeight: 500,
-                  margin: "0 0 10px 0"
-                }}>{s.sub}</p>
-                <div className="progress-bar">
-                  <div className="progress-fill" style={{ "--target-width": `${s.bar}%` } as CSSPropertiesWithVars} />
-                </div>
-              </div>
-            ))}
           </div>
         </div>
 
