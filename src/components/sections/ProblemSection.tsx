@@ -420,8 +420,7 @@ const c = (base: string, d = ""): string => `${base} ${d} ${inView ? "pv" : ""}`
                 display:"inline-flex", alignItems:"center", gap:8,
                 padding:"7px 16px", borderRadius:99,
                 border:"1px solid rgba(0,0,0,0.1)",
-                background:"rgba(0,0,0,0.1)",
-                display: "none"
+                background:"rgba(0,0,0,0.1)"
               }}>
                 <AlertIcon size={13}/>
                 <span style={{

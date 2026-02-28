@@ -136,7 +136,6 @@ const styles = `
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(0,0,0,0.1);
     border-radius: 20px;
-    box-: 0 8px 48px rgba(0,0,0,0.1), 0 1px 0 rgba(255,255,255,0.8) inset;
   }
 
   .stat-card {
@@ -145,10 +144,9 @@ const styles = `
     border-radius: 16px;
     padding: 16px 20px;
     backdrop-filter: blur(8px);
-    transition: box- 0.2s, transform 0.2s;
+    transition: transform 0.2s;
   }
   .stat-card:hover {
-    box-: 0 8px 32px rgba(0,0,0,0.1);
     transform: translateY(-2px);
   }
 
@@ -177,13 +175,12 @@ const styles = `
     border: 1px solid rgba(0,0,0,0.1);
     border-radius: 12px;
     background: rgba(255,255,255,0.9);
-    transition: border-color 0.2s, box- 0.2s;
+    transition: border-color 0.2s;
     cursor: default;
     user-select: none;
   }
   .reg-logo:hover {
     border-color: rgba(0,0,0,0.1);
-    box-: 0 4px 16px rgba(0,0,0,0.1);
   }
 
   .abstract-line {
@@ -410,47 +407,12 @@ const FloatingUICard = () => {
   );
 };
 
-// ─── Regulatory Logos ────────────────────────────────────────────────────────
+// ─── Trust signals (non-regulatory claims) ─────────────────────────────────
 const RegLogos = [
-  {
-    abbr: "BI",
-    name: "Bank Indonesia",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <rect x="1" y="6" width="20" height="10" rx="2" stroke="#000" strokeWidth="1.5" strokeOpacity="0.7" />
-        <circle cx="11" cy="11" r="2.8" stroke="#000" strokeWidth="1.5" strokeOpacity="0.7" />
-        <path d="M1 9h20M1 13h20" stroke="#000" strokeWidth="1" strokeOpacity="0.25" />
-      </svg>
-    ) },
-  {
-    abbr: "PPATK",
-    name: "Anti Pencucian Uang",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <circle cx="11" cy="11" r="9" stroke="#000" strokeWidth="1.5" strokeOpacity="0.7" />
-        <path d="M11 6v5.5l3 2" stroke="#000" strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.7" />
-        <circle cx="11" cy="11" r="1.5" fill="#000" fillOpacity="0.5" />
-      </svg>
-    ) },
-  {
-    abbr: "KYC",
-    name: "Kementerian Kominfo",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <rect x="3" y="5" width="16" height="12" rx="2" stroke="#000" strokeWidth="1.5" strokeOpacity="0.7" />
-        <path d="M7 17l1.5-2h5L15 17" stroke="#000" strokeWidth="1.4" strokeLinecap="round" strokeOpacity="0.7" />
-        <path d="M8 9h6M8 12h4" stroke="#000" strokeWidth="1.3" strokeLinecap="round" strokeOpacity="0.4" />
-      </svg>
-    ) },
-  {
-    abbr: "KUMHAM",
-    name: "Kemenkumham RI",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <path d="M11 3L4 7v5c0 3.87 3.13 7 7 7s7-3.13 7-7V7L11 3z" stroke="#000" strokeWidth="1.5" strokeLinejoin="round" strokeOpacity="0.7" />
-        <path d="M8 11l2 2 4-4" stroke="#000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" strokeOpacity="0.7" />
-      </svg>
-    ) },
+  { abbr: "Escrow", name: "Dana ditahan sampai kedua pihak menyetujui" },
+  { abbr: "Verifikasi", name: "Pemeriksaan identitas bertahap sebelum transaksi" },
+  { abbr: "Monitoring", name: "Pemantauan status transaksi sepanjang proses" },
+  { abbr: "Audit", name: "Riwayat aktivitas tersimpan untuk pelacakan" },
 ];
 
 // ─── Stats ────────────────────────────────────────────────────────────────────
@@ -506,7 +468,7 @@ export default function HeroSection() {
                   <span style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "#000", opacity: 0.35, animation: "ping-slow 1.8s ease infinite" }} />
                   <span style={{ position: "relative", width: 7, height: 7, borderRadius: "50%", background: "#000", display: "block" }} />
                 </span>
-                <span style={{ fontSize: 11.5, fontWeight: 600, color: "rgba(0,0,0,0.1)", fontFamily: "var(--font-sans)", letterSpacing: "0.03em" }}>
+                <span style={{ fontSize: 11.5, fontWeight: 600, color: "rgba(0,0,0,0.62)", fontFamily: "var(--font-sans)", letterSpacing: "0.03em" }}>
                   Platform escrow untuk transaksi bernilai tinggi
                 </span>
               </div>
@@ -556,11 +518,11 @@ export default function HeroSection() {
                   fontSize: "clamp(15px, 1.6vw, 17px)",
                   fontWeight: 400,
                   lineHeight: 1.75,
-                  color: "rgba(0,0,0,0.1)",
+                  color: "rgba(0,0,0,0.68)",
                   margin: 0,
                   maxWidth: 440 }}
               >
-                Dana Anda kami pegang erat — baru dilepas saat transaksi benar-benar selesai dan kedua pihak sepakat. Tidak ada celah untuk penipuan.
+                Dana Anda ditahan sementara di escrow dan baru dilepas saat transaksi selesai serta kedua pihak menyetujui hasilnya.
               </p>
 
               {/* CTAs */}
@@ -704,14 +666,6 @@ export default function HeroSection() {
                   className={`reg-logo anim-fade-up`}
                   style={{ animationDelay: `${1200 + i * 80}ms` }}
                 >
-                  <div style={{
-                    width: 36, height: 36, borderRadius: 10,
-                    background: "rgba(0,0,0,0.1)",
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    flexShrink: 0
-                  }}>
-                    {logo.icon}
-                  </div>
                   <div>
                     <p style={{
                       fontFamily: "var(--font-sans)",
@@ -725,7 +679,7 @@ export default function HeroSection() {
                     <p style={{
                       fontFamily: "var(--font-sans)",
                       fontSize: 10.5,
-                      color: "rgba(0,0,0,0.1)",
+                      color: "rgba(0,0,0,0.65)",
                       fontWeight: 500,
                       margin: "2px 0 0 0",
                       lineHeight: 1.3

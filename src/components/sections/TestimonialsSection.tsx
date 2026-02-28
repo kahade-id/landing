@@ -153,9 +153,9 @@ const Stars = ({ count = 5, white = false }) => (
 // ─── Single Card (reusable) ───────────────────────────────────────────────────
 const TestimonialCard = ({ t, compact = false }: { t: (typeof testimonials)[number]; compact?: boolean }) => {
   const isF = t.featured;
-  const textColor = isF ? "rgba(255,255,255,0.78)" : "rgba(0,0,0,0.1)";
+  const textColor = isF ? "rgba(255,255,255,0.86)" : "rgba(0,0,0,0.7)";
   const nameColor = isF ? "#fff" : "#000";
-  const metaColor = isF ? "rgba(255,255,255,0.38)" : "rgba(0,0,0,0.1)";
+  const metaColor = isF ? "rgba(255,255,255,0.62)" : "rgba(0,0,0,0.58)";
 
   return (
     <div className={`tm-card${isF ? " featured" : ""}`} style={compact ? { minWidth: 300, maxWidth: 320, flexShrink: 0 } : {}}>
@@ -306,13 +306,6 @@ const TmAbstractBg = () => (
 // ─── Main Testimonials Section ────────────────────────────────────────────────
 export default function TestimonialsSection() {
   const [sectionRef, inView] = useInView(0.12);
-  const [activeIdx, setActiveIdx] = useState(0);
-
-  // Mobile carousel
-  const mobileCols = testimonials.length;
-  const prev = () => setActiveIdx((i) => (i - 1 + mobileCols) % mobileCols);
-  const next = () => setActiveIdx((i) => (i + 1) % mobileCols);
-
   const cls = (base: string, d = "") => `${base} ${d} ${inView ? "is-visible" : ""}`;
 
   return (
@@ -340,8 +333,8 @@ export default function TestimonialsSection() {
                 <div style={{ display: "flex", gap: 2 }}>
                   {[...Array(5)].map((_, i) => <StarFilled key={i} size={11} />)}
                 </div>
-                <span style={{ fontSize: 11.5, fontWeight: 600, color: "rgba(0,0,0,0.1)", fontFamily: "var(--font-sans)", letterSpacing: "0.04em", textTransform: "uppercase" }}>
-                  12.000+ Ulasan Terverifikasi
+                <span style={{ fontSize: 11.5, fontWeight: 600, color: "rgba(0,0,0,0.62)", fontFamily: "var(--font-sans)", letterSpacing: "0.04em", textTransform: "uppercase" }}>
+                  Ringkasan pengalaman pengguna
                 </span>
               </div>
             </div>
@@ -358,7 +351,7 @@ export default function TestimonialsSection() {
                 margin: "0 auto 16px auto",
                 maxWidth: 560 }}>
                 Dipercaya Ratusan Ribu
-                <span style={{ color: "rgba(0,0,0,0.1)" }}> Transaksi.</span>
+                <span style={{ color: "rgba(0,0,0,0.62)" }}> Transaksi.</span>
               </h2>
             </div>
 
@@ -367,11 +360,11 @@ export default function TestimonialsSection() {
               <p style={{
                 fontFamily: "var(--font-sans)",
                 fontSize: "clamp(14px, 1.5vw, 16px)",
-                color: "rgba(0,0,0,0.1)",
+                color: "rgba(0,0,0,0.66)",
                 lineHeight: 1.75,
                 maxWidth: 440,
                 margin: "0 auto" }}>
-                Bukan sekadar kata-kata. Ini pengalaman nyata para pengguna yang sudah merasakan ketenangan bertransaksi bersama Kahade.
+                Testimoni di bawah merupakan ilustrasi use case umum pengguna escrow untuk membantu memahami alur layanan.
               </p>
             </div>
 
@@ -384,8 +377,8 @@ export default function TestimonialsSection() {
               ].map((s, i) => (
                 <div key={i} style={{ textAlign: "center" }}>
                   <p style={{ fontFamily: "var(--font-sans)", fontSize: 24, fontWeight: 800, color: "#000", letterSpacing: "-0.04em", margin: "0 0 2px 0" }}>{s.val}</p>
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: 12, fontWeight: 600, color: "rgba(0,0,0,0.1)", margin: "0 0 1px 0" }}>{s.label}</p>
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: 10.5, color: "rgba(0,0,0,0.1)", margin: 0 }}>{s.sub}</p>
+                  <p style={{ fontFamily: "var(--font-sans)", fontSize: 12, fontWeight: 600, color: "rgba(0,0,0,0.62)", margin: "0 0 1px 0" }}>{s.label}</p>
+                  <p style={{ fontFamily: "var(--font-sans)", fontSize: 10.5, color: "rgba(0,0,0,0.58)", margin: 0 }}>{s.sub}</p>
                 </div>
               ))}
             </div>
@@ -487,4 +480,3 @@ export default function TestimonialsSection() {
     </>
   );
 }
-
