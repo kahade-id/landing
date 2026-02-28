@@ -18,40 +18,6 @@ const PlayCircle = () => (
   </svg>
 );
 
-const CheckIcon = ({ size = 13 }) => (
-  <svg width={size} height={size} viewBox="0 0 13 13" fill="none">
-    <circle cx="6.5" cy="6.5" r="6.5" fill="rgba(255,255,255,0.12)" />
-    <path d="M4 6.5L5.8 8.3L9 5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
-
-const ShieldIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M9 2L3 5V9C3 12.3 5.7 15 9 16C12.3 15 15 12.3 15 9V5L9 2Z" />
-    <path d="M6.5 9L8 10.5L11.5 7" />
-  </svg>
-);
-
-const LockIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="rgba(255,255,255,0.6)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="3" y="7.5" width="10" height="7" rx="1.5" />
-    <path d="M5.5 7.5V5.5a2.5 2.5 0 015 0v2" />
-    <circle cx="8" cy="11" r="1" fill="rgba(255,255,255,0.6)" stroke="none" />
-  </svg>
-);
-
-const StarIcon = () => (
-  <svg width="12" height="12" viewBox="0 0 12 12" fill="rgba(255,255,255,0.85)">
-    <path d="M6 1L7.5 4.5H11L8.2 6.8L9.3 10.5L6 8.3L2.7 10.5L3.8 6.8L1 4.5H4.5L6 1Z" />
-  </svg>
-);
-
-const ZapIcon = () => (
-  <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="rgba(255,255,255,0.65)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M8.5 2L4 8.5H7.5L6.5 13L11 6.5H7.5L8.5 2Z" />
-  </svg>
-);
-
 // ─── Abstract SVG Background ──────────────────────────────────────────────────
 const CtaAbstractBg = () => (
   <svg className="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
@@ -113,22 +79,6 @@ const CtaAbstractBg = () => (
   </svg>
 );
 
-// ─── Floating Transaction Card ─────────────────────────────────────────────────
-const FloatingTxCard = ({ delay = "0s", style = {} }) => (
-  <div className="cta-glass cta-float1 px-4 py-3 flex items-center gap-3" style={{ animationDelay: delay, minWidth: 200, ...style }}>
-    <div style={{ width: 34, height: 34, borderRadius: 10, background: "rgba(255,255,255,0.1)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-      <ShieldIcon />
-    </div>
-    <div>
-      <p style={{ fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.9)", fontFamily: "var(--font-sans)", margin: 0, lineHeight: 1.2 }}>Dana Dilepas</p>
-      <p style={{ fontSize: 10.5, color: "rgba(255,255,255,0.45)", fontFamily: "var(--font-sans)", margin: "2px 0 0 0" }}>Transaksi #ES-8821 selesai</p>
-    </div>
-    <div style={{ marginLeft: "auto", background: "rgba(255,255,255,0.1)", borderRadius: 8, padding: "4px 8px" }}>
-      <p style={{ fontSize: 10, fontWeight: 700, color: "rgba(255,255,255,0.8)", fontFamily: "var(--font-sans)", margin: 0, whiteSpace: "nowrap" }}>+Rp 4.2jt</p>
-    </div>
-  </div>
-);
-
 // ─── Intersection Observer Hook ───────────────────────────────────────────────
 function useInView(threshold = 0.18): [RefObject<any>, boolean] {
   const ref = useRef<any>(null);
@@ -145,31 +95,9 @@ function useInView(threshold = 0.18): [RefObject<any>, boolean] {
   return [ref, inView];
 }
 
-// ─── Counter Hook ─────────────────────────────────────────────────────────────
-function useCounter(target: number, duration = 1800, start = false) {
-  const [val, setVal] = useState(0);
-  useEffect(() => {
-    if (!start) return;
-    let startTime: number | null = null;
-    const step = (ts: number) => {
-      if (!startTime) startTime = ts;
-      const prog = Math.min((ts - startTime) / duration, 1);
-      const ease = 1 - Math.pow(1 - prog, 3);
-      setVal(Math.round(ease * target));
-      if (prog < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  }, [start, target, duration]);
-  return val;
-}
-
 // ─── Final CTA Section ────────────────────────────────────────────────────────
 export default function CTASection() {
   const [sectionRef, inView] = useInView(0.15);
-  const txCount   = useCounter(150284, 1600, !!inView);
-  const successRate = useCounter(987, 1400, !!inView);
-  const trxValue  = useCounter(24, 1800, !!inView);
-
   const cls = (base: string, delay = "") =>
     `${base} ${delay} ${inView ? "visible" : ""}`;
 
@@ -230,73 +158,6 @@ export default function CTASection() {
               <PlayCircle />
               Lihat Cara Kerja
             </Link>
-          </div>
-
-          {/* ── Trust checklist ───────────────────────────────────────────── */}
-          <div className={cls("cta-fade-up cta-d500")} style={{ display: "flex", flexWrap: "wrap", gap: "10px 20px", justifyContent: "center", marginBottom: 72 }}>
-            {["Gratis Daftar", "Tanpa Kontrak", "Dana Dijamin Aman", "Dukungan 24/7"].map((item) => (
-              <div key={item} style={{ display: "flex", alignItems: "center", gap: 7 }}>
-                <CheckIcon />
-                <span style={{ fontSize: 12.5, fontWeight: 500, color: "rgba(255,255,255,0.5)", fontFamily: "var(--font-sans)" }}>{item}</span>
-              </div>
-            ))}
-          </div>
-
-          {/* ── Live Stats Row ─────────────────────────────────────────────── */}
-          <div className={cls("cta-fade-up cta-d600")} style={{ marginBottom: 72 }}>
-            <div style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
-              gap: 1,
-              borderRadius: 20,
-              overflow: "hidden",
-              border: "1px solid rgba(255,255,255,0.08)",
-              background: "rgba(255,255,255,0.04)" }}>
-              {[
-                { label: "Aktivitas Demo", val: `${txCount.toLocaleString("id-ID")}`, suffix: "", icon: <ZapIcon /> },
-                { label: "Workflow", val: `${(successRate / 10).toFixed(1)}`, suffix: "/10", icon: <ShieldIcon /> },
-                { label: "Checklist", val: `${trxValue}`, suffix: "+", icon: <LockIcon /> },
-              ].map((stat, i) => (
-                <div key={i} style={{ padding: "28px 24px", textAlign: "center", borderRight: i < 2 ? "1px solid rgba(255,255,255,0.06)" : "none", position: "relative" }}>
-                  <div style={{ display: "flex", justifyContent: "center", marginBottom: 10 }}>
-                    {stat.icon}
-                  </div>
-                  <div style={{
-                    fontFamily: "var(--font-sans)",
-                    fontSize: "clamp(28px, 4vw, 42px)",
-                    fontWeight: 800,
-                    color: "#fff",
-                    letterSpacing: "-0.04em",
-                    lineHeight: 1,
-                    marginBottom: 8 }}>
-                    {stat.val}<span style={{ fontSize: "0.55em", color: "rgba(255,255,255,0.4)" }}>{stat.suffix}</span>
-                  </div>
-                  <div style={{ fontSize: 11.5, fontWeight: 500, color: "rgba(255,255,255,0.35)", fontFamily: "var(--font-sans)", textTransform: "uppercase", letterSpacing: "0.1em" }}>
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* ── Floating Cards Visual ──────────────────────────────────────── */}
-          <div className={cls("cta-fade-in cta-d700")} style={{ display: "flex", justifyContent: "center", gap: 16, marginBottom: 72, flexWrap: "wrap" }}>
-            <FloatingTxCard delay="0s" />
-            <FloatingTxCard
-              delay="1.5s"
-              style={{ opacity: 0.7 }}
-            />
-            <div className="cta-glass cta-float2 px-4 py-3 flex items-center gap-3" style={{ animationDelay: "0.8s", minWidth: 200, opacity: 0.6 }}>
-              <div style={{ width: 34, height: 34, borderRadius: 10, background: "rgba(255,255,255,0.08)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                <StarIcon />
-              </div>
-              <div>
-                <div style={{ display: "flex", gap: 2, marginBottom: 3 }}>
-                  {[...Array(5)].map((_, i) => <StarIcon key={i} />)}
-                </div>
-                <p style={{ fontSize: 10.5, color: "rgba(255,255,255,0.45)", fontFamily: "var(--font-sans)", margin: 0 }}>Dipakai pada alur transaksi demo</p>
-              </div>
-            </div>
           </div>
 
         </div>

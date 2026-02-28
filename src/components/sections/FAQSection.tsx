@@ -2,15 +2,6 @@
 
 import { useEffect, useRef, useState, type RefObject } from "react";
 
-const faqCategories = [
-  { id: "all", label: "Semua" },
-  { id: "escrow", label: "Escrow" },
-  { id: "keamanan", label: "Keamanan" },
-  { id: "biaya", label: "Biaya" },
-  { id: "akun", label: "Akun & Verifikasi" },
-  { id: "teknis", label: "Teknis" },
-];
-
 const faqs = [
   { cat: "escrow", q: "Bagaimana mekanisme escrow Kahade bekerja?", a: "Dana dari pembeli ditahan pada alur escrow sampai syarat transaksi terpenuhi. Setelah pembeli mengonfirmasi penerimaan barang/jasa, barulah dana diteruskan ke penjual. Proses ini membantu kedua belah pihak bertransaksi dengan lebih tenang.", tags: ["Escrow", "Cara Kerja"] },
   { cat: "escrow", q: "Berapa lama dana bisa disimpan di escrow?", a: "Dana dapat disimpan maksimal 30 hari untuk transaksi standar. Untuk transaksi dengan durasi lebih panjang (misal: proyek development), Anda dapat mengatur periode escrow hingga 180 hari melalui fitur Extended Escrow di dashboard.", tags: ["Escrow", "Durasi"] },
@@ -91,8 +82,6 @@ const AbstractBg = () => (
 
 export default function FAQSection() {
   const [sectionRef, inView] = useInView(0.08);
-  const [activeCategory, setActiveCategory] = useState("all");
-  const filteredFaqs = faqs.filter((f) => activeCategory === "all" || f.cat === activeCategory);
   const cls = (base: string, visible: boolean, delay = "") => `${base} ${visible ? "fv" : ""} ${delay}`;
 
   return (
@@ -109,34 +98,10 @@ export default function FAQSection() {
         </div>
 
         <div className="max-w-4xl mx-auto">
-          <div role="tablist" aria-label="Kategori FAQ" className={`${cls("faq-fade-up", inView, "faq-d2")} flex flex-wrap gap-2 mb-8`}>
-            {faqCategories.map((cat) => (
-              <button
-                key={cat.id}
-                id={`faq-tab-${cat.id}`}
-                role="tab"
-                aria-controls={`faq-panel-${cat.id}`}
-                aria-selected={activeCategory === cat.id}
-                tabIndex={activeCategory === cat.id ? 0 : -1}
-                onClick={() => setActiveCategory(cat.id)}
-                className={`faq-cat-badge px-3.5 py-1.5 rounded-full text-[12.5px] font-semibold border transition-all duration-200 ${activeCategory === cat.id ? "bg-black text-white border-transparent" : "bg-white text-black/55 border-black/12 hover:border-black/20"}`}
-              >
-                {cat.label}
-                {cat.id !== "all" && <span className={`ml-1.5 text-[10px] ${activeCategory === cat.id ? "opacity-60" : "opacity-40"}`}>{faqs.filter((f) => f.cat === cat.id).length}</span>}
-              </button>
+          <div className="divide-y-0">
+            {faqs.map((faq, i) => (
+              <FAQItem key={faq.q} faq={faq} index={i} inView={inView} />
             ))}
-          </div>
-
-          <div id={`faq-panel-${activeCategory}`} role="tabpanel" aria-labelledby={`faq-tab-${activeCategory}`} className="divide-y-0">
-            {filteredFaqs.length > 0 ? filteredFaqs.map((faq, i) => (
-              <FAQItem key={`${activeCategory}-${faq.q}`} faq={faq} index={i} inView={inView} />
-            )) : (
-              <div className="py-16 text-center">
-                <div className="text-3xl mb-3">🔍</div>
-                <div className="text-sm font-semibold text-black/50">Tidak ada hasil ditemukan</div>
-                <div className="text-[12.5px] text-black/30 mt-1">Silakan pilih kategori lain untuk melihat pertanyaan lain.</div>
-              </div>
-            )}
           </div>
         </div>
       </div>
