@@ -155,7 +155,7 @@ const MoneyGoneVisual = ({ inView }: { inView: boolean }) => (
         width:22, height:22, borderRadius:"50%",
         background:"#fff", border:"1.5px solid rgba(0,0,0,.12)",
         display:"flex", alignItems:"center", justifyContent:"center",
-        boxShadow:"0 2px 8px rgba(0,0,0,.1)"
+        ,0,0,.1)"
       }}>
         <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
           <line x1="2.5" y1="2.5" x2="7.5" y2="7.5" stroke="rgba(0,0,0,.5)" strokeWidth="1.5" strokeLinecap="round"/>
@@ -175,7 +175,7 @@ const MoneyGoneVisual = ({ inView }: { inView: boolean }) => (
         animationDelay: p.delay,
         background:"#fff", border:"1px solid rgba(0,0,0,.1)",
         borderRadius:10, padding:"5px 10px",
-        boxShadow:"0 4px 16px rgba(0,0,0,.08)",
+        ,0,0,.08)",
         transform:`rotate(${p.rot})`,
         display:"flex", alignItems:"center", gap:5,
         opacity:.75
@@ -234,7 +234,7 @@ const BoxShippedVisual = ({ inView }: { inView: boolean }) => (
         width:22, height:22, borderRadius:"50%",
         background:"#fff", border:"1.5px solid rgba(0,0,0,.12)",
         display:"flex", alignItems:"center", justifyContent:"center",
-        boxShadow:"0 2px 8px rgba(0,0,0,.1)"
+        ,0,0,.1)"
       }}>
         <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
           <path d="M2 5.5L4 7.5L8 3" stroke="rgba(0,0,0,.55)" strokeWidth="1.5" strokeLinecap="round"/>
@@ -247,7 +247,7 @@ const BoxShippedVisual = ({ inView }: { inView: boolean }) => (
       position:"absolute", top:"10%", right:"12%",
       background:"#fff", border:"1px solid rgba(0,0,0,.1)",
       borderRadius:10, padding:"6px 12px",
-      boxShadow:"0 4px 14px rgba(0,0,0,.08)",
+      ,0,0,.08)",
       display:"flex", alignItems:"center", gap:6,
       animationDelay:".3s"
     }}>
@@ -313,7 +313,7 @@ const SolutionVisual = () => (
       border:"1px solid rgba(255,255,255,.14)",
       display:"flex", alignItems:"center", justifyContent:"center",
       position:"relative", zIndex:2,
-      boxShadow:"0 8px 32px rgba(0,0,0,.3)",
+      ,0,0,.3)",
     }}>
       <div className="pb-glow" style={{
         position:"absolute", inset:0, borderRadius:26,
@@ -427,7 +427,8 @@ const c = (base: string, d = ""): string => `${base} ${d} ${inView ? "pv" : ""}`
                 display:"inline-flex", alignItems:"center", gap:8,
                 padding:"7px 16px", borderRadius:99,
                 border:"1px solid rgba(0,0,0,.1)",
-                background:"rgba(0,0,0,.03)"
+                background:"rgba(0,0,0,.03)",
+                display: "none"
               }}>
                 <AlertIcon size={13}/>
                 <span style={{
@@ -476,7 +477,7 @@ const c = (base: string, d = ""): string => `${base} ${d} ${inView ? "pv" : ""}`
               border:"1px solid rgba(0,0,0,.09)",
               background:"#fff",
               overflow:"hidden",
-              boxShadow:"0 4px 24px rgba(0,0,0,.05)"
+              ,0,0,.05)"
             }}>
               {stats.map((s,i) => (
                 <div key={i} className="pb-stat">
@@ -589,7 +590,7 @@ const c = (base: string, d = ""): string => `${base} ${d} ${inView ? "pv" : ""}`
                   width:44, height:44, borderRadius:"50%",
                   background:"#000",
                   display:"flex", alignItems:"center", justifyContent:"center",
-                  boxShadow:"0 4px 20px rgba(0,0,0,.2)",
+                  ,0,0,.2)",
                   flexShrink:0
                 }}>
                   <span style={{
@@ -691,7 +692,7 @@ const c = (base: string, d = ""): string => `${base} ${d} ${inView ? "pv" : ""}`
                       fontFamily:"var(--font-sans)",
                       fontSize:14, fontWeight:700, letterSpacing:"-.02em",
                       textDecoration:"none",
-                      boxShadow:"0 8px 32px rgba(0,0,0,.25)",
+                      ,0,0,.25)",
                       transition:"all .2s",
                       width:"100%"
                     }}
@@ -784,7 +785,7 @@ const c = (base: string, d = ""): string => `${base} ${d} ${inView ? "pv" : ""}`
               borderRadius:16,
               border:"1px solid rgba(0,0,0,.08)",
               background:"#fff",
-              boxShadow:"0 4px 24px rgba(0,0,0,.05)",
+              ,0,0,.05)",
               maxWidth:580
             }}>
               <p style={{

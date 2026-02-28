@@ -341,7 +341,7 @@ export default function TestimonialsSection() {
           <div style={{ textAlign: "center", marginBottom: 64 }}>
 
             {/* Eyebrow */}
-            <div className={cls("tm-fade-up tm-d0")} style={{ display: "flex", justifyContent: "center", marginBottom: 20 }}>
+            <div className={cls("tm-fade-up tm-d0")} style={{ display: "none", justifyContent: "center", marginBottom: 20 }}>
               <div style={{
                 display: "inline-flex", alignItems: "center", gap: 8,
                 padding: "7px 16px", borderRadius: 99,
@@ -405,52 +405,10 @@ export default function TestimonialsSection() {
           </div>
 
           {/* ── Desktop Grid ─────────────────────────────────────────────────── */}
-          <div className={`tm-grid ${cls("tm-fade-in tm-d300")}`} style={{ display: "none" }} id="tm-desktop-grid">
-            {/* Left column — 2 cards stacked */}
-            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-              <TestimonialCard t={testimonials[0]} />
-              <TestimonialCard t={testimonials[3]} />
-            </div>
-
-            {/* Center — featured */}
-            <div className="tm-card-featured-pos">
-              <TestimonialCard t={testimonials[1]} />
-            </div>
-
-            {/* Right column — 2 cards stacked */}
-            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-              <TestimonialCard t={testimonials[2]} />
-              <TestimonialCard t={testimonials[4]} />
-            </div>
-          </div>
-
+          {/* Section Removed as per request */}
+          
           {/* ── Mobile Carousel ───────────────────────────────────────────────── */}
-          <div id="tm-mobile-carousel" style={{ display: "none" }}>
-            <div style={{ position: "relative", overflow: "hidden", borderRadius: 20, marginBottom: 20 }}>
-              <div style={{
-                display: "flex",
-                transition: "transform 0.4s cubic-bezier(.22,.68,0,1.1)",
-                transform: `translateX(-${activeIdx * 100}%)`,
-              }}>
-                {testimonials.map((t) => (
-                  <div key={t.id} style={{ minWidth: "100%", padding: "0 1px" }}>
-                    <TestimonialCard t={t} />
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Controls */}
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 12 }}>
-              <button className="tm-nav-btn" onClick={prev} aria-label="Previous"><ChevronLeft /></button>
-              <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
-                {testimonials.map((_, i) => (
-                  <button key={i} className={`tm-dot${i === activeIdx ? " active" : ""}`} onClick={() => setActiveIdx(i)} aria-label={`Go to ${i + 1}`} />
-                ))}
-              </div>
-              <button className="tm-nav-btn" onClick={next} aria-label="Next"><ChevronRight /></button>
-            </div>
-          </div>
+          {/* Section Removed as per request */}
         </div>
 
         {/* ── Marquee Rows (below grid, full width) ───────────────────────────── */}

@@ -442,7 +442,7 @@ export default function PricingSection() {
           {/* ── Header ──────────────────────────────────────────────────────── */}
           <div style={{ textAlign: "center", marginBottom: 72 }}>
 
-            <div className={c("pr-fade-up pr-d0")} style={{ display: "flex", justifyContent: "center", marginBottom: 20 }}>
+            <div className={c("pr-fade-up pr-d0")} style={{ display: "none", justifyContent: "center", marginBottom: 20 }}>
               <div style={{
                 display: "inline-flex", alignItems: "center", gap: 8,
                 padding: "7px 16px", borderRadius: 99,

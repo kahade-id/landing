@@ -245,7 +245,7 @@ export default function FAQSection() {
 
           {/* ─── Left: Sticky Header ────────────────────────────────────── */}
           <div className="lg:sticky lg:top-28 lg:self-start mb-12 lg:mb-0">
-            <div className={cls("faq-fade-up", inView, "faq-d0")}>
+            <div className={cls("faq-fade-up", inView, "faq-d0")} style={{ display: "none" }}>
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-black/10 bg-white/60 mb-5">
                 <span className="text-[11px] font-semibold text-black/40 tracking-widest uppercase">FAQ</span>
               </div>

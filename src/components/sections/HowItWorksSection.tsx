@@ -353,7 +353,7 @@ const FeatureRow = ({ step, idx, inView }: { step: any; idx: number; inView: boo
         width:100, height:100, borderRadius:28,
         background: isF ? "#000" : "#fff",
         border: isF ? "none" : "1.5px solid rgba(0,0,0,.1)",
-        boxShadow: isF
+        
           ? "0 20px 60px rgba(0,0,0,.3)"
           : "0 12px 40px rgba(0,0,0,.09), 0 2px 8px rgba(0,0,0,.06)",
         display:"flex", alignItems:"center", justifyContent:"center",
@@ -375,7 +375,7 @@ const FeatureRow = ({ step, idx, inView }: { step: any; idx: number; inView: boo
         position:"absolute", top:"12%", right:"8%",
         background:"#fff", border:"1px solid rgba(0,0,0,.09)",
         borderRadius:12, padding:"8px 12px",
-        boxShadow:"0 8px 24px rgba(0,0,0,.08)",
+        ,0,0,.08)",
         animationDelay:"1.2s", zIndex:3
       }}>
         <div style={{ fontSize:10, fontWeight:700, color:"rgba(0,0,0,.35)", fontFamily:"var(--font-sans)", textTransform:"uppercase", letterSpacing:".08em", marginBottom:2 }}>
@@ -389,7 +389,7 @@ const FeatureRow = ({ step, idx, inView }: { step: any; idx: number; inView: boo
       <div className="hw-float" style={{
         position:"absolute", bottom:"12%", left:"6%",
         background:"#000", borderRadius:12, padding:"8px 14px",
-        boxShadow:"0 8px 24px rgba(0,0,0,.25)",
+        ,0,0,.25)",
         animationDelay:"0.7s", zIndex:3,
         display:"flex", alignItems:"center", gap:7
       }}>
@@ -449,7 +449,7 @@ export default function HowItWorksSection() {
           <div style={{ textAlign:"center", marginBottom:56 }}>
 
             {/* Eyebrow */}
-            <div className={c("hw-fu hw-d0")} style={{ display:"flex", justifyContent:"center", marginBottom:20 }}>
+            <div className={c("hw-fu hw-d0")} style={{ display:"none", justifyContent:"center", marginBottom:20 }}>
               <div style={{
                 display:"inline-flex", alignItems:"center", gap:8,
                 padding:"7px 16px", borderRadius:99,
@@ -575,7 +575,7 @@ export default function HowItWorksSection() {
                       border: s.featured ? "none" : "1.5px solid rgba(0,0,0,.1)",
                       display:"flex", alignItems:"center", justifyContent:"center",
                       flexShrink:0, position:"relative", zIndex:1,
-                      boxShadow: s.featured ? "0 4px 16px rgba(0,0,0,.2)" : "0 2px 8px rgba(0,0,0,.06)"
+                      ,0,0,.2)" : "0 2px 8px rgba(0,0,0,.06)"
                     }}>
                       <span style={{
                         fontFamily:"var(--font-sans)", fontSize:11, fontWeight:800,
@@ -637,7 +637,7 @@ export default function HowItWorksSection() {
                   borderRadius:12, fontSize:14, fontWeight:700,
                   fontFamily:"var(--font-sans)", textDecoration:"none",
                   letterSpacing:"-.02em", transition:"all .2s",
-                  boxShadow:"0 4px 20px rgba(0,0,0,.25)"
+                  ,0,0,.25)"
                 }}
                   onMouseOver={e=>{e.currentTarget.style.transform="translateY(-2px)";e.currentTarget.style.boxShadow="0 8px 32px rgba(0,0,0,.35)";}}
                   onMouseOut={e=>{e.currentTarget.style.transform="none";e.currentTarget.style.boxShadow="0 4px 20px rgba(0,0,0,.25)";}}

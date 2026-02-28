@@ -177,13 +177,13 @@ const DropdownPanel = ({ item, isOpen, panelId, buttonId, onNavigate }: Dropdown
   return (
     <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 z-50 w-max min-w-[360px] max-w-[520px]">
       <div className="flex justify-center mb-0">
-        <div className="w-2.5 h-2.5 bg-white border-l border-t border-black/10 rotate-45 -mb-1.5 z-10 relative shadow-sm" />
+        <div className="w-2.5 h-2.5 bg-white border-l border-t border-black/10 rotate-45 -mb-1.5 z-10 relative " />
       </div>
       <div
         id={panelId}
         role="menu"
         aria-labelledby={buttonId}
-        className="bg-white border border-black/10 rounded-2xl shadow-xl shadow-black/8 overflow-hidden p-4"
+        className="bg-white border border-black/10 rounded-2xl   overflow-hidden p-4"
       >
         <div className={`grid gap-6 ${item.dropdown.length > 1 ? "grid-cols-2" : "grid-cols-1"}`}>
           {item.dropdown.map((group) => (
@@ -392,7 +392,7 @@ export default function Header() {
         ref={headerRef}
         className={`relative bg-white/95 backdrop-blur-md transition-all duration-300 ${
           scrolled
-            ? "shadow-[0_1px_0_0_rgba(0,0,0,0.08),0_4px_24px_-4px_rgba(0,0,0,0.08)]"
+            ? ""
             : "border-b border-black/[0.08]"
         }`}
       >

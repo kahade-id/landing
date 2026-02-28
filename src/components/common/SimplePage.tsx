@@ -28,7 +28,7 @@ export default function SimplePage({
           ← Kembali ke beranda
         </Link>
 
-        <div className="mt-10 rounded-3xl border border-black/10 bg-white p-8 sm:p-10 shadow-sm">
+        <div className="mt-10 rounded-3xl border border-black/10 bg-white p-8 sm:p-10 ">
           <div className="inline-flex items-center rounded-full border border-black/10 bg-black/[0.03] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-black/45">
             {eyebrow}
           </div>

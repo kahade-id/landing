@@ -146,7 +146,7 @@ const ShieldViz = ({ inView }: { inView: boolean }) => {
       </svg>
 
       {/* Center shield */}
-      <div className={`relative z-10 flex flex-col items-center justify-center w-36 h-36 rounded-2xl bg-white border border-black/10 shadow-xl shadow-black/8 sec-float`}
+      <div className={`relative z-10 flex flex-col items-center justify-center w-36 h-36 rounded-2xl bg-white border border-black/10   sec-float`}
         style={{ backdropFilter: "blur(12px)" }}>
         {/* Scan line */}
         <div className="absolute inset-0 overflow-hidden rounded-2xl pointer-events-none">
@@ -165,17 +165,17 @@ const ShieldViz = ({ inView }: { inView: boolean }) => {
       {/* Floating tags */}
       {inView && (
         <>
-          <div className="absolute top-6 right-4 bg-white border border-black/10 shadow-md rounded-xl px-2.5 py-1.5 flex items-center gap-1.5"
+          <div className="absolute top-6 right-4 bg-white border border-black/10  rounded-xl px-2.5 py-1.5 flex items-center gap-1.5"
             style={{ animation: "secFadeIn .5s .3s forwards", opacity: 0 }}>
             <div className="w-1.5 h-1.5 rounded-full bg-black/50" />
             <span className="text-[10px] font-semibold text-black/60">SSL 256-bit</span>
           </div>
-          <div className="absolute bottom-12 left-2 bg-white border border-black/10 shadow-md rounded-xl px-2.5 py-1.5 flex items-center gap-1.5"
+          <div className="absolute bottom-12 left-2 bg-white border border-black/10  rounded-xl px-2.5 py-1.5 flex items-center gap-1.5"
             style={{ animation: "secFadeIn .5s .5s forwards", opacity: 0 }}>
             <div className="w-1.5 h-1.5 rounded-full bg-black/50" />
             <span className="text-[10px] font-semibold text-black/60">2FA Enabled</span>
           </div>
-          <div className="absolute bottom-6 right-6 bg-white border border-black/10 shadow-md rounded-xl px-2.5 py-1.5 flex items-center gap-1.5"
+          <div className="absolute bottom-6 right-6 bg-white border border-black/10  rounded-xl px-2.5 py-1.5 flex items-center gap-1.5"
             style={{ animation: "secFadeIn .5s .7s forwards", opacity: 0 }}>
             <div className="w-1.5 h-1.5 rounded-full bg-black/50" />
             <span className="text-[10px] font-semibold text-black/60">Escrow Monitored</span>
@@ -323,7 +323,7 @@ export default function SecuritySection() {
 
         {/* ── Header ──────────────────────────────────────────────────────── */}
         <div className="max-w-3xl mx-auto text-center mb-16 lg:mb-20">
-          <div className={cls("sec-fade-up", inView, "sec-d0")}>
+          <div className={cls("sec-fade-up", inView, "sec-d0")} style={{ display: "none" }}>
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-black/10 bg-white/60 mb-5">
               <span className="relative flex h-1.5 w-1.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-black opacity-50" />

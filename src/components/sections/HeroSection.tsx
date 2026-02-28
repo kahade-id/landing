@@ -136,7 +136,7 @@ const styles = `
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(0,0,0,0.09);
     border-radius: 20px;
-    box-shadow: 0 8px 48px rgba(0,0,0,0.10), 0 1px 0 rgba(255,255,255,0.8) inset;
+    box-: 0 8px 48px rgba(0,0,0,0.10), 0 1px 0 rgba(255,255,255,0.8) inset;
   }
 
   .stat-card {
@@ -145,10 +145,10 @@ const styles = `
     border-radius: 16px;
     padding: 16px 20px;
     backdrop-filter: blur(8px);
-    transition: box-shadow 0.2s, transform 0.2s;
+    transition: box- 0.2s, transform 0.2s;
   }
   .stat-card:hover {
-    box-shadow: 0 8px 32px rgba(0,0,0,0.09);
+    box-: 0 8px 32px rgba(0,0,0,0.09);
     transform: translateY(-2px);
   }
 
@@ -177,13 +177,13 @@ const styles = `
     border: 1px solid rgba(0,0,0,0.09);
     border-radius: 12px;
     background: rgba(255,255,255,0.9);
-    transition: border-color 0.2s, box-shadow 0.2s;
+    transition: border-color 0.2s, box- 0.2s;
     cursor: default;
     user-select: none;
   }
   .reg-logo:hover {
     border-color: rgba(0,0,0,0.2);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    box-: 0 4px 16px rgba(0,0,0,0.06);
   }
 
   .abstract-line {
@@ -505,7 +505,7 @@ export default function HeroSection() {
             <div className="flex flex-col gap-7 max-w-xl">
 
               {/* Trust pill */}
-              <div className={`anim-fade-up d-100 inline-flex items-center gap-2 self-start px-3.5 py-2 rounded-full border border-black/10 bg-white/80 shadow-sm`}>
+              <div className={`anim-fade-up d-100 inline-flex items-center gap-2 self-start px-3.5 py-2 rounded-full border border-black/10 bg-white/80 
                 <span style={{ position: "relative", display: "flex", width: 7, height: 7 }}>
                   <span style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "#000", opacity: 0.35, animation: "ping-slow 1.8s ease infinite" }} />
                   <span style={{ position: "relative", width: 7, height: 7, borderRadius: "50%", background: "#000", display: "block" }} />

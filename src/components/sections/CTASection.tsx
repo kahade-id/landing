@@ -372,7 +372,7 @@ export default function CTASection() {
               </p>
 
               {/* Right — CTA micro */}
-              <Link href={supportLinks.contact} className="cta-btn-primary" style={{ fontSize: 12.5, padding: "10px 20px", borderRadius: 10, boxShadow: "none" }}>
+              <Link href={supportLinks.contact} className="cta-btn-primary" style={{ fontSize: 12.5, padding: "10px 20px", borderRadius: 10, }}>
                 Hubungi Tim <ArrowRight />
               </Link>
             </div>
