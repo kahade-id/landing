@@ -25,16 +25,6 @@ const VerifiedIconWhite = () => (
     <path d="M3.5 5.5L4.8 6.8L7.5 4" stroke="#000" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
-const ChevronLeft = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M10 4L6 8L10 12" />
-  </svg>
-);
-const ChevronRight = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M6 4L10 8L6 12" />
-  </svg>
-);
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const testimonials = [
@@ -118,7 +108,6 @@ const testimonials = [
     featured: false },
 ];
 
-// Extended set for marquee rows
 const marqueeRow1 = [testimonials[0], testimonials[2], testimonials[4], testimonials[0], testimonials[2], testimonials[4]];
 const marqueeRow2 = [testimonials[1], testimonials[3], testimonials[5], testimonials[1], testimonials[3], testimonials[5]];
 
@@ -148,32 +137,30 @@ const Stars = ({ count = 5, white = false }) => (
   </div>
 );
 
-// ─── Single Card (reusable) ───────────────────────────────────────────────────
+// ─── Single Card ──────────────────────────────────────────────────────────────
 const TestimonialCard = ({ t, compact = false }: { t: (typeof testimonials)[number]; compact?: boolean }) => {
   const isF = t.featured;
-  const textColor = isF ? "rgba(255,255,255,0.86)" : "rgba(0,0,0,0.7)";
-  const nameColor = isF ? "#fff" : "#000";
-  const metaColor = isF ? "rgba(255,255,255,0.62)" : "rgba(0,0,0,0.58)";
+  const textColor = isF ? "var(--color-white-80)" : "var(--color-ink-60)";
+  const nameColor = isF ? "var(--color-surface)" : "var(--color-ink)";
+  const metaColor = isF ? "var(--color-white-55)" : "var(--color-ink-60)";
 
   return (
     <div className={`tm-card${isF ? " featured" : ""}`} style={compact ? { minWidth: 300, maxWidth: 320, flexShrink: 0 } : {}}>
-      {/* Quote mark */}
       <div className="tm-quote-mark">"</div>
 
-      {/* Top row */}
       <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 10 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <div className="tm-avatar" style={{ background: isF ? "rgba(255,255,255,0.12)" : t.avatarBg, color: isF ? "#fff" : "#fff" }}>
+          <div className="tm-avatar" style={{ background: isF ? "var(--color-white-15)" : t.avatarBg, color: "var(--color-surface)" }}>
             {t.avatar}
           </div>
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-              <span style={{ fontSize: 13.5, fontWeight: 700, color: nameColor, fontFamily: "var(--font-sans)", letterSpacing: "-0.02em" }}>
+              <span style={{ fontSize: "var(--text-sm)", fontWeight: 700, color: nameColor, fontFamily: "var(--font-sans)", letterSpacing: "-0.02em" }}>
                 {t.name}
               </span>
               {isF ? <VerifiedIconWhite /> : <VerifiedIcon />}
             </div>
-            <p style={{ fontSize: 11, color: metaColor, margin: 0, fontFamily: "var(--font-sans)", fontWeight: 500 }}>
+            <p style={{ fontSize: "var(--text-xs)", color: metaColor, margin: 0, fontFamily: "var(--font-sans)", fontWeight: 500 }}>
               {t.role} · {t.location}
             </p>
           </div>
@@ -181,30 +168,22 @@ const TestimonialCard = ({ t, compact = false }: { t: (typeof testimonials)[numb
         <span className="tm-tag">{t.tag}</span>
       </div>
 
-      {/* Stars */}
       <Stars white={isF} />
 
-      {/* Text */}
       <p style={{
-        fontSize: compact ? 13 : 14,
-        lineHeight: 1.72,
-        color: textColor,
-        margin: 0,
-        fontFamily: "var(--font-sans)",
-        fontStyle: "italic",
-        fontWeight: 400,
-        position: "relative",
-        zIndex: 1 }}>
+        fontSize: compact ? "var(--text-sm)" : "14px",
+        lineHeight: 1.72, color: textColor, margin: 0,
+        fontFamily: "var(--font-sans)", fontStyle: "italic", fontWeight: 400,
+        position: "relative", zIndex: 1 }}>
         "{t.text}"
       </p>
 
-      {/* Bottom amount */}
       <div style={{
         display: "flex", alignItems: "center", justifyContent: "space-between",
-        borderTop: `1px solid ${isF ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.12)"}`,
+        borderTop: `1px solid ${isF ? "var(--color-white-15)" : "var(--color-ink-12)"}`,
         paddingTop: 14, marginTop: 4 }}>
         <div>
-          <p style={{ fontSize: 11, color: metaColor, margin: "0 0 2px 0", fontFamily: "var(--font-sans)", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.08em" }}>
+          <p style={{ fontSize: "var(--text-2xs)", color: metaColor, margin: "0 0 2px 0", fontFamily: "var(--font-sans)", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.08em" }}>
             {t.txLabel}
           </p>
           <p style={{ fontSize: 16, fontWeight: 800, color: nameColor, margin: 0, fontFamily: "var(--font-sans)", letterSpacing: "-0.03em" }}>
@@ -213,10 +192,10 @@ const TestimonialCard = ({ t, compact = false }: { t: (typeof testimonials)[numb
         </div>
         <div style={{
           display: "flex", alignItems: "center", gap: 5,
-          padding: "6px 10px", borderRadius: 99,
-          background: isF ? "rgba(255,255,255,0.14)" : "rgba(0,0,0,0.06)" }}>
-          <span style={{ width: 6, height: 6, borderRadius: "50%", background: isF ? "rgba(255,255,255,0.7)" : "#000", display: "block" }} />
-          <span style={{ fontSize: 10.5, fontWeight: 600, color: isF ? "rgba(255,255,255,0.75)" : "rgba(0,0,0,0.62)", fontFamily: "var(--font-sans)" }}>
+          padding: "6px 10px", borderRadius: "var(--radius-full)",
+          background: isF ? "var(--color-white-15)" : "var(--color-ink-07)" }}>
+          <span style={{ width: 6, height: 6, borderRadius: "50%", background: isF ? "var(--color-white-80)" : "var(--color-ink)", display: "block" }} />
+          <span style={{ fontSize: "var(--text-2xs)", fontWeight: 600, color: isF ? "var(--color-white-80)" : "var(--color-ink-60)", fontFamily: "var(--font-sans)" }}>
             Terverifikasi
           </span>
         </div>
@@ -225,44 +204,31 @@ const TestimonialCard = ({ t, compact = false }: { t: (typeof testimonials)[numb
   );
 };
 
-// ─── Marquee Card (compact) ───────────────────────────────────────────────────
-const MarqueeCard = ({ t }: { t: (typeof testimonials)[number] }) => {
-  const textColor = "rgba(0,0,0,0.68)";
-  return (
-    <div style={{
-      minWidth: 290, maxWidth: 310, flexShrink: 0,
-      background: "#fff",
-      border: "1px solid rgba(0,0,0,0.12)",
-      borderRadius: 16,
-      padding: "20px 22px",
-      marginRight: 14,
-      display: "flex",
-      flexDirection: "column",
-      gap: 12,
-      position: "relative",
-      overflow: "hidden" }}>
-      <div style={{ position: "absolute", top: 14, right: 18, fontSize: 44, lineHeight: 0.6, color: "rgba(0,0,0,0.12)", fontFamily: "var(--font-sans)", fontWeight: 800, pointerEvents: "none" }}>"</div>
-      <div style={{ display: "flex", alignItems: "center", gap: 9 }}>
-        <div style={{ width: 34, height: 34, borderRadius: "50%", background: t.avatarBg, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-          <span style={{ fontSize: 11, fontWeight: 700, color: "#fff", fontFamily: "var(--font-sans)" }}>{t.avatar}</span>
-        </div>
-        <div>
-          <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-            <span style={{ fontSize: 12.5, fontWeight: 700, color: "#000", fontFamily: "var(--font-sans)", letterSpacing: "-0.02em" }}>{t.name}</span>
-            <VerifiedIcon />
-          </div>
-          <p style={{ fontSize: 10.5, color: "rgba(0,0,0,0.5)", margin: 0, fontFamily: "var(--font-sans)" }}>{t.role}</p>
-        </div>
-        <div style={{ marginLeft: "auto" }}>
-          <Stars count={5} />
-        </div>
+// ─── Marquee Card ─────────────────────────────────────────────────────────────
+// FIX: Was 100% inline styles. Now uses .tm-marquee-card from globals.css.
+const MarqueeCard = ({ t }: { t: (typeof testimonials)[number] }) => (
+  <div className="tm-marquee-card">
+    <div style={{ position: "absolute", top: 14, right: 18, fontSize: 44, lineHeight: 0.6, color: "var(--color-ink-07)", fontFamily: "var(--font-display)", fontWeight: 800, pointerEvents: "none" }}>"</div>
+    <div style={{ display: "flex", alignItems: "center", gap: 9 }}>
+      <div style={{ width: 34, height: 34, borderRadius: "50%", background: t.avatarBg, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+        <span style={{ fontSize: "var(--text-2xs)", fontWeight: 700, color: "var(--color-surface)", fontFamily: "var(--font-sans)" }}>{t.avatar}</span>
       </div>
-      <p style={{ fontSize: 12.5, lineHeight: 1.68, color: textColor, margin: 0, fontFamily: "var(--font-sans)", fontStyle: "italic" }}>
-        "{t.text.length > 120 ? t.text.slice(0, 118) + "…" : t.text}"
-      </p>
+      <div>
+        <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+          <span style={{ fontSize: "var(--text-sm)", fontWeight: 700, color: "var(--color-ink)", fontFamily: "var(--font-sans)", letterSpacing: "-0.02em" }}>{t.name}</span>
+          <VerifiedIcon />
+        </div>
+        <p style={{ fontSize: "var(--text-2xs)", color: "var(--color-ink-45)", margin: 0, fontFamily: "var(--font-sans)" }}>{t.role}</p>
+      </div>
+      <div style={{ marginLeft: "auto" }}>
+        <Stars count={5} />
+      </div>
     </div>
-  );
-};
+    <p style={{ fontSize: "var(--text-sm)", lineHeight: 1.68, color: "var(--color-ink-60)", margin: 0, fontFamily: "var(--font-sans)", fontStyle: "italic" }}>
+      "{t.text.length > 120 ? t.text.slice(0, 118) + "…" : t.text}"
+    </p>
+  </div>
+);
 
 // ─── Abstract Background ──────────────────────────────────────────────────────
 const TmAbstractBg = () => (
@@ -304,111 +270,74 @@ const TmAbstractBg = () => (
 // ─── Main Testimonials Section ────────────────────────────────────────────────
 export default function TestimonialsSection() {
   const [sectionRef, inView] = useInView(0.12);
-  const cls = (base: string, d = "") => `${base} ${d} ${inView ? "is-visible" : ""}`;
+  const cls = (base: string, d = "") => `${base} ${d} ${inView ? "in-view" : ""}`;
+  // FIX: Unified trigger class — was "is-visible", now uses canonical "in-view"
 
   return (
-    <>
-      <section
-        id="testimoni"
-        ref={sectionRef}
-        className="tm-root relative overflow-hidden"
-        style={{ background: "#FFFFFF", padding: "100px 0 96px 0" }}
-      >
-        <TmAbstractBg />
+    <section
+      id="testimoni"
+      ref={sectionRef}
+      className="relative overflow-hidden"
+      style={{ background: "var(--color-surface)", padding: "100px 0 96px 0" }}
+    >
+      <TmAbstractBg />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          {/* ── Header ──────────────────────────────────────────────────────── */}
-          <div style={{ textAlign: "center", marginBottom: 64 }}>
+        {/* ── Header ──────────────────────────────────────────────────────── */}
+        <div style={{ textAlign: "center", marginBottom: 64 }}>
 
-            {/* Eyebrow */}
-            <div className={cls("tm-fade-up tm-d0")} style={{ display: "none", justifyContent: "center", marginBottom: 20 }}>
-              <div style={{
-                display: "inline-flex", alignItems: "center", gap: 8,
-                padding: "7px 16px", borderRadius: 99,
-                border: "1px solid rgba(0,0,0,0.12)",
-                background: "rgba(0,0,0,0.03)" }}>
-                <div style={{ display: "flex", gap: 2 }}>
-                  {[...Array(5)].map((_, i) => <StarFilled key={i} size={11} />)}
-                </div>
-                <span style={{ fontSize: 11.5, fontWeight: 600, color: "rgba(0,0,0,0.62)", fontFamily: "var(--font-sans)", letterSpacing: "0.04em", textTransform: "uppercase" }}>
-                  Ringkasan pengalaman pengguna
-                </span>
-              </div>
-            </div>
-
-            {/* Headline */}
-            <div className={cls("tm-fade-up tm-d100")}>
-              <h2 style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "clamp(30px, 5vw, 56px)",
-                fontWeight: 800,
-                color: "#000",
-                letterSpacing: "-0.04em",
-                lineHeight: 1.08,
-                margin: "0 auto 16px auto",
-                maxWidth: 560 }}>
-                Dipercaya Ratusan Ribu
-                <span style={{ color: "rgba(0,0,0,0.62)" }}> Transaksi.</span>
-              </h2>
-            </div>
-
-            {/* Sub */}
-            <div className={cls("tm-fade-up tm-d200")}>
-              <p style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "clamp(14px, 1.5vw, 16px)",
-                color: "rgba(0,0,0,0.66)",
-                lineHeight: 1.75,
-                maxWidth: 440,
-                margin: "0 auto" }}>
-                Testimoni di bawah merupakan ilustrasi use case umum pengguna escrow untuk membantu memahami alur layanan.
-              </p>
-            </div>
-
+          {/* Headline */}
+          <div className={cls("tm-fade-up tm-d100")}>
+            <h2 style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(30px, 5vw, 56px)",
+              fontWeight: 800,
+              color: "var(--color-ink)",
+              letterSpacing: "-0.04em",
+              lineHeight: 1.08,
+              margin: "0 auto 16px auto",
+              maxWidth: 560 }}>
+              Dipercaya Ratusan Ribu
+              <span style={{ color: "var(--color-ink-60)" }}> Transaksi.</span>
+            </h2>
           </div>
 
-          {/* ── Desktop Grid ─────────────────────────────────────────────────── */}
-          {/* Section Removed as per request */}
-          
-          {/* ── Mobile Carousel ───────────────────────────────────────────────── */}
-          {/* Section Removed as per request */}
+          {/* Sub */}
+          <div className={cls("tm-fade-up tm-d200")}>
+            <p style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "clamp(14px, 1.5vw, 16px)",
+              color: "var(--color-ink-60)",
+              lineHeight: 1.75,
+              maxWidth: 440,
+              margin: "0 auto" }}>
+              Testimoni di bawah merupakan ilustrasi use case umum pengguna escrow untuk membantu memahami alur layanan.
+            </p>
+          </div>
+
         </div>
+      </div>
 
-        {/* ── Marquee Rows (below grid, full width) ───────────────────────────── */}
-        <div className={cls("tm-fade-in tm-d500")} style={{ marginTop: 64 }}>
-          {/* Row 1 — scroll left */}
-          <div className="tm-mask" style={{ marginBottom: 14 }}>
-            <div className="tm-track-l">
-              {[...marqueeRow1, ...marqueeRow1].map((t, i) => (
-                <MarqueeCard key={`l-${i}`} t={t} />
-              ))}
-            </div>
-          </div>
-
-          {/* Row 2 — scroll right */}
-          <div className="tm-mask">
-            <div className="tm-track-r">
-              {[...marqueeRow2, ...marqueeRow2].map((t, i) => (
-                <MarqueeCard key={`r-${i}`} t={t} />
-              ))}
-            </div>
+      {/* ── Marquee Rows (full width) ─────────────────────────────────────── */}
+      {/* FIX: Removed dead #tm-desktop-grid and #tm-mobile-carousel toggle CSS */}
+      <div className={cls("tm-fade-in tm-d500")} style={{ marginTop: 64 }}>
+        <div className="tm-mask" style={{ marginBottom: 14 }}>
+          <div className="tm-track-l">
+            {[...marqueeRow1, ...marqueeRow1].map((t, i) => (
+              <MarqueeCard key={`l-${i}`} t={t} />
+            ))}
           </div>
         </div>
+        <div className="tm-mask">
+          <div className="tm-track-r">
+            {[...marqueeRow2, ...marqueeRow2].map((t, i) => (
+              <MarqueeCard key={`r-${i}`} t={t} />
+            ))}
+          </div>
+        </div>
+      </div>
 
-      </section>
-
-      {/* Responsive toggle script */}
-      <style>{`
-        @media (min-width: 1024px) {
-          #tm-desktop-grid { display: grid !important; }
-          #tm-mobile-carousel { display: none !important; }
-        }
-        @media (max-width: 1023px) {
-          #tm-desktop-grid { display: none !important; }
-          #tm-mobile-carousel { display: block !important; }
-        }
-      `}</style>
-    </>
+    </section>
   );
 }
