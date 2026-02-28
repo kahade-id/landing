@@ -169,43 +169,31 @@ const styles = `
 
   .reg-logo-row {
     display: flex;
-    align-items: stretch;
-    gap: 12px;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding-bottom: 4px;
-    scrollbar-width: thin;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(24px, 4vw, 48px);
+    flex-wrap: wrap;
   }
 
   .reg-logo {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 10px;
-    padding: 10px 14px;
-    border: 1px solid rgba(0,0,0,0.1);
-    border-radius: 12px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(245,245,245,0.96) 100%);
-    transition: border-color 0.2s, transform 0.2s;
-    cursor: default;
-    user-select: none;
-    min-width: max-content;
-    flex: 1 0 0;
+    justify-content: center;
+    width: clamp(90px, 13vw, 148px);
+    height: clamp(34px, 5vw, 52px);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    opacity: 0.58;
   }
   .reg-logo:hover {
-    border-color: rgba(0,0,0,0.1);
+    opacity: 0.78;
     transform: translateY(-1px);
   }
 
-  .reg-logo-mark {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    border: 1px solid rgba(0,0,0,0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255,255,255,0.85);
-    flex-shrink: 0;
+  .reg-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: grayscale(1);
   }
 
   .abstract-line {
@@ -434,10 +422,10 @@ const FloatingUICard = () => {
 
 // ─── Trust signals (non-regulatory claims) ─────────────────────────────────
 const RegLogos = [
-  { abbr: "BI", name: "Bank Indonesia" },
-  { abbr: "PPATK", name: "Pusat Pelaporan dan Analisis Transaksi Keuangan" },
-  { abbr: "Kemenhumkam", name: "Kementerian Hukum dan HAM" },
-  { abbr: "Kominfo", name: "Kementerian Komunikasi dan Informatika" },
+  { src: "/compliance/bi_icon.svg", alt: "Bank Indonesia" },
+  { src: "/compliance/ppatk_icon.svg", alt: "PPATK" },
+  { src: "/compliance/kementrian_icon.svg", alt: "Kementerian Hukum dan HAM" },
+  { src: "/compliance/kominfo_icon.svg", alt: "Kominfo" },
 ];
 
 // ─── Arrow icons ──────────────────────────────────────────────────────────────
@@ -613,37 +601,11 @@ export default function HeroSection() {
             <div className="reg-logo-row">
               {RegLogos.map((logo, i) => (
                 <div
-                  key={logo.abbr}
+                  key={logo.src}
                   className={`reg-logo anim-fade-up`}
                   style={{ animationDelay: `${1200 + i * 80}ms` }}
                 >
-                  <div className="reg-logo-mark" aria-hidden="true">
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                      <circle cx="9" cy="9" r="7.2" stroke="rgba(0,0,0,0.65)" strokeWidth="1.1" />
-                      <path d="M4.5 9h9M9 4.5v9" stroke="rgba(0,0,0,0.45)" strokeWidth="1" strokeLinecap="round" />
-                    </svg>
-                  </div>
-                  <div>
-                    <p style={{
-                      fontFamily: "var(--font-sans)",
-                      fontSize: 13.5,
-                      fontWeight: 800,
-                      color: "rgba(0,0,0,0.86)",
-                      letterSpacing: "0.02em",
-                      margin: 0,
-                      lineHeight: 1.1,
-                      textTransform: "uppercase"
-                    }}>{logo.abbr}</p>
-                    <p style={{
-                      fontFamily: "var(--font-sans)",
-                      fontSize: 10.5,
-                      color: "rgba(0,0,0,0.55)",
-                      fontWeight: 600,
-                      margin: "2px 0 0 0",
-                      lineHeight: 1.25,
-                      whiteSpace: "nowrap"
-                    }}>{logo.name}</p>
-                  </div>
+                  <img src={logo.src} alt={logo.alt} loading="lazy" />
                 </div>
               ))}
             </div>
