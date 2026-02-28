@@ -65,14 +65,6 @@ const AlertIcon = ({ size = 16 }) => (
   </svg>
 );
 
-const UserIcon = ({ white = false }) => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-    stroke={white ? "rgba(255,255,255,.65)" : "rgba(0,0,0,0.1)"}
-    strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="8" cy="5" r="3"/>
-    <path d="M2 14c0-3.314 2.686-6 6-6s6 2.686 6 6"/>
-  </svg>
-);
 
 const LockIcon = ({ white = false, size = 16 }) => (
   <svg width={size} height={size} viewBox="0 0 16 16" fill="none"
@@ -517,10 +509,6 @@ const c = (base: string, d = ""): string => `${base} ${d} ${inView ? "pv" : ""}`
                 </div>
                 <div>
                   <div style={{ display:"flex", alignItems:"center", gap:8, marginBottom:4 }}>
-                    <div className="pb-badge" style={{ background:"rgba(0,0,0,0.1)", border:"1px solid rgba(0,0,0,0.1)", color:"rgba(0,0,0,0.1)" }}>
-                      <UserIcon/>
-                      Pembeli
-                    </div>
                     <XIcon size={16} op={.4}/>
                   </div>
                   <h3 style={{
@@ -622,18 +610,6 @@ const c = (base: string, d = ""): string => `${base} ${d} ${inView ? "pv" : ""}`
                       <ShieldIcon size={22}/>
                     </div>
                     <div>
-                      <div className="pb-badge" style={{
-                        background:"rgba(255,255,255,.1)",
-                        border:"1px solid rgba(255,255,255,.15)",
-                        color:"rgba(255,255,255,.55)",
-                        marginBottom:5
-                      }}>
-                        <span style={{ position:"relative", display:"inline-flex", width:6, height:6 }}>
-                          <span style={{ position:"absolute", inset:0, borderRadius:"50%", background:"#fff", opacity:.4, animation:"pbPing 1.8s ease infinite" }}/>
-                          <span style={{ width:6, height:6, borderRadius:"50%", background:"#fff", display:"block", position:"relative" }}/>
-                        </span>
-                        Solusi Kahade
-                      </div>
                       <h3 style={{
                         fontFamily:"var(--font-sans)",
                         fontSize:18, fontWeight:800, color:"#fff",
@@ -714,10 +690,6 @@ const c = (base: string, d = ""): string => `${base} ${d} ${inView ? "pv" : ""}`
                 </div>
                 <div>
                   <div style={{ display:"flex", alignItems:"center", gap:8, marginBottom:4 }}>
-                    <div className="pb-badge" style={{ background:"rgba(0,0,0,0.1)", border:"1px solid rgba(0,0,0,0.1)", color:"rgba(0,0,0,0.1)" }}>
-                      <UserIcon/>
-                      Penjual
-                    </div>
                     <XIcon size={16} op={.4}/>
                   </div>
                   <h3 style={{

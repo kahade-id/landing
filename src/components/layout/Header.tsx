@@ -362,11 +362,7 @@ export default function Header() {
 
       <header
         ref={headerRef}
-        className={`relative bg-white transition-all duration-300 ${
-          scrolled
-            ? ""
-            : "border-b border-black/[0.08]"
-        }`}
+        className="relative bg-white transition-all duration-300 border-b border-black/[0.08]"
       >
 
         {/* Main Nav Row */}

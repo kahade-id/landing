@@ -366,20 +366,6 @@ export default function TestimonialsSection() {
               </p>
             </div>
 
-            {/* Aggregate stats */}
-            <div className={cls("tm-fade-up tm-d300")} style={{ display: "flex", justifyContent: "center", gap: "32px", marginTop: 32, flexWrap: "wrap" }}>
-              {[
-                { val: "4.9", label: "Rating Rata-rata", sub: "dari 5.0" },
-                { val: "Workflow", label: "Use Case", sub: "buyer & seller" },
-                { val: "Support", label: "Pusat Bantuan", sub: "siap dihubungi" },
-              ].map((s, i) => (
-                <div key={i} style={{ textAlign: "center" }}>
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: 24, fontWeight: 800, color: "#000", letterSpacing: "-0.04em", margin: "0 0 2px 0" }}>{s.val}</p>
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: 12, fontWeight: 600, color: "rgba(0,0,0,0.62)", margin: "0 0 1px 0" }}>{s.label}</p>
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: 10.5, color: "rgba(0,0,0,0.58)", margin: 0 }}>{s.sub}</p>
-                </div>
-              ))}
-            </div>
           </div>
 
           {/* ── Desktop Grid ─────────────────────────────────────────────────── */}
