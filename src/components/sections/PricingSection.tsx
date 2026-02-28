@@ -143,19 +143,19 @@ const PRESETS = [
 ];
 
 const COMPARE_ROWS = [
-  { label: "Biaya Bulanan",    trust: "Gratis",   competitor1: "Rp 149rb/bln",  competitor2: "Rp 99rb/bln",  trustGood: true },
-  { label: "Biaya Setup",      trust: "Gratis",   competitor1: "Rp 500rb",      competitor2: "Rp 250rb",     trustGood: true },
-  { label: "Fee per Transaksi",trust: "2,5%",     competitor1: "3%",            competitor2: "3,5%",         trustGood: true },
-  { label: "Fee Minimum",      trust: "Rp 2.500", competitor1: "Rp 5.000",      competitor2: "Rp 3.500",     trustGood: true },
-  { label: "Fee Maksimum",     trust: "Rp 250rb", competitor1: "Tidak ada cap", competitor2: "Rp 500rb",     trustGood: true },
-  { label: "API Access",       trust: "Gratis",   competitor1: "Berbayar",      competitor2: "Berbayar",     trustGood: true },
-  { label: "Dispute Handling", trust: "Gratis",   competitor1: "Rp 50rb",       competitor2: "Berbayar",     trustGood: true },
+  { label: "Biaya Bulanan",    trust: "Tidak wajib",      competitor1: "Bervariasi", competitor2: "Bervariasi", trustGood: true },
+  { label: "Biaya Setup",      trust: "Tidak wajib",      competitor1: "Bervariasi", competitor2: "Bervariasi", trustGood: true },
+  { label: "Fee per Transaksi",trust: "Mulai 2,5%",       competitor1: "Bervariasi", competitor2: "Bervariasi", trustGood: true },
+  { label: "Fee Minimum",      trust: "Mulai Rp 2.500",   competitor1: "Bervariasi", competitor2: "Bervariasi", trustGood: true },
+  { label: "Fee Maksimum",     trust: "Hingga Rp 250rb",  competitor1: "Bervariasi", competitor2: "Bervariasi", trustGood: true },
+  { label: "API Access",       trust: "Tersedia",         competitor1: "Tergantung paket", competitor2: "Tergantung paket", trustGood: true },
+  { label: "Dispute Handling", trust: "Tersedia",         competitor1: "Bervariasi", competitor2: "Bervariasi", trustGood: true },
 ];
 
 const FEATURES = [
-  { icon: <ZapIcon />,      label: "Tanpa biaya pendaftaran",               sub: "Daftar dan mulai gratis selamanya" },
+  { icon: <ZapIcon />,      label: "Tanpa biaya pendaftaran",               sub: "Daftar tanpa biaya awal" },
   { icon: <ShieldCheck />,  label: "Tanpa kontrak atau komitmen bulanan",    sub: "Bayar hanya saat transaksi berhasil" },
-  { icon: <ClockIcon />,    label: "Fee dikunci di awal, transparan 100%",   sub: "Tidak ada biaya tersembunyi" },
+  { icon: <ClockIcon />,    label: "Fee ditampilkan di awal transaksi",      sub: "Rincian biaya bisa ditinjau sebelum lanjut" },
   { icon: <HeadsetIcon />,  label: "Dispute gratis tanpa biaya tambahan",    sub: "Tim kami siap mediasi tanpa tarif" },
   { icon: <CodeIcon />,     label: "API akses penuh tanpa biaya extra",      sub: "Integrasi ke platform Anda kapanpun" },
   { icon: <BuildingIcon />, label: "Volume besar? Harga custom tersedia",    sub: "Hubungi sales untuk enterprise deal" },
@@ -686,4 +686,3 @@ export default function PricingSection() {
     </>
   );
 }
-
