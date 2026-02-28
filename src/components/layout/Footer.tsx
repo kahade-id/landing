@@ -15,39 +15,6 @@ interface FooterLink {
 
 interface QuickLink { icon: ReactNode; label: string; href: string; }
 
-// ─── Abstract SVG Background ───────────────────────────────────────────────
-const AbstractBg = () => (
-  <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-    <defs>
-      <radialGradient id="fg1" cx="10%" cy="20%" r="50%">
-        <stop offset="0%" stopColor="#000000" stopOpacity="0.04" />
-        <stop offset="100%" stopColor="#000000" stopOpacity="0" />
-      </radialGradient>
-      <radialGradient id="fg2" cx="90%" cy="80%" r="50%">
-        <stop offset="0%" stopColor="#000000" stopOpacity="0.05" />
-        <stop offset="100%" stopColor="#000000" stopOpacity="0" />
-      </radialGradient>
-      <radialGradient id="fg3" cx="50%" cy="50%" r="40%">
-        <stop offset="0%" stopColor="#000000" stopOpacity="0.02" />
-        <stop offset="100%" stopColor="#000000" stopOpacity="0" />
-      </radialGradient>
-    </defs>
-    <pattern id="fgrid" width="60" height="60" patternUnits="userSpaceOnUse">
-      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#000" strokeWidth="0.3" strokeOpacity="0.06" />
-    </pattern>
-    <rect width="100%" height="100%" fill="url(#fgrid)" />
-    <rect width="100%" height="100%" fill="url(#fg1)" />
-    <rect width="100%" height="100%" fill="url(#fg2)" />
-    <rect width="100%" height="100%" fill="url(#fg3)" />
-    <circle cx="5%" cy="15%" r="120" fill="none" stroke="#000" strokeWidth="0.5" strokeOpacity="0.06" />
-    <circle cx="5%" cy="15%" r="80"  fill="none" stroke="#000" strokeWidth="0.5" strokeOpacity="0.05" />
-    <circle cx="95%" cy="85%" r="150" fill="none" stroke="#000" strokeWidth="0.5" strokeOpacity="0.06" />
-    <circle cx="95%" cy="85%" r="100" fill="none" stroke="#000" strokeWidth="0.5" strokeOpacity="0.05" />
-    <line x1="0" y1="100%" x2="15%" y2="0" stroke="#000" strokeWidth="0.4" strokeOpacity="0.04" />
-    <line x1="85%" y1="100%" x2="100%" y2="0" stroke="#000" strokeWidth="0.4" strokeOpacity="0.04" />
-  </svg>
-);
-
 // ─── Shield Icon ────────────────────────────────────────────────────────────
 const ShieldIcon = () => (
   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -89,8 +56,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-white border-t border-black/10 overflow-hidden font-sans">
-      <AbstractBg />
+    <footer className="relative bg-white border-t border-black/10 overflow-hidden font-sans" style={{ fontFamily: "var(--font-sans)" }}>
 
       {/* Main Footer */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-10">
@@ -114,7 +80,7 @@ export default function Footer() {
 
             <div className="flex flex-wrap gap-2">
               {["Escrow workflow", "KYC support", "Monitoring aktif", "Pusat bantuan"].map((badge) => (
-                <span key={badge} className="inline-flex items-center px-2.5 py-1 text-[10px] font-semibold tracking-wider uppercase border border-black/15 text-black/50 rounded-full bg-white/80">
+                <span key={badge} className="inline-flex items-center px-2.5 py-1 text-[10px] font-semibold tracking-wider uppercase border border-black/15 text-black/50 rounded-full bg-white">
                   {badge}
                 </span>
               ))}
@@ -124,11 +90,11 @@ export default function Footer() {
             <div className="flex flex-col gap-3">
               <div className="text-xs font-semibold text-black/70 uppercase tracking-widest">Butuh bantuan cepat?</div>
               <div className="flex flex-col gap-2 max-w-sm">
-                <Link href={supportLinks.supportEmail} className="inline-flex items-center justify-between gap-3 rounded-xl border border-black/12 bg-white/80 px-4 py-3 text-sm font-medium text-black/70 transition-colors hover:border-black/20 hover:text-black">
+                <Link href={supportLinks.supportEmail} className="inline-flex items-center justify-between gap-3 rounded-xl border border-black/12 bg-white px-4 py-3 text-sm font-medium text-black/70 transition-colors hover:border-black/20 hover:text-black">
                   <span>Kirim email ke {site.email}</span>
                   <ArrowUpRight />
                 </Link>
-                <Link href={supportLinks.phone} className="inline-flex items-center justify-between gap-3 rounded-xl border border-black/12 bg-white/80 px-4 py-3 text-sm font-medium text-black/70 transition-colors hover:border-black/20 hover:text-black">
+                <Link href={supportLinks.phone} className="inline-flex items-center justify-between gap-3 rounded-xl border border-black/12 bg-white px-4 py-3 text-sm font-medium text-black/70 transition-colors hover:border-black/20 hover:text-black">
                   <span>Telepon {site.phone}</span>
                   <ArrowUpRight />
                 </Link>
