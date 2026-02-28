@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState, type RefObject } from "react";
-import { homeAnchors, supportLinks } from "@/lib/site";
+import { homeAnchors } from "@/lib/site";
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
 const ArrowRight = () => (
@@ -162,42 +162,7 @@ export default function CTASection() {
 
         </div>
 
-        {/* ── Bottom CTA Bar ────────────────────────────────────────────────── */}
-        <div style={{
-          marginTop: 0,
-          borderTop: "1px solid rgba(255,255,255,0.07)",
-          background: "rgba(255,255,255,0.02)",
-          padding: "24px 0" }}>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
-              {/* Left — brand mark */}
-              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <div style={{ width: 32, height: 32, borderRadius: 9, background: "rgba(255,255,255,0.1)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="rgba(255,255,255,0.75)" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M8 1.5L2.5 4.5V8.5C2.5 11.5 5 14 8 14.5C11 14 13.5 11.5 13.5 8.5V4.5L8 1.5Z" />
-                    <path d="M5.5 8.5L7 10L10.5 6.5" />
-                  </svg>
-                </div>
-                <div>
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: 14, fontWeight: 700, color: "rgba(255,255,255,0.85)", margin: 0, letterSpacing: "-0.02em" }}>Kahade</p>
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: 10, color: "rgba(255,255,255,0.28)", margin: 0, letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 500 }}>P2P Platform</p>
-                </div>
-              </div>
-
-              {/* Center — copyright */}
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: 12, color: "rgba(255,255,255,0.2)", margin: 0, textAlign: "center", flexGrow: 1 }}>
-                © {new Date().getFullYear()} Kahade · Contact-ready landing · Jakarta, Indonesia
-              </p>
-
-              {/* Right — CTA micro */}
-              <Link href={supportLinks.contact} className="cta-btn-primary" style={{ fontSize: 12.5, padding: "10px 20px", borderRadius: 10 }}>
-                Hubungi Tim <ArrowRight />
-              </Link>
-            </div>
-          </div>
-        </div>
       </section>
     </>
   );
 }
-

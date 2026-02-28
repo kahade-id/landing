@@ -257,35 +257,11 @@ const MobileNavItem = ({ item }: { item: NavItem }) => {
   );
 };
 
-// ─── Announcement Bar ────────────────────────────────────────────────────────
-const AnnouncementBar = ({ onClose }: { onClose: () => void }) => (
-  <div className="relative bg-white text-black text-center py-2.5 px-4 text-xs font-medium tracking-wide overflow-hidden border-b border-black/10">
-    <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-black/[0.03] to-transparent" />
-    <span className="relative">
-      🚀 Lihat panduan alur escrow, bantuan, dan dokumentasi Kahade.{" "}
-      <Link href={supportLinks.docs} className="underline underline-offset-2 font-semibold hover:opacity-80 transition-opacity">
-        Pelajari selengkapnya →
-      </Link>
-    </span>
-    <button
-      onClick={onClose}
-      className="absolute right-4 top-1/2 -translate-y-1/2 opacity-50 hover:opacity-80 transition-opacity"
-      aria-label="Tutup"
-    >
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-        <line x1="3" y1="3" x2="11" y2="11" />
-        <line x1="11" y1="3" x2="3" y2="11" />
-      </svg>
-    </button>
-  </div>
-);
-
 // ─── Main Header ─────────────────────────────────────────────────────────────
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [showAnnouncement, setShowAnnouncement] = useState(true);
   const headerRef = useRef<HTMLElement>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const dropdownBaseId = useId();
@@ -358,8 +334,6 @@ export default function Header() {
 
   return (
     <div className="sticky top-0 z-50 w-full font-sans">
-      {showAnnouncement && <AnnouncementBar onClose={() => setShowAnnouncement(false)} />}
-
       <header
         ref={headerRef}
         className="relative bg-white transition-all duration-300 border-b border-black/[0.08]"

@@ -78,21 +78,6 @@ export default function Footer() {
               Platform escrow peer-to-peer untuk transaksi yang membutuhkan kejelasan alur dana, status real-time, dan pengalaman yang mudah dipahami.
             </p>
 
-            {/* Contact CTA */}
-            <div className="flex flex-col gap-3">
-              <div className="text-xs font-semibold text-black/70 uppercase tracking-widest">Butuh bantuan cepat?</div>
-              <div className="flex flex-col gap-2 max-w-sm">
-                <Link href={supportLinks.supportEmail} className="inline-flex items-center justify-between gap-3 rounded-xl border border-black/12 bg-white px-4 py-3 text-sm font-medium text-black/70 transition-colors hover:border-black/20 hover:text-black">
-                  <span>Kirim email ke {site.email}</span>
-                  <ArrowUpRight />
-                </Link>
-                <Link href={supportLinks.phone} className="inline-flex items-center justify-between gap-3 rounded-xl border border-black/12 bg-white px-4 py-3 text-sm font-medium text-black/70 transition-colors hover:border-black/20 hover:text-black">
-                  <span>Telepon {site.phone}</span>
-                  <ArrowUpRight />
-                </Link>
-              </div>
-              <p className="text-[11px] text-black/30">Kontak di bawah ini aktif untuk pertanyaan produk, bantuan akun, dan pelaporan kendala.</p>
-            </div>
           </div>
 
           {/* Links — Desktop */}
