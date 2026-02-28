@@ -1,9 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import type { ReactNode } from "react";
-import { homeAnchors, supportLinks, site } from "@/lib/site";
+import { homeAnchors, supportLinks } from "@/lib/site";
 
 // ─── Types ─────────────────────────────────────────────────────────────────
 interface FooterLink {
@@ -15,22 +16,12 @@ interface FooterLink {
 
 interface QuickLink { icon: ReactNode; label: string; href: string; }
 
-// ─── Shield Icon ────────────────────────────────────────────────────────────
-const ShieldIcon = () => (
-  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M16 2L4 7V16C4 22.627 9.373 28 16 28C22.627 28 28 22.627 28 16V7L16 2Z" stroke="#000" strokeWidth="1.8" strokeLinejoin="round" />
-    <path d="M11 16L14.5 19.5L21 13" stroke="#000" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
-
 // ─── Utility Icons ───────────────────────────────────────────────────────────
 const MailIcon = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 6h16v12H4z" /><path d="M4 8l8 6 8-6" /></svg>);
 const PhoneIcon = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.63 2.62a2 2 0 0 1-.45 2.11L8 9.91a16 16 0 0 0 6.09 6.09l1.46-1.29a2 2 0 0 1 2.11-.45c.84.3 1.72.51 2.62.63A2 2 0 0 1 22 16.92z" /></svg>);
 const DocsIcon = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><path d="M14 2v6h6" /><path d="M8 13h8" /><path d="M8 17h5" /></svg>);
 const LifeBuoyIcon = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="4" /><path d="M4.93 4.93l4.24 4.24M14.83 14.83l4.24 4.24M14.83 9.17l4.24-4.24M9.17 14.83l-4.24 4.24" /></svg>);
 const ActivitySmallIcon = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" /></svg>);
-const ArrowUpRight = () => (<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M2.5 11.5L11.5 2.5M11.5 2.5H5.5M11.5 2.5V8.5" /></svg>);
-
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const footerLinks: Record<string, FooterLink[]> = {
   Platform:   [{ label: "Cara Kerja", href: homeAnchors.howItWorks }, { label: "Fitur Escrow", href: homeAnchors.platform }, { label: "Dashboard", href: homeAnchors.cta }, { label: "API Developer", href: supportLinks.docs, badge: "Docs" }, { label: "Status Sistem", href: supportLinks.status, status: "online" }],
@@ -65,8 +56,8 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-4 flex flex-col gap-7">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-black rounded-xl flex items-center justify-center flex-shrink-0">
-                <div className="invert"><ShieldIcon /></div>
+              <div className="w-10 h-10 rounded-xl overflow-hidden flex-shrink-0">
+                <Image src="/favicon.svg" alt="Kahade logo" width={40} height={40} className="w-full h-full" />
               </div>
               <div>
                 <div className="text-xl font-bold text-black tracking-tight leading-none">Kahade</div>
@@ -155,8 +146,6 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-5">
           <div className="flex flex-col sm:flex-row items-center gap-2 text-center sm:text-left">
             <p className="text-xs text-black/35">© {new Date().getFullYear()} Kahade. Hak Cipta Dilindungi.</p>
-            <span className="hidden sm:block text-black/20">·</span>
-            <p className="text-xs text-black/30">Kontak: {site.email} · {site.address}</p>
           </div>
           <div className="flex items-center gap-1">
             {quickLinks.map((link) => (
@@ -166,15 +155,7 @@ export default function Footer() {
               </Link>
             ))}
           </div>
-          <div className="flex items-center gap-5">
-            {[["Privasi", supportLinks.privacy], ["Syarat", supportLinks.terms], ["Cookie", supportLinks.cookies]].map(([item, href]) => (
-              <Link key={item} href={href} className="text-xs text-black/35 hover:text-black transition-colors">{item}</Link>
-            ))}
-            <Link href={homeAnchors.cta} className="flex items-center gap-1.5 text-xs font-semibold text-black/60 hover:text-black transition-colors group">
-              <span>Mulai Transaksi</span>
-              <ArrowUpRight />
-            </Link>
-          </div>
+
         </div>
       </div>
     </footer>
