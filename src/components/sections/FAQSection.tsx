@@ -1,39 +1,12 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useRef, useState, type RefObject } from "react";
-import { homeAnchors, supportLinks, site } from "@/lib/site";
 
 // ─── Icons ─────────────────────────────────────────────────────────────────────
 const SearchIcon = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
     <circle cx="7" cy="7" r="4.5" />
     <line x1="10.5" y1="10.5" x2="14" y2="14" />
-  </svg>
-);
-
-const ChevronRight = ({ className = "" }) => (
-  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className={className}>
-    <path d="M5 3l4 4-4 4" />
-  </svg>
-);
-
-const MessageIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M16 11.5a2 2 0 01-2 2H5l-3 3V3a2 2 0 012-2h10a2 2 0 012 2v8.5z" />
-  </svg>
-);
-
-const MailIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="1" y="3" width="16" height="12" rx="2" />
-    <polyline points="1,3 9,10 17,3" />
-  </svg>
-);
-
-const BookIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M2 3a2 2 0 012-2h10a2 2 0 012 2v13l-7-3-7 3V3z" />
   </svg>
 );
 
@@ -156,7 +129,7 @@ function FAQItem({ faq, index, inView, searchQuery }: { faq: (typeof faqs)[numbe
         </div>
         {/* Plus / Minus icon */}
         <div className={`flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center transition-colors ${open ? "bg-black" : "bg-black/[.05] group-hover:bg-black/10"}`}>
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke={open ? "white" : "rgba(0,0,0,0.1)"} strokeWidth="2" strokeLinecap="round">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke={open ? "white" : "rgba(0,0,0,0.55)"} strokeWidth="2" strokeLinecap="round">
             <line x1="6" y1="2" x2="6" y2="10" className="faq-icon-bar vertical" style={{ transform: open ? "scaleY(0)" : "scaleY(1)", transition: "transform .25s ease, opacity .25s ease", transformOrigin: "center", opacity: open ? 0 : 1 }} />
             <line x1="2" y1="6" x2="10" y2="6" />
           </svg>
@@ -196,11 +169,11 @@ const AbstractBg = () => (
     </defs>
     <rect width="100%" height="100%" fill="url(#faq-bg1)" />
     <pattern id="faq-dots" width="32" height="32" patternUnits="userSpaceOnUse">
-      <circle cx="1" cy="1" r="1" fill="rgba(0,0,0,0.1)" />
+      <circle cx="1" cy="1" r="1" fill="rgba(0,0,0,0.06)" />
     </pattern>
     <rect width="100%" height="100%" fill="url(#faq-dots)" />
-    <circle cx="92%" cy="10%" r="220" fill="none" stroke="rgba(0,0,0,0.1)" strokeWidth="1" />
-    <circle cx="92%" cy="10%" r="140" fill="none" stroke="rgba(0,0,0,0.1)" strokeWidth="1" />
+    <circle cx="92%" cy="10%" r="220" fill="none" stroke="rgba(0,0,0,0.06)" strokeWidth="1" />
+    <circle cx="92%" cy="10%" r="140" fill="none" stroke="rgba(0,0,0,0.06)" strokeWidth="1" />
   </svg>
 );
 
@@ -254,53 +227,6 @@ export default function FAQSection() {
               Tidak menemukan jawaban yang Anda cari? Tim kami siap membantu 24 jam.
             </p>
 
-            {/* Contact options */}
-            <div className={`${cls("faq-fade-up", inView, "faq-d3")} space-y-2.5`}>
-              {[
-                { icon: <MessageIcon />, label: "Hubungi Tim", sub: "Respon melalui email atau kontak", href: supportLinks.contact },
-                { icon: <MailIcon />, label: "Email Support", sub: site.email, href: supportLinks.supportEmail },
-                { icon: <BookIcon />, label: "Help Center", sub: "FAQ & panduan penggunaan", href: supportLinks.support },
-              ].map((c, i) => {
-                const cardClassName = "flex items-center gap-3 p-3.5 rounded-xl border border-black/8 bg-white/50 hover:border-black/15 hover:bg-white transition-all duration-200 group";
-                const content = (
-                  <>
-                    <div className="w-9 h-9 rounded-lg bg-black/[.04] flex items-center justify-center text-black/50 group-hover:text-black/70 transition-colors flex-shrink-0">
-                      {c.icon}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="text-[13px] font-bold text-black">{c.label}</div>
-                      <div className="text-[11.5px] text-black/40">{c.sub}</div>
-                    </div>
-                    <ChevronRight className="opacity-0 group-hover:opacity-60 transition-opacity flex-shrink-0 -translate-x-1 group-hover:translate-x-0 duration-200" />
-                  </>
-                );
-
-                return c.href.startsWith("mailto:") ? (
-                  <a key={i} href={c.href} className={cardClassName}>
-                    {content}
-                  </a>
-                ) : (
-                  <Link key={i} href={c.href} className={cardClassName}>
-                    {content}
-                  </Link>
-                );
-              })}
-            </div>
-
-            {/* Stats */}
-            <div className={`${cls("faq-fade-up", inView, "faq-d4")} mt-8 p-4 rounded-xl border border-black/6 bg-black/[.02]`}>
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  { val: "< 2min", label: "Avg. Response" },
-                  { val: "24/7", label: "Support" },
-                ].map((s, i) => (
-                  <div key={i} className="text-center">
-                    <div className="text-lg font-extrabold text-black" style={{ fontFamily: "var(--font-sans)" }}>{s.val}</div>
-                    <div className="text-[10.5px] text-black/35 font-medium mt-0.5">{s.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
 
           {/* ─── Right: FAQ Content ──────────────────────────────────────── */}
@@ -392,43 +318,9 @@ export default function FAQSection() {
               )}
             </div>
 
-            {/* Bottom CTA bar */}
-            <div className={`${cls("faq-fade-up", inView, "faq-d8")} mt-10 rounded-2xl bg-black overflow-hidden relative`}>
-              <div className="faq-cta-shimmer absolute inset-0" />
-              <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-6">
-                <div>
-                  <div className="flex items-center gap-2 mb-1.5">
-                    <span className="relative flex h-2 w-2">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-60" style={{ animationName: "faqPing" }} />
-                      <span className="relative inline-flex h-2 w-2 rounded-full bg-white/80" />
-                    </span>
-                    <span className="text-[11px] font-bold text-white/40 tracking-widest uppercase">Support Online</span>
-                  </div>
-                  <div className="text-[15px] font-bold text-white leading-snug" style={{ fontFamily: "var(--font-sans)" }}>
-                    Masih ada pertanyaan?
-                  </div>
-                  <div className="text-[12.5px] text-white/40 mt-0.5">
-                    Tim kami siap membantu Anda 24 jam sehari, 7 hari seminggu.
-                  </div>
-                </div>
-                <div className="flex flex-col sm:flex-row gap-2.5 flex-shrink-0 w-full sm:w-auto">
-                  <Link href={supportLinks.contact}
-                    className="flex items-center justify-center gap-2 px-5 py-2.5 bg-white text-black text-[13px] font-bold rounded-xl hover:bg-white/90 transition-colors">
-                    <MessageIcon />
-                    Mulai Chat
-                  </Link>
-                  <a href={supportLinks.supportEmail}
-                    className="flex items-center justify-center gap-2 px-5 py-2.5 bg-white/10 text-white text-[13px] font-semibold rounded-xl hover:bg-white/15 transition-colors border border-white/10">
-                    <MailIcon />
-                    Kirim Email
-                  </a>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
     </section>
   );
 }
-
