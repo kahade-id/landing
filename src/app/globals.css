@@ -65,6 +65,119 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════════
+   DESIGN TOKENS — Button radius & typography scale additions
+   ═══════════════════════════════════════════════════════════════════════════════ */
+:root {
+  /* ── Button radius (unified — was 10/12/14px scattered) ─────────────────── */
+  --radius-btn: var(--radius-md);   /* 14px — all buttons */
+  --radius-btn-sm: var(--radius-sm); /* 10px — small/compact buttons */
+
+  /* ── Typography scale (4-step, replaces 9/9.5/10/10.5/11/11.5/… chaos) ── */
+  --text-2xs:  10px;   /* labels, badges, caps */
+  --text-xs:   12px;   /* meta, secondary UI */
+  --text-sm:   13px;   /* body small, table cells */
+  --text-base: 15px;   /* body, button text */
+  --text-lg:   17px;   /* subheadings, lead text */
+  --text-xl:   22px;   /* amount highlights */
+
+  /* ── Opacity scale (replaces /30,/35,/40,/45,/50,/55,/62,/68 chaos) ───── */
+  --op-low:  0.30;   /* very muted, dividers */
+  --op-mid:  0.45;   /* secondary text */
+  --op-high: 0.62;   /* primary muted text */
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   UNIFIED BUTTON SYSTEM
+   All buttons live here. Components reference these classes only — no embedded
+   or inline button styles anywhere else.
+
+   Light-surface buttons  : .btn-primary  .btn-secondary
+   Dark-surface buttons   : .btn-inv-primary  .btn-inv-ghost
+   Size modifier          : .btn-sm  (compact padding/font)
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+/* ── Base shared structure ─────────────────────────────────────────────────── */
+.btn-primary, .btn-secondary, .btn-inv-primary, .btn-inv-ghost {
+  position: relative; overflow: hidden;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  border-radius: var(--radius-btn);
+  font-family: var(--font-sans); font-weight: 600;
+  font-size: var(--text-base); letter-spacing: -0.01em;
+  cursor: pointer; text-decoration: none; white-space: nowrap;
+  transition: transform var(--duration-fast) ease;
+}
+
+/* ── Primary (light surface) — solid black ─────────────────────────────────── */
+.btn-primary {
+  background: var(--color-ink); color: var(--color-surface);
+  border: none; padding: 14px 28px;
+  transition: background var(--duration-fast) ease, transform var(--duration-fast) ease;
+}
+.btn-primary::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,.12) 50%, transparent 60%);
+  transform: translateX(-100%); transition: transform .55s ease;
+}
+.btn-primary:hover { background: #1a1a1a; transform: translateY(-1px); }
+.btn-primary:hover::after { transform: translateX(100%); }
+.btn-primary:active { transform: scale(0.98); }
+
+/* ── Secondary (light surface) — outline ──────────────────────────────────── */
+.btn-secondary {
+  background: transparent; color: var(--color-ink);
+  border: 1.5px solid var(--color-ink-12); padding: 13px 28px;
+  transition: border-color var(--duration-fast) ease,
+              background var(--duration-fast) ease,
+              transform var(--duration-fast) ease;
+}
+.btn-secondary:hover {
+  border-color: var(--color-ink-30);
+  background: var(--color-ink-04);
+  transform: translateY(-1px);
+}
+.btn-secondary:active { transform: scale(0.98); }
+
+/* ── Inverted primary (dark surface) — solid white ─────────────────────────── */
+.btn-inv-primary {
+  background: var(--color-surface); color: var(--color-ink);
+  border: none; padding: 16px 32px;
+  font-size: var(--text-base); font-weight: 700; letter-spacing: -0.02em;
+  transition: transform var(--duration-fast) ease;
+}
+.btn-inv-primary::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.04) 100%);
+}
+.btn-inv-primary::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.06) 50%, transparent 100%);
+  transform: translateX(-150%) skewX(-15deg);
+}
+.btn-inv-primary:hover::after { animation: shimmer .6s ease forwards; }
+.btn-inv-primary:hover  { transform: translateY(-2px); }
+.btn-inv-primary:active { transform: scale(0.97); }
+
+/* ── Inverted ghost (dark surface) — transparent + border ─────────────────── */
+.btn-inv-ghost {
+  background: var(--color-white-08); color: var(--color-white-80);
+  border: 1.5px solid var(--color-white-15); padding: 15px 28px;
+  font-size: 14px; font-weight: 600; letter-spacing: -0.01em;
+  backdrop-filter: blur(8px);
+  transition: background .2s ease, border-color .2s ease, color .2s ease, transform .2s ease;
+}
+.btn-inv-ghost:hover {
+  background: rgba(255,255,255,.13);
+  border-color: rgba(255,255,255,.28);
+  color: var(--color-surface); transform: translateY(-1px);
+}
+.btn-inv-ghost:active { transform: scale(0.97); }
+
+/* ── Size modifier ─────────────────────────────────────────────────────────── */
+.btn-sm { padding: 10px 20px; font-size: var(--text-xs); border-radius: var(--radius-btn-sm); }
+
+
+/* ═══════════════════════════════════════════════════════════════════════════════
    BASE RESET
    ═══════════════════════════════════════════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; }
@@ -833,13 +946,20 @@ h1, h2, h3, .font-display { font-family: var(--font-display); }
    SECTION — CTASection (prefix: cta-)
    ═══════════════════════════════════════════════════════════════════════════════ */
 
-.cta-btn-primary {
+.cta-glass {
+  background: var(--color-white-08);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,.13); border-radius: var(--radius-lg);
+}
+
+/* Backward-compat aliases — CTA section uses these; they now map to the unified system */
+.cta-btn-primary { /* intentionally mirrors .btn-inv-primary */
   position: relative; overflow: hidden;
   display: inline-flex; align-items: center; justify-content: center; gap: 9px;
   background: var(--color-surface); color: var(--color-ink);
-  border: none; border-radius: var(--radius-md);
+  border: none; border-radius: var(--radius-btn);
   padding: 16px 32px;
-  font-family: var(--font-sans); font-size: 15px; font-weight: 700;
+  font-family: var(--font-sans); font-size: var(--text-base); font-weight: 700;
   letter-spacing: -0.02em; cursor: pointer; text-decoration: none;
   transition: transform var(--duration-fast) ease; white-space: nowrap;
 }
@@ -856,10 +976,10 @@ h1, h2, h3, .font-display { font-family: var(--font-display); }
 .cta-btn-primary:hover  { transform: translateY(-2px); }
 .cta-btn-primary:active { transform: scale(0.97); }
 
-.cta-btn-ghost {
+.cta-btn-ghost { /* intentionally mirrors .btn-inv-ghost */
   display: inline-flex; align-items: center; justify-content: center; gap: 9px;
   background: var(--color-white-08); color: var(--color-white-80);
-  border: 1.5px solid var(--color-white-15); border-radius: var(--radius-md);
+  border: 1.5px solid var(--color-white-15); border-radius: var(--radius-btn);
   padding: 15px 28px;
   font-family: var(--font-sans); font-size: 14px; font-weight: 600;
   letter-spacing: -0.01em; cursor: pointer; text-decoration: none;
@@ -871,14 +991,6 @@ h1, h2, h3, .font-display { font-family: var(--font-display); }
   color: var(--color-surface); transform: translateY(-1px);
 }
 .cta-btn-ghost:active { transform: scale(0.97); }
-
-.cta-glass {
-  background: var(--color-white-08);
-  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255,255,255,.13); border-radius: var(--radius-lg);
-}
-
-.cta-marquee-wrap {
   overflow: hidden;
   mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
   -webkit-mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
@@ -993,3 +1105,119 @@ h1, h2, h3, .font-display { font-family: var(--font-display); }
 
 .faq-related-link { transition: color var(--duration-fast) ease, gap var(--duration-fast) ease; }
 .faq-related-link:hover { color: var(--color-ink); }
+
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   SECTION — HeroSection (prefix: hero-)
+   FIX: Moved from embedded <style> block in HeroSection.tsx into global system.
+        Removed duplicate keyframes (fadeUp, fadeIn, shimmer, countUp, spinSlow
+        all existed in globals already). Delay classes now use unified d-* scale.
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+/* ── Hero-specific keyframes (not duplicates) ─────────────────────────────── */
+@keyframes floatCard {
+  0%, 100% { transform: translateY(0px) rotate(.5deg); }
+  50%       { transform: translateY(-10px) rotate(-.3deg); }
+}
+@keyframes floatBadge {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-6px); }
+}
+@keyframes pingSlow {
+  0%, 100% { opacity: .4; transform: scale(1); }
+  50%       { opacity: 0; transform: scale(1.8); }
+}
+@keyframes drawLine {
+  from { stroke-dashoffset: 300; }
+  to   { stroke-dashoffset: 0; }
+}
+@keyframes progressAnim {
+  to { width: var(--target-width); }
+}
+
+/* ── Auto-play animations (above-fold, no IntersectionObserver needed) ──────── */
+/* These start immediately on mount — unlike .anim-up which waits for .in-view  */
+.hero-anim-up { opacity: 0; animation: fadeUp .70s var(--ease-spring) forwards; }
+.hero-anim-in { opacity: 0; animation: fadeIn .60s ease              forwards; }
+
+/* ── Delay scale additions (extending unified d-* for hero long delays) ─────── */
+.d-12 { animation-delay: 1.20s !important; }
+.d-13 { animation-delay: 1.30s !important; }
+
+/* ── Persistent ambient animations ──────────────────────────────────────────── */
+.hero-float-card   { animation: floatCard  6s ease-in-out infinite; }
+.hero-float-badge  { animation: floatBadge 4s ease-in-out infinite; }
+.hero-shimmer-bar  { animation: shimmer  2.4s linear      infinite; }
+.hero-spin-slow    { animation: spinSlow  20s linear      infinite; }
+.hero-marquee      { animation: marqueeLeft 28s linear    infinite; }
+.hero-ping-slow    { animation: pingSlow  1.6s ease       infinite; }
+.hero-abstract-line {
+  stroke-dasharray: 300; stroke-dashoffset: 300;
+  animation: drawLine 2.5s .8s var(--ease-smooth) forwards;
+}
+
+/* ── Layout & visual classes ────────────────────────────────────────────────── */
+.hero-grid-bg {
+  background-image:
+    linear-gradient(var(--color-ink-09) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-ink-09) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Floating UI card — glass effect */
+.hero-card-ui {
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-ink-09);
+  border-radius: var(--radius-card);
+}
+
+/* Progress bar inside hero card */
+.hero-progress-bar {
+  height: 3px; background: var(--color-ink-09);
+  border-radius: var(--radius-full); overflow: hidden;
+}
+.hero-progress-fill {
+  height: 100%; background: var(--color-ink);
+  border-radius: var(--radius-full);
+  animation: progressAnim 2.5s 1.2s ease forwards; width: 0%;
+}
+
+/* Regulatory logo row */
+.hero-reg-logo-row {
+  display: flex; align-items: center; justify-content: center;
+  gap: clamp(24px, 4vw, 48px); flex-wrap: wrap;
+}
+.hero-reg-logo {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: clamp(90px, 13vw, 148px); height: clamp(34px, 5vw, 52px);
+  transition: transform var(--duration-hover) ease, opacity var(--duration-hover) ease;
+  opacity: .58;
+}
+.hero-reg-logo:hover { opacity: .78; transform: translateY(-1px); }
+.hero-reg-logo img { width: 100%; height: 100%; object-fit: contain; filter: grayscale(1); }
+
+@media (max-width: 768px) {
+  .hero-visual    { display: none !important; }
+  .hero-h1-size   { font-size: clamp(36px, 9vw, 56px) !important; }
+}
+@media (max-width: 480px) {
+  .hero-h1-size   { font-size: clamp(32px, 8.5vw, 46px) !important; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   SECTION — TestimonialsSection marquee card  (prefix: tm-)
+   FIX: MarqueeCard was 100% inline styles. Now has a real CSS class.
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+.tm-marquee-card {
+  min-width: 290px; max-width: 310px; flex-shrink: 0;
+  background: var(--color-surface);
+  border: 1px solid var(--color-ink-09);
+  border-radius: var(--radius-card);
+  padding: 20px 22px;
+  margin-right: 14px;
+  display: flex; flex-direction: column; gap: 12px;
+  position: relative; overflow: hidden;
+}
