@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useRef, useId } from "react";
 import type { NavItem, NavDropdownItem } from "@/types";
@@ -343,8 +344,8 @@ export default function Header() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center h-16 gap-8">
           {/* Logo */}
           <Link href={homeAnchors.home} className="flex items-center gap-2.5 flex-shrink-0 group">
-            <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center text-white transition-transform duration-200 group-hover:scale-95">
-              <ShieldIcon size={17} />
+            <div className="w-8 h-8 rounded-lg overflow-hidden transition-transform duration-200 group-hover:scale-95">
+              <Image src="/favicon.svg" alt="Kahade logo" width={32} height={32} className="w-full h-full" priority />
             </div>
             <div className="leading-none">
               <div className="text-[16px] font-bold text-black tracking-tight">Kahade</div>
