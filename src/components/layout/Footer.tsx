@@ -171,7 +171,7 @@ export default function Footer() {
           <div className="flex flex-col sm:flex-row items-center gap-2 text-center sm:text-left">
             <p className="text-xs text-black/35">© {new Date().getFullYear()} Kahade. Hak Cipta Dilindungi.</p>
             <span className="hidden sm:block text-black/20">·</span>
-            <p className="text-xs text-black/30">Kontak: {site.email} · {site.location}</p>
+            <p className="text-xs text-black/30">Kontak: {site.email} · {site.address}</p>
           </div>
           <div className="flex items-center gap-1">
             {quickLinks.map((link) => (
