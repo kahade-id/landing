@@ -280,7 +280,8 @@ export default function SecuritySection() {
     `${base} ${visible ? "sv" : ""} ${delay}`;
 
   return (
-    <section id="keamanan" ref={sectionRef} className="sec-root relative overflow-hidden bg-white py-20 sm:py-28 lg:py-36">
+    <section id="keamanan" ref={sectionRef} className="sec-root relative overflow-hidden py-20 sm:py-28 lg:py-36"
+      style={{ background: "#FFFFFF" }}>
       <AbstractBg />
 
       {/* Grid bg overlay */}

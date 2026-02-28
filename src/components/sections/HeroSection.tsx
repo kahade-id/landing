@@ -445,8 +445,8 @@ export default function HeroSection() {
       <style>{styles}</style>
       <section
         id="home"
-        className="hero-root hero-grid-bg relative overflow-hidden bg-white"
-        style={{ minHeight: "calc(100vh - 104px)" }}
+        className="hero-root hero-grid-bg relative overflow-hidden"
+        style={{ background: "#FFFFFF", minHeight: "calc(100vh - 104px)" }}
       >
         <HeroAbstractBg />
 

@@ -423,8 +423,8 @@ export default function HowItWorksSection() {
       <section
         id="cara-kerja"
         ref={sectionRef}
-        className="hw-root relative overflow-hidden bg-white"
-        style={{ padding:"100px 0 96px 0" }}
+        className="hw-root relative overflow-hidden"
+        style={{ background: "#FFFFFF", padding:"100px 0 96px 0" }}
       >
         <HwAbstractBg/>
 

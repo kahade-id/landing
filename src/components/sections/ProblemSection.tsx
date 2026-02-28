@@ -405,7 +405,7 @@ const c = (base: string, d = ""): string => `${base} ${d} ${inView ? "pv" : ""}`
         id="platform"
         ref={sectionRef}
         className="pb-root relative overflow-hidden"
-        style={{ padding:"100px 0 96px", background:"#fafafa" }}
+        style={{ padding:"100px 0 96px", background:"#FFFFFF" }}
       >
         <PbAbstractBg/>
 
@@ -799,4 +799,3 @@ const c = (base: string, d = ""): string => `${base} ${d} ${inView ? "pv" : ""}`
     </>
   );
 }
-

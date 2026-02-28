@@ -5,34 +5,6 @@ import { useState, useEffect, useRef, useId } from "react";
 import type { NavItem, NavDropdownItem } from "@/types";
 import { homeAnchors, supportLinks } from "@/lib/site";
 
-// ─── Abstract SVG Background ───────────────────────────────────────────────
-const AbstractBg = () => (
-  <svg className="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-    <defs>
-      <radialGradient id="hg1" cx="0%" cy="50%" r="40%">
-        <stop offset="0%" stopColor="#000" stopOpacity="0.035" />
-        <stop offset="100%" stopColor="#000" stopOpacity="0" />
-      </radialGradient>
-      <radialGradient id="hg2" cx="100%" cy="50%" r="40%">
-        <stop offset="0%" stopColor="#000" stopOpacity="0.03" />
-        <stop offset="100%" stopColor="#000" stopOpacity="0" />
-      </radialGradient>
-    </defs>
-    <rect width="100%" height="100%" fill="url(#hg1)" />
-    <rect width="100%" height="100%" fill="url(#hg2)" />
-    <pattern id="hgrid" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#000" strokeWidth="0.3" strokeOpacity="0.05" />
-    </pattern>
-    <rect width="100%" height="100%" fill="url(#hgrid)" />
-    <circle cx="-2%" cy="50%" r="80" fill="none" stroke="#000" strokeWidth="0.6" strokeOpacity="0.06" />
-    <circle cx="-2%" cy="50%" r="50" fill="none" stroke="#000" strokeWidth="0.5" strokeOpacity="0.05" />
-    <circle cx="102%" cy="50%" r="90" fill="none" stroke="#000" strokeWidth="0.6" strokeOpacity="0.06" />
-    <circle cx="102%" cy="50%" r="55" fill="none" stroke="#000" strokeWidth="0.5" strokeOpacity="0.05" />
-    <circle cx="30%" cy="20%" r="1.5" fill="#000" fillOpacity="0.06" />
-    <circle cx="70%" cy="80%" r="1.5" fill="#000" fillOpacity="0.06" />
-  </svg>
-);
-
 // ─── Icons ──────────────────────────────────────────────────────────────────
 const ShieldIcon = ({ size = 22 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -287,8 +259,8 @@ const MobileNavItem = ({ item }: { item: NavItem }) => {
 
 // ─── Announcement Bar ────────────────────────────────────────────────────────
 const AnnouncementBar = ({ onClose }: { onClose: () => void }) => (
-  <div className="relative bg-black text-white text-center py-2.5 px-4 text-xs font-medium tracking-wide overflow-hidden">
-    <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+  <div className="relative bg-white text-black text-center py-2.5 px-4 text-xs font-medium tracking-wide overflow-hidden border-b border-black/10">
+    <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-black/[0.03] to-transparent" />
     <span className="relative">
       🚀 Lihat panduan alur escrow, bantuan, dan dokumentasi Kahade.{" "}
       <Link href={supportLinks.docs} className="underline underline-offset-2 font-semibold hover:opacity-80 transition-opacity">
@@ -390,13 +362,12 @@ export default function Header() {
 
       <header
         ref={headerRef}
-        className={`relative bg-white/95 backdrop-blur-md transition-all duration-300 ${
+        className={`relative bg-white transition-all duration-300 ${
           scrolled
             ? ""
             : "border-b border-black/[0.08]"
         }`}
       >
-        <AbstractBg />
 
         {/* Main Nav Row */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center h-16 gap-8">
