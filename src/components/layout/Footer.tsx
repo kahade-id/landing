@@ -78,14 +78,6 @@ export default function Footer() {
               Platform escrow peer-to-peer untuk transaksi yang membutuhkan kejelasan alur dana, status real-time, dan pengalaman yang mudah dipahami.
             </p>
 
-            <div className="flex flex-wrap gap-2">
-              {["Escrow workflow", "KYC support", "Monitoring aktif", "Pusat bantuan"].map((badge) => (
-                <span key={badge} className="inline-flex items-center px-2.5 py-1 text-[10px] font-semibold tracking-wider uppercase border border-black/15 text-black/50 rounded-full bg-white">
-                  {badge}
-                </span>
-              ))}
-            </div>
-
             {/* Contact CTA */}
             <div className="flex flex-col gap-3">
               <div className="text-xs font-semibold text-black/70 uppercase tracking-widest">Butuh bantuan cepat?</div>

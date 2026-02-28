@@ -129,14 +129,6 @@ const FloatingTxCard = ({ delay = "0s", style = {} }) => (
   </div>
 );
 
-// ─── Trust Ticker Items ───────────────────────────────────────────────────────
-const tickerItems = [
-  "Escrow workflow", "Monitoring aktif", "KYC support",
-  "Dokumentasi integrasi", "Pusat bantuan", "Status sistem",
-  "Buyer & seller ready", "Alur dana transparan", "Kontak tim",
-  "FAQ produk", "Panduan operasional", "Transaksi lebih tenang",
-];
-
 // ─── Intersection Observer Hook ───────────────────────────────────────────────
 function useInView(threshold = 0.18): [RefObject<any>, boolean] {
   const ref = useRef<any>(null);
@@ -198,19 +190,6 @@ export default function CTASection() {
         <div className="cta-glow" style={{ position: "absolute", bottom: "15%", right: "10%", width: 350, height: 350, borderRadius: "50%", background: "radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%)", pointerEvents: "none", animationDelay: "2s" }} />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-          {/* ── Top Badge ─────────────────────────────────────────────────── */}
-          <div className={cls("cta-fade-up cta-d100")} style={{ display: "flex", justifyContent: "center", marginBottom: 32 }}>
-            <div className="cta-glass" style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 16px", borderRadius: 99 }}>
-              <span style={{ position: "relative", display: "inline-flex", width: 7, height: 7 }}>
-                <span style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "#fff", opacity: 0.4, animation: "ctaPing 1.8s ease infinite" }} />
-                <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#fff", display: "block", position: "relative" }} />
-              </span>
-              <span style={{ fontSize: 11.5, fontWeight: 600, color: "rgba(255,255,255,0.6)", fontFamily: "var(--font-sans)", letterSpacing: "0.04em", textTransform: "uppercase" }}>
-                Siap dipakai untuk buyer, seller, dan bisnis
-              </span>
-            </div>
-          </div>
 
           {/* ── Main Headline ──────────────────────────────────────────────── */}
           <div className={cls("cta-fade-up cta-d200")} style={{ textAlign: "center", marginBottom: 20 }}>
@@ -316,22 +295,6 @@ export default function CTASection() {
                   {[...Array(5)].map((_, i) => <StarIcon key={i} />)}
                 </div>
                 <p style={{ fontSize: 10.5, color: "rgba(255,255,255,0.45)", fontFamily: "var(--font-sans)", margin: 0 }}>Dipakai pada alur transaksi demo</p>
-              </div>
-            </div>
-          </div>
-
-          {/* ── Trust Ticker ──────────────────────────────────────────────── */}
-          <div style={{ borderTop: "1px solid rgba(255,255,255,0.07)", paddingTop: 28, paddingBottom: 28 }}>
-            <div className="cta-marquee-wrap">
-              <div className="cta-marquee-track">
-                {[...tickerItems, ...tickerItems].map((item, i) => (
-                  <div key={i} style={{ display: "inline-flex", alignItems: "center", gap: 24, paddingRight: 40, whiteSpace: "nowrap", flexShrink: 0 }}>
-                    <span style={{ fontSize: 11.5, fontWeight: 600, color: "rgba(255,255,255,0.28)", fontFamily: "var(--font-sans)", textTransform: "uppercase", letterSpacing: "0.12em" }}>
-                      {item}
-                    </span>
-                    <span style={{ width: 3, height: 3, borderRadius: "50%", background: "rgba(255,255,255,0.2)", display: "inline-block", flexShrink: 0 }} />
-                  </div>
-                ))}
               </div>
             </div>
           </div>
