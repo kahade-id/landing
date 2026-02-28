@@ -1,8 +1,6 @@
 "use client";
 
-import Link from "next/link";
 import { useState, useEffect, useRef, type RefObject } from "react";
-import { homeAnchors, supportLinks } from "@/lib/site";
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
 const StarFilled = ({ size = 13, op = 1 }) => (
@@ -203,7 +201,7 @@ const TestimonialCard = ({ t, compact = false }: { t: (typeof testimonials)[numb
       {/* Bottom amount */}
       <div style={{
         display: "flex", alignItems: "center", justifyContent: "space-between",
-        borderTop: `1px solid ${isF ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.1)"}`,
+        borderTop: `1px solid ${isF ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.12)"}`,
         paddingTop: 14, marginTop: 4 }}>
         <div>
           <p style={{ fontSize: 11, color: metaColor, margin: "0 0 2px 0", fontFamily: "var(--font-sans)", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.08em" }}>
@@ -216,9 +214,9 @@ const TestimonialCard = ({ t, compact = false }: { t: (typeof testimonials)[numb
         <div style={{
           display: "flex", alignItems: "center", gap: 5,
           padding: "6px 10px", borderRadius: 99,
-          background: isF ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)" }}>
+          background: isF ? "rgba(255,255,255,0.14)" : "rgba(0,0,0,0.06)" }}>
           <span style={{ width: 6, height: 6, borderRadius: "50%", background: isF ? "rgba(255,255,255,0.7)" : "#000", display: "block" }} />
-          <span style={{ fontSize: 10.5, fontWeight: 600, color: isF ? "rgba(255,255,255,0.6)" : "rgba(0,0,0,0.1)", fontFamily: "var(--font-sans)" }}>
+          <span style={{ fontSize: 10.5, fontWeight: 600, color: isF ? "rgba(255,255,255,0.75)" : "rgba(0,0,0,0.62)", fontFamily: "var(--font-sans)" }}>
             Terverifikasi
           </span>
         </div>
@@ -229,12 +227,12 @@ const TestimonialCard = ({ t, compact = false }: { t: (typeof testimonials)[numb
 
 // ─── Marquee Card (compact) ───────────────────────────────────────────────────
 const MarqueeCard = ({ t }: { t: (typeof testimonials)[number] }) => {
-  const textColor = "rgba(0,0,0,0.1)";
+  const textColor = "rgba(0,0,0,0.68)";
   return (
     <div style={{
       minWidth: 290, maxWidth: 310, flexShrink: 0,
       background: "#fff",
-      border: "1px solid rgba(0,0,0,0.1)",
+      border: "1px solid rgba(0,0,0,0.12)",
       borderRadius: 16,
       padding: "20px 22px",
       marginRight: 14,
@@ -243,7 +241,7 @@ const MarqueeCard = ({ t }: { t: (typeof testimonials)[number] }) => {
       gap: 12,
       position: "relative",
       overflow: "hidden" }}>
-      <div style={{ position: "absolute", top: 14, right: 18, fontSize: 44, lineHeight: 0.6, color: "rgba(0,0,0,0.1)", fontFamily: "var(--font-sans)", fontWeight: 800, pointerEvents: "none" }}>"</div>
+      <div style={{ position: "absolute", top: 14, right: 18, fontSize: 44, lineHeight: 0.6, color: "rgba(0,0,0,0.12)", fontFamily: "var(--font-sans)", fontWeight: 800, pointerEvents: "none" }}>"</div>
       <div style={{ display: "flex", alignItems: "center", gap: 9 }}>
         <div style={{ width: 34, height: 34, borderRadius: "50%", background: t.avatarBg, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
           <span style={{ fontSize: 11, fontWeight: 700, color: "#fff", fontFamily: "var(--font-sans)" }}>{t.avatar}</span>
@@ -253,7 +251,7 @@ const MarqueeCard = ({ t }: { t: (typeof testimonials)[number] }) => {
             <span style={{ fontSize: 12.5, fontWeight: 700, color: "#000", fontFamily: "var(--font-sans)", letterSpacing: "-0.02em" }}>{t.name}</span>
             <VerifiedIcon />
           </div>
-          <p style={{ fontSize: 10.5, color: "rgba(0,0,0,0.1)", margin: 0, fontFamily: "var(--font-sans)" }}>{t.role}</p>
+          <p style={{ fontSize: 10.5, color: "rgba(0,0,0,0.5)", margin: 0, fontFamily: "var(--font-sans)" }}>{t.role}</p>
         </div>
         <div style={{ marginLeft: "auto" }}>
           <Stars count={5} />
@@ -282,24 +280,24 @@ const TmAbstractBg = () => (
     <rect width="100%" height="100%" fill="url(#tm-rg1)" />
     <rect width="100%" height="100%" fill="url(#tm-rg2)" />
     <pattern id="tm-grid" width="52" height="52" patternUnits="userSpaceOnUse">
-      <path d="M 52 0 L 0 0 0 52" fill="none" stroke="#000" strokeWidth="0.25" strokeOpacity="0.045" />
+      <path d="M 52 0 L 0 0 0 52" fill="none" stroke="#000" strokeWidth="0.25" strokeOpacity="0.015" />
     </pattern>
     <rect width="100%" height="100%" fill="url(#tm-grid)" />
-    <circle cx="-3%" cy="30%" r="200" fill="none" stroke="#000" strokeWidth="0.6" strokeOpacity="0.05" />
-    <circle cx="-3%" cy="30%" r="140" fill="none" stroke="#000" strokeWidth="0.5" strokeOpacity="0.04" />
-    <circle cx="103%" cy="70%" r="220" fill="none" stroke="#000" strokeWidth="0.6" strokeOpacity="0.05" />
-    <circle cx="103%" cy="70%" r="150" fill="none" stroke="#000" strokeWidth="0.5" strokeOpacity="0.04" />
-    <circle cx="50%" cy="50%" r="400" fill="none" stroke="#000" strokeWidth="0.3" strokeOpacity="0.025" />
-    <line x1="5%" y1="0" x2="5%" y2="100%" stroke="#000" strokeWidth="0.3" strokeOpacity="0.04" />
-    <line x1="95%" y1="0" x2="95%" y2="100%" stroke="#000" strokeWidth="0.3" strokeOpacity="0.04" />
-    <circle cx="18%" cy="8%" r="1.8" fill="#000" fillOpacity="0.07" />
-    <circle cx="20%" cy="9%" r="1.2" fill="#000" fillOpacity="0.05" />
-    <circle cx="82%" cy="92%" r="1.8" fill="#000" fillOpacity="0.07" />
-    <circle cx="84%" cy="93%" r="1.2" fill="#000" fillOpacity="0.05" />
-    <line x1="92%" y1="12%" x2="92%" y2="18%" stroke="#000" strokeWidth="0.7" strokeOpacity="0.08" />
-    <line x1="89%" y1="15%" x2="95%" y2="15%" stroke="#000" strokeWidth="0.7" strokeOpacity="0.08" />
-    <line x1="8%"  y1="85%" x2="8%"  y2="91%" stroke="#000" strokeWidth="0.7" strokeOpacity="0.08" />
-    <line x1="5%"  y1="88%" x2="11%" y2="88%" stroke="#000" strokeWidth="0.7" strokeOpacity="0.08" />
+    <circle cx="-3%" cy="30%" r="200" fill="none" stroke="#000" strokeWidth="0.6" strokeOpacity="0.028" />
+    <circle cx="-3%" cy="30%" r="140" fill="none" stroke="#000" strokeWidth="0.5" strokeOpacity="0.022" />
+    <circle cx="103%" cy="70%" r="220" fill="none" stroke="#000" strokeWidth="0.6" strokeOpacity="0.028" />
+    <circle cx="103%" cy="70%" r="150" fill="none" stroke="#000" strokeWidth="0.5" strokeOpacity="0.022" />
+    <circle cx="50%" cy="50%" r="400" fill="none" stroke="#000" strokeWidth="0.3" strokeOpacity="0.015" />
+    <line x1="5%" y1="0" x2="5%" y2="100%" stroke="#000" strokeWidth="0.3" strokeOpacity="0.022" />
+    <line x1="95%" y1="0" x2="95%" y2="100%" stroke="#000" strokeWidth="0.3" strokeOpacity="0.022" />
+    <circle cx="18%" cy="8%" r="1.8" fill="#000" fillOpacity="0.04" />
+    <circle cx="20%" cy="9%" r="1.2" fill="#000" fillOpacity="0.03" />
+    <circle cx="82%" cy="92%" r="1.8" fill="#000" fillOpacity="0.04" />
+    <circle cx="84%" cy="93%" r="1.2" fill="#000" fillOpacity="0.03" />
+    <line x1="92%" y1="12%" x2="92%" y2="18%" stroke="#000" strokeWidth="0.7" strokeOpacity="0.04" />
+    <line x1="89%" y1="15%" x2="95%" y2="15%" stroke="#000" strokeWidth="0.7" strokeOpacity="0.04" />
+    <line x1="8%"  y1="85%" x2="8%"  y2="91%" stroke="#000" strokeWidth="0.7" strokeOpacity="0.04" />
+    <line x1="5%"  y1="88%" x2="11%" y2="88%" stroke="#000" strokeWidth="0.7" strokeOpacity="0.04" />
   </svg>
 );
 
@@ -328,8 +326,8 @@ export default function TestimonialsSection() {
               <div style={{
                 display: "inline-flex", alignItems: "center", gap: 8,
                 padding: "7px 16px", borderRadius: 99,
-                border: "1px solid rgba(0,0,0,0.1)",
-                background: "rgba(0,0,0,0.1)" }}>
+                border: "1px solid rgba(0,0,0,0.12)",
+                background: "rgba(0,0,0,0.03)" }}>
                 <div style={{ display: "flex", gap: 2 }}>
                   {[...Array(5)].map((_, i) => <StarFilled key={i} size={11} />)}
                 </div>
@@ -412,58 +410,6 @@ export default function TestimonialsSection() {
           </div>
         </div>
 
-        {/* ── Bottom CTA strip ─────────────────────────────────────────────────── */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={cls("tm-fade-up tm-d600")} style={{
-            marginTop: 64,
-            padding: "32px 36px",
-            borderRadius: 20,
-            border: "1px solid rgba(0,0,0,0.1)",
-            background: "rgba(0,0,0,0.1)",
-            display: "flex",
-            flexWrap: "wrap",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: 20 }}>
-            <div>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: 18, fontWeight: 700, color: "#000", letterSpacing: "-0.03em", margin: "0 0 5px 0" }}>
-                Lihat bagaimana pengguna memakai alur Kahade
-              </p>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: 13.5, color: "rgba(0,0,0,0.1)", margin: 0 }}>
-                Daftar gratis, mulai bertransaksi dengan aman hari ini juga.
-              </p>
-            </div>
-            <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-              <Link href={homeAnchors.cta} style={{
-                display: "inline-flex", alignItems: "center", gap: 8,
-                padding: "12px 24px",
-                background: "#000", color: "#fff",
-                borderRadius: 12, fontSize: 13.5, fontWeight: 700,
-                fontFamily: "var(--font-sans)", textDecoration: "none",
-                letterSpacing: "-0.02em",
-                transition: "all .2s" }}
-                onMouseOver={(e: React.MouseEvent<HTMLAnchorElement>) => { e.currentTarget.style.background = "#1a1a1a"; e.currentTarget.style.transform = "translateY(-1px)"; }}
-                onMouseOut={(e: React.MouseEvent<HTMLAnchorElement>) => { e.currentTarget.style.background = "#000"; e.currentTarget.style.transform = "none"; }}
-              >
-                Mulai Gratis
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 7h8M7 3l4 4-4 4" /></svg>
-              </Link>
-              <Link href={supportLinks.contact} style={{
-                display: "inline-flex", alignItems: "center", gap: 8,
-                padding: "12px 24px",
-                background: "transparent", color: "rgba(0,0,0,0.1)",
-                border: "1.5px solid rgba(0,0,0,0.1)",
-                borderRadius: 12, fontSize: 13.5, fontWeight: 600,
-                fontFamily: "var(--font-sans)", textDecoration: "none",
-                transition: "all .2s" }}
-                onMouseOver={(e: React.MouseEvent<HTMLAnchorElement>) => { e.currentTarget.style.borderColor = "rgba(0,0,0,0.1)"; e.currentTarget.style.color = "#000"; }}
-                onMouseOut={(e: React.MouseEvent<HTMLAnchorElement>) => { e.currentTarget.style.borderColor = "rgba(0,0,0,0.1)"; e.currentTarget.style.color = "rgba(0,0,0,0.1)"; }}
-              >
-                Baca Lebih Banyak Ulasan
-              </Link>
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* Responsive toggle script */}

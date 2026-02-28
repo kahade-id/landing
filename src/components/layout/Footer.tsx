@@ -13,11 +13,7 @@ interface FooterLink {
   status?: string;
 }
 
-interface QuickLink {
-  icon: ReactNode;
-  label: string;
-  href: string;
-}
+interface QuickLink { icon: ReactNode; label: string; href: string; }
 
 // ─── Abstract SVG Background ───────────────────────────────────────────────
 const AbstractBg = () => (
@@ -84,13 +80,6 @@ const quickLinks: QuickLink[] = [
   { icon: <ActivitySmallIcon />, label: "Status Sistem", href: supportLinks.status },
 ];
 
-const stats = [
-  { value: "Escrow", label: "Alur Transparan" },
-  { value: "KYC",    label: "Verifikasi Bertahap" },
-  { value: "24/7",    label: "Monitoring Sistem" },
-  { value: "Support",  label: "Tim Bantuan" },
-];
-
 // ─── Footer Component ─────────────────────────────────────────────────────────
 export default function Footer() {
   const [openSection, setOpenSection] = useState<string | null>(null);
@@ -102,20 +91,6 @@ export default function Footer() {
   return (
     <footer className="relative bg-white border-t border-black/10 overflow-hidden font-sans">
       <AbstractBg />
-
-      {/* Stats Bar */}
-      <div className="relative z-10 border-b border-black/[0.08]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-black/[0.08]">
-            {stats.map((stat, i) => (
-              <div key={i} className="px-6 py-5 flex flex-col items-center md:items-start gap-0.5">
-                <span className="text-2xl font-bold tracking-tight text-black leading-none">{stat.value}</span>
-                <span className="text-xs text-black/45 font-medium tracking-wide uppercase mt-1">{stat.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
 
       {/* Main Footer */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-10">

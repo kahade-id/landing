@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useRef, useState, type RefObject } from "react";
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
@@ -89,25 +88,6 @@ function useInView(threshold = 0.15): [RefObject<any>, boolean] {
     return () => obs.disconnect();
   }, [threshold]);
   return [ref, inView];
-}
-
-// ─── useCounter Hook ──────────────────────────────────────────────────────────
-function useCounter(target: number, duration = 1600, start = false) {
-  const [value, setValue] = useState(0);
-  useEffect(() => {
-    if (!start) return;
-    let startTime: number | null = null;
-    const step = (ts: number) => {
-      if (!startTime) startTime = ts;
-      const p = Math.min((ts - startTime) / duration, 1);
-      const ease = p < 0.5 ? 2 * p * p : -1 + (4 - 2 * p) * p;
-      setValue(Math.floor(ease * target));
-      if (p < 1) requestAnimationFrame(step);
-      else setValue(target);
-    };
-    requestAnimationFrame(step);
-  }, [start, target, duration]);
-  return value;
 }
 
 // ─── Security Shield Visualization ───────────────────────────────────────────
@@ -199,7 +179,7 @@ const UptimeBar = ({ inView }: { inView: boolean }) => {
           className="rounded-sm"
           style={{
             width: 7, height: 20,
-            background: w.partial ? "rgba(0,0,0,0.1)" : w.filled ? "rgba(0,0,0,0.1)" : "rgba(0,0,0,0.1)",
+            background: w.partial ? "rgba(0,0,0,0.32)" : w.filled ? "rgba(0,0,0,0.78)" : "rgba(0,0,0,0.08)",
             opacity: inView ? 1 : 0,
             transition: `opacity .3s ${.01 * i}s` }}
         />
@@ -295,9 +275,6 @@ export default function SecuritySection() {
   const [vizRef, vizInView] = useInView(0.2);
   const [certRef, certInView] = useInView(0.15);
 
-  const uptime = useCounter(9999, 1800, inView);
-  const threats = useCounter(2847, 2000, inView);
-  const response = useCounter(280, 1500, inView);
 
   const cls = (base: string, visible: boolean, delay = ""): string =>
     `${base} ${visible ? "sv" : ""} ${delay}`;
@@ -343,29 +320,6 @@ export default function SecuritySection() {
           <p className={`${cls("sec-fade-up", inView, "sec-d3")} mt-3 text-xs text-black/35 max-w-2xl mx-auto`}>
             Angka dan visual pada bagian ini digunakan sebagai ilustrasi produk dan operasional, bukan pernyataan sertifikasi atau jaminan legal tertentu.
           </p>
-        </div>
-
-        {/* ── Live Stats Bar ────────────────────────────────────────────── */}
-        <div className={`${cls("sec-fade-up", inView, "sec-d3")} grid grid-cols-3 gap-px bg-black/8 rounded-2xl overflow-hidden border border-black/8 mb-16 lg:mb-20`}>
-          {[
-            { label: "Ketersediaan", value: uptime, suffix: "", prefix: "", note: " skor internal" },
-            { label: "Sinyal Ditinjau", value: threats, suffix: "+", prefix: "", note: " contoh volume" },
-            { label: "Waktu Respons", value: response, suffix: "m", prefix: "", note: " penanganan awal" },
-          ].map((s, i) => (
-            <div key={i} className="bg-white px-4 sm:px-8 py-6 sm:py-8 flex flex-col items-center text-center">
-              <div className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-black tabular-nums leading-none"
-                style={{ fontFamily: "var(--font-sans)" }}>
-                {s.prefix}
-                <span className={cls("sec-counter-anim", inView)}>
-                  {s.value.toLocaleString()}
-                </span>
-                {s.suffix}
-              </div>
-              <div className="text-[11px] sm:text-xs text-black/40 font-medium mt-1.5 leading-snug">
-                {s.label}<span className="text-black/25">{s.note}</span>
-              </div>
-            </div>
-          ))}
         </div>
 
         {/* ── Main Content Grid ────────────────────────────────────────── */}
@@ -470,19 +424,7 @@ export default function SecuritySection() {
           </div>
         </div>
 
-        {/* ── Bottom CTA ────────────────────────────────────────────────── */}
-        <div className={`${cls("sec-fade-up", certInView, "sec-d6")} mt-16 text-center`}>
-          <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-black rounded-2xl px-8 py-6 text-white">
-            <div className="text-left">
-              <div className="font-bold text-base" style={{ fontFamily: "var(--font-sans)" }}>Lihat Pusat Status & Bantuan</div>
-              <div className="text-[12.5px] text-white/50 mt-0.5">Pelajari bagaimana alur bantuan, status layanan, dan komunikasi operasional disusun.</div>
-            </div>
-            <Link href="/status"
-              className="sec-shimmer-btn relative flex-shrink-0 bg-white text-black text-sm font-bold px-5 py-2.5 rounded-xl hover:bg-white/90 transition-colors whitespace-nowrap">
-              Buka status layanan →
-            </Link>
-          </div>
-        </div>
+
 
       </div>
     </section>
