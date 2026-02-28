@@ -9,11 +9,41 @@ export const site = {
   email: "halo@kahade.id",
   phone: "+62 21 1234 5678",
   address: "Jakarta, Indonesia",
+  location: "Jakarta, Indonesia",
   socials: {
     instagram: "https://instagram.com/kahade.id",
     twitter: "https://twitter.com/kahade_id",
     linkedin: "https://linkedin.com/company/kahade",
   },
+} as const;
+
+/** Anchor links for sections on the home page */
+export const homeAnchors = {
+  home:         "/",
+  platform:     "/#platform",
+  howItWorks:   "/#cara-kerja",
+  pricing:      "/#harga",
+  testimonials: "/#testimoni",
+  security:     "/#keamanan",
+  faq:          "/#faq",
+  cta:          "/#mulai",
+} as const;
+
+/** Links to support / company pages */
+export const supportLinks = {
+  docs:         "/docs",
+  status:       "/status",
+  support:      "/support",
+  contact:      "/contact",
+  about:        "/about",
+  careers:      "/careers",
+  blog:         "/blog",
+  partners:     "/partners",
+  privacy:      "/privacy",
+  terms:        "/terms",
+  cookies:      "/cookies",
+  supportEmail: `mailto:${site.email}`,
+  phone:        `tel:${site.phone.replace(/\s/g, "")}`,
 } as const;
 
 export function createPageMetadata({
