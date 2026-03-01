@@ -4,6 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { site, supportLinks } from "@/lib/site";
+interface FooterLink {
+  label: string;
+  href: string;
+  badge?: string;
+}
 
 const footerLinks = {
   Platform: [
