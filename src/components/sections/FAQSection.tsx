@@ -44,7 +44,7 @@ function FAQItem({ faq, index, inView }: { faq: (typeof faqs)[number]; index: nu
     <div className={`faq-item faq-fade-up ${inView ? "fv" : ""} ${delayClass} px-0 border-b border-black/10 ${index === 0 ? "border-t" : ""}`}>
       <button onClick={() => setOpen(!open)} id={buttonId} className="w-full flex items-center justify-between py-5 text-left gap-4 group" aria-expanded={open} aria-controls={panelId}>
         <div className="flex items-start gap-3 flex-1 min-w-0">
-          <span className="text-xs font-bold text-black/20 tabular-nums mt-0.5 w-5 flex-shrink-0" className="font-sans">{String(index + 1).padStart(2, "0")}</span>
+          <span className="text-xs font-bold text-black/20 tabular-nums mt-0.5 w-5 flex-shrink-0 font-sans">{String(index + 1).padStart(2, "0")}</span>
           <span className={`text-base sm:text-base font-semibold leading-snug transition-colors ${open ? "text-black" : "text-black/75 group-hover:text-black"}`}>{faq.q}</span>
         </div>
         <div className={`flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center transition-colors ${open ? "bg-black" : "bg-black/[.05] group-hover:bg-black/10"}`}>
