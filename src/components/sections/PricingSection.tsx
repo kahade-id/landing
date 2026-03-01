@@ -179,89 +179,96 @@ function useInView(threshold = 0.12): [RefObject<any>, boolean] {
 
 // ─── Fee Calculator ───────────────────────────────────────────────────────────
 function FeeCalculator() {
-  const [rawInput, setRawInput] = useState("1000000");
-  const [sliderVal, setSliderVal] = useState(1_000_000);
-  const [animKey, setAnimKey]   = useState(0);
-  const [activePreset, setActivePreset] = useState<number | null>(null);
+  const [amount, setAmount]           = useState(1_000_000);
+  const [animKey, setAnimKey]         = useState(0);
+  const [activePreset, setActivePreset] = useState<number | null>(1_000_000);
+  const [inputFocused, setInputFocused] = useState(false);
+  const [inputRaw, setInputRaw]       = useState("");
 
-  const amount = parseFloat(rawInput.replace(/\D/g, "")) || 0;
-  const fee    = calcFee(amount);
-  const net    = Math.max(0, amount - fee);
-  const pct    = amount > 0 ? (fee / amount) * 100 : 0;
-  const isMin  = amount > 0 && fee <= FEE_MIN + 1;
-  const isMax  = fee >= FEE_MAX - 1;
-  const sliderPct = Math.min(100, (sliderVal / SLIDER_MAX) * 100);
+  const fee   = calcFee(amount);
+  const net   = Math.max(0, amount - fee);
+  const pct   = amount > 0 ? (fee / amount) * 100 : 0;
+  const isMin = amount > 0 && fee <= FEE_MIN + 1;
+  const isMax = fee >= FEE_MAX - 1;
+  const sliderPct = Math.min(100, (amount / SLIDER_MAX) * 100);
 
-  const triggerAnim = () => setAnimKey(k => k + 1);
+  const applyAmount = (val: number) => {
+    setAmount(val);
+    setAnimKey(k => k + 1);
+  };
 
-  const handleInput = (v: string) => {
-    const num = v.replace(/\D/g, "");
-    setRawInput(num);
-    setSliderVal(Math.min(SLIDER_MAX, parseFloat(num) || 0));
+  const applyPreset = (p: typeof PRESETS[0]) => {
+    applyAmount(p.val);
+    setActivePreset(p.val);
+    setInputRaw("");
+  };
+
+  const handleInputChange = (v: string) => {
+    const num = parseFloat(v.replace(/\D/g, "")) || 0;
+    setInputRaw(v.replace(/\D/g, ""));
     setActivePreset(null);
-    triggerAnim();
+    applyAmount(Math.min(SLIDER_MAX, num));
   };
 
   const handleSlider = (v: string) => {
     const n = parseFloat(v);
-    setSliderVal(n);
-    setRawInput(String(Math.round(n)));
+    applyAmount(n);
     setActivePreset(null);
-    triggerAnim();
+    setInputRaw(String(Math.round(n)));
   };
 
-  const applyPreset = (p: { label: string; val: number }) => {
-    setRawInput(String(p.val));
-    setSliderVal(p.val);
-    setActivePreset(p.val);
-    triggerAnim();
-  };
-
-  // track fill for slider
   const trackStyle = {
-    background: `linear-gradient(to right, rgba(255,255,255,.7) 0%, rgba(255,255,255,.7) ${sliderPct}%, rgba(255,255,255,.15) ${sliderPct}%, rgba(255,255,255,.15) 100%)` };
+    background: `linear-gradient(to right,
+      rgba(255,255,255,.75) 0%,
+      rgba(255,255,255,.75) ${sliderPct}%,
+      rgba(255,255,255,.14) ${sliderPct}%,
+      rgba(255,255,255,.14) 100%)`,
+  };
+
+  const displayInput = inputFocused
+    ? (inputRaw || (amount > 0 ? String(amount) : ""))
+    : (amount > 0 ? amount.toLocaleString("id-ID") : "");
 
   return (
-    <div className="pr-calc-card">
-      {/* Calc BG */}
+    <div className="pr-calc-card" style={{ height: "100%" }}>
+      {/* Decorative BG */}
       <svg className="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style={{ borderRadius: "var(--radius-card)" }}>
         <defs>
-          <radialGradient id="calc-rg" cx="25%" cy="30%" r="55%">
-            <stop offset="0%" stopColor="#fff" stopOpacity=".055" />
+          <radialGradient id="calc-rg2" cx="20%" cy="25%" r="60%">
+            <stop offset="0%" stopColor="#fff" stopOpacity=".06" />
             <stop offset="100%" stopColor="#fff" stopOpacity="0" />
           </radialGradient>
         </defs>
-        <pattern id="calc-dot" width="24" height="24" patternUnits="userSpaceOnUse">
-          <circle cx=".8" cy=".8" r=".8" fill="rgba(255,255,255,.06)" />
+        <pattern id="calc-dot2" width="20" height="20" patternUnits="userSpaceOnUse">
+          <circle cx=".7" cy=".7" r=".7" fill="rgba(255,255,255,.055)" />
         </pattern>
-        <rect width="100%" height="100%" fill="url(#calc-dot)" />
-        <rect width="100%" height="100%" fill="url(#calc-rg)" />
-        <circle cx="-3%" cy="-5%" r="200" fill="none" stroke="rgba(255,255,255,.06)" strokeWidth=".7" />
-        <circle cx="-3%" cy="-5%" r="140" fill="none" stroke="rgba(255,255,255,.05)" strokeWidth=".6" />
-        <circle cx="103%" cy="108%" r="200" fill="none" stroke="rgba(255,255,255,.05)" strokeWidth=".7" />
+        <rect width="100%" height="100%" fill="url(#calc-dot2)" />
+        <rect width="100%" height="100%" fill="url(#calc-rg2)" />
+        <circle cx="-4%" cy="-4%" r="220" fill="none" stroke="rgba(255,255,255,.06)" strokeWidth=".8" />
+        <circle cx="-4%" cy="-4%" r="150" fill="none" stroke="rgba(255,255,255,.04)" strokeWidth=".6" />
+        <circle cx="104%" cy="110%" r="220" fill="none" stroke="rgba(255,255,255,.05)" strokeWidth=".8" />
       </svg>
 
-      <div className="relative z-10 p-7 sm:p-9">
-        {/* Header */}
-        <div className="mb-7">
-          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6 }}>
-            <div style={{ width: 32, height: 32, borderRadius: "var(--radius-sm)", background: "rgba(255,255,255,.1)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="rgba(255,255,255,.75)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="2" y="3" width="12" height="10" rx="1.5" />
-                <path d="M2 6h12M6 9h1M9 9h1" />
-              </svg>
-            </div>
-            <span style={{ fontWeight: 700, letterSpacing: "-.02em" }}>
-              Kalkulator Fee
-            </span>
+      <div className="relative z-10" style={{ padding: "28px 28px 26px", display: "flex", flexDirection: "column", gap: 0 }}>
+
+        {/* ── Header ───────────────────────────────────────────────────────── */}
+        <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 6 }}>
+          <div className="icon-box-sm" style={{ background: "rgba(255,255,255,.1)" }}>
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="rgba(255,255,255,.8)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="2" y="3" width="12" height="10" rx="1.5"/><path d="M2 6h12M5.5 10h1.5M8.5 10H10"/>
+            </svg>
           </div>
-          <p style={{ color: "rgba(255,255,255,.38)" }}>
-            Masukkan nominal transaksi untuk menghitung fee secara real-time.
-          </p>
+          <div>
+            <p style={{ fontWeight: 700, letterSpacing: "-.02em", margin: 0, lineHeight: 1.2 }}>Kalkulator Fee</p>
+            <p style={{ fontSize: "var(--text-xs)", color: "rgba(255,255,255,.35)", margin: 0, marginTop: 2 }}>Hitung biaya transaksi secara real-time</p>
+          </div>
         </div>
 
-        {/* Preset chips */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 7, marginBottom: 20 }}>
+        {/* Divider */}
+        <div style={{ height: 1, background: "rgba(255,255,255,.08)", margin: "18px 0" }}/>
+
+        {/* ── Preset chips ─────────────────────────────────────────────────── */}
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 18 }}>
           {PRESETS.map((p) => (
             <button
               key={p.val}
@@ -271,146 +278,113 @@ function FeeCalculator() {
           ))}
         </div>
 
-        {/* Input */}
-        <div className="pr-input-wrap mb-4">
-          <label htmlFor="fee-calculator-input" className="sr-only">Nominal transaksi</label>
+        {/* ── Input field ──────────────────────────────────────────────────── */}
+        <div className="pr-input-wrap" style={{ marginBottom: 14 }}>
+          <label htmlFor="calc-input-v2" className="sr-only">Nominal transaksi</label>
           <span className="pr-input-prefix">Rp</span>
           <input
-            id="fee-calculator-input"
+            id="calc-input-v2"
             aria-label="Nominal transaksi"
             className="pr-input"
             type="text"
             inputMode="numeric"
             placeholder="0"
-            value={rawInput ? parseInt(rawInput).toLocaleString("id-ID") : ""}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInput(e.target.value)}
+            value={displayInput}
+            onFocus={() => { setInputFocused(true); setInputRaw(amount > 0 ? String(amount) : ""); }}
+            onBlur={() => setInputFocused(false)}
+            onChange={(e) => handleInputChange(e.target.value)}
           />
         </div>
 
-        {/* Slider */}
-        <div style={{ marginBottom: 28, paddingBottom: 4 }}>
+        {/* ── Slider ───────────────────────────────────────────────────────── */}
+        <div style={{ marginBottom: 22 }}>
           <input
             className="pr-range"
-            type="range"
-            min="0"
-            max={SLIDER_MAX}
-            step="50000"
-            value={sliderVal}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleSlider(e.target.value)}
+            type="range" min="0" max={SLIDER_MAX} step="50000"
+            value={amount}
+            onChange={(e) => handleSlider(e.target.value)}
             style={trackStyle}
           />
-          <div style={{ display: "flex", justifyContent: "space-between", marginTop: 8 }}>
-            {[0, 25, 50, 75, 100].map((p) => (
-              <span key={p} style={{ color: "rgba(255,255,255,.22)" }}>
-                {fmtShort((SLIDER_MAX * p) / 100)}
-              </span>
+          <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6 }}>
+            {["Rp 0", "Rp 25jt", "Rp 50jt", "Rp 75jt", "Rp 100jt"].map((l) => (
+              <span key={l} style={{ fontSize: "var(--text-2xs)", color: "rgba(255,255,255,.2)" }}>{l}</span>
             ))}
           </div>
         </div>
 
-        {/* Results grid */}
-        <div
-          key={animKey}
-          className="pr-result-anim"
-          style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 18 }}
-        >
-          {/* Fee */}
-          <div className="pr-result-box" style={{ gridColumn: "1 / -1" }}>
-            <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 8, flexWrap: "wrap" }}>
-              <div>
-                <p style={{ fontWeight: 600, color: "rgba(255,255,255,.35)", margin: "0 0 5px 0", textTransform: "uppercase", letterSpacing: ".1em" }}>
-                  Platform Fee
-                </p>
-                <p style={{ fontSize: "clamp(26px,4vw,38px)", fontWeight: 800, letterSpacing: "-.04em", lineHeight: 1 }}>
-                  Rp {fmt(fee)}
-                </p>
-              </div>
-              <div className="text-right">
-                {isMin && (
-                  <span style={{ fontWeight: 600, color: "rgba(255,255,255,.45)", background: "rgba(255,255,255,.08)", padding: "4px 9px", display: "inline-block" }}>
-                    Fee Minimum
-                  </span>
-                )}
-                {isMax && (
-                  <span style={{ fontWeight: 600, color: "rgba(255,255,255,.45)", background: "rgba(255,255,255,.08)", padding: "4px 9px", display: "inline-block" }}>
-                    Fee Maksimum 🎉
-                  </span>
-                )}
+        {/* ── Result cards ─────────────────────────────────────────────────── */}
+        <div key={animKey} className="pr-result-anim" style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+
+          {/* Main fee result */}
+          <div className="pr-result-box" style={{ padding: "18px 20px" }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
+              <span style={{ fontSize: "var(--text-2xs)", fontWeight: 700, color: "rgba(255,255,255,.35)", textTransform: "uppercase", letterSpacing: ".1em" }}>
+                Platform Fee
+              </span>
+              <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                {isMin && <span style={{ fontSize: "var(--text-xs)", fontWeight: 600, color: "rgba(255,255,255,.45)", background: "rgba(255,255,255,.08)", padding: "3px 8px", borderRadius: "var(--radius-full)" }}>Min</span>}
+                {isMax && <span style={{ fontSize: "var(--text-xs)", fontWeight: 600, color: "rgba(255,255,255,.45)", background: "rgba(255,255,255,.08)", padding: "3px 8px", borderRadius: "var(--radius-full)" }}>Maks 🎉</span>}
                 {!isMin && !isMax && amount > 0 && (
-                  <span style={{ fontWeight: 600, color: "rgba(255,255,255,.4)" }}>
-                    {pct.toFixed(2)}%
-                  </span>
+                  <span style={{ fontSize: "var(--text-xs)", fontWeight: 600, color: "rgba(255,255,255,.4)" }}>{pct.toFixed(2)}%</span>
                 )}
               </div>
             </div>
-
-            {/* Visual bar */}
-            {amount > 0 && (
-              <div className="mt-3.5">
-                <div style={{ height: 3, background: "rgba(255,255,255,.1)", overflow: "hidden" }}>
-                  <div style={{
-                    height: "100%", background: "rgba(255,255,255,.6)",
-                    width: `${Math.min(100, pct / 2.5 * 100)}%`,
-                    transition: "width .35s cubic-bezier(.22,.68,0,1.1)" }} />
-                </div>
-                <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6 }}>
-                  <span style={{ color: "rgba(255,255,255,.22)" }}>0%</span>
-                  <span style={{ color: "rgba(255,255,255,.22)" }}>2,5% (maks)</span>
-                </div>
-              </div>
-            )}
+            <p style={{ fontSize: "clamp(26px,4vw,36px)", fontWeight: 800, letterSpacing: "-.04em", lineHeight: 1, margin: 0 }}>
+              Rp {fmt(fee)}
+            </p>
+            {/* Fee ratio bar */}
+            <div style={{ marginTop: 12, height: 3, background: "rgba(255,255,255,.08)", borderRadius: "var(--radius-full)", overflow: "hidden" }}>
+              <div style={{
+                height: "100%", background: "rgba(255,255,255,.55)",
+                borderRadius: "var(--radius-full)",
+                width: `${Math.min(100, pct / 2.5 * 100)}%`,
+                transition: "width .4s var(--ease-spring)",
+              }}/>
+            </div>
+            <div style={{ display: "flex", justifyContent: "space-between", marginTop: 5 }}>
+              <span style={{ fontSize: "var(--text-2xs)", color: "rgba(255,255,255,.2)" }}>0%</span>
+              <span style={{ fontSize: "var(--text-2xs)", color: "rgba(255,255,255,.2)" }}>2,5% maks</span>
+            </div>
           </div>
 
-          {/* Nominal */}
-          <div className="pr-result-box">
-            <p style={{ fontWeight: 600, color: "rgba(255,255,255,.3)", margin: "0 0 6px 0", textTransform: "uppercase", letterSpacing: ".1em" }}>
-              Nominal
-            </p>
-            <p style={{ fontWeight: 700, color: "rgba(255,255,255,.7)", letterSpacing: "-.03em" }}>
-              Rp {fmt(amount)}
-            </p>
-          </div>
-
-          {/* Penjual terima */}
-          <div className="pr-result-box">
-            <p style={{ fontWeight: 600, color: "rgba(255,255,255,.3)", margin: "0 0 6px 0", textTransform: "uppercase", letterSpacing: ".1em" }}>
-              Penjual Terima
-            </p>
-            <p style={{ fontWeight: 700, color: amount > 0 ? "#fff" : "rgba(255,255,255,.3)", letterSpacing: "-.03em" }}>
-              Rp {fmt(net)}
-            </p>
+          {/* Two sub-results side by side */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+            <div className="pr-result-box" style={{ padding: "14px 16px" }}>
+              <p style={{ fontSize: "var(--text-2xs)", fontWeight: 700, color: "rgba(255,255,255,.3)", textTransform: "uppercase", letterSpacing: ".1em", margin: "0 0 6px 0" }}>
+                Nominal
+              </p>
+              <p style={{ fontSize: "var(--text-lg)", fontWeight: 700, color: "rgba(255,255,255,.65)", letterSpacing: "-.03em", margin: 0 }}>
+                {fmtShort(amount)}
+              </p>
+            </div>
+            <div className="pr-result-box" style={{ padding: "14px 16px" }}>
+              <p style={{ fontSize: "var(--text-2xs)", fontWeight: 700, color: "rgba(255,255,255,.3)", textTransform: "uppercase", letterSpacing: ".1em", margin: "0 0 6px 0" }}>
+                Penjual Terima
+              </p>
+              <p style={{ fontSize: "var(--text-lg)", fontWeight: 700, color: amount > 0 ? "#fff" : "rgba(255,255,255,.3)", letterSpacing: "-.03em", margin: 0 }}>
+                {fmtShort(net)}
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Fee formula */}
-        <div style={{
-          borderTop: "1px solid rgba(255,255,255,.07)",
-          paddingTop: 18,
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 12,
-          alignItems: "center",
-          justifyContent: "space-between" }}>
-          <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+        {/* ── Formula chips ─────────────────────────────────────────────────── */}
+        <div style={{ borderTop: "1px solid rgba(255,255,255,.07)", paddingTop: 16, marginTop: 16, display: "flex", alignItems: "center", flexWrap: "wrap", gap: 8, justifyContent: "space-between" }}>
+          <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
             {[
               { label: "Rate", val: "2,5%" },
-              { label: "Min", val: "Rp 2.500" },
-              { label: "Maks", val: "Rp 250.000" },
+              { label: "Min",  val: "Rp 2.500" },
+              { label: "Maks", val: "Rp 250rb" },
             ].map((t) => (
-              <div key={t.label} style={{
-                display: "flex", alignItems: "center", gap: 5,
-                padding: "5px 10px", borderRadius: "var(--radius-xs)",
-                background: "rgba(255,255,255,.06)",
-                border: "1px solid rgba(255,255,255,.08)"
-              }}>
-                <span style={{ fontWeight: 600, color: "rgba(255,255,255,.3)", textTransform: "uppercase", letterSpacing: ".08em" }}>{t.label}</span>
-                <span style={{ fontWeight: 700, color: "rgba(255,255,255,.65)" }}>{t.val}</span>
+              <div key={t.label} className="formula-chip">
+                <span className="chip-label">{t.label}</span>
+                <span className="chip-val">{t.val}</span>
               </div>
             ))}
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
             <InfoIcon />
-            <span style={{ color: "rgba(255,255,255,.25)" }}>Fee dibayar oleh pembeli</span>
+            <span style={{ fontSize: "var(--text-xs)", color: "rgba(255,255,255,.22)" }}>Fee dibayar pembeli</span>
           </div>
         </div>
       </div>
