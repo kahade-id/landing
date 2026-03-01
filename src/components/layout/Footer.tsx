@@ -76,7 +76,9 @@ export default function Footer() {
                     <li key={link.label}>
                       <Link href={link.href} className="inline-flex items-center gap-2 text-sm text-black/58 transition hover:text-black">
                         <span>{link.label}</span>
-                        {link.badge ? <span className="meta-chip min-h-[22px] px-2 text-[9px]">{link.badge}</span> : null}
+                        {"badge" in link && link.badge ? (
+  <span className="meta-chip min-h-[22px] px-2 text-[9px]">{link.badge}</span>
+) : null}
                       </Link>
                     </li>
                   ))}
