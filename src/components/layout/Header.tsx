@@ -27,7 +27,7 @@ const ArrowRight = ({ size = 13 }: { size?: number }) => (
 );
 
 const MenuIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
     <line x1="3" y1="6" x2="17" y2="6" />
     <line x1="3" y1="10" x2="17" y2="10" />
     <line x1="3" y1="14" x2="17" y2="14" />
@@ -35,7 +35,7 @@ const MenuIcon = () => (
 );
 
 const CloseIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
     <line x1="5" y1="5" x2="15" y2="15" />
     <line x1="15" y1="5" x2="5" y2="15" />
   </svg>
@@ -348,9 +348,9 @@ export default function Header() {
               <Image
                 src="/favicon.svg"
                 alt="Kahade logo"
-                width={40}
-                height={40}
-                className="w-full h-full object-contain"
+                width={34}
+                height={34}
+                className="w-[34px] h-[34px] object-contain"
                 priority
               />
             </div>
@@ -427,10 +427,6 @@ export default function Header() {
               <span className="text-2xs font-semibold text-black/45 tracking-wide">Sistem Aktif</span>
             </div>
 
-            <Link href={supportLinks.contact} className="hidden md:inline-flex btn-secondary btn-sm">
-              Hubungi Tim
-            </Link>
-
             <Link href={homeAnchors.cta} className="hidden md:inline-flex btn-primary btn-sm items-center gap-2 group">
               Mulai Transaksi
               <ArrowRight />
@@ -439,7 +435,7 @@ export default function Header() {
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-expanded={mobileOpen}
-              className="md:hidden w-9 h-9 flex items-center justify-center rounded-lg text-black/60 hover:text-black hover:bg-black/5 transition-all"
+              className="md:hidden w-10 h-10 flex items-center justify-center rounded-lg text-black/60 hover:text-black hover:bg-black/5 transition-all"
               aria-label="Toggle menu"
             >
               {mobileOpen ? <CloseIcon /> : <MenuIcon />}
