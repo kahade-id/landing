@@ -103,11 +103,12 @@ export default function Footer() {
                       <ul className="space-y-2">
                         {links.map((link) => (
                           <li key={link.label}>
-                            <Link href={link.href} className="inline-flex items-center gap-2 text-sm text-black/58">
-                              <span>{link.label}</span>
-                              {link.badge ? <span className="meta-chip min-h-[22px] px-2 text-[9px]">{link.badge}</span> : null}
-                            </Link>
-                          </li>
+                           <Link href={link.href} className="inline-flex items-center gap-2 text-sm text-black/58">
+                            <span>{link.label}</span>
+                             {"badge" in link && link.badge ? (
+                               <span className="meta-chip min-h-[22px] px-2 text-[9px]">{link.badge}</span>) : null}
+                                 </Link>
+                                  </li>
                         ))}
                       </ul>
                     </div>
