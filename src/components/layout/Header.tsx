@@ -27,10 +27,10 @@ const ArrowRight = ({ size = 13 }: { size?: number }) => (
 );
 
 const MenuIcon = () => (
-  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-    <line x1="3" y1="6" x2="17" y2="6" />
-    <line x1="3" y1="10" x2="17" y2="10" />
-    <line x1="3" y1="14" x2="17" y2="14" />
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="3" y1="6" x2="21" y2="6" />
+    <line x1="3" y1="12" x2="21" y2="12" />
+    <line x1="3" y1="18" x2="21" y2="18" />
   </svg>
 );
 
@@ -429,13 +429,12 @@ export default function Header() {
 
             <Link href={homeAnchors.cta} className="hidden md:inline-flex btn-primary btn-sm items-center gap-2 group">
               Mulai Transaksi
-              <ArrowRight />
             </Link>
 
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-expanded={mobileOpen}
-              className="md:hidden w-10 h-10 flex items-center justify-center rounded-lg text-black/60 hover:text-black hover:bg-black/5 transition-all"
+              className="md:hidden w-10 h-10 flex items-center justify-center rounded-lg text-black hover:text-black hover:bg-black/5 transition-all"
               aria-label="Toggle menu"
             >
               {mobileOpen ? <CloseIcon /> : <MenuIcon />}
@@ -472,7 +471,7 @@ export default function Header() {
             </nav>
             <div className="flex flex-col gap-2.5 mt-5">
               <Link href={homeAnchors.cta} className="w-full py-3 text-center btn-primary flex items-center justify-center gap-2">
-                Mulai Transaksi <ArrowRight />
+                Mulai Transaksi
               </Link>
             </div>
             <div className="mt-5 pt-4 border-t border-black/[0.08] flex flex-wrap gap-x-4 gap-y-1.5">

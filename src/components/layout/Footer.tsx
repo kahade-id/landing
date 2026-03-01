@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import type { ReactNode } from "react";
-import { homeAnchors, supportLinks } from "@/lib/site";
+import { site, supportLinks } from "@/lib/site";
 
 // ─── Types ─────────────────────────────────────────────────────────────────
 interface FooterLink {
@@ -17,25 +17,23 @@ interface FooterLink {
 interface QuickLink { icon: ReactNode; label: string; href: string; }
 
 // ─── Utility Icons ───────────────────────────────────────────────────────────
-const MailIcon = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 6h16v12H4z" /><path d="M4 8l8 6 8-6" /></svg>);
-const PhoneIcon = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.63 2.62a2 2 0 0 1-.45 2.11L8 9.91a16 16 0 0 0 6.09 6.09l1.46-1.29a2 2 0 0 1 2.11-.45c.84.3 1.72.51 2.62.63A2 2 0 0 1 22 16.92z" /></svg>);
-const DocsIcon = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><path d="M14 2v6h6" /><path d="M8 13h8" /><path d="M8 17h5" /></svg>);
-const LifeBuoyIcon = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="4" /><path d="M4.93 4.93l4.24 4.24M14.83 14.83l4.24 4.24M14.83 9.17l4.24-4.24M9.17 14.83l-4.24 4.24" /></svg>);
-const ActivitySmallIcon = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" /></svg>);
+const InstagramIcon = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5" /><circle cx="12" cy="12" r="4.2" /><circle cx="18" cy="6.2" r="1" fill="currentColor" stroke="none" /></svg>);
+const XIcon = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4l16 16M20 4L9.5 14.5M14.5 9.5L4 20" /></svg>);
+const LinkedInIcon = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="3" /><path d="M8 11v5M8 8.3v.1M12 16v-2.7c0-1.7 2-1.8 2 0V16M12 13.4c0-3 5-3.3 5 0V16" /></svg>);
+const YoutubeIcon = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="6" width="18" height="12" rx="3" /><path d="M10 9.5l5 2.5-5 2.5z" fill="currentColor" stroke="none" /></svg>);
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const footerLinks: Record<string, FooterLink[]> = {
-  Platform:   [{ label: "Cara Kerja", href: homeAnchors.howItWorks }, { label: "Fitur Escrow", href: homeAnchors.platform }, { label: "Dashboard", href: homeAnchors.cta }, { label: "API Developer", href: supportLinks.docs, badge: "Docs" }, { label: "Status Sistem", href: supportLinks.status, status: "online" }],
-  Keamanan:   [{ label: "Proteksi Dana", href: homeAnchors.security }, { label: "Verifikasi KYC", href: supportLinks.support }, { label: "Enkripsi Data", href: homeAnchors.security }, { label: "Laporan Bug", href: supportLinks.contact }, { label: "Audit Keamanan", href: supportLinks.status }],
-  Perusahaan: [{ label: "Tentang Kami", href: supportLinks.about }, { label: "Karir", href: supportLinks.careers, badge: "Hiring" }, { label: "Blog", href: supportLinks.blog }, { label: "Press Kit", href: supportLinks.about }, { label: "Partner", href: supportLinks.partners }],
-  Bantuan:    [{ label: "Pusat Bantuan", href: supportLinks.support }, { label: "Kebijakan Privasi", href: supportLinks.privacy }, { label: "Syarat & Ketentuan", href: supportLinks.terms }, { label: "Kebijakan Refund", href: supportLinks.terms }, { label: "Hubungi Kami", href: supportLinks.contact }],
+  Platform:   [{ label: "Web App", href: supportLinks.docs }, { label: "Mobile Apps", href: supportLinks.docs }, { label: "Blog", href: supportLinks.blog }],
+  Dukungan:   [{ label: "Pusat Bantuan", href: supportLinks.support }, { label: "Hubungi Kami", href: supportLinks.contact }, { label: "FAQ", href: supportLinks.support }, { label: "Masukan", href: supportLinks.contact }],
+  Perusahaan: [{ label: "Tentang Kami", href: supportLinks.about }, { label: "Karir", href: supportLinks.careers }, { label: "Press Kit", href: supportLinks.about }, { label: "Mitra", href: supportLinks.partners }],
+  Legal:      [{ label: "Ketentuan Layanan", href: supportLinks.terms }, { label: "Kebijakan Privasi", href: supportLinks.privacy }, { label: "Kebijakan Cookie", href: supportLinks.cookies }, { label: "Lisensi", href: supportLinks.terms }],
 };
 
 const quickLinks: QuickLink[] = [
-  { icon: <MailIcon />, label: "Email Support", href: supportLinks.supportEmail },
-  { icon: <PhoneIcon />, label: "Telepon", href: supportLinks.phone },
-  { icon: <DocsIcon />, label: "Dokumentasi", href: supportLinks.docs },
-  { icon: <LifeBuoyIcon />, label: "Pusat Bantuan", href: supportLinks.support },
-  { icon: <ActivitySmallIcon />, label: "Status Sistem", href: supportLinks.status },
+  { icon: <InstagramIcon />, label: "Instagram", href: site.socials.instagram },
+  { icon: <XIcon />, label: "X / Twitter", href: site.socials.twitter },
+  { icon: <LinkedInIcon />, label: "LinkedIn", href: site.socials.linkedin },
+  { icon: <YoutubeIcon />, label: "YouTube", href: supportLinks.blog },
 ];
 
 // ─── Footer Component ─────────────────────────────────────────────────────────

@@ -1096,6 +1096,11 @@ h1, h2, h3, .font-display { font-family: var(--font-display); }
   to { width: var(--target-width); }
 }
 
+@keyframes heroLogoMarquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
 /* ── Auto-play animations (above-fold, no IntersectionObserver needed) ──────── */
 /* These start immediately on mount — unlike .anim-up which waits for .in-view  */
 .hero-anim-up { opacity: 0; animation: fadeUp .70s var(--ease-spring) forwards; }
@@ -1157,6 +1162,25 @@ h1, h2, h3, .font-display { font-family: var(--font-display); }
 }
 .hero-reg-logo:hover { opacity: .78; transform: translateY(-1px); }
 .hero-reg-logo img { width: 100%; height: 100%; object-fit: contain; filter: grayscale(1); }
+
+.hero-reg-logo-marquee {
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+}
+.hero-reg-logo-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: heroLogoMarquee 16s linear infinite;
+}
+.hero-reg-logo-mobile {
+  flex: 0 0 auto;
+  width: 124px;
+  height: 42px;
+  margin-right: 14px;
+  opacity: .62;
+}
 
 @media (max-width: 768px) {
   .hero-visual    { display: none !important; }
