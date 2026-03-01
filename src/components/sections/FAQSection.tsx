@@ -93,9 +93,6 @@ export default function FAQSection() {
           <h2 className={`${cls("faq-fade-up", inView, "faq-d1")} text-4xl sm:text-5xl lg:text-5xl font-extrabold text-black leading-[1.1] tracking-tight mb-5`} >
             Pertanyaan <span className="text-black/30">yang Sering Ditanyakan</span>
           </h2>
-          <p className={`${cls("faq-fade-up", inView, "faq-d2")} text-sm text-black/45 leading-relaxed max-w-xl mx-auto`}>
-            Tidak menemukan jawaban yang Anda cari? Tim kami siap membantu 24 jam.
-          </p>
         </div>
 
         <div className="max-w-4xl mx-auto">

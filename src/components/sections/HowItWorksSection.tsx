@@ -232,13 +232,6 @@ export default function HowItWorksSection() {
 
         {/* ── Header ────────────────────────────────────────────────────── */}
         <div style={{ textAlign: "center", marginBottom: 56 }}>
-          <div style={{ display: "flex", justifyContent: "center", marginBottom: 20, opacity: 0, animation: inView ? "fadeUp var(--duration-anim) 0s var(--ease-spring) forwards" : "none" }}>
-            <div className="section-eyebrow">
-              <span className="ping-dot" style={{ color: "var(--color-ink-45)" }}/>
-              5 Langkah Sederhana
-            </div>
-          </div>
-
           <div style={{ opacity: 0, animation: inView ? "fadeUp var(--duration-anim) .10s var(--ease-spring) forwards" : "none" }}>
             <h2 style={{ fontSize: "clamp(30px,5vw,60px)", fontWeight: 800, letterSpacing: "-.04em", lineHeight: 1.06, margin: "0 auto 18px", maxWidth: 600 }}>
               Dari Kesepakatan
@@ -247,11 +240,6 @@ export default function HowItWorksSection() {
             </h2>
           </div>
 
-          <div style={{ opacity: 0, animation: inView ? "fadeUp var(--duration-anim) .20s var(--ease-spring) forwards" : "none" }}>
-            <p style={{ fontSize: "clamp(14px,1.5vw,16.5px)", color: "var(--color-ink-45)", lineHeight: 1.78, maxWidth: 460, margin: "0 auto" }}>
-              Proses escrow yang sederhana, transparan, dan terlindungi di setiap tahapnya. Tidak perlu saling percaya buta — sistem yang menjaminnya.
-            </p>
-          </div>
         </div>
 
         {/* ── Progress track (desktop) ──────────────────────────────────── */}

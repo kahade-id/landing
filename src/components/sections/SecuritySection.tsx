@@ -121,12 +121,6 @@ export default function SecuritySection() {
         <div className="relative z-10">
           {/* Header */}
           <header className="mx-auto max-w-3xl text-center">
-            <div className="inline-flex items-center gap-2 mb-5 px-3.5 py-2 rounded-full border border-white/10 bg-white/5">
-              <span className="ping-dot text-white" aria-hidden="true" />
-              <span className="text-2xs font-semibold tracking-widest uppercase text-white/50">
-                Keamanan Platform
-              </span>
-            </div>
             <h2
               className="text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl"
               style={{ letterSpacing: "-0.04em" }}
@@ -135,9 +129,6 @@ export default function SecuritySection() {
               <span className="text-white/35">Berlapis</span>{" "}
               untuk Setiap Transaksi
             </h2>
-            <p className="mt-5 text-base text-white/50 leading-relaxed max-w-xl mx-auto">
-              Kahade dirancang dengan pendekatan keamanan berlapis — dari verifikasi identitas hingga enkripsi dana — agar setiap transaksi berjalan aman dan transparan.
-            </p>
           </header>
 
           <div className="mt-10 sm:mt-12">
