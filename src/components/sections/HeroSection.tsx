@@ -245,7 +245,7 @@ export default function HeroSection() {
           <div className="flex flex-col gap-7 max-w-xl">
 
             {/* Trust pill */}
-            <div className="hero-anim-up d-1 inline-flex items-center gap-2 self-start px-3.5 py-2 rounded-full border border-black/10 bg-white/80">
+            <div className="hero-anim-up d-1 inline-flex items-center gap-2 self-center px-3.5 py-2 rounded-full border border-black/10 bg-white/80">
               <span style={{ position: "relative", display: "flex", width: 7, height: 7 }}>
                 <span className="hero-ping-slow" style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "var(--color-ink)", opacity: 0.35 }} />
                 <span style={{ position: "relative", width: 7, height: 7, borderRadius: "50%", background: "var(--color-ink)", display: "block" }} />
@@ -256,7 +256,7 @@ export default function HeroSection() {
             </div>
 
             {/* H1 */}
-            <div className="hero-anim-up d-2">
+            <div className="hero-anim-up d-2 text-center">
               <h1
                 className="hero-h1-size"
                 style={{
@@ -291,7 +291,7 @@ export default function HeroSection() {
 
             {/* Lead text */}
             <p
-              className="hero-anim-up d-3"
+              className="hero-anim-up d-3 text-center mx-auto"
               style={{
                 fontSize: "clamp(15px, 1.6vw, var(--text-lg))",
                 fontWeight: 400,
@@ -343,7 +343,7 @@ export default function HeroSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-14 pb-14">
         <div className="hero-anim-up d-11">
           {/* Label */}
-          <div className="flex items-center gap-4 mb-5">
+          <div className="flex items-center justify-center mb-5">
             <div className="flex-1 h-px bg-ink-9" />
             <span style={{
               fontSize: "var(--text-2xs)",
@@ -352,11 +352,8 @@ export default function HeroSection() {
               textTransform: "uppercase",
               color: "var(--color-ink-30)",
               whiteSpace: "nowrap",
-              display: "flex", alignItems: "center", gap: 6
+              display: "flex", alignItems: "center"
             }}>
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M6 1L2 3.5V6c0 2.2 1.8 4 4 4s4-1.8 4-4V3.5L6 1Z" stroke="var(--color-ink-30)" strokeWidth="1.4" strokeLinejoin="round" />
-              </svg>
               Komitmen pada Kepatuhan
             </span>
             <div className="flex-1 h-px bg-ink-9" />

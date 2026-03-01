@@ -343,13 +343,16 @@ export default function Header() {
         {/* Main Nav Row */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center h-16 gap-8">
           {/* Logo */}
-          <Link href={homeAnchors.home} className="flex items-center gap-2.5 flex-shrink-0 group">
-            <div className="w-8 h-8 rounded-lg overflow-hidden transition-transform duration-200 group-hover:scale-95">
-              <Image src="/favicon.svg" alt="Kahade logo" width={32} height={32} className="w-full h-full" priority />
-            </div>
-            <div className="leading-none">
-              <div className="text-base font-bold text-black tracking-tight">Kahade</div>
-              <div className="text-2xs font-semibold tracking-[0.18em] uppercase text-black/35 mt-0.5">P2P Platform</div>
+          <Link href={homeAnchors.home} className="flex items-center flex-shrink-0 group">
+            <div className="w-10 h-10 flex items-center justify-center transition-transform duration-200 group-hover:scale-95">
+              <Image
+                src="/favicon.svg"
+                alt="Kahade logo"
+                width={40}
+                height={40}
+                className="w-full h-full object-contain"
+                priority
+              />
             </div>
           </Link>
 
@@ -472,9 +475,6 @@ export default function Header() {
               ))}
             </nav>
             <div className="flex flex-col gap-2.5 mt-5">
-              <Link href={supportLinks.contact} className="w-full py-3 text-center btn-secondary">
-                Hubungi Tim
-              </Link>
               <Link href={homeAnchors.cta} className="w-full py-3 text-center btn-primary flex items-center justify-center gap-2">
                 Mulai Transaksi <ArrowRight />
               </Link>
