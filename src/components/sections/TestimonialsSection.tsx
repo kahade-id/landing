@@ -318,7 +318,7 @@ export default function TestimonialsSection() {
       {/* ── Marquee Rows (full width) ─────────────────────────────────────── */}
       {/* FIX: Removed dead #tm-desktop-grid and #tm-mobile-carousel toggle CSS */}
       <div className={cls("tm-fade-in tm-d500")} style={{ marginTop: 64 }}>
-        <div className="tm-mask" className="mb-3.5">
+        <div className="tm-mask mb-3.5">
           <div className="tm-track-l">
             {[...marqueeRow1, ...marqueeRow1].map((t, i) => (
               <MarqueeCard key={`l-${i}`} t={t} />
