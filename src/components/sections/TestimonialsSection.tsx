@@ -300,18 +300,6 @@ export default function TestimonialsSection() {
             </h2>
           </div>
 
-          {/* Sub */}
-          <div className={cls("tm-fade-up tm-d200")}>
-            <p style={{
-              fontSize: "clamp(14px, 1.5vw, 16px)",
-              color: "var(--color-ink-60)",
-              lineHeight: 1.75,
-              maxWidth: 440,
-              margin: "0 auto" }}>
-              Testimoni di bawah merupakan ilustrasi use case umum pengguna escrow untuk membantu memahami alur layanan.
-            </p>
-          </div>
-
         </div>
       </div>
 

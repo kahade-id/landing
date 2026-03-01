@@ -427,16 +427,6 @@ export default function PricingSection() {
               </h2>
             </div>
 
-            <div className={c("pr-fade-up pr-d2")}>
-              <p style={{
-                fontSize: "clamp(14px,1.5vw,16.5px)",
-                color: "rgba(0,0,0,0.45)",
-                lineHeight: 1.78,
-                maxWidth: 460,
-                margin: "0 auto" }}>
-                Tidak ada biaya bulanan, tidak ada biaya setup. Kami hanya mengambil komisi kecil ketika transaksi Anda berhasil diselesaikan.
-              </p>
-            </div>
           </div>
 
           {/* ── Core Pricing Hero ────────────────────────────────────────────── */}
