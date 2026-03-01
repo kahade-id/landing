@@ -272,7 +272,7 @@ function FeeCalculator() {
         </div>
 
         {/* Input */}
-        <div className="pr-input-wrap" className="mb-4">
+        <div className="pr-input-wrap mb-4">
           <label htmlFor="fee-calculator-input" className="sr-only">Nominal transaksi</label>
           <span className="pr-input-prefix">Rp</span>
           <input
@@ -466,7 +466,7 @@ export default function PricingSection() {
           </div>
 
           {/* ── Core Pricing Hero ────────────────────────────────────────────── */}
-          <div className={c("pr-fade-up pr-d2")} className="mb-5">
+          <div className={c("pr-fade-up pr-d2")}>
             <div style={{
               background: "#000",
               borderRadius: "var(--radius-card)",
@@ -574,7 +574,7 @@ export default function PricingSection() {
 
           {/* ── Comparison Table ─────────────────────────────────────────────── */}
           <div className={c("pr-fade-up pr-d5")}>
-            <div className="pr-main-card" className="overflow-hidden">
+            <div className="pr-main-card overflow-hidden">
 
               {/* Table header */}
               <div style={{ padding: "24px 24px 0 24px" }}>
