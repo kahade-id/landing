@@ -86,7 +86,7 @@ export default function FAQSection() {
   const cls = (base: string, visible: boolean, delay = "") => `${base} ${visible ? "fv" : ""} ${delay}`;
 
   return (
-    <section id="faq" ref={sectionRef} className="faq-root relative overflow-hidden py-20 sm:py-28 lg:py-36 bg-surface">
+    <section id="faq" ref={sectionRef} className="faq-root relative overflow-hidden py-20 sm:py-24 lg:py-24 bg-surface">
       <AbstractBg />
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">

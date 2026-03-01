@@ -360,7 +360,7 @@ export default function HeroSection() {
           </div>
 
           {/* Logo row */}
-          <div className="hero-reg-logo-row">
+          <div className="hero-reg-logo-row hidden sm:flex">
             {RegLogos.map((logo, i) => (
               <div
                 key={logo.src}
@@ -370,6 +370,16 @@ export default function HeroSection() {
                 <img src={logo.src} alt={logo.alt} loading="lazy" />
               </div>
             ))}
+          </div>
+
+          <div className="hero-reg-logo-marquee sm:hidden" aria-label="Logo kepatuhan">
+            <div className="hero-reg-logo-track">
+              {[...RegLogos, ...RegLogos].map((logo, i) => (
+                <div key={`${logo.src}-${i}`} className="hero-reg-logo hero-reg-logo-mobile" aria-hidden={i >= RegLogos.length}>
+                  <img src={logo.src} alt={logo.alt} loading="lazy" />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

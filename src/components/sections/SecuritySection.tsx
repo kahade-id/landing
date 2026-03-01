@@ -105,7 +105,7 @@ export default function SecuritySection() {
   const [sectionRef, inView] = useInView(0.1);
 
   return (
-    <section id="keamanan" ref={sectionRef} className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+    <section id="keamanan" ref={sectionRef} className="px-4 py-20 sm:px-6 sm:py-24 lg:px-8">
       <div className="mx-auto w-full max-w-6xl rounded-card bg-[#111] px-6 py-12 text-white shadow-2xl sm:px-10 sm:py-16 lg:px-16 relative overflow-hidden">
 
         {/* Background decoration */}
