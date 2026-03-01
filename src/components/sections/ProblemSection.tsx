@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState, type RefObject } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 // ─── Intersection hook ────────────────────────────────────────────────────────
-function useInView(threshold = 0.05): [RefObject<HTMLElement>, boolean] {
-  const ref = useRef<HTMLElement>(null);
+function useInView(threshold = 0.05): [React.RefObject<HTMLElement | null>, boolean] {
+  const ref = useRef<HTMLElement | null>(null);
   const [iv, setIv] = useState(false);
   useEffect(() => {
     const el = ref.current;
@@ -284,7 +284,7 @@ const sellerProblems = [
 
 // ─── Problem Item ─────────────────────────────────────────────────────────────
 function ProblemItem({ item, active, onClick, isLast }: {
-  item: { id:string; title:string; desc:string; V: () => JSX.Element };
+  item: { id:string; title:string; desc:string; V: () => React.ReactElement };
   active: boolean; onClick: () => void; isLast: boolean;
 }) {
   return (
@@ -368,7 +368,7 @@ export default function ProblemSection() {
         }
       `}</style>
 
-      <section id="problem" ref={sectionRef as RefObject<HTMLElement>} className="ps-root">
+      <section id="problem" ref={sectionRef} className="ps-root">
         <div className="ps-inner">
 
           {/* Header */}
