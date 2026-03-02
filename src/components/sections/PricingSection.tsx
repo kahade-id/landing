@@ -1,335 +1,343 @@
 "use client";
 
-import { useState, useEffect, useRef, type RefObject } from "react";
+import { useState, useEffect, useRef, useCallback, type RefObject } from "react";
 
-// ─── Icons ────────────────────────────────────────────────────────────────────
-const InfoIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="rgba(255,255,255,.4)" strokeWidth="1.4" strokeLinecap="round">
-    <circle cx="7" cy="7" r="6" />
-    <path d="M7 6.5v3.5M7 4.5v.5" />
-  </svg>
-);
+// ─── Constants ────────────────────────────────────────────────────────────────
+const FEE_PCT   = 0.025;
+const FEE_MIN   = 2_500;
+const FEE_MAX   = 250_000;
+const AMOUNT_MAX = 100_000_000;
+
+type Payer = "pembeli" | "penjual" | "split";
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
-const FEE_PCT = 0.025;
-const FEE_MIN = 2500;
-const FEE_MAX = 250000;
-const SLIDER_MAX = 100_000_000;
-
-type FeePayer = "pembeli" | "penjual" | "split";
-
-function calcFee(amount: number) {
-  const raw = amount * FEE_PCT;
-  return Math.max(FEE_MIN, Math.min(FEE_MAX, raw));
+function calcFee(n: number) {
+  return Math.max(FEE_MIN, Math.min(FEE_MAX, n * FEE_PCT));
 }
 
 function fmt(n: number) {
-  if (!n && n !== 0) return "0";
   return Math.round(n).toLocaleString("id-ID");
 }
 
-function fmtShort(n: number) {
-  if (n >= 1_000_000_000) return `Rp ${(n / 1_000_000_000).toFixed(1)}M`;
-  if (n >= 1_000_000) return `Rp ${(n / 1_000_000).toFixed(1)}jt`;
-  if (n >= 1_000) return `Rp ${(n / 1_000).toFixed(0)}rb`;
-  return `Rp ${fmt(n)}`;
+function fmtCompact(n: number) {
+  if (n >= 1_000_000_000) return `Rp\u202F${(n / 1_000_000_000).toFixed(2)}M`;
+  if (n >= 1_000_000)     return `Rp\u202F${(n / 1_000_000).toFixed(2)}jt`;
+  if (n >= 1_000)         return `Rp\u202F${(n / 1_000).toFixed(0)}rb`;
+  return `Rp\u202F${fmt(n)}`;
 }
 
-const PRESETS = [
-  { label: "Rp 100rb", val: 100_000 },
-  { label: "Rp 500rb", val: 500_000 },
-  { label: "Rp 1jt",   val: 1_000_000 },
-  { label: "Rp 5jt",   val: 5_000_000 },
-  { label: "Rp 10jt",  val: 10_000_000 },
-  { label: "Rp 50jt",  val: 50_000_000 },
-];
-
-const FEE_PAYER_OPTIONS: { key: FeePayer; label: string; sub: string }[] = [
-  { key: "pembeli", label: "Pembeli",  sub: "Buyer pays"    },
-  { key: "penjual", label: "Penjual",  sub: "Seller pays"   },
-  { key: "split",   label: "Split",   sub: "Dibagi rata"    },
-];
-
-function getAmounts(amount: number, fee: number, payer: FeePayer) {
+function getFlow(amount: number, fee: number, payer: Payer) {
+  const half = Math.ceil(fee / 2);
   switch (payer) {
-    case "pembeli":
-      return { pembeli: amount + fee, penjual: amount, feePembeli: fee, feePenjual: 0 };
-    case "penjual":
-      return { pembeli: amount, penjual: amount - fee, feePembeli: 0, feePenjual: fee };
-    case "split": {
-      const half = Math.ceil(fee / 2);
-      return { pembeli: amount + half, penjual: amount - (fee - half), feePembeli: half, feePenjual: fee - half };
-    }
+    case "pembeli": return { fromBuyer: amount + fee, toPlatform: fee, toSeller: amount,       buyerFee: fee,  sellerFee: 0 };
+    case "penjual": return { fromBuyer: amount,       toPlatform: fee, toSeller: amount - fee, buyerFee: 0,    sellerFee: fee };
+    case "split":   return { fromBuyer: amount + half, toPlatform: fee, toSeller: amount - (fee - half), buyerFee: half, sellerFee: fee - half };
   }
 }
 
-// ─── Intersection hook ────────────────────────────────────────────────────────
-function useInView(threshold = 0.12): [RefObject<any>, boolean] {
+// ─── Intersection Observer ────────────────────────────────────────────────────
+function useInView(threshold = 0.1): [RefObject<any>, boolean] {
   const ref = useRef<any>(null);
-  const [iv, setIv] = useState(false);
+  const [inView, setInView] = useState(false);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setIv(true); obs.disconnect(); } },
+      ([e]) => { if (e.isIntersecting) { setInView(true); obs.disconnect(); } },
       { threshold }
     );
     obs.observe(el);
     return () => obs.disconnect();
   }, [threshold]);
-  return [ref, iv];
+  return [ref, inView];
+}
+
+// ─── Animated Number ──────────────────────────────────────────────────────────
+function AnimatedNumber({ value, prefix = "" }: { value: number; prefix?: string }) {
+  const [display, setDisplay] = useState(value);
+  const rafRef = useRef<number>(0);
+  const startRef = useRef<number>(0);
+  const fromRef = useRef<number>(value);
+
+  useEffect(() => {
+    cancelAnimationFrame(rafRef.current);
+    fromRef.current = display;
+    startRef.current = performance.now();
+    const duration = 380;
+    const to = value;
+    function tick(now: number) {
+      const t = Math.min(1, (now - startRef.current) / duration);
+      const ease = 1 - Math.pow(1 - t, 3);
+      setDisplay(fromRef.current + (to - fromRef.current) * ease);
+      if (t < 1) rafRef.current = requestAnimationFrame(tick);
+    }
+    rafRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafRef.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value]);
+
+  return <span>{prefix}{fmt(display)}</span>;
 }
 
 // ─── Fee Calculator ───────────────────────────────────────────────────────────
 function FeeCalculator() {
-  const [amount, setAmount]             = useState(1_000_000);
-  const [payer, setPayer]               = useState<FeePayer>("pembeli");
-  const [animKey, setAnimKey]           = useState(0);
-  const [activePreset, setActivePreset] = useState<number | null>(1_000_000);
-  const [inputFocused, setInputFocused] = useState(false);
-  const [inputRaw, setInputRaw]         = useState("");
+  const [amount, setAmount]         = useState(5_000_000);
+  const [payer, setPayer]           = useState<Payer>("pembeli");
+  const [inputFocused, setFocused]  = useState(false);
+  const [inputRaw, setInputRaw]     = useState("");
 
-  const fee     = calcFee(amount);
-  const amounts = getAmounts(amount, fee, payer);
-  const pct     = amount > 0 ? (fee / amount) * 100 : 0;
-  const isMin   = amount > 0 && fee <= FEE_MIN + 1;
-  const isMax   = fee >= FEE_MAX - 1;
+  const fee    = calcFee(amount);
+  const flow   = getFlow(amount, fee, payer);
+  const pct    = amount > 0 ? (fee / amount) * 100 : 0;
+  const isMin  = amount > 0 && fee <= FEE_MIN + 1;
+  const isMax  = fee >= FEE_MAX - 1;
+  const sliderPct = (amount / AMOUNT_MAX) * 100;
 
-  const applyAmount = (val: number) => { setAmount(val); setAnimKey(k => k + 1); };
-  const applyPreset = (p: typeof PRESETS[0]) => { applyAmount(p.val); setActivePreset(p.val); setInputRaw(""); };
-  const handleInputChange = (v: string) => {
-    const num = parseFloat(v.replace(/\D/g, "")) || 0;
-    setInputRaw(v.replace(/\D/g, ""));
-    setActivePreset(null);
-    applyAmount(Math.min(SLIDER_MAX, num));
-  };
-  const handleSlider = (v: string) => {
-    const n = parseFloat(v);
-    applyAmount(n);
-    setActivePreset(null);
-    setInputRaw(String(Math.round(n)));
+  const applyAmount = useCallback((val: number) => {
+    setAmount(Math.min(AMOUNT_MAX, Math.max(0, val)));
+  }, []);
+
+  const handleInput = (v: string) => {
+    const raw = v.replace(/\D/g, "");
+    setInputRaw(raw);
+    applyAmount(parseFloat(raw) || 0);
   };
 
   const displayInput = inputFocused
-    ? (inputRaw || (amount > 0 ? String(amount) : ""))
+    ? inputRaw
     : (amount > 0 ? amount.toLocaleString("id-ID") : "");
 
-  const payerIdx = FEE_PAYER_OPTIONS.findIndex(o => o.key === payer);
-  const payerOpt = FEE_PAYER_OPTIONS[payerIdx];
+  const PAYER_OPTS: { key: Payer; label: string }[] = [
+    { key: "pembeli", label: "Pembeli" },
+    { key: "penjual", label: "Penjual" },
+    { key: "split",   label: "Split"   },
+  ];
+  const payerIdx = PAYER_OPTS.findIndex(o => o.key === payer);
 
   return (
-    <div className="dark-section h-full">
-      <div className="relative z-10 p-6 lg:p-8 flex flex-col gap-0">
+    <div style={{ background: "var(--color-dark-bg)", borderRadius: "var(--radius-card)" }} className="relative overflow-hidden">
+      {/* Subtle noise texture overlay */}
+      <div className="pointer-events-none absolute inset-0" style={{
+        backgroundImage: `radial-gradient(ellipse 80% 60% at 15% 0%, rgba(255,255,255,0.06) 0%, transparent 55%),
+          radial-gradient(ellipse 50% 40% at 90% 100%, rgba(255,255,255,0.04) 0%, transparent 55%)`,
+      }} />
 
-        {/* ── Header ── */}
-        <div className="flex items-center gap-3 mb-5">
-          <div className="icon-box icon-box-sm icon-box-dark">
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="rgba(255,255,255,.8)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="2" y="3" width="12" height="10" rx="1.5" />
-              <path d="M2 6h12M5.5 10h1.5M8.5 10H10" />
-            </svg>
+      {/* Thin horizontal rule at very top — editorial accent */}
+      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.12) 30%, rgba(255,255,255,0.18) 50%, rgba(255,255,255,0.12) 70%, transparent)" }} />
+
+      <div className="relative z-10 p-7 lg:p-10">
+
+        {/* ── Top label ── */}
+        <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center gap-2">
+            <div className="w-1.5 h-1.5 rounded-full bg-white/30" />
+            <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-white/30">Kalkulator Biaya</span>
           </div>
-          <div>
-            <p className="font-bold">Kalkulator Biaya</p>
-            <p className="small text-white/35">Fee 2,5% · min Rp 2.500 · maks Rp 250.000</p>
+          <div className="flex items-center gap-2">
+            {isMin && <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border border-white/15 text-white/35">Min Rp 2.500</span>}
+            {isMax && <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border border-white/15 text-white/35">Maks Rp 250rb</span>}
+            {!isMin && !isMax && amount > 0 && (
+              <span className="text-[10px] font-bold tabular-nums text-white/25">{pct.toFixed(3)}%</span>
+            )}
           </div>
         </div>
 
-        {/* ── Fee Payer Toggle ── */}
-        <div className="mb-5">
-          <p className="small font-bold uppercase tracking-wider text-white/30 mb-3">Biaya ditanggung oleh</p>
-          <div className="relative flex bg-white/[0.04] border border-white/10 rounded-btn p-1 gap-0">
-            {/* Sliding pill */}
-            <div
-              className="absolute top-1 bottom-1 rounded-[10px] bg-white/[0.13] border border-white/20 transition-all duration-300 ease-[cubic-bezier(.22,.68,0,1)]"
+        {/* ── Giant input — the hero ── */}
+        <div className="mb-2">
+          <label htmlFor="calc-amount" className="sr-only">Nominal transaksi</label>
+          <div className="flex items-baseline gap-3">
+            <span style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "clamp(28px, 5vw, 40px)",
+              fontWeight: 300,
+              letterSpacing: "-0.01em",
+              color: "rgba(255,255,255,0.25)",
+            }}>Rp</span>
+            <input
+              id="calc-amount"
+              type="text"
+              inputMode="numeric"
+              placeholder="0"
+              value={displayInput}
+              onFocus={() => { setFocused(true); setInputRaw(amount > 0 ? String(amount) : ""); }}
+              onBlur={() => setFocused(false)}
+              onChange={(e) => handleInput(e.target.value)}
               style={{
-                width: `calc(${100 / 3}% - 2.67px)`,
-                left: `calc(${payerIdx} * ${100 / 3}% + 4px)`,
+                background: "transparent",
+                border: "none",
+                outline: "none",
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(40px, 8vw, 72px)",
+                fontWeight: 800,
+                letterSpacing: "-0.04em",
+                lineHeight: 1,
+                color: amount > 0 ? "rgba(255,255,255,0.92)" : "rgba(255,255,255,0.15)",
+                width: "100%",
+                caretColor: "rgba(255,255,255,0.5)",
               }}
             />
-            {FEE_PAYER_OPTIONS.map((opt) => (
+          </div>
+        </div>
+
+        {/* ── Slider ── */}
+        <div className="mb-10 mt-5">
+          <style>{`
+            #calc-slider { -webkit-appearance: none; appearance: none; width: 100%; height: 2px; background: transparent; cursor: pointer; outline: none; }
+            #calc-slider::-webkit-slider-runnable-track { height: 2px; background: linear-gradient(90deg, rgba(255,255,255,0.75) ${sliderPct}%, rgba(255,255,255,0.12) ${sliderPct}%); border-radius: 9999px; }
+            #calc-slider::-moz-range-track { height: 2px; background: rgba(255,255,255,0.12); border-radius: 9999px; }
+            #calc-slider::-moz-range-progress { height: 2px; background: rgba(255,255,255,0.75); border-radius: 9999px; }
+            #calc-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%; background: #fff; border: 3px solid rgba(0,0,0,0.6); box-shadow: 0 0 0 1px rgba(255,255,255,0.2), 0 2px 8px rgba(0,0,0,0.5); margin-top: -8px; transition: transform 0.15s; }
+            #calc-slider::-webkit-slider-thumb:hover { transform: scale(1.15); }
+            #calc-slider::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: #fff; border: 3px solid rgba(0,0,0,0.6); box-shadow: 0 2px 8px rgba(0,0,0,0.5); }
+          `}</style>
+          <input
+            id="calc-slider"
+            type="range"
+            min={0}
+            max={AMOUNT_MAX}
+            step={100_000}
+            value={amount}
+            onChange={(e) => { applyAmount(parseFloat(e.target.value)); setInputRaw(""); }}
+          />
+          {/* Tick labels */}
+          <div className="flex justify-between mt-3 px-0.5">
+            {["0", "25jt", "50jt", "75jt", "100jt"].map(l => (
+              <span key={l} style={{ fontSize: 10, color: "rgba(255,255,255,0.18)", fontWeight: 600, letterSpacing: "0.04em", fontFamily: "var(--font-sans)" }}>{l}</span>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Divider ── */}
+        <div className="mb-7" style={{ height: 1, background: "rgba(255,255,255,0.07)" }} />
+
+        {/* ── Payer toggle ── */}
+        <div className="mb-8">
+          <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", color: "rgba(255,255,255,0.25)", textTransform: "uppercase", marginBottom: 12 }}>
+            Biaya ditanggung
+          </p>
+          <div className="relative flex" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.09)", borderRadius: "var(--radius-btn)", padding: 4, gap: 0 }}>
+            {/* Sliding highlight */}
+            <div style={{
+              position: "absolute",
+              top: 4, bottom: 4,
+              width: `calc(${100/3}% - 2.7px)`,
+              left: `calc(${payerIdx} * ${100/3}% + 4px)`,
+              background: "rgba(255,255,255,0.11)",
+              border: "1px solid rgba(255,255,255,0.18)",
+              borderRadius: 10,
+              transition: "left 0.3s cubic-bezier(.22,.68,0,1)",
+            }} />
+            {PAYER_OPTS.map((opt) => (
               <button
                 key={opt.key}
-                onClick={() => { setPayer(opt.key); setAnimKey(k => k + 1); }}
-                className="relative z-10 flex-1 flex flex-col items-center gap-0.5 py-2.5 px-1 rounded-[10px] transition-colors duration-150 cursor-pointer"
+                onClick={() => setPayer(opt.key)}
+                style={{ position: "relative", zIndex: 2, flex: 1, padding: "10px 4px", background: "none", border: "none", cursor: "pointer", borderRadius: 10, transition: "color 0.15s" }}
               >
-                <span className={`text-sm font-bold transition-colors duration-150 leading-tight ${payer === opt.key ? "text-white" : "text-white/35"}`}>
+                <span style={{
+                  display: "block",
+                  fontSize: 13,
+                  fontWeight: 700,
+                  fontFamily: "var(--font-sans)",
+                  letterSpacing: "-0.01em",
+                  color: payer === opt.key ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.3)",
+                  transition: "color 0.15s",
+                }}>
                   {opt.label}
-                </span>
-                <span className={`text-[10px] font-medium transition-colors duration-150 ${payer === opt.key ? "text-white/45" : "text-white/18"}`}>
-                  {opt.sub}
                 </span>
               </button>
             ))}
           </div>
         </div>
 
-        <div className="h-px bg-white/8 mb-5" />
-
-        {/* ── Preset chips ── */}
-        <div className="flex flex-wrap gap-2 mb-4">
-          {PRESETS.map((p) => (
-            <button
-              key={p.val}
-              onClick={() => applyPreset(p)}
-              className={`px-3 py-1.5 rounded-btn small font-semibold border transition-all cursor-pointer ${
-                activePreset === p.val
-                  ? "bg-white/15 border-white/30 text-white"
-                  : "bg-white/5 border-white/15 text-white/50 hover:bg-white/10"
-              }`}
-            >
-              {p.label}
-            </button>
-          ))}
-        </div>
-
-        {/* ── Input field ── */}
-        <div className="relative mb-4">
-          <label htmlFor="calc-input" className="sr-only">Nominal transaksi</label>
-          <span className="absolute left-4 top-1/2 -translate-y-1/2 small sm:text-sm font-semibold text-white/35 pointer-events-none">Rp</span>
-          <input
-            id="calc-input"
-            aria-label="Nominal transaksi"
-            type="text"
-            inputMode="numeric"
-            placeholder="0"
-            value={displayInput}
-            onFocus={() => { setInputFocused(true); setInputRaw(amount > 0 ? String(amount) : ""); }}
-            onBlur={() => setInputFocused(false)}
-            onChange={(e) => handleInputChange(e.target.value)}
-            className="calc-input"
-          />
-        </div>
-
-        {/* ── Slider ── */}
-        <div className="mb-6">
-          <input
-            type="range"
-            min="0"
-            max={SLIDER_MAX}
-            step="50000"
-            value={amount}
-            onChange={(e) => handleSlider(e.target.value)}
-            className="w-full h-1 bg-white/20 rounded-full appearance-none cursor-pointer accent-white/70"
-          />
-          <div className="flex justify-between mt-2">
-            {["Rp 0", "Rp 25jt", "Rp 50jt", "Rp 75jt", "Rp 100jt"].map((l) => (
-              <span key={l} className="small text-white/20">{l}</span>
-            ))}
-          </div>
-        </div>
-
         {/* ── Results ── */}
-        <div key={animKey} className="flex flex-col gap-3 animate-[fadeUp_0.3s_ease]">
+        <div style={{
+          background: "rgba(255,255,255,0.04)",
+          border: "1px solid rgba(255,255,255,0.08)",
+          borderRadius: "var(--radius-card)",
+          overflow: "hidden",
+        }}>
 
-          {/* Fee card */}
-          <div className="bg-white/8 border border-white/10 rounded-card p-4 relative overflow-hidden">
-            <div className="flex items-center justify-between mb-2">
-              <span className="small font-bold uppercase tracking-wider text-white/35">Platform Fee</span>
-              <div className="flex items-center gap-2">
-                {isMin && <span className="small font-semibold text-white/45 bg-white/8 px-2 py-0.5 rounded-full">Min</span>}
-                {isMax && <span className="small font-semibold text-white/45 bg-white/8 px-2 py-0.5 rounded-full">Maks</span>}
-                {!isMin && !isMax && amount > 0 && <span className="small font-semibold text-white/40">{pct.toFixed(2)}%</span>}
-              </div>
-            </div>
-            <p className="text-3xl lg:text-4xl font-extrabold tracking-tight mb-3">Rp {fmt(fee)}</p>
-            <progress className="progress-bar-inv" value={Math.min(100, pct / 2.5 * 100)} max={100} />
-            <div className="flex justify-between mt-1.5">
-              <span className="small text-white/20">0%</span>
-              <span className="small text-white/20">2,5% maks</span>
-            </div>
-          </div>
-
-          {/* Money flow breakdown */}
-          <div className="bg-white/5 border border-white/8 rounded-card overflow-hidden">
-
-            {/* Pembeli */}
-            <div className="flex items-center justify-between px-4 py-3.5 border-b border-white/7">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-white/8 border border-white/10 flex items-center justify-center flex-shrink-0">
-                  <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="rgba(255,255,255,.55)" strokeWidth="1.4" strokeLinecap="round">
-                    <circle cx="6.5" cy="4.5" r="2.2" />
-                    <path d="M1.5 11.5c0-2.8 2.2-5 5-5s5 2.2 5 5" />
-                  </svg>
-                </div>
-                <div>
-                  <p className="text-sm font-bold text-white/70">Pembeli transfer</p>
-                  {amounts.feePembeli > 0 && (
-                    <p className="text-[10px] text-white/28 mt-0.5">termasuk fee Rp {fmt(amounts.feePembeli)}</p>
-                  )}
-                </div>
-              </div>
-              <p className="font-bold text-white tracking-tight tabular-nums">{fmtShort(amounts.pembeli)}</p>
-            </div>
-
-            {/* Fee deduction */}
-            <div className="flex items-center gap-3 px-4 py-2.5 border-b border-white/7 bg-white/[0.02]">
-              <div className="w-8 h-8 flex items-center justify-center flex-shrink-0">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="rgba(255,255,255,.22)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M7 2v10M3 10l4-4 4 4" style={{ transform: "rotate(180deg)", transformOrigin: "7px 7px" }} />
-                </svg>
-              </div>
-              <div className="flex-1">
-                <p className="text-[11px] font-bold uppercase tracking-widest text-white/22">Kahade Fee · Ditanggung {payerOpt.label}</p>
-              </div>
-              {payer === "split" && (
-                <div className="flex items-center gap-1 mr-2">
-                  <span className="text-[10px] bg-white/8 border border-white/10 text-white/35 rounded-full px-2 py-0.5 font-bold">50/50</span>
-                </div>
+          {/* Pembeli row */}
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "16px 20px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+            <div>
+              <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)", marginBottom: 4 }}>Pembeli Transfer</p>
+              {flow.buyerFee > 0 && (
+                <p style={{ fontSize: 10, color: "rgba(255,255,255,0.2)", fontFamily: "var(--font-sans)" }}>
+                  nominal Rp {fmt(amount)} + fee Rp {fmt(flow.buyerFee)}
+                </p>
               )}
-              <p className="small font-bold text-white/40">− Rp {fmt(fee)}</p>
             </div>
-
-            {/* Penjual */}
-            <div className="flex items-center justify-between px-4 py-3.5">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-white/8 border border-white/10 flex items-center justify-center flex-shrink-0">
-                  <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="rgba(255,255,255,.55)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="2" y="5" width="9" height="7" rx="1" /><path d="M4.5 5V3.5a2 2 0 014 0V5" />
-                  </svg>
-                </div>
-                <div>
-                  <p className="text-sm font-bold text-white/70">Penjual terima</p>
-                  {amounts.feePenjual > 0 && (
-                    <p className="text-[10px] text-white/28 mt-0.5">setelah potongan Rp {fmt(amounts.feePenjual)}</p>
-                  )}
-                </div>
-              </div>
-              <p className={`font-bold tracking-tight tabular-nums ${amount > 0 ? "text-white" : "text-white/30"}`}>
-                {fmtShort(amounts.penjual)}
-              </p>
-            </div>
+            <p style={{ fontSize: 20, fontWeight: 800, letterSpacing: "-0.03em", color: "rgba(255,255,255,0.85)", fontFamily: "var(--font-display)", whiteSpace: "nowrap" }}>
+              <AnimatedNumber value={flow.fromBuyer} prefix="Rp\u202F" />
+            </p>
           </div>
 
-          {/* Split detail pills — only in split mode */}
-          {payer === "split" && amount > 0 && (
-            <div className="flex gap-2">
-              <div className="flex-1 bg-white/5 border border-white/8 rounded-card px-3 py-2.5 text-center">
-                <p className="text-[10px] font-bold uppercase tracking-wider text-white/25 mb-1">Pembeli tanggung</p>
-                <p className="small font-bold text-white/65">Rp {fmt(amounts.feePembeli)}</p>
+          {/* Kahade fee row — muted center */}
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 20px", borderBottom: "1px solid rgba(255,255,255,0.06)", background: "rgba(0,0,0,0.15)" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <div style={{ width: 20, height: 20, borderRadius: "50%", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <span style={{ color: "rgba(255,255,255,0.3)", fontSize: 10 }}>✕</span>
               </div>
-              <div className="flex items-center justify-center text-white/15 text-xs font-bold">+</div>
-              <div className="flex-1 bg-white/5 border border-white/8 rounded-card px-3 py-2.5 text-center">
-                <p className="text-[10px] font-bold uppercase tracking-wider text-white/25 mb-1">Penjual tanggung</p>
-                <p className="small font-bold text-white/65">Rp {fmt(amounts.feePenjual)}</p>
+              <div>
+                <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.22)" }}>
+                  Kahade Fee{payer === "split" ? " — 50 / 50" : ""}
+                </p>
+                {(isMin || isMax) && (
+                  <p style={{ fontSize: 10, color: "rgba(255,255,255,0.15)", marginTop: 2 }}>{isMin ? "minimum berlaku" : "maksimum berlaku"}</p>
+                )}
+              </div>
+            </div>
+            <p style={{ fontSize: 15, fontWeight: 700, letterSpacing: "-0.02em", color: "rgba(255,255,255,0.38)", fontFamily: "var(--font-display)", whiteSpace: "nowrap" }}>
+              − Rp {fmt(fee)}
+            </p>
+          </div>
+
+          {/* Penjual row */}
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "16px 20px" }}>
+            <div>
+              <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)", marginBottom: 4 }}>Penjual Terima</p>
+              {flow.sellerFee > 0 && (
+                <p style={{ fontSize: 10, color: "rgba(255,255,255,0.2)", fontFamily: "var(--font-sans)" }}>
+                  dipotong fee Rp {fmt(flow.sellerFee)}
+                </p>
+              )}
+            </div>
+            <p style={{ fontSize: 20, fontWeight: 800, letterSpacing: "-0.03em", color: amount > 0 ? "rgba(255,255,255,0.92)" : "rgba(255,255,255,0.2)", fontFamily: "var(--font-display)", whiteSpace: "nowrap" }}>
+              <AnimatedNumber value={flow.toSeller} prefix="Rp\u202F" />
+            </p>
+          </div>
+
+          {/* Split breakdown bar — only shown in split mode */}
+          {payer === "split" && amount > 0 && (
+            <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", padding: "12px 20px", display: "flex", gap: 12 }}>
+              <div style={{ flex: 1, textAlign: "center" }}>
+                <p style={{ fontSize: 10, letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(255,255,255,0.22)", fontWeight: 700, marginBottom: 4 }}>Pembeli tanggung</p>
+                <p style={{ fontSize: 13, fontWeight: 700, color: "rgba(255,255,255,0.5)", fontFamily: "var(--font-sans)" }}>Rp {fmt(flow.buyerFee)}</p>
+              </div>
+              <div style={{ width: 1, background: "rgba(255,255,255,0.06)" }} />
+              <div style={{ flex: 1, textAlign: "center" }}>
+                <p style={{ fontSize: 10, letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(255,255,255,0.22)", fontWeight: 700, marginBottom: 4 }}>Penjual tanggung</p>
+                <p style={{ fontSize: 13, fontWeight: 700, color: "rgba(255,255,255,0.5)", fontFamily: "var(--font-sans)" }}>Rp {fmt(flow.sellerFee)}</p>
               </div>
             </div>
           )}
         </div>
 
-        {/* ── Formula chips ── */}
-        <div className="border-t border-white/7 pt-4 mt-4 flex flex-wrap items-center gap-2 justify-between">
-          <div className="flex gap-2 flex-wrap">
-            {[{ label: "Rate", val: "2,5%" }, { label: "Min", val: "Rp 2.500" }, { label: "Maks", val: "Rp 250rb" }].map((t) => (
-              <div key={t.label} className="flex items-center gap-1.5 px-2 py-1 bg-white/5 rounded-btn border border-white/10">
-                <span className="small text-white/35">{t.label}</span>
-                <span className="small font-semibold text-white/70">{t.val}</span>
+        {/* ── Bottom meta ── */}
+        <div className="flex items-center justify-between mt-5 flex-wrap gap-2">
+          <div className="flex items-center gap-4">
+            {[["Rate", "2,5%"], ["Min", "Rp 2.500"], ["Maks", "Rp 250rb"]].map(([l, v]) => (
+              <div key={l} style={{ display: "flex", alignItems: "center", gap: 5 }}>
+                <span style={{ fontSize: 10, color: "rgba(255,255,255,0.22)", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase" }}>{l}</span>
+                <span style={{ fontSize: 10, color: "rgba(255,255,255,0.45)", fontWeight: 700 }}>{v}</span>
               </div>
             ))}
           </div>
-          <div className="flex items-center gap-1.5">
-            <InfoIcon />
-            <span className="small text-white/25">Fee ditanggung {payerOpt.label.toLowerCase()}</span>
+          <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+            <div style={{ width: 6, height: 6, borderRadius: "50%", background: "rgba(255,255,255,0.2)" }} />
+            <span style={{ fontSize: 10, color: "rgba(255,255,255,0.2)", fontFamily: "var(--font-sans)" }}>
+              Fee ditanggung {payer === "split" ? "bersama" : payer}
+            </span>
           </div>
         </div>
       </div>
@@ -337,16 +345,17 @@ function FeeCalculator() {
   );
 }
 
-// ─── Main Pricing Section ─────────────────────────────────────────────────────
+// ─── Main Section ─────────────────────────────────────────────────────────────
 export default function PricingSection() {
   const [sectionRef, inView] = useInView(0.1);
 
   return (
     <section id="harga" ref={sectionRef} className="section bg-surface">
       <div className="container-base">
-        {/* Header */}
+
+        {/* ── Section header ── */}
         <div className="section-header">
-          <div className={`${inView ? "anim-fade-up delay-1 in-view" : ""}`}>
+          <div className={inView ? "anim-fade-up delay-1 in-view" : ""}>
             <h2 className="section-title">
               Bayar Saat Berhasil.
               <br />
@@ -355,62 +364,39 @@ export default function PricingSection() {
           </div>
         </div>
 
-        {/* Pricing hero */}
-        <div className={`mb-5 ${inView ? "anim-fade-up delay-2 in-view" : ""}`}>
-          <div className="dark-section p-8 lg:p-12">
-            <div className="relative z-10 grid lg:grid-cols-[1fr_auto_1fr] gap-8 lg:gap-12 items-center">
-              <div>
-                <p className="small font-bold uppercase tracking-wider text-white/35 mb-3">Platform Fee</p>
-                <div className="flex items-end gap-2 mb-4">
-                  <span className="text-6xl lg:text-7xl font-extrabold tracking-tight leading-none">2,5</span>
-                  <span className="text-2xl lg:text-3xl font-bold text-white/45 mb-2">%</span>
-                </div>
-                <p className="body text-white/45">
-                  per transaksi sukses
-                  <br />
-                  <span className="text-white/25">min. Rp 2.500 · maks. Rp 250.000</span>
-                </p>
-                <div className="mt-5 flex items-center gap-2 flex-wrap">
-                  {["Pembeli", "Penjual", "Split 50/50"].map((l) => (
-                    <span key={l} className="text-[11px] font-semibold text-white/45 bg-white/7 border border-white/10 px-2.5 py-1 rounded-full">{l}</span>
-                  ))}
-                  <span className="text-[11px] text-white/28">pilih siapa menanggung fee</span>
-                </div>
+        {/* ── Simple fee text — replaces old card ── */}
+        <div className={`text-center mb-10 ${inView ? "anim-fade-up delay-2 in-view" : ""}`}>
+          <p style={{
+            fontSize: "clamp(14px, 2vw, 17px)",
+            color: "var(--color-ink-45)",
+            lineHeight: 1.7,
+            fontFamily: "var(--font-sans)",
+          }}>
+            Platform fee:{" "}
+            <strong style={{ color: "var(--color-ink)", fontWeight: 700 }}>
+              2,5% per transaksi
+            </strong>
+            {" "}(min. Rp 2.500, maks. Rp 250.000)
+          </p>
+          <div className="flex items-center justify-center gap-6 mt-5 flex-wrap">
+            {[
+              ["Biaya Bulanan", "Rp 0"],
+              ["Biaya Setup", "Rp 0"],
+              ["Biaya Dispute", "Rp 0"],
+            ].map(([label, val]) => (
+              <div key={label} className="flex items-center gap-2">
+                <span style={{ fontSize: 13, color: "var(--color-ink-30)" }}>{label}:</span>
+                <span style={{ fontSize: 13, fontWeight: 700, color: "var(--color-ink)" }}>{val}</span>
               </div>
-
-              <div className="hidden lg:block w-px h-32 bg-white/8" />
-
-              <div className="space-y-4">
-                {[
-                  { label: "Biaya Bulanan",  val: "Rp 0", sub: "Selamanya gratis" },
-                  { label: "Biaya Setup",    val: "Rp 0", sub: "Langsung mulai" },
-                  { label: "Biaya Dispute",  val: "Rp 0", sub: "Mediasi gratis" },
-                ].map((p) => (
-                  <div key={p.label} className="flex items-center gap-4">
-                    <div className="w-9 h-9 rounded-btn bg-white/7 flex items-center justify-center flex-shrink-0">
-                      <span className="text-white/50 text-sm">✦</span>
-                    </div>
-                    <div className="flex-1">
-                      <span className="small text-white/35 block">{p.label}</span>
-                      <span className="font-extrabold tracking-tight">{p.val}</span>
-                    </div>
-                    <div className="bg-white/7 rounded-btn px-2.5 py-1">
-                      <span className="small font-bold text-white/45 whitespace-nowrap">{p.sub}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            ))}
           </div>
         </div>
 
-        {/* Calculator */}
-        <div className={`${inView ? "anim-fade-up delay-3 in-view" : ""}`}>
-          <div className="relative overflow-hidden rounded-card">
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_20%,rgba(255,255,255,0.15),transparent_45%),radial-gradient(circle_at_88%_10%,rgba(255,255,255,0.12),transparent_40%),radial-gradient(circle_at_80%_85%,rgba(255,255,255,0.08),transparent_42%)]" />
-            <FeeCalculator />
-          </div>
+        {/* ── Calculator ── */}
+        <div className={`max-w-2xl mx-auto ${inView ? "anim-fade-up delay-3 in-view" : ""}`}>
+          <FeeCalculator />
         </div>
+
       </div>
     </section>
   );
