@@ -376,9 +376,6 @@ export default function Header() {
               <span className="small font-medium text-ink-30">Sistem Aktif</span>
             </div>
 
-            <Link href={homeAnchors.cta} className="hidden md:inline-flex btn btn-primary header-cta-btn">
-              Mulai Transaksi
-            </Link>
 
             <button
               onClick={() => setMobileOpen(!mobileOpen)}

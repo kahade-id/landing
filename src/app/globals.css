@@ -497,11 +497,6 @@ section[id] { scroll-margin-top: 88px; }
   border-bottom: 1px solid var(--color-ink-12);
 }
 
-.header-cta-btn {
-  padding: 7px 14px;
-  font-size: 13px;
-  border-radius: var(--radius-btn);
-}
 
 .nav-link {
   display: flex;
