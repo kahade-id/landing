@@ -352,6 +352,20 @@ section[id] { scroll-margin-top: 88px; }
   pointer-events: none;
 }
 
+/* === Dark Section Typography Context Override === */
+
+.dark-section .card-title {
+  color: var(--color-white);
+}
+
+.dark-section .body {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.dark-section .small {
+  color: rgba(255, 255, 255, 0.6);
+}
+
 /* ═══════════════════════════════════════════════════════════════════════════════
    ANIMATION SYSTEM
    ═══════════════════════════════════════════════════════════════════════════════ */
