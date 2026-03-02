@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useState, useEffect, useRef, type RefObject } from "react";
-import Link from "next/link";
-import { homeAnchors, supportLinks } from "@/lib/site";
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
 const CheckSmall = ({ white = false }) => (
@@ -16,12 +14,6 @@ const ClockIcon = ({ white = false }) => (
   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke={white ? "rgba(255,255,255,.5)" : "rgba(0,0,0,0.5)"} strokeWidth="1.5" strokeLinecap="round">
     <circle cx="7" cy="7" r="5.5" />
     <path d="M7 4v3l2 1.5" />
-  </svg>
-);
-
-const ArrowRight = () => (
-  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M3 7h8M7 3l4 4-4 4" />
   </svg>
 );
 
@@ -421,31 +413,6 @@ export default function HowItWorksSection() {
                 }`}
               />
             ))}
-          </div>
-        </div>
-
-        {/* Bottom CTA */}
-        <div className={`mt-12 lg:mt-16 ${inView ? "anim-fade-up delay-5 in-view" : ""}`}>
-          <div className="dark-section p-8 lg:p-10">
-            <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-6">
-              <div>
-                <p className="dark-cta-title mb-2">
-                  Siap memulai transaksi pertama Anda?
-                </p>
-                <p className="body text-white/45">
-                  Daftar gratis — tidak perlu kartu kredit, tidak ada kontrak.
-                </p>
-              </div>
-              <div className="flex gap-3">
-                <Link href={homeAnchors.pricing} className="btn btn-inv-primary">
-                  Mulai Sekarang
-                  <ArrowRight />
-                </Link>
-                <Link href={supportLinks.contact} className="btn btn-inv-ghost">
-                  Lihat Demo
-                </Link>
-              </div>
-            </div>
           </div>
         </div>
       </div>
