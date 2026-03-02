@@ -193,6 +193,8 @@ export default function HeroSection() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => { setMounted(true); }, []);
 
+  const inViewClass = mounted ? "in-view" : "";
+
   return (
     <section
       id="home"
@@ -213,7 +215,7 @@ export default function HeroSection() {
           {/* Left Column */}
           <div className="flex flex-col gap-6 max-w-xl mx-auto lg:mx-0 text-center lg:text-left">
             {/* Trust pill */}
-            <div className={`anim-fade-up delay-1 inline-flex items-center gap-2 self-center lg:self-start px-3.5 py-2 rounded-full border border-ink-9 bg-white/80`}>
+            <div className={`anim-fade-up delay-1 ${inViewClass} inline-flex items-center gap-2 self-center lg:self-start px-3.5 py-2 rounded-full border border-ink-9 bg-white`}>
               <span className="relative flex w-1.5 h-1.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-ink opacity-35" />
                 <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-ink" />
@@ -224,7 +226,7 @@ export default function HeroSection() {
             </div>
 
             {/* H1 */}
-            <div className="anim-fade-up delay-2">
+            <div className={`anim-fade-up delay-2 ${inViewClass}`}>
               <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-extrabold tracking-tight leading-[1.06]">
                 <span className="block">Kurangi Penipuan.</span>
                 <span className="block">
@@ -234,12 +236,12 @@ export default function HeroSection() {
             </div>
 
             {/* Lead text */}
-            <p className="anim-fade-up delay-3 text-base lg:text-lg text-ink-45 leading-relaxed max-w-md mx-auto lg:mx-0">
+            <p className={`anim-fade-up delay-3 ${inViewClass} text-base lg:text-lg text-ink-45 leading-relaxed max-w-md mx-auto lg:mx-0`}>
               Dana Anda ditahan sementara di escrow dan baru dilepas saat transaksi selesai serta kedua pihak menyetujui hasilnya.
             </p>
 
             {/* CTAs */}
-            <div className="anim-fade-up delay-4 cta-group justify-center lg:justify-start">
+            <div className={`anim-fade-up delay-4 ${inViewClass} cta-group justify-center lg:justify-start`}>
               <Link href={homeAnchors.cta} className="btn btn-primary">
                 Mulai Transaksi
                 <ArrowRightSm />
@@ -252,7 +254,7 @@ export default function HeroSection() {
           </div>
 
           {/* Right Column — UI Mockup */}
-          <div className="anim-fade-up delay-5 flex items-center justify-center relative py-8 min-h-[420px]">
+          <div className={`anim-fade-up delay-5 ${inViewClass} flex items-center justify-center relative py-8 min-h-[420px]`}>
             {/* Outer glow */}
             <div 
               className="absolute inset-0 pointer-events-none"
@@ -272,7 +274,7 @@ export default function HeroSection() {
 
       {/* Regulatory Divider */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pb-12">
-        <div className="anim-fade-up delay-6">
+        <div className={`anim-fade-up delay-6 ${inViewClass}`}>
           {/* Label */}
           <div className="flex items-center justify-center mb-5">
             <div className="flex-1 h-px bg-ink-9" />
@@ -285,7 +287,7 @@ export default function HeroSection() {
             {RegLogos.map((logo, i) => (
               <div
                 key={logo.src}
-                className="anim-fade-up opacity-60 hover:opacity-100 transition-opacity"
+                className={`anim-fade-up ${inViewClass} opacity-60 hover:opacity-100 transition-opacity`}
                 style={{ animationDelay: `${0.8 + i * 0.08}s` }}
               >
                 <img src={logo.src} alt={logo.alt} className="h-8 lg:h-10 w-auto" loading="lazy" />

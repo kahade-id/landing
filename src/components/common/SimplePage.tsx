@@ -38,7 +38,7 @@ export default function SimplePage({
       <Header />
       <main id="main-content">
         {/* Hero Section */}
-        <section className="pt-24 lg:pt-32 pb-16 lg:pb-20 px-4 bg-muted">
+        <section className="pt-24 lg:pt-32 pb-16 lg:pb-20 px-4 bg-surface">
           <div className="max-w-3xl mx-auto text-center">
             {eyebrow && (
               <p className="meta-label mb-4">{eyebrow}</p>
@@ -82,7 +82,7 @@ export default function SimplePage({
         )}
 
         {/* CTA Section */}
-        <section className="py-16 lg:py-20 px-4 bg-muted border-t border-ink-9">
+        <section className="py-16 lg:py-20 px-4 bg-surface border-t border-ink-9">
           <div className="max-w-4xl mx-auto">
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <Link href="/" className="btn btn-primary">

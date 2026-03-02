@@ -93,7 +93,7 @@ export default function FAQSection() {
   const [sectionRef, inView] = useInView(0.08);
 
   return (
-    <section id="faq" ref={sectionRef} className="section bg-muted">
+    <section id="faq" ref={sectionRef} className="section bg-surface">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="section-header mb-10">
