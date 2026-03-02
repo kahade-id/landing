@@ -98,7 +98,6 @@ export default function FAQSection() {
         {/* Header */}
         <div className="section-header mb-10">
           <div className={`${inView ? "anim-fade-up in-view" : ""}`}>
-            <p className="section-eyebrow">FAQ</p>
             <h2 className="section-title">
               Pertanyaan{" "}
               <span className="section-title-muted">yang Sering Ditanyakan</span>
