@@ -190,6 +190,56 @@ const StepCard = ({
 export default function HowItWorksSection() {
   const [sectionRef, inView] = useInView(0.08);
   const [hoveredIdx, setHoveredIdx] = useState(-1);
+  const [activeMobileStep, setActiveMobileStep] = useState(0);
+  const mobileScrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = mobileScrollRef.current;
+    if (!container) return;
+
+    const onScroll = () => {
+      const cards = Array.from(container.querySelectorAll<HTMLElement>("[data-step-card]"));
+      if (!cards.length) return;
+
+      const viewportCenter = container.scrollLeft + container.clientWidth / 2;
+      let nearestIdx = 0;
+      let nearestDistance = Number.POSITIVE_INFINITY;
+
+      cards.forEach((card, idx) => {
+        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+        const distance = Math.abs(cardCenter - viewportCenter);
+        if (distance < nearestDistance) {
+          nearestDistance = distance;
+          nearestIdx = idx;
+        }
+      });
+
+      setActiveMobileStep(nearestIdx);
+    };
+
+    onScroll();
+    container.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+
+    return () => {
+      container.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  const scrollToStep = (idx: number) => {
+    const container = mobileScrollRef.current;
+    if (!container) return;
+
+    const cards = Array.from(container.querySelectorAll<HTMLElement>("[data-step-card]"));
+    const targetCard = cards[idx];
+    if (!targetCard) return;
+
+    container.scrollTo({
+      left: targetCard.offsetLeft - 16,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <section
@@ -278,11 +328,15 @@ export default function HowItWorksSection() {
             Geser untuk melihat semua langkah →
           </p>
 
-          <div className="flex gap-3 overflow-x-auto hide-scrollbar pb-4 snap-x">
+          <div ref={mobileScrollRef} className="flex gap-3 overflow-x-auto hide-scrollbar pb-4 px-4 -mx-4 snap-x snap-mandatory">
             {steps.map((s) => {
               const isF = s.featured;
               return (
-                <div key={s.num} className={`flex-shrink-0 w-[85vw] max-w-[300px] snap-start step-card ${isF ? "step-card-featured" : ""}`}>
+                <div
+                  key={s.num}
+                  data-step-card
+                  className={`!flex-none w-[84vw] max-w-[320px] snap-center step-card ${isF ? "step-card-featured" : ""}`}
+                >
                   {isF && (
                     <div className="absolute inset-0 rounded-card pointer-events-none"
                       style={{ background: "radial-gradient(ellipse 70% 60% at 30% 30%, rgba(255,255,255,.05) 0%, transparent 70%)" }}
@@ -330,10 +384,16 @@ export default function HowItWorksSection() {
 
           {/* Scroll dots */}
           <div className="flex justify-center gap-1.5 mt-4">
-            {steps.map((s, i) => (
-              <div key={i} className={`h-1.5 rounded-full transition-all ${
-                s.featured ? "w-4 bg-ink" : "w-1.5 bg-ink-12"
-              }`} />
+            {steps.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                aria-label={`Lihat langkah ${i + 1}`}
+                onClick={() => scrollToStep(i)}
+                className={`h-1.5 rounded-full transition-all ${
+                  activeMobileStep === i ? "w-4 bg-ink" : "w-1.5 bg-ink-12"
+                }`}
+              />
             ))}
           </div>
         </div>
