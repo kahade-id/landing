@@ -38,12 +38,12 @@ export default function SimplePage({
       <Header />
       <main id="main-content">
         {/* Hero Section */}
-        <section className="pt-24 lg:pt-32 pb-16 lg:pb-20 px-4 bg-surface">
+        <section className="pt-[44px] lg:pt-[48px] pb-16 lg:pb-20 px-4 bg-surface">
           <div className="max-w-3xl mx-auto text-center">
             {eyebrow && (
-              <p className="meta-label mb-4">{eyebrow}</p>
+              <p className="meta-label mb-[10px]">{eyebrow}</p>
             )}
-            <h1 className="inner-hero-title mb-5">
+            <h1 className="inner-hero-title mb-[20px]">
               {title}
             </h1>
             <p className="inner-hero-lead">{description}</p>
