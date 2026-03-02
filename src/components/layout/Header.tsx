@@ -205,11 +205,11 @@ const DropdownPanel = ({ item, isOpen, panelId, buttonId, onNavigate }: Dropdown
 };
 
 // ─── Mobile Nav Item ─────────────────────────────────────────────────────────
-const MobileNavItem = ({ item }: { item: NavItem }) => {
+const MobileNavItem = ({ item, onNavigate }: { item: NavItem; onNavigate: () => void }) => {
   const [open, setOpen] = useState(false);
   if (!item.dropdown) {
     return (
-      <Link href={item.href ?? homeAnchors.home} className="mobile-nav-link block py-3.5 font-medium text-ink-45 hover:text-ink transition-colors border-b border-ink-12">
+      <Link href={item.href ?? homeAnchors.home} onClick={onNavigate} className="mobile-nav-link block py-3.5 font-medium text-ink-45 hover:text-ink transition-colors border-b border-ink-12">
         {item.label}
       </Link>
     );
@@ -230,6 +230,7 @@ const MobileNavItem = ({ item }: { item: NavItem }) => {
             <Link
               key={dropItem.label}
               href={dropItem.href}
+              onClick={onNavigate}
               className="flex items-center gap-3 px-3 py-2.5 rounded-btn hover:bg-ink-4 transition-colors"
             >
               <div className="icon-box icon-box-sm">{dropItem.icon}</div>
@@ -279,6 +280,13 @@ export default function Header() {
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
 
   const clearHoverTimeout = () => {
     if (timeoutRef.current) {
@@ -386,14 +394,14 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-ink-12 px-4 pt-3 pb-6 bg-white">
+        <div className="fixed inset-0 top-16 z-40 md:hidden border-t border-ink-12 px-4 pt-3 pb-6 bg-white overflow-y-auto">
           <nav className="flex flex-col">
             {navItems.map((item) => (
-              <MobileNavItem key={item.label} item={item} />
+              <MobileNavItem key={item.label} item={item} onNavigate={() => setMobileOpen(false)} />
             ))}
           </nav>
           <div className="mt-5">
-            <Link href={homeAnchors.cta} className="w-full btn btn-primary flex items-center justify-center">
+            <Link href={homeAnchors.cta} onClick={() => setMobileOpen(false)} className="w-full btn btn-primary flex items-center justify-center">
               Mulai Transaksi
             </Link>
           </div>
