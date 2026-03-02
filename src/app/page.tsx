@@ -25,14 +25,14 @@ export default function HomePage() {
         {/* ── Cara Kerja (Step-by-step) ─────────────────────────────── */}
         <HowItWorksSection />
 
-        {/* ── Harga & Fee Calculator ────────────────────────────────── */}
-        <PricingSection />
+        {/* ── Keamanan & Sertifikasi ────────────────────────────────── */}
+        <SecuritySection />
 
         {/* ── Testimonials ──────────────────────────────────────────── */}
         <TestimonialsSection />
 
-        {/* ── Keamanan & Sertifikasi ────────────────────────────────── */}
-        <SecuritySection />
+        {/* ── Harga & Fee Calculator ────────────────────────────────── */}
+        <PricingSection />
 
         {/* ── FAQ ───────────────────────────────────────────────────── */}
         <FAQSection />
