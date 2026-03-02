@@ -937,6 +937,14 @@ button:focus:not(:focus-visible) {
   .card-title { font-size: var(--text-xl); }
 }
 
+/* Dense list headings on mobile, while keeping desktop card-title scale. */
+.card-title-mobile-compact {
+  font-size: var(--text-base); /* 15px mobile */
+}
+@media (min-width: 640px) {
+  .card-title-mobile-compact { font-size: var(--text-xl); }
+}
+
 /* ── Body Text Token ────────────────────────────────────────────────────────── */
 /* For main paragraphs and description text. Color inherits from context.      */
 .body {

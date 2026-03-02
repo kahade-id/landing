@@ -51,7 +51,7 @@ function FAQItem({ faq, index, inView }: { faq: (typeof faqs)[number]; index: nu
           <span className="small font-bold text-ink-20 tabular-nums mt-1 w-6 flex-shrink-0">
             {String(index + 1).padStart(2, "0")}
           </span>
-          <span className={`card-title transition-colors ${
+          <span className={`card-title card-title-mobile-compact transition-colors ${
             open ? "text-ink" : "text-ink-60 group-hover:text-ink"
           }`}>
             {faq.q}

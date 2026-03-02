@@ -148,7 +148,7 @@ function ProblemItem({ item, active, onClick }: {
         </span>
 
         <div className="flex-1 min-w-0">
-          <p className={`card-title transition-colors duration-200 ${
+          <p className={`card-title card-title-mobile-compact transition-colors duration-200 ${
             active ? "text-ink" : "text-ink-45"
           }`}>
             {item.title}
