@@ -308,7 +308,7 @@ export default function Header() {
       ref={headerRef}
       className="header"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container-base">
         <div className="flex items-center h-16 gap-6">
           {/* Logo */}
           <Link href={homeAnchors.home} className="flex items-center flex-shrink-0 group">

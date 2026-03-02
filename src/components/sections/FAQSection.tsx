@@ -35,11 +35,12 @@ function useInView(threshold = 0.12): [RefObject<any>, boolean] {
 
 function FAQItem({ faq, index, inView }: { faq: (typeof faqs)[number]; index: number; inView: boolean }) {
   const [open, setOpen] = useState(false);
+  // Map index → delay class (100 ms steps, capped at delay-10)
+  const delayClass = `delay-${Math.min(index, 10)}`;
 
   return (
     <div 
-      className={`accordion-item ${inView ? "anim-fade-up in-view" : ""}`}
-      style={{ animationDelay: `${index * 0.05}s` }}
+      className={`accordion-item ${inView ? `anim-fade-up in-view ${delayClass}` : ""}`}
     >
       <button 
         onClick={() => setOpen(!open)} 
@@ -67,8 +68,7 @@ function FAQItem({ faq, index, inView }: { faq: (typeof faqs)[number]; index: nu
             stroke={open ? "white" : "rgba(0,0,0,0.55)"} 
             strokeWidth="2" 
             strokeLinecap="round"
-            className="transition-transform duration-200"
-            style={{ transform: open ? "rotate(45deg)" : "none" }}
+            className={`transition-transform duration-200 ${open ? "icon-rotate-45" : ""}`}
           >
             <line x1="7" y1="2" x2="7" y2="12" />
             <line x1="2" y1="7" x2="12" y2="7" />
@@ -94,9 +94,9 @@ export default function FAQSection() {
 
   return (
     <section id="faq" ref={sectionRef} className="section bg-surface">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container-narrow">
         {/* Header */}
-        <div className="section-header mb-10">
+        <div className="section-header">
           <div className={`${inView ? "anim-fade-up in-view" : ""}`}>
             <h2 className="section-title">
               Pertanyaan{" "}

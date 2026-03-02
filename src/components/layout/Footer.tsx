@@ -87,12 +87,12 @@ export default function Footer() {
   return (
     <footer className="relative bg-surface border-t border-ink-9">
       {/* Main Footer */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 lg:pt-16 pb-8">
+      <div className="container-base pt-12 lg:pt-16 pb-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8">
           {/* Brand Column */}
           <div className="lg:col-span-4 flex flex-col gap-5">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-ink flex items-center justify-center flex-shrink-0">
+              <div className="w-10 h-10 rounded-sm bg-ink flex items-center justify-center flex-shrink-0">
                 <Image src="/favicon.svg" alt="Kahade" width={28} height={28} className="invert" />
               </div>
               <div>
@@ -188,7 +188,7 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-ink-7">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+        <div className="container-base py-5">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-xs text-ink-35">
               © {new Date().getFullYear()} Kahade. Hak Cipta Dilindungi.

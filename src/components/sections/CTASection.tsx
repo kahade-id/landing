@@ -42,27 +42,18 @@ export default function CTASection() {
     <section
       id="mulai"
       ref={sectionRef}
-      className="relative overflow-hidden bg-dark-bg py-20 lg:py-24"
+      className="section relative overflow-hidden bg-dark-bg"
     >
-      {/* Subtle background pattern */}
-      <div 
-        className="absolute inset-0 pointer-events-none opacity-50"
-        style={{
-          backgroundImage: `radial-gradient(circle at 20% 30%, rgba(255,255,255,.03) 0%, transparent 40%),
-                           radial-gradient(circle at 80% 70%, rgba(255,255,255,.02) 0%, transparent 40%)`
-        }}
-      />
-
       {/* Decorative rings */}
       <div className="absolute -top-20 -left-20 w-80 h-80 border border-white/5 rounded-full pointer-events-none" />
       <div className="absolute -bottom-20 -right-20 w-96 h-96 border border-white/5 rounded-full pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative z-10 container-base text-center">
         {/* Main Headline */}
         <div className={`${inView ? "anim-fade-up delay-2 in-view" : ""}`}>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-white mb-6">
+          <h2 className="section-title-inv">
             <span className="block">Transaksi Aman.</span>
-            <span className="block text-white/35">Dimulai Hari Ini.</span>
+            <span className="block section-title-muted-inv">Dimulai Hari Ini.</span>
           </h2>
         </div>
 

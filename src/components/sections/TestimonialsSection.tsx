@@ -160,9 +160,9 @@ export default function TestimonialsSection() {
       ref={sectionRef}
       className="section bg-surface overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container-base">
         {/* Header */}
-        <div className="section-header mb-12">
+        <div className="section-header">
           <div className={`${inView ? "anim-fade-up in-view" : ""}`}>
             <h2 className="section-title">
               Dipercaya Ratusan Ribu
@@ -176,7 +176,7 @@ export default function TestimonialsSection() {
       <div className={`space-y-4 ${inView ? "anim-fade-in delay-3 in-view" : ""}`}>
         {/* Row 1 - Left */}
         <div className="marquee-mask">
-          <div className="marquee-track" style={{ animationDuration: "50s" }}>
+          <div className="marquee-track marquee-speed-50">
             {[...row1, ...row1, ...row1, ...row1].map((t, i) => (
               <MarqueeCard key={`r1-${i}`} t={t} />
             ))}
@@ -186,8 +186,7 @@ export default function TestimonialsSection() {
         {/* Row 2 - Right */}
         <div className="marquee-mask">
           <div 
-            className="marquee-track" 
-            style={{ animationDuration: "55s", animationDirection: "reverse" }}
+            className="marquee-track marquee-speed-55 marquee-reverse" 
           >
             {[...row2, ...row2, ...row2, ...row2].map((t, i) => (
               <MarqueeCard key={`r2-${i}`} t={t} />

@@ -95,14 +95,14 @@ export default function SecuritySection() {
 
   return (
     <section id="keamanan" ref={sectionRef} className="section bg-surface">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container-base">
         <div className="dark-section p-8 lg:p-12 xl:p-16">
           <div className="relative z-10">
             {/* Header */}
             <header className="text-center mb-10 lg:mb-12">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+              <h2 className="section-title-inv">
                 Keamanan{" "}
-                <span className="text-white/35">Berlapis</span>{" "}
+                <span className="section-title-muted-inv">Berlapis</span>{" "}
                 untuk Setiap Transaksi
               </h2>
             </header>
@@ -115,11 +115,10 @@ export default function SecuritySection() {
               {securityItems.map((item, i) => (
                 <article
                   key={item.title}
-                  className={`max-w-md ${inView ? "anim-fade-up in-view" : ""}`}
-                  style={{ animationDelay: `${i * 0.1}s` }}
+                  className={`max-w-md ${inView ? `anim-fade-up in-view delay-${i}` : ""}`}
                 >
                   <div className="mb-4 text-white/50">{item.icon}</div>
-                  <h3 className="text-xl font-bold tracking-tight mb-3">
+                  <h3 className="section-h3 mb-3">
                     {item.title}
                   </h3>
                   <p className="text-white/50 leading-relaxed">
@@ -138,9 +137,8 @@ export default function SecuritySection() {
                 <div
                   key={cert.label}
                   className={`flex flex-col items-center justify-center gap-1 w-24 h-24 lg:w-28 lg:h-28 rounded-full border border-white/10 bg-white/5 text-center transition-all hover:bg-white/10 hover:border-white/15 ${
-                    inView ? "anim-scale-in in-view" : ""
+                    inView ? `anim-scale-in in-view delay-${4 + i}` : ""
                   }`}
-                  style={{ animationDelay: `${0.4 + i * 0.08}s` }}
                 >
                   <span className="text-sm lg:text-base font-extrabold text-white tracking-tight">
                     {cert.label}
@@ -157,7 +155,7 @@ export default function SecuritySection() {
 
             {/* Bottom CTA */}
             <div className="text-center max-w-xl mx-auto">
-              <h3 className="text-2xl lg:text-3xl font-extrabold tracking-tight mb-4">
+              <h3 className="dark-cta-title mb-4">
                 Aman. Transparan. Terlindungi.
               </h3>
               <p className="text-white/50 leading-relaxed mb-8">

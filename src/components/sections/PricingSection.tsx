@@ -181,7 +181,7 @@ function FeeCalculator() {
         {/* Result cards */}
         <div key={animKey} className="flex flex-col gap-3 animate-[fadeUp_0.3s_ease]">
           {/* Main fee result */}
-          <div className="bg-white/8 border border-white/10 rounded-xl p-4 relative overflow-hidden">
+          <div className="bg-white/8 border border-white/10 rounded-card p-4 relative overflow-hidden">
             <div className="flex items-center justify-between mb-3">
               <span className="text-2xs font-bold uppercase tracking-wider text-white/35">Platform Fee</span>
               <div className="flex items-center gap-2">
@@ -208,11 +208,11 @@ function FeeCalculator() {
 
           {/* Two sub-results */}
           <div className="grid grid-cols-2 gap-3">
-            <div className="bg-white/8 border border-white/10 rounded-xl p-3">
+            <div className="bg-white/8 border border-white/10 rounded-card p-3">
               <p className="text-2xs font-bold uppercase tracking-wider text-white/30 mb-1">Nominal</p>
               <p className="text-lg font-bold text-white/65 tracking-tight">{fmtShort(amount)}</p>
             </div>
-            <div className="bg-white/8 border border-white/10 rounded-xl p-3">
+            <div className="bg-white/8 border border-white/10 rounded-card p-3">
               <p className="text-2xs font-bold uppercase tracking-wider text-white/30 mb-1">Penjual Terima</p>
               <p className={`text-lg font-bold tracking-tight ${amount > 0 ? "text-white" : "text-white/30"}`}>
                 {fmtShort(net)}
@@ -255,7 +255,7 @@ export default function PricingSection() {
       ref={sectionRef}
       className="section bg-surface"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container-base">
         {/* Header */}
         <div className="section-header">
           <div className={`${inView ? "anim-fade-up delay-1 in-view" : ""}`}>
@@ -315,7 +315,7 @@ export default function PricingSection() {
 
         {/* Calculator */}
         <div className={`${inView ? "anim-fade-up delay-3 in-view" : ""}`}>
-          <div className="relative overflow-hidden rounded-[34px]">
+          <div className="relative overflow-hidden rounded-card">
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_20%,rgba(255,255,255,0.15),transparent_45%),radial-gradient(circle_at_88%_10%,rgba(255,255,255,0.12),transparent_40%),radial-gradient(circle_at_80%_85%,rgba(255,255,255,0.08),transparent_42%)]" />
             <FeeCalculator />
           </div>

@@ -30,13 +30,15 @@ const config: Config = {
         "9xl":  ["8rem",    { lineHeight: "1" }],
       },
       borderRadius: {
+        /* Public design tokens — use these in components */
+        btn:  "var(--radius-btn)",   /* all buttons */
+        card: "var(--radius-card)",  /* all cards */
+        full: "var(--radius-full)",  /* pill / badge */
+        /* Internal helpers — layout, icon boxes only */
         xs:   "var(--radius-xs)",
         sm:   "var(--radius-sm)",
         md:   "var(--radius-md)",
         lg:   "var(--radius-lg)",
-        card: "var(--radius-card)",
-        btn:  "var(--radius-btn)",
-        full: "var(--radius-full)",
       },
       colors: {
         ink: {

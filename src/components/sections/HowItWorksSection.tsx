@@ -125,19 +125,18 @@ const StepCard = ({
   onHover: (v: boolean) => void;
 }) => {
   const isFeatured = step.featured;
+  // delayS (seconds float) → nearest 100ms delay class
+  const delayClass = `delay-${Math.round(delayS * 10)}`;
 
   return (
     <div
       onMouseEnter={() => onHover(true)}
       onMouseLeave={() => onHover(false)}
-      className={`step-card ${isFeatured ? "step-card-featured" : ""} ${inView ? "anim-fade-up in-view" : ""}`}
-      style={{ animationDelay: `${delayS}s` }}
+      className={`step-card ${isFeatured ? "step-card-featured" : ""} ${inView ? `anim-fade-up in-view ${delayClass}` : ""}`}
     >
       {/* Featured glow */}
       {isFeatured && (
-        <div className="absolute inset-0 rounded-card pointer-events-none"
-          style={{ background: "radial-gradient(ellipse 70% 60% at 30% 30%, rgba(255,255,255,.05) 0%, transparent 70%)" }}
-        />
+        <div className="absolute inset-0 rounded-card pointer-events-none bg-card-featured-glow" />
       )}
 
       {/* Top row */}
@@ -247,7 +246,7 @@ export default function HowItWorksSection() {
       ref={sectionRef}
       className="section bg-surface"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container-base">
         {/* Header */}
         <div className="section-header">
           <div className={`${inView ? "anim-fade-up in-view" : ""}`}>
@@ -308,8 +307,7 @@ export default function HowItWorksSection() {
               />
               {/* Arrow connector */}
               {i < steps.length - 1 && (
-                <div className={`flex-shrink-0 flex items-center ${inView ? "anim-fade-in in-view" : ""}`}
-                  style={{ animationDelay: `${0.2 + i * 0.08}s` }}
+                <div className={`flex-shrink-0 flex items-center ${inView ? `anim-fade-in in-view delay-${2 + i}` : ""}`}
                 >
                   <div className="w-7 h-7 rounded-full bg-ink-4 border border-ink-9 flex items-center justify-center">
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -338,9 +336,7 @@ export default function HowItWorksSection() {
                   className={`!flex-none w-[84vw] max-w-[320px] snap-center step-card ${isF ? "step-card-featured" : ""}`}
                 >
                   {isF && (
-                    <div className="absolute inset-0 rounded-card pointer-events-none"
-                      style={{ background: "radial-gradient(ellipse 70% 60% at 30% 30%, rgba(255,255,255,.05) 0%, transparent 70%)" }}
-                    />
+                    <div className="absolute inset-0 rounded-card pointer-events-none bg-card-featured-glow" />
                   )}
 
                   <div className="flex items-center gap-2 mb-4">
@@ -403,7 +399,7 @@ export default function HowItWorksSection() {
           <div className="dark-section p-8 lg:p-10">
             <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-6">
               <div>
-                <p className="text-xl lg:text-2xl font-extrabold mb-2">
+                <p className="dark-cta-title mb-2">
                   Siap memulai transaksi pertama Anda?
                 </p>
                 <p className="text-white/45">

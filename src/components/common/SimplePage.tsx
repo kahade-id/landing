@@ -38,8 +38,8 @@ export default function SimplePage({
       <Header />
       <main id="main-content">
         {/* Hero Section */}
-        <section className="pt-[44px] lg:pt-[48px] pb-16 lg:pb-20 px-4 bg-surface">
-          <div className="max-w-3xl mx-auto text-center">
+        <div className="inner-hero">
+          <div className="container-narrow text-center">
             {eyebrow && (
               <p className="meta-label mb-[10px]">{eyebrow}</p>
             )}
@@ -48,23 +48,23 @@ export default function SimplePage({
             </h1>
             <p className="inner-hero-lead">{description}</p>
           </div>
-        </section>
+        </div>
 
         {/* Content Section */}
         {(points.length > 0 || detailTitle || detailBody) && (
-          <section className="py-16 lg:py-20 px-4 bg-surface">
-            <div className="max-w-4xl mx-auto">
+          <section className="section bg-surface">
+            <div className="container-narrow">
               <div className="grid md:grid-cols-2 gap-10 lg:gap-16">
                 {points.length > 0 && (
                   <div>
-                    <h2 className="text-lg font-bold mb-5">Poin Penting</h2>
+                    <h2 className="section-h2">Poin Penting</h2>
                     <ul className="space-y-4">
                       {points.map((point, i) => (
                         <li key={i} className="flex items-start gap-3">
                           <span className="mt-0.5 w-5 h-5 rounded-full bg-ink flex items-center justify-center flex-shrink-0">
                             <CheckIcon />
                           </span>
-                          <span className="text-ink-60 leading-relaxed">{point}</span>
+                          <span className="text-body">{point}</span>
                         </li>
                       ))}
                     </ul>
@@ -72,8 +72,8 @@ export default function SimplePage({
                 )}
                 {(detailTitle || detailBody) && (
                   <div>
-                    {detailTitle && <h2 className="text-lg font-bold mb-4">{detailTitle}</h2>}
-                    {detailBody && <p className="text-ink-60 leading-relaxed">{detailBody}</p>}
+                    {detailTitle && <h2 className="section-h2">{detailTitle}</h2>}
+                    {detailBody && <p className="text-body">{detailBody}</p>}
                   </div>
                 )}
               </div>
@@ -82,8 +82,8 @@ export default function SimplePage({
         )}
 
         {/* CTA Section */}
-        <section className="py-16 lg:py-20 px-4 bg-surface border-t border-ink-9">
-          <div className="max-w-4xl mx-auto">
+        <section className="section bg-surface border-t border-ink-9">
+          <div className="container-narrow">
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <Link href="/" className="btn btn-primary">
                 Mulai Sekarang

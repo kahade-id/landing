@@ -183,9 +183,9 @@ export default function ProblemSection() {
       ref={sectionRef} 
       className="section bg-surface"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container-base">
         {/* Header */}
-        <div className={`section-header mb-12 lg:mb-16 ${inView ? "anim-fade-up in-view" : ""}`}>
+        <div className={`section-header ${inView ? "anim-fade-up in-view" : ""}`}>
           <h2 className="section-title">
             Transaksi Online Penuh Risiko Yang Nyata.
           </h2>
@@ -230,7 +230,7 @@ export default function ProblemSection() {
             {/* Pembeli */}
             <div>
               <p className="meta-label mb-2">Risiko Pembeli</p>
-              <h3 className="text-lg font-semibold tracking-tight text-ink mb-4">
+              <h3 className="section-h3 text-ink mb-4">
                 Uang Pergi, Barang Tak Datang
               </h3>
               <div>
@@ -249,7 +249,7 @@ export default function ProblemSection() {
             {/* Penjual */}
             <div>
               <p className="meta-label mb-2">Risiko Penjual</p>
-              <h3 className="text-lg font-semibold tracking-tight text-ink mb-4">
+              <h3 className="section-h3 text-ink mb-4">
                 Barang Terkirim, Uang Tak Cair
               </h3>
               <div>

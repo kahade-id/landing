@@ -40,13 +40,16 @@
   --color-dark-surface: #141414;
   --color-dark-border: rgba(255,255,255,.08);
 
-  /* Radius (unified) */
+  /* Radius (unified — three public tokens only) */
+  --radius-btn:  14px;   /* all buttons */
+  --radius-card: 20px;   /* all cards */
+  --radius-full: 9999px; /* pill / badge */
+
+  /* Internal radius helpers (layout/icon boxes only, not for components) */
   --radius-xs:   6px;
   --radius-sm:   10px;
   --radius-md:   14px;
   --radius-lg:   18px;
-  --radius-card: 20px;
-  --radius-full: 9999px;
 
   /* Motion */
   --ease-spring: cubic-bezier(.22,.68,0,1.15);
@@ -266,7 +269,7 @@ section[id] { scroll-margin-top: 88px; }
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-btn);
   font-weight: 600;
   font-size: var(--text-base);
   letter-spacing: -0.01em;
@@ -433,13 +436,18 @@ section[id] { scroll-margin-top: 88px; }
 .anim-scale-in { opacity: 0; }
 .anim-scale-in.in-view { animation: scaleIn var(--duration-anim) var(--ease-pop) forwards; }
 
-/* Delay Utilities */
-.delay-1 { animation-delay: 0.1s !important; }
-.delay-2 { animation-delay: 0.2s !important; }
-.delay-3 { animation-delay: 0.3s !important; }
-.delay-4 { animation-delay: 0.4s !important; }
-.delay-5 { animation-delay: 0.5s !important; }
-.delay-6 { animation-delay: 0.6s !important; }
+/* Delay Utilities — maps index → 100 ms step */
+.delay-0  { animation-delay: 0ms    !important; }
+.delay-1  { animation-delay: 100ms  !important; }
+.delay-2  { animation-delay: 200ms  !important; }
+.delay-3  { animation-delay: 300ms  !important; }
+.delay-4  { animation-delay: 400ms  !important; }
+.delay-5  { animation-delay: 500ms  !important; }
+.delay-6  { animation-delay: 600ms  !important; }
+.delay-7  { animation-delay: 700ms  !important; }
+.delay-8  { animation-delay: 800ms  !important; }
+.delay-9  { animation-delay: 900ms  !important; }
+.delay-10 { animation-delay: 1000ms !important; }
 
 /* ═══════════════════════════════════════════════════════════════════════════════
    UTILITY CLASSES
@@ -722,6 +730,97 @@ section[id] { scroll-margin-top: 88px; }
 .border-ink-12 { border-color: var(--color-ink-12); }
 .border-ink-15 { border-color: rgba(10,10,10,0.15); }
 
+/* ── Container Narrow (single-column content: FAQ, legal, etc.) ─────────── */
+.container-narrow {
+  max-width: 48rem; /* 768px = 3xl */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .container-narrow {
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-narrow {
+    padding-left: var(--space-8);
+    padding-right: var(--space-8);
+  }
+}
+/* Standard page container — every section must use this, no custom px/max-w */
+.container-base {
+  max-width: 80rem; /* 1280px = 7xl */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-4);   /* 16px mobile */
+  padding-right: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .container-base {
+    padding-left: var(--space-6);  /* 24px tablet */
+    padding-right: var(--space-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-base {
+    padding-left: var(--space-8);  /* 32px desktop */
+    padding-right: var(--space-8);
+  }
+}
+
+/* ── Hero Title (H1) ────────────────────────────────────────────────────────  */
+/* Use on the main hero H1 only — larger than section-title */
+.hero-title {
+  font-family: var(--font-display, 'Fraunces', Georgia, serif);
+  font-size: clamp(30px, 5vw, 60px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.06;
+  color: var(--color-ink);
+}
+
+/* ── Section H3 (feature/card group titles) ─────────────────────────────── */
+/* Use on all h3 within section content areas (inherits color from parent) */
+.section-h3 {
+  font-size: var(--text-xl);       /* 20px */
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+/* ── Inverted Section Title (dark backgrounds) ───────────────────────────── */
+/* Drop-in replacement for section-title on dark/inverted sections */
+.section-title-inv {
+  font-family: var(--font-display, 'Fraunces', Georgia, serif);
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.06;
+  color: var(--color-surface);
+  margin: 0 auto var(--space-4);
+  max-width: 640px;
+}
+
+.section-title-muted-inv {
+  color: var(--color-white-35);
+}
+
+/* ── Dark CTA Title (inline CTAs inside dark cards) ─────────────────────── */
+/* For h2/h3 in dark-section CTA blocks — smaller than page-level headings */
+.dark-cta-title {
+  font-size: clamp(18px, 3vw, 26px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.18;
+}
+
 /* ── Text Size Utilities ───────────────────────────────────────────────────── */
 .text-2xs { font-size: var(--text-2xs); }
 
@@ -766,4 +865,54 @@ section[id] { scroll-margin-top: 88px; }
 }
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+/* ── Marquee Speed Variants ─────────────────────────────────────────────────── */
+.marquee-speed-50  { animation-duration: 50s; }
+.marquee-speed-55  { animation-duration: 55s; }
+.marquee-reverse   { animation-direction: reverse; }
+
+/* ── Background Helpers (replaces inline radial-gradient styles) ────────────── */
+/* Hero center glow — white radial over grid */
+.bg-hero-center-glow {
+  background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255,255,255,0.95) 0%, transparent 100%);
+}
+
+/* Hero right-column ambient glow */
+.bg-hero-right-glow {
+  background: radial-gradient(ellipse 65% 65% at 55% 50%, var(--color-ink-07) 0%, transparent 70%);
+}
+
+/* Featured step card inner glow */
+.bg-card-featured-glow {
+  background: radial-gradient(ellipse 70% 60% at 30% 30%, rgba(255,255,255,.05) 0%, transparent 70%);
+}
+
+/* ── SVG Icon rotate (accordion toggle) ─────────────────────────────────────── */
+.icon-rotate-45 {
+  transform: rotate(45deg);
+}
+
+/* ── Card Title Token ───────────────────────────────────────────────────────── */
+.card-title {
+  font-size: var(--text-xl);   /* 20px */
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+/* ── Body Text Token ────────────────────────────────────────────────────────── */
+.text-body {
+  font-size: var(--text-base); /* 15px */
+  line-height: 1.7;
+  color: var(--color-ink-60);
+}
+
+/* ── Section H2 for simple pages ────────────────────────────────────────────── */
+.section-h2 {
+  font-size: var(--text-xl);   /* 20px */
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin-bottom: var(--space-5);
 }

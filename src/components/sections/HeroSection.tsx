@@ -203,13 +203,10 @@ export default function HeroSection() {
       <HeroAbstractBg />
 
       {/* Radial fade over grid at center */}
-      <div 
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255,255,255,0.95) 0%, transparent 100%)" }}
-      />
+      <div className="absolute inset-0 pointer-events-none bg-hero-center-glow" />
 
       {/* Main Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 lg:pt-20 pb-0">
+      <div className="relative z-10 container-base pt-16 lg:pt-20 pb-0">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-10 items-center">
 
           {/* Left Column */}
@@ -227,7 +224,7 @@ export default function HeroSection() {
 
             {/* H1 */}
             <div className={`anim-fade-up delay-2 ${inViewClass}`}>
-              <h1 className="text-[32px] sm:text-5xl lg:text-[56px] font-extrabold tracking-tight leading-[1.06]">
+              <h1 className="hero-title">
                 <span className="block">Kurangi Penipuan.</span>
                 <span className="block">
                   Tambah Kepercayaan.
@@ -256,10 +253,7 @@ export default function HeroSection() {
           {/* Right Column — UI Mockup */}
           <div className={`anim-fade-up delay-5 ${inViewClass} flex items-center justify-center relative py-8 min-h-[420px]`}>
             {/* Outer glow */}
-            <div 
-              className="absolute inset-0 pointer-events-none"
-              style={{ background: "radial-gradient(ellipse 65% 65% at 55% 50%, var(--color-ink-7) 0%, transparent 70%)" }}
-            />
+            <div className="absolute inset-0 pointer-events-none bg-hero-right-glow" />
             {/* Spinning rings */}
             <div 
               className="absolute w-80 h-80 border border-dashed border-ink-9 rounded-full pointer-events-none animate-[spin_30s_linear_infinite]"
@@ -273,7 +267,7 @@ export default function HeroSection() {
       </div>
 
       {/* Regulatory Divider */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pb-12">
+      <div className="relative z-10 container-base mt-12 pb-12">
         <div className={`anim-fade-up delay-6 ${inViewClass}`}>
           {/* Label */}
           <div className="flex items-center justify-center mb-5">
@@ -287,8 +281,7 @@ export default function HeroSection() {
             {RegLogos.map((logo, i) => (
               <div
                 key={logo.src}
-                className={`anim-fade-up ${inViewClass} opacity-60 hover:opacity-100 transition-opacity`}
-                style={{ animationDelay: `${0.8 + i * 0.08}s` }}
+                className={`anim-fade-up ${inViewClass} delay-${8 + i} opacity-60 hover:opacity-100 transition-opacity`}
               >
                 <img src={logo.src} alt={logo.alt} className="h-8 lg:h-10 w-auto grayscale" loading="lazy" />
               </div>
