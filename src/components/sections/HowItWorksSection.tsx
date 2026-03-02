@@ -191,6 +191,7 @@ export default function HowItWorksSection() {
   const [hoveredIdx, setHoveredIdx] = useState(-1);
   const [activeMobileStep, setActiveMobileStep] = useState(0);
   const mobileScrollRef = useRef<HTMLDivElement>(null);
+  const touchStartXRef = useRef<number | null>(null);
 
   useEffect(() => {
     const container = mobileScrollRef.current;
@@ -238,6 +239,30 @@ export default function HowItWorksSection() {
       left: targetCard.offsetLeft - 16,
       behavior: "smooth",
     });
+  };
+
+  const handleMobileTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    touchStartXRef.current = e.touches[0]?.clientX ?? null;
+  };
+
+  const handleMobileTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+    const startX = touchStartXRef.current;
+    const endX = e.changedTouches[0]?.clientX ?? null;
+    touchStartXRef.current = null;
+
+    if (startX === null || endX === null) return;
+
+    const deltaX = endX - startX;
+    const swipeThreshold = 30;
+
+    if (Math.abs(deltaX) < swipeThreshold) {
+      scrollToStep(activeMobileStep);
+      return;
+    }
+
+    const direction = deltaX < 0 ? 1 : -1;
+    const nextStep = Math.max(0, Math.min(steps.length - 1, activeMobileStep + direction));
+    scrollToStep(nextStep);
   };
 
   return (
@@ -326,14 +351,19 @@ export default function HowItWorksSection() {
             Geser untuk melihat semua langkah →
           </p>
 
-          <div ref={mobileScrollRef} className="flex gap-3 overflow-x-auto hide-scrollbar pb-4 px-4 -mx-4 snap-x snap-mandatory">
+          <div
+            ref={mobileScrollRef}
+            onTouchStart={handleMobileTouchStart}
+            onTouchEnd={handleMobileTouchEnd}
+            className="flex gap-3 overflow-x-auto hide-scrollbar pb-4 px-4 -mx-4 snap-x snap-mandatory"
+          >
             {steps.map((s) => {
               const isF = s.featured;
               return (
                 <div
                   key={s.num}
                   data-step-card
-                  className={`!flex-none w-[84vw] max-w-[320px] snap-center step-card ${isF ? "step-card-featured" : ""}`}
+                  className={`!flex-none w-[84vw] max-w-[320px] snap-center snap-always step-card ${isF ? "step-card-featured" : ""}`}
                 >
                   {isF && (
                     <div className="absolute inset-0 rounded-card pointer-events-none bg-card-featured-glow" />

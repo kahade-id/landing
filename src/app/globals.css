@@ -355,7 +355,7 @@ section[id] { scroll-margin-top: 88px; }
 /* === Dark Section Typography Context Override === */
 
 .dark-section .card-title {
-  color: var(--color-white);
+  color: var(--color-surface);
 }
 
 .dark-section .body {
@@ -650,6 +650,18 @@ section[id] { scroll-margin-top: 88px; }
   color: var(--color-surface);
 }
 
+.step-card-featured .card-title,
+.step-card-featured .body,
+.step-card-featured .small {
+  color: var(--color-surface);
+}
+
+#mulai .section-title-inv,
+#mulai .section-title-muted-inv,
+#mulai .body {
+  color: var(--color-surface);
+}
+
 /* ── Pricing Card ───────────────────────────────────────────────────────────── */
 .pricing-card {
   background: var(--color-surface);
@@ -907,6 +919,10 @@ button:focus:not(:focus-visible) {
 /* ── SVG Icon rotate (accordion toggle) ─────────────────────────────────────── */
 .icon-rotate-45 {
   transform: rotate(45deg);
+}
+
+.snap-always {
+  scroll-snap-stop: always;
 }
 
 /* ── Card Title Token ───────────────────────────────────────────────────────── */
