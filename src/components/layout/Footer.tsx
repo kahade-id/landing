@@ -97,11 +97,11 @@ export default function Footer() {
               </div>
               <div>
                 <div className="text-xl font-bold tracking-tight">Kahade</div>
-                <div className="text-xs text-ink-40 font-medium tracking-wider uppercase">P2P Escrow Platform</div>
+                <div className="small text-ink-40 font-medium tracking-wider uppercase">P2P Escrow Platform</div>
               </div>
             </div>
 
-            <p className="text-sm text-ink-50 leading-relaxed max-w-sm">
+            <p className="body text-ink-50 max-w-sm">
               Platform escrow peer-to-peer untuk transaksi yang membutuhkan kejelasan alur dana, status real-time, dan pengalaman yang mudah dipahami.
             </p>
 
@@ -124,7 +124,7 @@ export default function Footer() {
           <div className="lg:col-span-8 hidden md:grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
             {Object.entries(footerLinks).map(([category, links]) => (
               <div key={category}>
-                <div className="text-xs font-bold uppercase tracking-wider text-ink mb-4">{category}</div>
+                <div className="small font-bold uppercase tracking-wider text-ink mb-4">{category}</div>
                 <ul className="space-y-2.5">
                   {links.map((link) => (
                     <li key={link.label}>
@@ -134,7 +134,7 @@ export default function Footer() {
                       >
                         <span>{link.label}</span>
                         {link.badge && (
-                          <span className="text-2xs font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full border border-ink-15 text-ink-40">
+                          <span className="small font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full border border-ink-15 text-ink-40">
                             {link.badge}
                           </span>
                         )}
@@ -190,17 +190,17 @@ export default function Footer() {
       <div className="border-t border-ink-7">
         <div className="container-base py-5">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-ink-35">
+            <p className="small text-ink-35">
               © {new Date().getFullYear()} Kahade. Hak Cipta Dilindungi.
             </p>
             <div className="flex items-center gap-4">
-              <Link href={supportLinks.terms} className="text-xs text-ink-35 hover:text-ink transition-colors">
+              <Link href={supportLinks.terms} className="small text-ink-35 hover:text-ink transition-colors">
                 Ketentuan
               </Link>
-              <Link href={supportLinks.privacy} className="text-xs text-ink-35 hover:text-ink transition-colors">
+              <Link href={supportLinks.privacy} className="small text-ink-35 hover:text-ink transition-colors">
                 Privasi
               </Link>
-              <Link href={supportLinks.cookies} className="text-xs text-ink-35 hover:text-ink transition-colors">
+              <Link href={supportLinks.cookies} className="small text-ink-35 hover:text-ink transition-colors">
                 Cookies
               </Link>
             </div>

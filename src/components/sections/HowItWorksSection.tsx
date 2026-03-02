@@ -157,27 +157,27 @@ const StepCard = ({
           isFeatured ? "border-white/10 bg-white/5" : "border-ink-9 bg-ink-4"
         }`}>
           <ClockIcon white={isFeatured} />
-          <span className={`text-2xs font-semibold whitespace-nowrap ${isFeatured ? "text-white/45" : "text-ink-45"}`}>
+          <span className={`small font-semibold whitespace-nowrap ${isFeatured ? "text-white/45" : "text-ink-45"}`}>
             {step.time}
           </span>
         </div>
       </div>
 
-      <h3 className={`text-base font-extrabold tracking-tight mb-2 ${isFeatured ? "text-white" : "text-ink"}`}>
+      <h3 className={`card-title mb-2 ${isFeatured ? "text-white" : "text-ink"}`}>
         {step.label}
       </h3>
       
       <div className={`h-px mb-3 ${isFeatured ? "bg-white/10" : "bg-ink-9"}`} />
       
-      <p className={`text-sm leading-relaxed mb-4 ${isFeatured ? "text-white/65" : "text-ink-45"}`}>
+      <p className={`body mb-4 ${isFeatured ? "text-white/65" : "text-ink-45"}`}>
         {step.desc}
       </p>
       
-      <div className="space-y-2">
+      <div className="stack-sm">
         {step.details.map((d, i) => (
-          <div key={i} className="flex items-center gap-2">
+          <div key={i} className="flex items-center row-gap">
             <CheckSmall white={isFeatured} />
-            <span className={`text-xs ${isFeatured ? "text-white/45" : "text-ink-45"}`}>{d}</span>
+            <span className={`small ${isFeatured ? "text-white/45" : "text-ink-45"}`}>{d}</span>
           </div>
         ))}
       </div>
@@ -269,11 +269,11 @@ export default function HowItWorksSection() {
                   <div className={`w-8 h-8 rounded-btn flex items-center justify-center transition-colors ${
                     s.featured ? "bg-ink" : hoveredIdx === i ? "bg-ink-12" : "bg-ink-7"
                   }`}>
-                    <span className={`text-xs font-extrabold ${s.featured ? "text-white/70" : "text-ink-45"}`}>
+                    <span className={`small font-extrabold ${s.featured ? "text-white/70" : "text-ink-45"}`}>
                       {s.num}
                     </span>
                   </div>
-                  <span className={`text-2xs font-semibold whitespace-nowrap text-center ${
+                  <span className={`small font-semibold whitespace-nowrap text-center ${
                     s.featured ? "text-ink" : "text-ink-45"
                   }`}>
                     {s.label}
@@ -322,7 +322,7 @@ export default function HowItWorksSection() {
 
         {/* Mobile: horizontal scroll */}
         <div className="lg:hidden">
-          <p className="text-xs text-ink-30 text-center mb-4 uppercase tracking-wider font-semibold">
+          <p className="small uppercase tracking-wider font-semibold text-ink-30 text-center mb-4">
             Geser untuk melihat semua langkah →
           </p>
 
@@ -353,23 +353,23 @@ export default function HowItWorksSection() {
                     <div className={`ml-auto flex items-center gap-1.5 px-2 py-1 rounded-full ${
                       isF ? "bg-white/5 border border-white/10" : "bg-ink-4 border border-ink-9"
                     }`}>
-                      <span className={`text-2xs font-semibold ${isF ? "text-white/45" : "text-ink-45"}`}>{s.time}</span>
+                      <span className={`small font-semibold ${isF ? "text-white/45" : "text-ink-45"}`}>{s.time}</span>
                     </div>
                   </div>
 
-                  <h3 className={`text-base font-extrabold tracking-tight mb-2 ${isF ? "text-white" : "text-ink"}`}>
+                  <h3 className={`card-title mb-2 ${isF ? "text-white" : "text-ink"}`}>
                     {s.label}
                   </h3>
                   <div className={`h-px mb-3 ${isF ? "bg-white/10" : "bg-ink-9"}`} />
-                  <p className={`text-sm leading-relaxed mb-4 ${isF ? "text-white/65" : "text-ink-45"}`}>
+                  <p className={`body mb-4 ${isF ? "text-white/65" : "text-ink-45"}`}>
                     {s.desc}
                   </p>
 
-                  <div className="space-y-2">
+                  <div className="stack-sm">
                     {s.details.map((d, j) => (
-                      <div key={j} className="flex items-center gap-2">
+                      <div key={j} className="flex items-center row-gap">
                         <CheckSmall white={isF} />
-                        <span className={`text-xs ${isF ? "text-white/45" : "text-ink-45"}`}>{d}</span>
+                        <span className={`small ${isF ? "text-white/45" : "text-ink-45"}`}>{d}</span>
                       </div>
                     ))}
                   </div>
@@ -402,7 +402,7 @@ export default function HowItWorksSection() {
                 <p className="dark-cta-title mb-2">
                   Siap memulai transaksi pertama Anda?
                 </p>
-                <p className="text-white/45">
+                <p className="body text-white/45">
                   Daftar gratis — tidak perlu kartu kredit, tidak ada kontrak.
                 </p>
               </div>

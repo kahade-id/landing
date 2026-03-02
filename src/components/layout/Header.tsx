@@ -170,11 +170,11 @@ const DropdownPanel = ({ item, isOpen, panelId, buttonId, onNavigate }: Dropdown
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <span className="text-sm font-semibold text-ink-60 group-hover:text-ink transition-colors">
+                      <span className="small font-semibold text-ink-60 group-hover:text-ink transition-colors">
                         {dropItem.label}
                       </span>
                       {dropItem.badge && (
-                        <span className="pill pill-subtle text-2xs py-0.5 px-1.5">{dropItem.badge}</span>
+                        <span className="pill pill-subtle small py-0.5 px-1.5">{dropItem.badge}</span>
                       )}
                       {dropItem.status === "online" && (
                         <span className="relative flex h-1.5 w-1.5">
@@ -183,7 +183,7 @@ const DropdownPanel = ({ item, isOpen, panelId, buttonId, onNavigate }: Dropdown
                         </span>
                       )}
                     </div>
-                    <div className="text-xs text-ink-30 mt-0.5 leading-snug">{dropItem.desc}</div>
+                    <div className="small text-ink-30 mt-0.5 leading-snug">{dropItem.desc}</div>
                   </div>
                   <ArrowRight />
                 </Link>
@@ -194,8 +194,8 @@ const DropdownPanel = ({ item, isOpen, panelId, buttonId, onNavigate }: Dropdown
       </div>
       {item.dropdown.length > 1 && (
         <div className="mt-4 pt-4 border-t border-ink-7 flex items-center justify-between px-1">
-          <span className="text-xs text-ink-30">Butuh bantuan memilih?</span>
-          <Link href={supportLinks.contact} onClick={onNavigate} className="text-xs font-semibold text-ink-45 hover:text-ink flex items-center gap-1.5 transition-colors">
+          <span className="small text-ink-30">Butuh bantuan memilih?</span>
+          <Link href={supportLinks.contact} onClick={onNavigate} className="small font-semibold text-ink-45 hover:text-ink flex items-center gap-1.5 transition-colors">
             Konsultasi Gratis <ArrowRight />
           </Link>
         </div>
@@ -365,7 +365,7 @@ export default function Header() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-ink opacity-40" />
                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-ink-60" />
               </span>
-              <span className="text-xs font-medium text-ink-30">Sistem Aktif</span>
+              <span className="small font-medium text-ink-30">Sistem Aktif</span>
             </div>
 
             <Link href={homeAnchors.cta} className="hidden md:inline-flex btn btn-primary header-cta-btn">

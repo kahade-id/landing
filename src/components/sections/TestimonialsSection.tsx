@@ -118,31 +118,31 @@ const Stars = ({ count = 5 }) => (
 
 // ─── Marquee Card ─────────────────────────────────────────────────────────────
 const MarqueeCard = ({ t }: { t: (typeof testimonials)[number] }) => (
-  <div className="flex-shrink-0 w-[320px] lg:w-[380px] card p-5 mx-2">
-    <div className="flex items-center gap-3 mb-4">
+  <div className="flex-shrink-0 w-[320px] lg:w-[380px] card mx-2">
+      <div className="flex items-center gap-3 mb-4">
       <div className="w-10 h-10 rounded-full bg-ink flex items-center justify-center flex-shrink-0">
-        <span className="text-xs font-bold text-white">{t.avatar}</span>
+        <span className="small font-bold text-white">{t.avatar}</span>
       </div>
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-1.5">
-          <span className="font-semibold text-sm truncate">{t.name}</span>
+          <span className="card-title truncate">{t.name}</span>
           <VerifiedIcon />
         </div>
-        <p className="text-xs text-ink-45 truncate">{t.role} · {t.location}</p>
+        <p className="small truncate">{t.role} · {t.location}</p>
       </div>
       <Stars />
     </div>
     
-    <p className="text-sm text-ink-60 leading-relaxed mb-4 line-clamp-3">
-      "{t.text}"
+    <p className="body text-ink-60 mb-4 line-clamp-3">
+      &ldquo;{t.text}&rdquo;
     </p>
     
     <div className="flex items-center justify-between pt-4 border-t border-ink-9">
       <div>
-        <p className="text-2xs text-ink-30 uppercase tracking-wider">{t.txLabel}</p>
+        <p className="small text-ink-30 uppercase tracking-wider">{t.txLabel}</p>
         <p className="font-extrabold tracking-tight">{t.amount}</p>
       </div>
-      <span className="pill pill-subtle text-2xs">{t.tag}</span>
+      <span className="pill pill-subtle small">{t.tag}</span>
     </div>
   </div>
 );

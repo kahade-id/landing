@@ -148,21 +148,21 @@ function ProblemItem({ item, active, onClick }: {
         </span>
 
         <div className="flex-1 min-w-0">
-          <p className={`font-semibold leading-snug transition-all duration-200 ${
-            active ? "text-ink text-base" : "text-ink-45 text-sm"
+          <p className={`card-title transition-colors duration-200 ${
+            active ? "text-ink" : "text-ink-45"
           }`}>
             {item.title}
           </p>
 
           <div className={`overflow-hidden transition-all duration-400 ${active ? "max-h-40 opacity-100 mt-2" : "max-h-0 opacity-0"}`}>
-            <p className="text-sm text-ink-45 leading-relaxed mb-3">{item.desc}</p>
-            <a href="#" className="inline-flex items-center gap-1.5 text-2xs font-bold uppercase tracking-wider text-ink-45 hover:text-ink border-b border-ink-20 pb-0.5 transition-colors">
+            <p className="body text-ink-45 mb-3">{item.desc}</p>
+            <a href="#" className="inline-flex items-center gap-1.5 small font-bold uppercase tracking-wider text-ink-45 hover:text-ink border-b border-ink-20 pb-0.5 transition-colors">
               Pelajari lebih lanjut <ArrowIcon />
             </a>
           </div>
         </div>
 
-        <span className={`text-xs font-bold tabular-nums w-5 flex-shrink-0 text-right transition-colors ${
+        <span className={`small font-bold tabular-nums w-5 flex-shrink-0 text-right transition-colors ${
           active ? "text-ink-45" : "text-ink-20"
         }`}>
           {item.id}
@@ -202,10 +202,10 @@ export default function ProblemSection() {
                   <path d="M12 8v4M12 16h.01" />
                 </svg>
               </div>
-              <p className="text-lg font-semibold text-ink mb-2">
+              <p className="card-title text-ink mb-2">
                 {activeIndex < 5 ? buyerProblems[activeIndex]?.title : sellerProblems[activeIndex - 5]?.title}
               </p>
-              <p className="text-sm text-ink-45 max-w-xs mx-auto">
+              <p className="body text-ink-45 max-w-xs mx-auto">
                 {activeIndex < 5 ? buyerProblems[activeIndex]?.desc : sellerProblems[activeIndex - 5]?.desc}
               </p>
             </div>

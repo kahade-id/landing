@@ -48,10 +48,10 @@ function FAQItem({ faq, index, inView }: { faq: (typeof faqs)[number]; index: nu
         aria-expanded={open}
       >
         <div className="flex items-start gap-4 flex-1 min-w-0">
-          <span className="text-xs font-bold text-ink-20 tabular-nums mt-1 w-6 flex-shrink-0">
+          <span className="small font-bold text-ink-20 tabular-nums mt-1 w-6 flex-shrink-0">
             {String(index + 1).padStart(2, "0")}
           </span>
-          <span className={`text-base font-semibold leading-snug transition-colors ${
+          <span className={`card-title transition-colors ${
             open ? "text-ink" : "text-ink-60 group-hover:text-ink"
           }`}>
             {faq.q}
@@ -80,7 +80,7 @@ function FAQItem({ faq, index, inView }: { faq: (typeof faqs)[number]; index: nu
         className={`overflow-hidden transition-all duration-300 ${open ? "max-h-48" : "max-h-0"}`}
       >
         <div className="pb-5 pl-10 pr-4">
-          <p className="text-sm lg:text-base text-ink-45 leading-relaxed">
+          <p className="body text-ink-45">
             {faq.a}
           </p>
         </div>

@@ -121,7 +121,7 @@ export default function SecuritySection() {
                   <h3 className="section-h3 mb-3">
                     {item.title}
                   </h3>
-                  <p className="text-white/50 leading-relaxed">
+                  <p className="body text-white/50">
                     {item.description}
                   </p>
                 </article>
@@ -143,7 +143,7 @@ export default function SecuritySection() {
                   <span className="text-sm lg:text-base font-extrabold text-white tracking-tight">
                     {cert.label}
                   </span>
-                  <span className="text-2xs text-white/35 leading-tight px-2">
+                  <span className="small text-white/35 px-2">
                     {cert.sub}
                   </span>
                 </div>
@@ -158,7 +158,7 @@ export default function SecuritySection() {
               <h3 className="dark-cta-title mb-4">
                 Aman. Transparan. Terlindungi.
               </h3>
-              <p className="text-white/50 leading-relaxed mb-8">
+              <p className="body text-white/50 mb-8">
                 Dengan sistem escrow terpisah, verifikasi KYC, dan monitoring aktif 24/7, dana Anda selalu terlindungi dari awal hingga akhir transaksi.
               </p>
               <div className="flex flex-wrap items-center justify-center gap-3">

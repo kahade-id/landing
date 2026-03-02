@@ -59,7 +59,7 @@ export default function CTASection() {
 
         {/* Subtext */}
         <div className={`${inView ? "anim-fade-up delay-3 in-view" : ""}`}>
-          <p className="text-base lg:text-lg text-white/45 leading-relaxed max-w-md mx-auto mb-8">
+          <p className="body text-white/45 max-w-md mx-auto mb-8">
             Daftar gratis dalam 2 menit. Tanpa biaya setup, tanpa kontrak jangka panjang — bayar hanya saat transaksi berhasil.
           </p>
         </div>

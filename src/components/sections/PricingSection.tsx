@@ -114,7 +114,7 @@ function FeeCalculator() {
           </div>
           <div>
             <p className="font-bold">Kalkulator Fee</p>
-            <p className="text-xs text-white/35">Hitung biaya transaksi real-time</p>
+            <p className="small text-white/35">Hitung biaya transaksi real-time</p>
           </div>
         </div>
 
@@ -126,7 +126,7 @@ function FeeCalculator() {
             <button
               key={p.val}
               onClick={() => applyPreset(p)}
-              className={`px-3 py-1.5 rounded-btn text-xs font-semibold border transition-all ${
+              className={`px-3 py-1.5 rounded-btn small font-semibold border transition-all ${
                 activePreset === p.val
                   ? "bg-white/15 border-white/30 text-white"
                   : "bg-white/5 border-white/15 text-white/50 hover:bg-white/10"
@@ -140,7 +140,7 @@ function FeeCalculator() {
         {/* Input field */}
         <div className="relative mb-4">
           <label htmlFor="calc-input" className="sr-only">Nominal transaksi</label>
-          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-semibold text-white/35 pointer-events-none">Rp</span>
+          <span className="absolute left-4 top-1/2 -translate-y-1/2 small sm:text-sm font-semibold text-white/35 pointer-events-none">Rp</span>
           <input
             id="calc-input"
             aria-label="Nominal transaksi"
@@ -168,7 +168,7 @@ function FeeCalculator() {
           />
           <div className="flex justify-between mt-2">
             {["Rp 0", "Rp 25jt", "Rp 50jt", "Rp 75jt", "Rp 100jt"].map((l) => (
-              <span key={l} className="text-2xs text-white/20">{l}</span>
+              <span key={l} className="small text-white/20">{l}</span>
             ))}
           </div>
         </div>
@@ -178,12 +178,12 @@ function FeeCalculator() {
           {/* Main fee result */}
           <div className="bg-white/8 border border-white/10 rounded-card p-4 relative overflow-hidden">
             <div className="flex items-center justify-between mb-3">
-              <span className="text-2xs font-bold uppercase tracking-wider text-white/35">Platform Fee</span>
+              <span className="small font-bold uppercase tracking-wider text-white/35">Platform Fee</span>
               <div className="flex items-center gap-2">
-                {isMin && <span className="text-xs font-semibold text-white/45 bg-white/8 px-2 py-0.5 rounded-full">Min</span>}
-                {isMax && <span className="text-xs font-semibold text-white/45 bg-white/8 px-2 py-0.5 rounded-full">Maks</span>}
+                {isMin && <span className="small font-semibold text-white/45 bg-white/8 px-2 py-0.5 rounded-full">Min</span>}
+                {isMax && <span className="small font-semibold text-white/45 bg-white/8 px-2 py-0.5 rounded-full">Maks</span>}
                 {!isMin && !isMax && amount > 0 && (
-                  <span className="text-xs font-semibold text-white/40">{pct.toFixed(2)}%</span>
+                  <span className="small font-semibold text-white/40">{pct.toFixed(2)}%</span>
                 )}
               </div>
             </div>
@@ -195,19 +195,19 @@ function FeeCalculator() {
               max={100}
             />
             <div className="flex justify-between mt-1.5">
-              <span className="text-2xs text-white/20">0%</span>
-              <span className="text-2xs text-white/20">2,5% maks</span>
+              <span className="small text-white/20">0%</span>
+              <span className="small text-white/20">2,5% maks</span>
             </div>
           </div>
 
           {/* Two sub-results */}
           <div className="grid grid-cols-2 gap-3">
             <div className="bg-white/8 border border-white/10 rounded-card p-3">
-              <p className="text-2xs font-bold uppercase tracking-wider text-white/30 mb-1">Nominal</p>
+              <p className="small font-bold uppercase tracking-wider text-white/30 mb-1">Nominal</p>
               <p className="text-lg font-bold text-white/65 tracking-tight">{fmtShort(amount)}</p>
             </div>
             <div className="bg-white/8 border border-white/10 rounded-card p-3">
-              <p className="text-2xs font-bold uppercase tracking-wider text-white/30 mb-1">Penjual Terima</p>
+              <p className="small font-bold uppercase tracking-wider text-white/30 mb-1">Penjual Terima</p>
               <p className={`text-lg font-bold tracking-tight ${amount > 0 ? "text-white" : "text-white/30"}`}>
                 {fmtShort(net)}
               </p>
@@ -224,14 +224,14 @@ function FeeCalculator() {
               { label: "Maks", val: "Rp 250rb" },
             ].map((t) => (
               <div key={t.label} className="flex items-center gap-1.5 px-2 py-1 bg-white/5 rounded-btn border border-white/10">
-                <span className="text-2xs text-white/35">{t.label}</span>
-                <span className="text-xs font-semibold text-white/70">{t.val}</span>
+                <span className="small text-white/35">{t.label}</span>
+                <span className="small font-semibold text-white/70">{t.val}</span>
               </div>
             ))}
           </div>
           <div className="flex items-center gap-1.5">
             <InfoIcon />
-            <span className="text-xs text-white/25">Fee dibayar pembeli</span>
+            <span className="small text-white/25">Fee dibayar pembeli</span>
           </div>
         </div>
       </div>
@@ -267,12 +267,12 @@ export default function PricingSection() {
             <div className="relative z-10 grid lg:grid-cols-[1fr_auto_1fr] gap-8 lg:gap-12 items-center">
               {/* Main fee display */}
               <div>
-                <p className="text-sm font-bold uppercase tracking-wider text-white/35 mb-3">Platform Fee</p>
+                <p className="small font-bold uppercase tracking-wider text-white/35 mb-3">Platform Fee</p>
                 <div className="flex items-end gap-2 mb-4">
                   <span className="text-6xl lg:text-7xl font-extrabold tracking-tight leading-none">2,5</span>
                   <span className="text-2xl lg:text-3xl font-bold text-white/45 mb-2">%</span>
                 </div>
-                <p className="text-white/45 leading-relaxed">
+                <p className="body text-white/45">
                   per transaksi · dibayar pembeli
                   <br />
                   <span className="text-white/25">min. Rp 2.500 · maks. Rp 250.000</span>
@@ -294,11 +294,11 @@ export default function PricingSection() {
                       <span className="text-white/50 text-sm">✦</span>
                     </div>
                     <div className="flex-1">
-                      <span className="text-white/35 text-sm block">{p.label}</span>
+                      <span className="small text-white/35 block">{p.label}</span>
                       <span className="font-extrabold tracking-tight">{p.val}</span>
                     </div>
                     <div className="bg-white/7 rounded-btn px-2.5 py-1">
-                      <span className="text-xs font-bold text-white/45 whitespace-nowrap">{p.sub}</span>
+                      <span className="small font-bold text-white/45 whitespace-nowrap">{p.sub}</span>
                     </div>
                   </div>
                 ))}

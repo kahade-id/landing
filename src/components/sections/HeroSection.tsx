@@ -102,7 +102,7 @@ const FloatingUICard = () => {
                 {step.label}
               </span>
               {step.active && (
-                <span className="ml-auto text-2xs font-bold bg-ink-7 text-ink px-2 py-0.5 rounded-full uppercase tracking-wide">
+                <span className="ml-auto small font-bold bg-ink-7 text-ink px-2 py-0.5 rounded-full uppercase tracking-wide">
                   Menunggu
                 </span>
               )}
@@ -114,10 +114,10 @@ const FloatingUICard = () => {
         <div className="mt-4 flex items-center justify-between bg-ink-4 rounded-card p-3 border border-ink-7">
           <div className="flex items-center gap-2">
             <div className="w-7 h-7 rounded-full bg-ink flex items-center justify-center">
-              <span className="text-2xs font-bold text-white">AR</span>
+              <span className="small font-bold text-white">AR</span>
             </div>
             <div>
-              <p className="text-2xs text-ink-45">Pembeli</p>
+              <p className="small text-ink-45">Pembeli</p>
               <p className="text-xs font-semibold">Ari Ramadhan</p>
             </div>
           </div>
@@ -126,11 +126,11 @@ const FloatingUICard = () => {
           </svg>
           <div className="flex items-center gap-2">
             <div className="text-right">
-              <p className="text-2xs text-ink-45">Penjual</p>
+              <p className="small text-ink-45">Penjual</p>
               <p className="text-xs font-semibold">Toko Budi</p>
             </div>
             <div className="w-7 h-7 rounded-full bg-ink-9 border border-ink-12 flex items-center justify-center">
-              <span className="text-2xs font-bold text-ink-60">TB</span>
+              <span className="small font-bold text-ink-60">TB</span>
             </div>
           </div>
         </div>
@@ -144,8 +144,8 @@ const FloatingUICard = () => {
           </svg>
         </div>
         <div>
-          <p className="text-2xs font-semibold">Dana Aman</p>
-          <p className="text-2xs text-ink-45">Terproteksi 100%</p>
+          <p className="small font-semibold">Dana Aman</p>
+          <p className="small text-ink-45">Terproteksi 100%</p>
         </div>
       </div>
 
@@ -158,7 +158,7 @@ const FloatingUICard = () => {
       </div>
 
       <div className="absolute -right-4 top-4 card p-3 z-10 animate-[float_5.5s_ease-in-out_infinite_0.5s]">
-        <p className="text-2xs text-ink-45 uppercase tracking-wider">Monitoring</p>
+        <p className="small text-ink-45 uppercase tracking-wider">Monitoring</p>
         <p className="text-sm font-extrabold tracking-tight">24/7</p>
       </div>
     </div>
@@ -232,7 +232,7 @@ export default function HeroSection() {
             </div>
 
             {/* Lead text */}
-            <p className={`anim-fade-up delay-3 ${inViewClass} text-base lg:text-lg text-ink-45 leading-relaxed max-w-md mx-auto lg:mx-0`}>
+            <p className={`anim-fade-up delay-3 ${inViewClass} body lg:text-lg text-ink-45 max-w-md mx-auto lg:mx-0`}>
               Dana Anda ditahan sementara di escrow dan baru dilepas saat transaksi selesai serta kedua pihak menyetujui hasilnya.
             </p>
 
