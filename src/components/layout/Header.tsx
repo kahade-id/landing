@@ -209,7 +209,7 @@ const MobileNavItem = ({ item }: { item: NavItem }) => {
   const [open, setOpen] = useState(false);
   if (!item.dropdown) {
     return (
-      <Link href={item.href ?? homeAnchors.home} className="block py-3.5 text-sm font-medium text-ink-45 hover:text-ink transition-colors border-b border-ink-7">
+      <Link href={item.href ?? homeAnchors.home} className="mobile-nav-link block py-3.5 font-medium text-ink-45 hover:text-ink transition-colors border-b border-ink-12">
         {item.label}
       </Link>
     );
@@ -219,7 +219,7 @@ const MobileNavItem = ({ item }: { item: NavItem }) => {
       <button
         onClick={() => setOpen(!open)}
         aria-expanded={open}
-        className="w-full flex items-center justify-between py-3.5 text-sm font-medium text-ink-45 hover:text-ink transition-colors text-left"
+        className="mobile-nav-link w-full flex items-center justify-between py-3.5 font-medium text-ink-45 hover:text-ink transition-colors text-left"
       >
         {item.label}
         <ChevronDown className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
@@ -234,8 +234,8 @@ const MobileNavItem = ({ item }: { item: NavItem }) => {
             >
               <div className="icon-box icon-box-sm">{dropItem.icon}</div>
               <div>
-                <div className="text-sm font-medium text-ink-60">{dropItem.label}</div>
-                <div className="text-xs text-ink-30">{dropItem.desc}</div>
+                <div className="mobile-nav-link font-medium text-ink-60">{dropItem.label}</div>
+                <div className="mobile-nav-desc text-ink-30">{dropItem.desc}</div>
               </div>
             </Link>
           ))}
@@ -247,18 +247,11 @@ const MobileNavItem = ({ item }: { item: NavItem }) => {
 
 // ─── Main Header ─────────────────────────────────────────────────────────────
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const dropdownBaseId = useId();
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 8);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   useEffect(() => {
     const handleResize = () => { if (window.innerWidth >= 768) setMobileOpen(false); };
@@ -313,16 +306,15 @@ export default function Header() {
   return (
     <header
       ref={headerRef}
-      className={`header transition-shadow duration-300 ${scrolled ? "shadow-sm" : ""}`}
+      className="header"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center h-16 gap-6">
           {/* Logo */}
-          <Link href={homeAnchors.home} className="flex items-center gap-2.5 flex-shrink-0 group">
+          <Link href={homeAnchors.home} className="flex items-center flex-shrink-0 group">
             <div className="w-9 h-9 flex items-center justify-center transition-transform duration-200 group-hover:scale-95">
               <Image src="/favicon.svg" alt="Kahade" width={32} height={32} priority />
             </div>
-            <span className="text-lg font-bold tracking-tight">Kahade</span>
           </Link>
 
           {/* Desktop Nav */}
@@ -376,7 +368,7 @@ export default function Header() {
               <span className="text-xs font-medium text-ink-30">Sistem Aktif</span>
             </div>
 
-            <Link href={homeAnchors.cta} className="hidden md:inline-flex btn btn-primary btn-sm">
+            <Link href={homeAnchors.cta} className="hidden md:inline-flex btn btn-primary header-cta-btn">
               Mulai Transaksi
             </Link>
 
@@ -394,7 +386,7 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-ink-7 px-4 pt-3 pb-6 bg-white">
+        <div className="md:hidden border-t border-ink-12 px-4 pt-3 pb-6 bg-white">
           <nav className="flex flex-col">
             {navItems.map((item) => (
               <MobileNavItem key={item.label} item={item} />

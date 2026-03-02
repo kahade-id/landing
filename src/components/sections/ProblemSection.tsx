@@ -115,7 +115,7 @@ export default function ProblemSection() {
     <section 
       id="problem" 
       ref={sectionRef} 
-      className="section bg-muted"
+      className="section bg-surface"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
