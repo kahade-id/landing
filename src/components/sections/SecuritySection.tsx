@@ -65,12 +65,7 @@ const securityItems = [
   },
 ];
 
-const certifications = [
-  { label: "KYC/AML", sub: "Verifikasi Identitas" },
-  { label: "SSL/TLS", sub: "Enkripsi Koneksi" },
-  { label: "2FA", sub: "Autentikasi Ganda" },
-  { label: "Audit", sub: "Pemeriksaan Berkala" },
-];
+const certificationsLine = "KYC/AML  ||  SSL/TLS  ||  2FA  ||  AUDIT";
 
 // ─── Intersection hook ────────────────────────────────────────────────────────
 function useInView(threshold = 0.1): [RefObject<any>, boolean] {
@@ -131,24 +126,14 @@ export default function SecuritySection() {
             {/* Divider */}
             <div className="divider-dots-inv my-10 lg:my-12" />
 
-            {/* Certification badges */}
-            <div className="flex flex-wrap items-center justify-center gap-4 lg:gap-6">
-              {certifications.map((cert, i) => (
-                <div
-                  key={cert.label}
-                  className={`flex flex-col items-center justify-center gap-1 w-24 h-24 lg:w-28 lg:h-28 rounded-full border border-white/10 bg-white/5 text-center transition-all hover:bg-white/10 hover:border-white/15 ${
-                    inView ? `anim-scale-in in-view delay-${4 + i}` : ""
-                  }`}
-                >
-                  <span className="text-sm lg:text-base font-extrabold text-white tracking-tight">
-                    {cert.label}
-                  </span>
-                  <span className="small text-white/35 px-2">
-                    {cert.sub}
-                  </span>
-                </div>
-              ))}
-            </div>
+            {/* Certification line */}
+            <p
+              className={`text-center text-sm lg:text-base font-semibold tracking-wide text-white/70 ${
+                inView ? "anim-fade-up in-view delay-4" : ""
+              }`}
+            >
+              {certificationsLine}
+            </p>
 
             {/* Divider */}
             <div className="divider-dots-inv my-10 lg:my-12" />
