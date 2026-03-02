@@ -25,26 +25,111 @@ const ArrowIcon = () => (
   </svg>
 );
 
+function ProblemIcon({ type }: { type: string }) {
+  switch (type) {
+    case "ghost":
+      return (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M9 10h.01M15 10h.01" />
+          <path d="M9 16c1-.8 2-.8 3-.8s2 0 3 .8" />
+          <path d="M5 18V9a7 7 0 1 1 14 0v9l-2-1.5L15 18l-3-1.5L9 18l-2-1.5z" />
+        </svg>
+      );
+    case "box":
+      return (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M21 8l-9-5-9 5 9 5 9-5z" />
+          <path d="M3 8v8l9 5 9-5V8" />
+          <path d="M12 13v8" />
+        </svg>
+      );
+    case "file":
+      return (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+          <path d="M14 2v6h6" />
+          <path d="M8 13h8M8 17h5" />
+        </svg>
+      );
+    case "wallet":
+      return (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="2" y="6" width="20" height="14" rx="2" />
+          <path d="M16 12h6" />
+          <circle cx="16" cy="12" r="1" />
+          <path d="M6 10h5" />
+        </svg>
+      );
+    case "scale":
+      return (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 3v18M7 7h10" />
+          <path d="M5 7l-3 5h6L5 7zM19 7l-3 5h6l-3-5z" />
+          <path d="M9 21h6" />
+        </svg>
+      );
+    case "hourglass":
+      return (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M6 2h12M6 22h12" />
+          <path d="M7 2v4a5 5 0 0 0 2 4l3 2 3-2a5 5 0 0 0 2-4V2" />
+          <path d="M7 22v-4a5 5 0 0 1 2-4l3-2 3 2a5 5 0 0 1 2 4v4" />
+        </svg>
+      );
+    case "refresh":
+      return (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M3 12a9 9 0 0 1 15.3-6.3L21 8" />
+          <path d="M21 3v5h-5" />
+          <path d="M21 12a9 9 0 0 1-15.3 6.3L3 16" />
+          <path d="M3 21v-5h5" />
+        </svg>
+      );
+    case "alert":
+      return (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M10.3 3.9a2 2 0 0 1 3.4 0l8 13.8A2 2 0 0 1 20 21H4a2 2 0 0 1-1.7-3.3z" />
+          <path d="M12 9v4M12 17h.01" />
+        </svg>
+      );
+    case "truck":
+      return (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z" />
+          <circle cx="7" cy="18" r="2" />
+          <circle cx="18" cy="18" r="2" />
+        </svg>
+      );
+    default:
+      return (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M12 8v4M12 16h.01" />
+        </svg>
+      );
+  }
+}
+
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const buyerProblems = [
-  { id: "01", title: "Transfer dilakukan, penjual menghilang", desc: "Setelah pembayaran masuk, komunikasi terputus. Tidak ada mekanisme untuk menahan atau menarik kembali dana yang sudah dikirim." },
-  { id: "02", title: "Barang berbeda jauh dari deskripsi", desc: "Foto produk tidak mencerminkan kondisi asli. Setelah barang tiba, tidak ada jalur klaim atau pengembalian yang bisa diakses." },
-  { id: "03", title: "Tidak ada bukti transaksi yang sah", desc: "Tanpa dokumentasi resmi, pembeli tidak punya dasar hukum untuk mengajukan klaim jika terjadi sengketa di kemudian hari." },
-  { id: "04", title: "Dipaksa bayar langsung tanpa jaminan", desc: '"Bayar dulu, baru dikirim" adalah skenario penipuan paling umum. Tidak ada pihak yang menjamin dana kembali jika penjual ingkar.' },
-  { id: "05", title: "Tidak ada mediasi saat sengketa terjadi", desc: "Ketika terjadi perselisihan, pembeli tidak punya akses ke pihak ketiga yang netral. Sengketa diselesaikan sendiri atau tidak sama sekali." },
+  { id: "01", icon: "ghost", title: "Transfer dilakukan, penjual menghilang", desc: "Setelah pembayaran masuk, komunikasi terputus. Tidak ada mekanisme untuk menahan atau menarik kembali dana yang sudah dikirim." },
+  { id: "02", icon: "box", title: "Barang berbeda jauh dari deskripsi", desc: "Foto produk tidak mencerminkan kondisi asli. Setelah barang tiba, tidak ada jalur klaim atau pengembalian yang bisa diakses." },
+  { id: "03", icon: "file", title: "Tidak ada bukti transaksi yang sah", desc: "Tanpa dokumentasi resmi, pembeli tidak punya dasar hukum untuk mengajukan klaim jika terjadi sengketa di kemudian hari." },
+  { id: "04", icon: "wallet", title: "Dipaksa bayar langsung tanpa jaminan", desc: '"Bayar dulu, baru dikirim" adalah skenario penipuan paling umum. Tidak ada pihak yang menjamin dana kembali jika penjual ingkar.' },
+  { id: "05", icon: "scale", title: "Tidak ada mediasi saat sengketa terjadi", desc: "Ketika terjadi perselisihan, pembeli tidak punya akses ke pihak ketiga yang netral. Sengketa diselesaikan sendiri atau tidak sama sekali." },
 ];
 
 const sellerProblems = [
-  { id: "01", title: "Pembeli hilang setelah barang tiba", desc: "Konfirmasi penerimaan tidak pernah datang. Dana tertahan tanpa kejelasan waktu pencairan, sementara stok sudah keluar." },
-  { id: "02", title: "Chargeback sepihak setelah konfirmasi", desc: "Pembayaran dibatalkan secara sepihak oleh pembeli atau bank meskipun barang sudah diterima dan dikonfirmasi." },
-  { id: "03", title: "Klaim palsu untuk memaksa refund", desc: "Pembeli beritikad buruk mengajukan klaim barang cacat untuk memaksa pengembalian dana tanpa dasar yang nyata." },
-  { id: "04", title: "Tidak ada rekam jejak pengiriman resmi", desc: "Bukti pengiriman yang tidak terintegrasi dengan sistem transaksi membuat penjual kesulitan membuktikan bahwa barang sudah sampai." },
-  { id: "05", title: "Tidak ada resolusi yang adil saat sengketa", desc: "Sengketa diselesaikan tanpa pihak ketiga yang netral. Penjual sering menjadi pihak yang kalah karena tidak punya akses ke mekanisme mediasi." },
+  { id: "01", icon: "hourglass", title: "Pembeli hilang setelah barang tiba", desc: "Konfirmasi penerimaan tidak pernah datang. Dana tertahan tanpa kejelasan waktu pencairan, sementara stok sudah keluar." },
+  { id: "02", icon: "refresh", title: "Chargeback sepihak setelah konfirmasi", desc: "Pembayaran dibatalkan secara sepihak oleh pembeli atau bank meskipun barang sudah diterima dan dikonfirmasi." },
+  { id: "03", icon: "alert", title: "Klaim palsu untuk memaksa refund", desc: "Pembeli beritikad buruk mengajukan klaim barang cacat untuk memaksa pengembalian dana tanpa dasar yang nyata." },
+  { id: "04", icon: "truck", title: "Tidak ada rekam jejak pengiriman resmi", desc: "Bukti pengiriman yang tidak terintegrasi dengan sistem transaksi membuat penjual kesulitan membuktikan bahwa barang sudah sampai." },
+  { id: "05", icon: "scale", title: "Tidak ada resolusi yang adil saat sengketa", desc: "Sengketa diselesaikan tanpa pihak ketiga yang netral. Penjual sering menjadi pihak yang kalah karena tidak punya akses ke mekanisme mediasi." },
 ];
 
 // ─── Problem Item ─────────────────────────────────────────────────────────────
 function ProblemItem({ item, active, onClick }: {
-  item: { id: string; title: string; desc: string };
+  item: { id: string; icon: string; title: string; desc: string };
   active: boolean;
   onClick: () => void;
 }) {
@@ -57,18 +142,9 @@ function ProblemItem({ item, active, onClick }: {
       onKeyDown={(e) => e.key === "Enter" && onClick()}
       aria-expanded={active}
     >
-      {/* Active indicator */}
-      <div 
-        className={`absolute left-0 top-1/2 -translate-y-1/2 w-0.5 bg-ink rounded-full transition-all duration-300 ${
-          active ? "h-12 opacity-100" : "h-0 opacity-0"
-        }`}
-      />
-
-      <div className={`flex items-start gap-3 py-4 transition-all duration-300 ${active ? "pl-3" : ""}`}>
-        <span className={`text-xs font-bold tabular-nums mt-0.5 w-5 flex-shrink-0 transition-colors ${
-          active ? "text-ink-45" : "text-ink-20"
-        }`}>
-          {item.id}
+      <div className="flex items-start gap-3 py-4 transition-all duration-300">
+        <span className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-md border border-ink-9 text-ink">
+          <ProblemIcon type={item.icon} />
         </span>
 
         <div className="flex-1 min-w-0">
@@ -86,19 +162,11 @@ function ProblemItem({ item, active, onClick }: {
           </div>
         </div>
 
-        <svg 
-          width="14" 
-          height="14" 
-          viewBox="0 0 14 14" 
-          fill="none" 
-          stroke="currentColor" 
-          strokeWidth="1.5" 
-          strokeLinecap="round" 
-          strokeLinejoin="round"
-          className={`flex-shrink-0 mt-1 text-ink-20 transition-transform duration-300 ${active ? "rotate-180" : ""}`}
-        >
-          <path d="M3 5l4 4 4-4" />
-        </svg>
+        <span className={`text-xs font-bold tabular-nums mt-0.5 w-5 flex-shrink-0 text-right transition-colors ${
+          active ? "text-ink-45" : "text-ink-20"
+        }`}>
+          {item.id}
+        </span>
       </div>
     </div>
   );
@@ -122,12 +190,10 @@ export default function ProblemSection() {
         <div className={`section-header mb-12 lg:mb-16 ${inView ? "anim-fade-up in-view" : ""}`}>
           <p className="section-eyebrow">Problem</p>
           <h2 className="section-title">
-            Dua pihak.{" "}
-            <span className="text-ink-30 italic">Satu risiko</span>{" "}
-            yang sama.
+            Transaksi Online Penuh Risiko Yang Nyata.
           </h2>
           <p className="section-lead">
-            Setiap transaksi tanpa perlindungan meninggalkan celah — untuk pembeli dan penjual sekaligus.
+            Setiap hari jutaan transaksi terjadi tanpa perlindungan. Kedua pihak menanggung risiko besar - dan tidak harus begitu.
           </p>
         </div>
 
@@ -136,9 +202,8 @@ export default function ProblemSection() {
           <div className={`grid sm:grid-cols-2 gap-8 lg:gap-10 ${inView ? "anim-fade-up delay-1 in-view" : ""}`}>
             {/* Pembeli */}
             <div>
-              <p className="meta-label mb-2">Pembeli</p>
               <h3 className="text-lg font-semibold tracking-tight text-ink mb-4">
-                Uang Pergi,<br />Barang Tak Datang
+                Uang Pergi, Barang Tak Datang
               </h3>
               <div>
                 {buyerProblems.map((item, i) => (
@@ -155,9 +220,8 @@ export default function ProblemSection() {
 
             {/* Penjual */}
             <div>
-              <p className="meta-label mb-2">Penjual</p>
               <h3 className="text-lg font-semibold tracking-tight text-ink mb-4">
-                Barang Terkirim,<br />Uang Tak Cair
+                Barang Terkirim, Uang Tak Cair
               </h3>
               <div>
                 {sellerProblems.map((item, i) => (
@@ -209,10 +273,6 @@ export default function ProblemSection() {
                 ))}
               </div>
             </div>
-
-            <p className="mt-4 text-sm text-ink-30 leading-relaxed">
-              Dua sisi. Dua risiko berbeda. Satu platform yang melindungi keduanya.
-            </p>
           </div>
         </div>
       </div>
