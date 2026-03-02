@@ -227,7 +227,7 @@ export default function HeroSection() {
 
             {/* H1 */}
             <div className={`anim-fade-up delay-2 ${inViewClass}`}>
-              <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-extrabold tracking-tight leading-[1.06]">
+              <h1 className="text-[32px] sm:text-5xl lg:text-[56px] font-extrabold tracking-tight leading-[1.06]">
                 <span className="block">Kurangi Penipuan.</span>
                 <span className="block">
                   Tambah Kepercayaan.
@@ -290,7 +290,7 @@ export default function HeroSection() {
                 className={`anim-fade-up ${inViewClass} opacity-60 hover:opacity-100 transition-opacity`}
                 style={{ animationDelay: `${0.8 + i * 0.08}s` }}
               >
-                <img src={logo.src} alt={logo.alt} className="h-8 lg:h-10 w-auto" loading="lazy" />
+                <img src={logo.src} alt={logo.alt} className="h-8 lg:h-10 w-auto grayscale" loading="lazy" />
               </div>
             ))}
           </div>
@@ -300,7 +300,7 @@ export default function HeroSection() {
             <div className="marquee-track">
               {[...RegLogos, ...RegLogos].map((logo, i) => (
                 <div key={`${logo.src}-${i}`} className="flex-shrink-0 px-6 opacity-50">
-                  <img src={logo.src} alt={logo.alt} className="h-8 w-auto" loading="lazy" />
+                  <img src={logo.src} alt={logo.alt} className="h-8 w-auto grayscale" loading="lazy" />
                 </div>
               ))}
             </div>

@@ -29,7 +29,7 @@ function ProblemIcon({ type }: { type: string }) {
   switch (type) {
     case "ghost":
       return (
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <path d="M9 10h.01M15 10h.01" />
           <path d="M9 16c1-.8 2-.8 3-.8s2 0 3 .8" />
           <path d="M5 18V9a7 7 0 1 1 14 0v9l-2-1.5L15 18l-3-1.5L9 18l-2-1.5z" />
@@ -37,7 +37,7 @@ function ProblemIcon({ type }: { type: string }) {
       );
     case "box":
       return (
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <path d="M21 8l-9-5-9 5 9 5 9-5z" />
           <path d="M3 8v8l9 5 9-5V8" />
           <path d="M12 13v8" />
@@ -45,7 +45,7 @@ function ProblemIcon({ type }: { type: string }) {
       );
     case "file":
       return (
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
           <path d="M14 2v6h6" />
           <path d="M8 13h8M8 17h5" />
@@ -53,7 +53,7 @@ function ProblemIcon({ type }: { type: string }) {
       );
     case "wallet":
       return (
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <rect x="2" y="6" width="20" height="14" rx="2" />
           <path d="M16 12h6" />
           <circle cx="16" cy="12" r="1" />
@@ -62,7 +62,7 @@ function ProblemIcon({ type }: { type: string }) {
       );
     case "scale":
       return (
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <path d="M12 3v18M7 7h10" />
           <path d="M5 7l-3 5h6L5 7zM19 7l-3 5h6l-3-5z" />
           <path d="M9 21h6" />
@@ -70,7 +70,7 @@ function ProblemIcon({ type }: { type: string }) {
       );
     case "hourglass":
       return (
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <path d="M6 2h12M6 22h12" />
           <path d="M7 2v4a5 5 0 0 0 2 4l3 2 3-2a5 5 0 0 0 2-4V2" />
           <path d="M7 22v-4a5 5 0 0 1 2-4l3-2 3 2a5 5 0 0 1 2 4v4" />
@@ -78,7 +78,7 @@ function ProblemIcon({ type }: { type: string }) {
       );
     case "refresh":
       return (
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <path d="M3 12a9 9 0 0 1 15.3-6.3L21 8" />
           <path d="M21 3v5h-5" />
           <path d="M21 12a9 9 0 0 1-15.3 6.3L3 16" />
@@ -87,14 +87,14 @@ function ProblemIcon({ type }: { type: string }) {
       );
     case "alert":
       return (
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <path d="M10.3 3.9a2 2 0 0 1 3.4 0l8 13.8A2 2 0 0 1 20 21H4a2 2 0 0 1-1.7-3.3z" />
           <path d="M12 9v4M12 17h.01" />
         </svg>
       );
     case "truck":
       return (
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z" />
           <circle cx="7" cy="18" r="2" />
           <circle cx="18" cy="18" r="2" />
@@ -102,7 +102,7 @@ function ProblemIcon({ type }: { type: string }) {
       );
     default:
       return (
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="12" cy="12" r="10" />
           <path d="M12 8v4M12 16h.01" />
         </svg>
@@ -142,8 +142,8 @@ function ProblemItem({ item, active, onClick }: {
       onKeyDown={(e) => e.key === "Enter" && onClick()}
       aria-expanded={active}
     >
-      <div className="flex items-start gap-3 py-4 transition-all duration-300">
-        <span className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-md border border-ink-9 text-ink">
+      <div className="flex items-center gap-3 py-4 transition-all duration-300">
+        <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center text-ink">
           <ProblemIcon type={item.icon} />
         </span>
 
@@ -162,7 +162,7 @@ function ProblemItem({ item, active, onClick }: {
           </div>
         </div>
 
-        <span className={`text-xs font-bold tabular-nums mt-0.5 w-5 flex-shrink-0 text-right transition-colors ${
+        <span className={`text-xs font-bold tabular-nums w-5 flex-shrink-0 text-right transition-colors ${
           active ? "text-ink-45" : "text-ink-20"
         }`}>
           {item.id}
@@ -177,8 +177,6 @@ export default function ProblemSection() {
   const [sectionRef, inView] = useInView(0.05);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const groupTag = activeIndex < 5 ? "Pembeli" : "Penjual";
-
   return (
     <section 
       id="problem" 
@@ -188,20 +186,50 @@ export default function ProblemSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className={`section-header mb-12 lg:mb-16 ${inView ? "anim-fade-up in-view" : ""}`}>
-          <p className="section-eyebrow">Problem</p>
           <h2 className="section-title">
             Transaksi Online Penuh Risiko Yang Nyata.
           </h2>
-          <p className="section-lead">
-            Setiap hari jutaan transaksi terjadi tanpa perlindungan. Kedua pihak menanggung risiko besar - dan tidak harus begitu.
-          </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-          {/* Left: Problem Lists */}
-          <div className={`grid sm:grid-cols-2 gap-8 lg:gap-10 ${inView ? "anim-fade-up delay-1 in-view" : ""}`}>
+        <div className={`max-w-3xl mx-auto mb-10 lg:mb-14 ${inView ? "anim-fade-up delay-1 in-view" : ""}`}>
+          <div className="card aspect-[4/3] relative overflow-hidden flex items-center justify-center">
+            <span className="absolute top-4 left-4 meta-label">Kahade</span>
+
+            <div className="text-center p-8">
+              <div className="w-24 h-24 mx-auto mb-6 flex items-center justify-center text-ink-30">
+                <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 8v4M12 16h.01" />
+                </svg>
+              </div>
+              <p className="text-lg font-semibold text-ink mb-2">
+                {activeIndex < 5 ? buyerProblems[activeIndex]?.title : sellerProblems[activeIndex - 5]?.title}
+              </p>
+              <p className="text-sm text-ink-45 max-w-xs mx-auto">
+                {activeIndex < 5 ? buyerProblems[activeIndex]?.desc : sellerProblems[activeIndex - 5]?.desc}
+              </p>
+            </div>
+
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5">
+              {[...Array(10)].map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActiveIndex(i)}
+                  aria-label={`Slide ${i + 1}`}
+                  className={`w-1.5 h-1.5 rounded-full transition-all duration-200 ${
+                    activeIndex === i ? "bg-ink-45 scale-125" : "bg-ink-12"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="grid gap-8 lg:gap-12 items-start">
+          <div className={`grid sm:grid-cols-2 gap-8 lg:gap-10 ${inView ? "anim-fade-up delay-2 in-view" : ""}`}>
             {/* Pembeli */}
             <div>
+              <p className="meta-label mb-2">Risiko Pembeli</p>
               <h3 className="text-lg font-semibold tracking-tight text-ink mb-4">
                 Uang Pergi, Barang Tak Datang
               </h3>
@@ -220,6 +248,7 @@ export default function ProblemSection() {
 
             {/* Penjual */}
             <div>
+              <p className="meta-label mb-2">Risiko Penjual</p>
               <h3 className="text-lg font-semibold tracking-tight text-ink mb-4">
                 Barang Terkirim, Uang Tak Cair
               </h3>
@@ -237,43 +266,6 @@ export default function ProblemSection() {
             </div>
           </div>
 
-          {/* Right: Visual */}
-          <div className={`lg:sticky lg:top-24 ${inView ? "anim-fade-up delay-2 in-view" : ""}`}>
-            <div className="card aspect-[4/3] relative overflow-hidden flex items-center justify-center">
-              <span className="absolute top-4 left-4 meta-label">Kahade</span>
-              <span className="absolute top-4 right-4 meta-label transition-opacity">{groupTag}</span>
-
-              {/* Visual content */}
-              <div className="text-center p-8">
-                <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-ink-4 border border-ink-9 flex items-center justify-center">
-                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--color-ink-30)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="10" />
-                    <path d="M12 8v4M12 16h.01" />
-                  </svg>
-                </div>
-                <p className="text-lg font-semibold text-ink mb-2">
-                  {activeIndex < 5 ? buyerProblems[activeIndex]?.title : sellerProblems[activeIndex - 5]?.title}
-                </p>
-                <p className="text-sm text-ink-45 max-w-xs mx-auto">
-                  {activeIndex < 5 ? buyerProblems[activeIndex]?.desc : sellerProblems[activeIndex - 5]?.desc}
-                </p>
-              </div>
-
-              {/* Dots */}
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5">
-                {[...Array(10)].map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setActiveIndex(i)}
-                    aria-label={`Slide ${i + 1}`}
-                    className={`w-1.5 h-1.5 rounded-full transition-all duration-200 ${
-                      activeIndex === i ? "bg-ink-45 scale-125" : "bg-ink-12"
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
