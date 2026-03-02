@@ -7,80 +7,84 @@ import type { NavItem, NavDropdownItem } from "@/types";
 import { homeAnchors, supportLinks } from "@/lib/site";
 
 // ─── Icons ──────────────────────────────────────────────────────────────────
-const ShieldIcon = ({ size = 22 }: { size?: number }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M12 2L4 6V12C4 16.418 7.582 20 12 22C16.418 20 20 16.418 20 12V6L12 2Z" />
-    <path d="M9 12L11 14L15 10" />
-  </svg>
-);
-
-const ChevronDown = ({ size = 14, className = "" }: { size?: number; className?: string }) => (
-  <svg width={size} height={size} viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className={className}>
+const ChevronDown = ({ className = "" }: { className?: string }) => (
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className={className}>
     <path d="M3 5L7 9L11 5" />
   </svg>
 );
 
-const ArrowRight = ({ size = 13 }: { size?: number }) => (
-  <svg width={size} height={size} viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M2.5 10.5L10.5 2.5M10.5 2.5H5.5M10.5 2.5V7.5" />
+const ArrowRight = () => (
+  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M2.5 9.5L9.5 2.5M9.5 2.5H5M9.5 2.5V7" />
   </svg>
 );
 
 const MenuIcon = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <line x1="3" y1="6" x2="21" y2="6" />
-    <line x1="3" y1="12" x2="21" y2="12" />
-    <line x1="3" y1="18" x2="21" y2="18" />
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+    <line x1="4" y1="8" x2="20" y2="8" />
+    <line x1="4" y1="14" x2="20" y2="14" />
   </svg>
 );
 
 const CloseIcon = () => (
   <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-    <line x1="5" y1="5" x2="15" y2="15" />
-    <line x1="15" y1="5" x2="5" y2="15" />
+    <line x1="6" y1="6" x2="16" y2="16" />
+    <line x1="16" y1="6" x2="6" y2="16" />
   </svg>
 );
 
 const LockIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="3" y="7" width="10" height="8" rx="1.5" />
-    <path d="M5.5 7V5a2.5 2.5 0 015 0v2" />
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2.5" y="6" width="9" height="7" rx="1.5" />
+    <path d="M4.5 6V4a2.5 2.5 0 015 0v2" />
   </svg>
 );
+
 const ZapIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M9 2L4 9h5l-2 5 7-7H9l2-5z" />
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M8 1.5L4 7.5h4l-1.5 5 5.5-6H8z" />
   </svg>
 );
+
 const UsersIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M11 14v-1a3 3 0 00-6 0v1M8 7a3 3 0 100-6 3 3 0 000 6zM14 14v-1a2 2 0 00-2-2M2 14v-1a2 2 0 012-2" />
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M9.5 12v-1a2 2 0 00-4 0v1M7 6a2 2 0 100-4 2 2 0 000 4zM12 12v-1a1.5 1.5 0 00-1.5-1.5M2 12v-1a1.5 1.5 0 011.5-1.5" />
   </svg>
 );
+
 const CodeIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-    <polyline points="5,4 1,8 5,12" />
-    <polyline points="11,4 15,8 11,12" />
-    <line x1="9" y1="2" x2="7" y2="14" />
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <polyline points="4,3 1,7 4,11" />
+    <polyline points="10,3 13,7 10,11" />
   </svg>
 );
+
 const BarChartIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="2" y="10" width="3" height="4" rx="0.5" />
-    <rect x="6.5" y="6" width="3" height="8" rx="0.5" />
-    <rect x="11" y="3" width="3" height="11" rx="0.5" />
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="9" width="2.5" height="3" rx="0.5" />
+    <rect x="5.5" y="6" width="2.5" height="6" rx="0.5" />
+    <rect x="9" y="3" width="2.5" height="9" rx="0.5" />
   </svg>
 );
+
 const FileTextIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M9 2H4a1 1 0 00-1 1v10a1 1 0 001 1h8a1 1 0 001-1V6L9 2z" />
-    <path d="M9 2v4h4M6 9h4M6 12h2" />
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M8 1.5H4a1 1 0 00-1 1v9a1 1 0 001 1h7a1 1 0 001-1V5L8 1.5z" />
+    <path d="M8 1.5V5h3.5M5.5 7.5h4M5.5 10h2" />
   </svg>
 );
+
 const GlobeIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="8" cy="8" r="6" />
-    <path d="M2 8h12M8 2c-2 2-2 8 0 12M8 2c2 2 2 8 0 12" />
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="7" cy="7" r="5.5" />
+    <path d="M2 7h10M7 1.5c-1.5 1.5-1.5 6 0 7.5M7 1.5c1.5 1.5 1.5 6 0 7.5" />
+  </svg>
+);
+
+const ShieldIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M7 1.5L2.5 4v3.5c0 2.5 1.8 4.8 4.5 5.5 2.7-.7 4.5-3 4.5-5.5V4L7 1.5z" />
+    <path d="M5 7l1.5 1.5L9 6" />
   </svg>
 );
 
@@ -113,7 +117,7 @@ const navItems: NavItem[] = [
       {
         group: "Perlindungan",
         items: [
-          { icon: <ShieldIcon size={16} />, label: "Proteksi Dana", desc: "Alur pelepasan dana dibuat transparan", href: homeAnchors.security },
+          { icon: <ShieldIcon />, label: "Proteksi Dana", desc: "Alur pelepasan dana dibuat transparan", href: homeAnchors.security },
           { icon: <BarChartIcon />, label: "Audit & Laporan", desc: "Riwayat dan status transaksi mudah ditinjau", href: supportLinks.status },
           { icon: <GlobeIcon />, label: "Status Sistem", desc: "Pantau status layanan dan update operasional", href: supportLinks.status, status: "online" },
         ],
@@ -148,69 +152,54 @@ interface DropdownPanelProps {
 const DropdownPanel = ({ item, isOpen, panelId, buttonId, onNavigate }: DropdownPanelProps) => {
   if (!item.dropdown || !isOpen) return null;
   return (
-    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 z-50 w-max min-w-[360px] max-w-[520px]">
-      <div className="flex justify-center mb-0">
-        <div className="w-2.5 h-2.5 bg-white border-l border-t border-black/10 rotate-45 -mb-1.5 z-10 relative " />
-      </div>
-      <div
-        id={panelId}
-        role="menu"
-        aria-labelledby={buttonId}
-        className="bg-white border border-black/10 rounded-2xl   overflow-hidden p-4"
-      >
-        <div className={`grid gap-6 ${item.dropdown.length > 1 ? "grid-cols-2" : "grid-cols-1"}`}>
-          {item.dropdown.map((group) => (
-            <div key={group.group}>
-              <div className="text-2xs font-bold uppercase tracking-widest text-black/30 mb-3 px-1">
-                {group.group}
-              </div>
-              <div className="flex flex-col gap-0.5">
-                {group.items.map((dropItem: NavDropdownItem) => (
-                  <Link
-                    key={dropItem.label}
-                    href={dropItem.href}
-                    role="menuitem"
-                    onClick={onNavigate}
-                    className="group flex items-start gap-3 px-3 py-2.5 rounded-xl hover:bg-black/[0.04] focus:bg-black/[0.04] focus:outline-none transition-colors duration-150"
-                  >
-                    <div className="mt-0.5 w-7 h-7 rounded-lg bg-black/5 flex items-center justify-center flex-shrink-0 text-black/50 group-hover:bg-black/[0.08] group-hover:text-black transition-all duration-150">
-                      {dropItem.icon}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2">
-                        <span className="text-sm font-semibold text-black/80 group-hover:text-black transition-colors leading-tight">
-                          {dropItem.label}
+    <div className="dropdown-panel z-50">
+      <div className={`grid gap-6 ${item.dropdown.length > 1 ? "grid-cols-2" : "grid-cols-1"}`}>
+        {item.dropdown.map((group) => (
+          <div key={group.group}>
+            <div className="meta-label mb-3 px-1">{group.group}</div>
+            <div className="flex flex-col gap-0.5">
+              {group.items.map((dropItem: NavDropdownItem) => (
+                <Link
+                  key={dropItem.label}
+                  href={dropItem.href}
+                  onClick={onNavigate}
+                  className="dropdown-item group"
+                >
+                  <div className="icon-box icon-box-sm group-hover:bg-ink-9 transition-colors">
+                    {dropItem.icon}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-semibold text-ink-60 group-hover:text-ink transition-colors">
+                        {dropItem.label}
+                      </span>
+                      {dropItem.badge && (
+                        <span className="pill pill-subtle text-2xs py-0.5 px-1.5">{dropItem.badge}</span>
+                      )}
+                      {dropItem.status === "online" && (
+                        <span className="relative flex h-1.5 w-1.5">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-ink opacity-40" />
+                          <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-ink-60" />
                         </span>
-                        {dropItem.badge && (
-                          <span className="text-2xs font-bold tracking-wider uppercase px-1.5 py-0.5 border border-black/15 text-black/40 rounded-full">
-                            {dropItem.badge}
-                          </span>
-                        )}
-                        {dropItem.status === "online" && (
-                          <span className="relative flex h-1.5 w-1.5 flex-shrink-0">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-black opacity-40" />
-                            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-black/60" />
-                          </span>
-                        )}
-                      </div>
-                      <div className="text-xs text-black/40 mt-0.5 leading-snug">{dropItem.desc}</div>
+                      )}
                     </div>
-                    <ArrowRight />
-                  </Link>
-                ))}
-              </div>
+                    <div className="text-xs text-ink-30 mt-0.5 leading-snug">{dropItem.desc}</div>
+                  </div>
+                  <ArrowRight />
+                </Link>
+              ))}
             </div>
-          ))}
-        </div>
-        {item.dropdown.length > 1 && (
-          <div className="mt-4 pt-4 border-t border-black/[0.08] flex items-center justify-between px-1">
-            <span className="text-xs text-black/35">Butuh bantuan memilih?</span>
-            <Link href={supportLinks.contact} onClick={onNavigate} className="text-xs font-semibold text-black/70 hover:text-black flex items-center gap-1.5 transition-colors group">
-              Konsultasi Gratis <ArrowRight />
-            </Link>
           </div>
-        )}
+        ))}
       </div>
+      {item.dropdown.length > 1 && (
+        <div className="mt-4 pt-4 border-t border-ink-7 flex items-center justify-between px-1">
+          <span className="text-xs text-ink-30">Butuh bantuan memilih?</span>
+          <Link href={supportLinks.contact} onClick={onNavigate} className="text-xs font-semibold text-ink-45 hover:text-ink flex items-center gap-1.5 transition-colors">
+            Konsultasi Gratis <ArrowRight />
+          </Link>
+        </div>
+      )}
     </div>
   );
 };
@@ -220,17 +209,17 @@ const MobileNavItem = ({ item }: { item: NavItem }) => {
   const [open, setOpen] = useState(false);
   if (!item.dropdown) {
     return (
-      <Link href={item.href ?? homeAnchors.home} className="block px-1 py-3.5 text-sm font-semibold text-black/70 border-b border-black/[0.06] hover:text-black transition-colors">
+      <Link href={item.href ?? homeAnchors.home} className="block py-3.5 text-sm font-medium text-ink-45 hover:text-ink transition-colors border-b border-ink-7">
         {item.label}
       </Link>
     );
   }
   return (
-    <div className="border-b border-black/[0.06]">
+    <div className="border-b border-ink-7">
       <button
         onClick={() => setOpen(!open)}
         aria-expanded={open}
-        className="w-full flex items-center justify-between px-1 py-3.5 text-sm font-semibold text-black/70 hover:text-black transition-colors text-left"
+        className="w-full flex items-center justify-between py-3.5 text-sm font-medium text-ink-45 hover:text-ink transition-colors text-left"
       >
         {item.label}
         <ChevronDown className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
@@ -241,14 +230,12 @@ const MobileNavItem = ({ item }: { item: NavItem }) => {
             <Link
               key={dropItem.label}
               href={dropItem.href}
-              className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-black/[0.04] transition-colors"
+              className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-ink-4 transition-colors"
             >
-              <div className="w-7 h-7 rounded-lg bg-black/5 flex items-center justify-center flex-shrink-0 text-black/40">
-                {dropItem.icon}
-              </div>
+              <div className="icon-box icon-box-sm">{dropItem.icon}</div>
               <div>
-                <div className="text-sm font-medium text-black/75">{dropItem.label}</div>
-                <div className="text-xs text-black/35">{dropItem.desc}</div>
+                <div className="text-sm font-medium text-ink-60">{dropItem.label}</div>
+                <div className="text-xs text-ink-30">{dropItem.desc}</div>
               </div>
             </Link>
           ))}
@@ -274,9 +261,7 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) setMobileOpen(false);
-    };
+    const handleResize = () => { if (window.innerWidth >= 768) setMobileOpen(false); };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -289,6 +274,17 @@ export default function Header() {
     };
     document.addEventListener("mousedown", handleClick);
     return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setActiveDropdown(null);
+        setMobileOpen(false);
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
   }, []);
 
   const clearHoverTimeout = () => {
@@ -308,52 +304,25 @@ export default function Header() {
     setActiveDropdown(null);
   };
 
-  const handleMouseEnter = (label: string) => {
-    openDropdown(label);
-  };
-
+  const handleMouseEnter = (label: string) => openDropdown(label);
   const handleMouseLeave = () => {
     clearHoverTimeout();
     timeoutRef.current = setTimeout(() => setActiveDropdown(null), 120);
   };
 
-  useEffect(() => () => {
-    clearHoverTimeout();
-  }, []);
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        closeDropdown();
-        setMobileOpen(false);
-      }
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, []);
-
   return (
-    <div className="sticky top-0 z-50 w-full font-sans">
-      <header
-        ref={headerRef}
-        className="relative bg-white transition-all duration-300 border-b border-black/[0.08]"
-      >
-
-        {/* Main Nav Row */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center h-16 gap-8">
+    <header
+      ref={headerRef}
+      className={`header transition-shadow duration-300 ${scrolled ? "shadow-sm" : ""}`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center h-16 gap-6">
           {/* Logo */}
-          <Link href={homeAnchors.home} className="flex items-center flex-shrink-0 group">
-            <div className="w-10 h-10 flex items-center justify-center transition-transform duration-200 group-hover:scale-95">
-              <Image
-                src="/favicon.svg"
-                alt="Kahade logo"
-                width={34}
-                height={34}
-                className="w-[34px] h-[34px] object-contain"
-                priority
-              />
+          <Link href={homeAnchors.home} className="flex items-center gap-2.5 flex-shrink-0 group">
+            <div className="w-9 h-9 flex items-center justify-center transition-transform duration-200 group-hover:scale-95">
+              <Image src="/favicon.svg" alt="Kahade" width={32} height={32} priority />
             </div>
+            <span className="text-lg font-bold tracking-tight">Kahade</span>
           </Link>
 
           {/* Desktop Nav */}
@@ -379,33 +348,13 @@ export default function Header() {
                       aria-haspopup="menu"
                       aria-controls={panelId}
                       onClick={() => (isOpen ? closeDropdown() : openDropdown(item.label))}
-                      onFocus={() => openDropdown(item.label)}
-                      onKeyDown={(e) => {
-                        if (e.key === "Escape") {
-                          closeDropdown();
-                          (e.currentTarget as HTMLButtonElement).blur();
-                        }
-                        if (e.key === "ArrowDown" || e.key === "Enter" || e.key === " ") {
-                          e.preventDefault();
-                          openDropdown(item.label);
-                        }
-                      }}
-                      className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${
-                        isOpen
-                          ? "text-black bg-black/5"
-                          : "text-black/55 hover:text-black hover:bg-black/[0.04]"
-                      }`}
+                      className={`nav-link ${isOpen ? "text-ink bg-ink-4" : ""}`}
                     >
                       {item.label}
-                      <ChevronDown
-                        className={`transition-transform duration-200 opacity-60 ${isOpen ? "rotate-180" : ""}`}
-                      />
+                      <ChevronDown className={`transition-transform duration-200 opacity-50 ${isOpen ? "rotate-180" : ""}`} />
                     </button>
                   ) : (
-                    <Link
-                      href={item.href ?? homeAnchors.home}
-                      className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm font-medium text-black/55 hover:text-black hover:bg-black/[0.04] transition-all duration-150"
-                    >
+                    <Link href={item.href ?? homeAnchors.home} className="nav-link">
                       {item.label}
                     </Link>
                   )}
@@ -419,71 +368,45 @@ export default function Header() {
 
           {/* Right Actions */}
           <div className="flex items-center gap-2 flex-shrink-0">
-            <div className="hidden lg:flex items-center gap-1.5 mr-2 px-3 py-1.5 rounded-full border border-black/10 bg-white/60">
+            <div className="hidden lg:flex items-center gap-2 mr-3">
               <span className="relative flex h-1.5 w-1.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-black opacity-40" />
-                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-black/70" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-ink opacity-40" />
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-ink-60" />
               </span>
-              <span className="text-2xs font-semibold text-black/45 tracking-wide">Sistem Aktif</span>
+              <span className="text-xs font-medium text-ink-30">Sistem Aktif</span>
             </div>
 
-            <Link href={homeAnchors.cta} className="hidden md:inline-flex btn-primary btn-sm items-center gap-2 group">
+            <Link href={homeAnchors.cta} className="hidden md:inline-flex btn btn-primary btn-sm">
               Mulai Transaksi
             </Link>
 
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-expanded={mobileOpen}
-              className="md:hidden w-10 h-10 flex items-center justify-center rounded-lg text-black hover:text-black hover:bg-black/5 transition-all"
+              className="md:hidden w-10 h-10 flex items-center justify-center rounded-lg text-ink hover:bg-ink-4 transition-colors"
               aria-label="Toggle menu"
             >
               {mobileOpen ? <CloseIcon /> : <MenuIcon />}
             </button>
           </div>
         </div>
+      </div>
 
-        {/* Secondary Bar */}
-        <div className="hidden lg:block relative z-10 border-t border-black/5">
-          <div className="max-w-7xl mx-auto px-8 h-8 flex items-center justify-between">
-            <div className="flex items-center gap-5">
-              {["Escrow workflow", "KYC support", "Monitoring aktif", "Pusat bantuan"].map((chip) => (
-                <div key={chip} className="flex items-center gap-1.5 text-2xs text-black/35 font-medium">
-                  <span className="text-black/30">✓</span>
-                  {chip}
-                </div>
-              ))}
-            </div>
-            <div className="flex items-center gap-4 text-2xs text-black/30 font-medium">
-              <span>Alur dana lebih transparan</span>
-              <span className="text-black/15">|</span>
-              <span>Dukungan untuk buyer & seller</span>
-            </div>
+      {/* Mobile Menu */}
+      {mobileOpen && (
+        <div className="md:hidden border-t border-ink-7 px-4 pt-3 pb-6 bg-white">
+          <nav className="flex flex-col">
+            {navItems.map((item) => (
+              <MobileNavItem key={item.label} item={item} />
+            ))}
+          </nav>
+          <div className="mt-5">
+            <Link href={homeAnchors.cta} className="w-full btn btn-primary flex items-center justify-center">
+              Mulai Transaksi
+            </Link>
           </div>
         </div>
-
-        {/* Mobile Menu */}
-        {mobileOpen && (
-          <div className="md:hidden relative z-10 bg-white border-t border-black/[0.08] px-4 pt-2 pb-6">
-            <nav className="flex flex-col">
-              {navItems.map((item) => (
-                <MobileNavItem key={item.label} item={item} />
-              ))}
-            </nav>
-            <div className="flex flex-col gap-2.5 mt-5">
-              <Link href={homeAnchors.cta} className="w-full py-3 text-center btn-primary flex items-center justify-center gap-2">
-                Mulai Transaksi
-              </Link>
-            </div>
-            <div className="mt-5 pt-4 border-t border-black/[0.08] flex flex-wrap gap-x-4 gap-y-1.5">
-              {["Escrow workflow", "Pusat bantuan", "Panduan teknis", "Monitoring sistem"].map((t) => (
-                <span key={t} className="text-2xs text-black/30 font-medium flex items-center gap-1">
-                  <span>✓</span> {t}
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
-      </header>
-    </div>
+      )}
+    </header>
   );
 }

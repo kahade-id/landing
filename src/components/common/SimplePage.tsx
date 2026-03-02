@@ -13,6 +13,18 @@ interface SimplePageProps {
   detailBody?: string;
 }
 
+const CheckIcon = () => (
+  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+    <path d="M2 6L5 9L10 3" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+const ArrowRight = () => (
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M3 7h8M7 3l4 4-4 4" />
+  </svg>
+);
+
 export default function SimplePage({
   eyebrow,
   title,
@@ -25,58 +37,62 @@ export default function SimplePage({
     <>
       <Header />
       <main id="main-content">
-        <section className="pt-32 pb-20 px-4 max-w-4xl mx-auto">
-          {eyebrow && (
-            <p className="text-xs font-bold uppercase tracking-widest text-black/40 mb-4">
-              {eyebrow}
-            </p>
-          )}
-          <h1
-            className="text-4xl md:text-5xl font-black tracking-tight mb-6 leading-[1.08]"
-            style={{ letterSpacing: "-0.03em" }}
-          >
-            {title}
-          </h1>
-          <p className="text-lg text-black/60 max-w-2xl leading-relaxed">{description}</p>
+        {/* Hero Section */}
+        <section className="pt-24 lg:pt-32 pb-16 lg:pb-20 px-4 bg-muted">
+          <div className="max-w-3xl mx-auto text-center">
+            {eyebrow && (
+              <p className="meta-label mb-4">{eyebrow}</p>
+            )}
+            <h1 className="inner-hero-title mb-5">
+              {title}
+            </h1>
+            <p className="inner-hero-lead">{description}</p>
+          </div>
         </section>
 
+        {/* Content Section */}
         {(points.length > 0 || detailTitle || detailBody) && (
-          <section className="pb-24 px-4 max-w-4xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-12">
-              {points.length > 0 && (
-                <div>
-                  <ul className="space-y-4">
-                    {points.map((point, i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <span className="mt-0.5 w-5 h-5 rounded-full bg-black flex items-center justify-center flex-shrink-0">
-                          <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                            <path d="M1 4L3.5 6.5L9 1" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                          </svg>
-                        </span>
-                        <span className="text-black/75 leading-relaxed">{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {(detailTitle || detailBody) && (
-                <div>
-                  {detailTitle && <h2 className="text-xl font-bold mb-3 tracking-tight">{detailTitle}</h2>}
-                  {detailBody && <p className="text-black/60 leading-relaxed">{detailBody}</p>}
-                </div>
-              )}
+          <section className="py-16 lg:py-20 px-4 bg-surface">
+            <div className="max-w-4xl mx-auto">
+              <div className="grid md:grid-cols-2 gap-10 lg:gap-16">
+                {points.length > 0 && (
+                  <div>
+                    <h2 className="text-lg font-bold mb-5">Poin Penting</h2>
+                    <ul className="space-y-4">
+                      {points.map((point, i) => (
+                        <li key={i} className="flex items-start gap-3">
+                          <span className="mt-0.5 w-5 h-5 rounded-full bg-ink flex items-center justify-center flex-shrink-0">
+                            <CheckIcon />
+                          </span>
+                          <span className="text-ink-60 leading-relaxed">{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {(detailTitle || detailBody) && (
+                  <div>
+                    {detailTitle && <h2 className="text-lg font-bold mb-4">{detailTitle}</h2>}
+                    {detailBody && <p className="text-ink-60 leading-relaxed">{detailBody}</p>}
+                  </div>
+                )}
+              </div>
             </div>
           </section>
         )}
 
-        <section className="pb-24 px-4 max-w-4xl mx-auto border-t border-ink-7" style={{ paddingTop: "64px" }}>
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-            <Link href="/" className="btn-primary">
-              Mulai Sekarang →
-            </Link>
-            <Link href="/contact" className="btn-secondary">
-              Hubungi Kami →
-            </Link>
+        {/* CTA Section */}
+        <section className="py-16 lg:py-20 px-4 bg-muted border-t border-ink-9">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+              <Link href="/" className="btn btn-primary">
+                Mulai Sekarang
+                <ArrowRight />
+              </Link>
+              <Link href="/contact" className="btn btn-secondary">
+                Hubungi Kami
+              </Link>
+            </div>
           </div>
         </section>
       </main>
