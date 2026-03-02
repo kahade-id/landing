@@ -92,8 +92,8 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-4 flex flex-col gap-5">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-btn bg-ink flex items-center justify-center flex-shrink-0">
-                <Image src="/favicon.svg" alt="Kahade" width={28} height={28} className="invert" />
+              <div className="w-9 h-9 flex items-center justify-center flex-shrink-0">
+                <Image src="/favicon.svg" alt="Kahade" width={32} height={32} />
               </div>
               <div>
                 <div className="text-xl font-bold tracking-tight">Kahade</div>

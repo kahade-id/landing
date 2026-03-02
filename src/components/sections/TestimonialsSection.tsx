@@ -160,6 +160,10 @@ export default function TestimonialsSection() {
       ref={sectionRef}
       className="section bg-surface overflow-hidden"
     >
+      <div className="container-base pb-8 lg:pb-10">
+        <div className="divider-dots" aria-hidden="true" />
+      </div>
+
       <div className="container-base">
         {/* Header */}
         <div className="section-header">
@@ -193,6 +197,10 @@ export default function TestimonialsSection() {
             ))}
           </div>
         </div>
+      </div>
+
+      <div className="container-base pt-8 lg:pt-10">
+        <div className="divider-dots" aria-hidden="true" />
       </div>
     </section>
   );
