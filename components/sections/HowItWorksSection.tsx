@@ -253,18 +253,7 @@ export default function HowItWorksSection() {
             </div>
           </div>
 
-          {/* Progress dots */}
-          <div className="flex justify-center gap-2 mt-6">
-            {steps.map((_, i) => (
-              <button
-                key={i}
-                type="button"
-                onClick={() => setActiveStep(i)}
-                className={`h-1.5 rounded-full transition-all duration-300 ${i === activeStep ? "w-8 bg-foreground" : "w-1.5 bg-border hover:bg-muted-foreground"}`}
-                aria-label={`Ke langkah ${i + 1}`}
-              />
-            ))}
-          </div>
+
         </div>
 
         {/* ── CTA ── */}
