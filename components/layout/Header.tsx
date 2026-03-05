@@ -7,9 +7,10 @@ import { useState, useEffect, useRef } from "react";
 import { navItems } from "@/src/lib/site";
 import {
   ChevronDown, Menu, X, Shield, Zap, Users, Globe,
-  Smartphone, BarChart3, FileText, HelpCircle, Lock, LogIn,
+  Smartphone, BarChart3, FileText, HelpCircle, Lock,
   Twitter, Instagram,
 } from "lucide-react";
+import { site } from "@/src/lib/site";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Shield, Zap, Users, Globe, Smartphone, BarChart3, FileText, HelpCircle, Lock,
@@ -74,7 +75,7 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
   return (
     <div
       className="fixed inset-0 z-50 md:hidden flex flex-col"
-      style={{ background: "hsl(0 0% 97%)" }}
+      style={{ background: "#ffffff" }}
     >
       {/* Top bar */}
       <div className="flex items-center justify-between px-5 py-4 flex-shrink-0">
@@ -148,10 +149,10 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
           Daftar Gratis
         </a>
         <div className="flex items-center gap-3">
-          <a href="#" aria-label="X / Twitter" className="w-11 h-11 rounded-full bg-white border border-border flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors">
+          <a href={site.socials.twitter} target="_blank" rel="noopener noreferrer" aria-label="X / Twitter" className="w-11 h-11 rounded-full bg-white border border-border flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors">
             <Twitter className="w-4 h-4" />
           </a>
-          <a href="#" aria-label="Instagram" className="w-11 h-11 rounded-full bg-white border border-border flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors">
+          <a href={site.socials.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-11 h-11 rounded-full bg-white border border-border flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors">
             <Instagram className="w-4 h-4" />
           </a>
         </div>
@@ -237,14 +238,13 @@ export default function Header() {
 
             {/* Mobile: Masuk (black) + Hamburger (muted) */}
             <div className="flex md:hidden items-center gap-2">
-              {/* Tombol Masuk — hitam, teks & icon putih */}
+              {/* Tombol Masuk — hitam, teks putih, tanpa icon */}
               <a
                 href="https://app.kahade.id/login"
                 aria-label="Masuk ke akun"
-                className="h-9 inline-flex items-center gap-1.5 bg-foreground text-background px-3 rounded-lg text-sm font-semibold transition-colors hover:bg-foreground/85 active:bg-foreground/75 leading-none"
+                className="h-9 inline-flex items-center bg-foreground text-background px-4 rounded-lg text-sm font-semibold transition-colors hover:bg-foreground/85 active:bg-foreground/75 leading-none"
               >
-                <LogIn className="w-5 h-5" />
-                <span>Masuk</span>
+                Masuk
               </a>
 
               {/* Hamburger — muted bg */}
