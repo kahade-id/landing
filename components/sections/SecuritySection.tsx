@@ -20,7 +20,7 @@ const topFeatures = [
 const bottomFeatures = [
   { icon: Shield,    title: "Anti Penipuan",        subtitle: "Fraud Detection",      desc: "Sistem AI kami mendeteksi pola transaksi mencurigakan dan memblokir potensi penipuan secara otomatis sebelum terjadi." },
   { icon: UserCheck, title: "Verifikasi KYC",        subtitle: "Identity Verified",    desc: "Setiap pengguna melewati proses verifikasi identitas ketat sesuai regulasi KYC dan AML untuk menjaga keamanan ekosistem." },
-  { icon: Bell,      title: "Notifikasi Instan",     subtitle: "Instant Alerts",       desc: "Setiap perubahan status transaksi langsung dikirim via push notification, email, dan SMS." },
+  { icon: Bell,      title: "Keamanan Sesi",          subtitle: "Session Guard",        desc: "Setiap sesi login terenkripsi dan dibatasi waktu otomatis. Jika ada login mencurigakan dari perangkat baru, akun langsung dikunci dan Anda diberi tahu." },
   { icon: Key,       title: "Autentikasi 2FA",       subtitle: "Two-Factor Auth",      desc: "Lapisan keamanan ekstra dengan 2FA memastikan hanya Anda yang bisa mengakses akun dan mengotorisasi transaksi." },
 ];
 
