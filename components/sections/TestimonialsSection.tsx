@@ -64,17 +64,18 @@ export default function TestimonialsSection() {
       </div>
 
       {/* Marquee rows */}
+      {/* Seamless marquee: 2 copies, translateX(-50%) — no visible restart */}
       <div className={`mt-10 anim-fade-in delay-200 ${inView ? "in-view" : ""} marquee-container`} aria-hidden="true">
         <div className="overflow-hidden">
-          <div className="flex gap-4 animate-marquee-fast">
-            {[...firstHalf, ...firstHalf, ...firstHalf].map((testimonial, i) => (
+          <div className="flex gap-4 animate-marquee-fast" style={{ width: "max-content" }}>
+            {[...firstHalf, ...firstHalf].map((testimonial, i) => (
               <TestimonialCard key={`row1-${i}`} testimonial={testimonial} photoIndex={i % testimonialPhotos.length} />
             ))}
           </div>
         </div>
         <div className="overflow-hidden mt-4">
-          <div className="flex gap-4 animate-marquee-reverse-fast">
-            {[...secondHalf, ...secondHalf, ...secondHalf].map((testimonial, i) => (
+          <div className="flex gap-4 animate-marquee-reverse-fast" style={{ width: "max-content" }}>
+            {[...secondHalf, ...secondHalf].map((testimonial, i) => (
               <TestimonialCard key={`row2-${i}`} testimonial={testimonial} photoIndex={(i + 3) % testimonialPhotos.length} />
             ))}
           </div>
