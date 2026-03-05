@@ -1,0 +1,7 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#ffffff"/>
+  <rect x="48" y="48" width="1104" height="534" rx="28" stroke="#111111" stroke-opacity="0.18"/>
+  <text x="96" y="250" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="84" font-weight="700">Kahade</text>
+  <text x="96" y="322" fill="#111111" fill-opacity="0.74" font-family="Inter, Arial, sans-serif" font-size="40" font-weight="500">Platform escrow untuk transaksi bernilai tinggi</text>
+  <text x="96" y="390" fill="#111111" fill-opacity="0.62" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="400">Alur dana transparan, verifikasi bertahap, dan monitoring transaksi.</text>
+</svg>
