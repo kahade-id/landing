@@ -5,226 +5,221 @@ import Image from "next/image";
 import { ArrowRight, Play } from "lucide-react";
 
 /* ─────────────────────────────────────────────────────────────────
-   LAPTOP ILLUSTRATION — exact port of the provided HTML
-───────────────────────────────────────────────────────────────── */
-function LaptopIllustration() {
+   ESCROW FLOW ILLUSTRATION
+   Pembeli → Lock (Escrow) → Penjual
+   Minimal, clean, professional — matching site aesthetic
+─────────────────────────────────────────────────────────────────── */
+function EscrowFlowIllustration() {
   return (
     <>
       <style>{`
-        @keyframes dashF {
-          from { stroke-dashoffset: 0; }
-          to   { stroke-dashoffset: -28; }
+        @keyframes flowRight {
+          0%   { stroke-dashoffset: 24; opacity: 0.4; }
+          50%  { opacity: 1; }
+          100% { stroke-dashoffset: 0;  opacity: 0.4; }
         }
-        @keyframes ringP {
-          0%,100% { opacity: 0.5; }
-          50%      { opacity: 1; }
+        @keyframes lockPulse {
+          0%,100% { box-shadow: 0 0 0 0 rgba(0,0,0,0.07), inset 0 1px 3px rgba(255,255,255,0.9); }
+          50%     { box-shadow: 0 0 0 8px rgba(0,0,0,0.03), inset 0 1px 3px rgba(255,255,255,0.9); }
         }
-        @keyframes spinR {
-          from { transform: translate(-50%, -50%) rotate(0deg); }
-          to   { transform: translate(-50%, -50%) rotate(360deg); }
+        @keyframes ringBreath {
+          0%,100% { opacity: 0.3; transform: scale(1); }
+          50%     { opacity: 0.7; transform: scale(1.04); }
         }
-        @keyframes coreBreath {
-          0%,100% { box-shadow: inset 0 1px 4px rgba(255,255,255,0.95), inset 0 -1px 2px rgba(0,0,0,0.06), 0 0 20px rgba(0,0,0,0.07); }
-          50%      { box-shadow: inset 0 1px 4px rgba(255,255,255,0.95), inset 0 -1px 2px rgba(0,0,0,0.06), 0 0 32px rgba(0,0,0,0.12); }
+        @keyframes badgeFade {
+          0%,40%  { opacity: 0; transform: translateY(4px); }
+          60%,85% { opacity: 1; transform: translateY(0); }
+          100%    { opacity: 0; transform: translateY(-4px); }
         }
-        .li-ring-spin {
-          animation: ringP 5s ease-in-out infinite 1s, spinR 30s linear infinite;
-          transform-origin: center;
-        }
-        .li-dash-fwd { animation: dashF 3s linear infinite; }
-        .li-dash-rev { animation: dashF 3s linear infinite reverse; }
+        .flow-line-fwd { animation: flowRight 2.4s ease-in-out infinite; }
+        .flow-line-rev { animation: flowRight 2.4s ease-in-out infinite 1.2s; }
+        .lock-core     { animation: lockPulse 3s ease-in-out infinite; }
+        .ring-1        { animation: ringBreath 3s ease-in-out infinite; }
+        .ring-2        { animation: ringBreath 3s ease-in-out infinite 0.6s; }
+        .ring-3        { animation: ringBreath 3s ease-in-out infinite 1.2s; }
+        .badge-buyer   { animation: badgeFade 4s ease-in-out infinite; }
+        .badge-escrow  { animation: badgeFade 4s ease-in-out infinite 1.3s; }
+        .badge-seller  { animation: badgeFade 4s ease-in-out infinite 2.6s; }
       `}</style>
 
-      {/* ── WRAPPER ── */}
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 0, userSelect: "none" }}>
 
-        {/* ── LID ── */}
-        <div style={{
-          position: "relative",
-          width: 380, height: 240,
-          background: "#C8C8C8",
-          borderRadius: "12px 12px 4px 4px",
-          border: "1.5px solid #B0B0B0",
-          boxShadow: "0 0 0 1px #E0E0E0, inset 0 0 16px rgba(0,0,0,0.04), 0 -2px 8px rgba(0,0,0,0.08)",
-          overflow: "hidden",
-        }}>
-          {/* Camera */}
-          <div style={{
-            position: "absolute", top: 8, left: "50%",
-            transform: "translateX(-50%)",
-            width: 5, height: 5,
-            borderRadius: "50%", background: "#A8A8A8", zIndex: 10,
-          }} />
+        {/* ── MAIN ROW ── */}
+        <div style={{ display: "flex", alignItems: "center", gap: 0, position: "relative" }}>
 
-          {/* Screen */}
-          <div style={{
-            position: "absolute", inset: "6px 6px 4px 6px",
-            background: "#F2F2F2",
-            borderRadius: "8px 8px 2px 2px",
-            overflow: "hidden",
-            display: "flex", alignItems: "center", justifyContent: "center",
-          }}>
-            {/* Scene */}
+          {/* ── PEMBELI NODE ── */}
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 10, width: 110 }}>
+            {/* Avatar circle */}
             <div style={{
-              position: "relative",
-              width: 320, height: 190,
+              width: 64, height: 64, borderRadius: "50%",
+              background: "#F0F0F0", border: "1.5px solid #D4D4D4",
               display: "flex", alignItems: "center", justifyContent: "center",
+              boxShadow: "inset 0 1px 3px rgba(255,255,255,0.9), 0 1px 4px rgba(0,0,0,0.06)",
             }}>
-
-              {/* ── SVG lines ── */}
-              <svg
-                viewBox="0 0 320 190"
-                style={{ position: "absolute", inset: 0, width: "100%", height: "100%", overflow: "visible" }}
-              >
-                {/* Left node → vault */}
-                <line
-                  className="li-dash-fwd"
-                  stroke="#C0C0C0" strokeWidth="1" strokeDasharray="3 4"
-                  x1="54" y1="95" x2="124" y2="95"
-                />
-                {/* Vault → right node */}
-                <line
-                  className="li-dash-rev"
-                  stroke="#C0C0C0" strokeWidth="1" strokeDasharray="3 4"
-                  x1="196" y1="95" x2="264" y2="95"
-                />
-                {/* Left vertical tick */}
-                <line stroke="#D0D0D0" strokeWidth="1" x1="38" y1="85" x2="38" y2="105" />
-                {/* Right vertical tick */}
-                <line stroke="#D0D0D0" strokeWidth="1" x1="282" y1="85" x2="282" y2="105" />
+              {/* Simple person silhouette */}
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <circle cx="14" cy="10" r="5" fill="#B0B0B0"/>
+                <path d="M4 24c0-5.523 4.477-10 10-10s10 4.477 10 10" fill="#B0B0B0"/>
               </svg>
+            </div>
+            {/* Label */}
+            <div style={{ textAlign: "center" }}>
+              <p style={{ fontSize: 13, fontWeight: 700, color: "#1A1A1A", letterSpacing: -0.3 }}>Pembeli</p>
+              <p style={{ fontSize: 11, color: "#A0A0A0", marginTop: 1 }}>Kirim dana</p>
+            </div>
+          </div>
 
-              {/* ── LEFT NODE ── */}
-              <div style={{
-                position: "absolute", top: "50%",
-                left: 20, transform: "translateY(-50%)",
-                display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
-              }}>
-                <div style={{
-                  width: 32, height: 32, borderRadius: "50%",
-                  background: "#E4E4E4", border: "1.5px solid #C8C8C8",
-                  boxShadow: "inset 0 1px 3px rgba(255,255,255,0.9)",
-                }} />
-                <div style={{ width: 20, height: 1.5, background: "#C8C8C8", borderRadius: 1 }} />
-                <div style={{ width: 13, height: 1.5, background: "#D4D4D4", borderRadius: 1 }} />
-              </div>
+          {/* ── CONNECTOR LEFT ── */}
+          <div style={{ position: "relative", width: 90, display: "flex", alignItems: "center", flexDirection: "column", gap: 4 }}>
+            <svg width="90" height="20" viewBox="0 0 90 20" overflow="visible">
+              <defs>
+                <marker id="arrowR" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                  <path d="M0,0 L0,6 L6,3 z" fill="#C0C0C0"/>
+                </marker>
+              </defs>
+              <line
+                className="flow-line-fwd"
+                x1="4" y1="10" x2="80" y2="10"
+                stroke="#C0C0C0" strokeWidth="1.5"
+                strokeDasharray="6 4"
+                markerEnd="url(#arrowR)"
+              />
+            </svg>
+            <span style={{ fontSize: 10, color: "#B8B8B8", fontWeight: 600, letterSpacing: 0.4 }}>Dana masuk</span>
+          </div>
 
-              {/* ── RIGHT NODE ── */}
-              <div style={{
-                position: "absolute", top: "50%",
-                right: 20, transform: "translateY(-50%)",
-                display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
-              }}>
-                <div style={{
-                  width: 32, height: 32, borderRadius: "50%",
-                  background: "#E4E4E4", border: "1.5px solid #C8C8C8",
-                  boxShadow: "inset 0 1px 3px rgba(255,255,255,0.9)",
-                }} />
-                <div style={{ width: 20, height: 1.5, background: "#C8C8C8", borderRadius: 1 }} />
-                <div style={{ width: 13, height: 1.5, background: "#D4D4D4", borderRadius: 1 }} />
-              </div>
-
-              {/* ── VAULT (center) ── */}
-              <div style={{
-                position: "absolute", top: "50%", left: "50%",
-                transform: "translate(-50%, -50%)",
-                width: 72, height: 72,
+          {/* ── ESCROW (LOCK) NODE ── */}
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 10, width: 120 }}>
+            {/* Rings + Core */}
+            <div style={{ position: "relative", width: 80, height: 80, display: "flex", alignItems: "center", justifyContent: "center" }}>
+              {/* Ring 3 */}
+              <div className="ring-3" style={{
+                position: "absolute", inset: -10,
+                borderRadius: "50%", border: "1px dashed rgba(0,0,0,0.06)",
+              }}/>
+              {/* Ring 2 */}
+              <div className="ring-2" style={{
+                position: "absolute", inset: -3,
+                borderRadius: "50%", border: "1px solid rgba(0,0,0,0.08)",
+              }}/>
+              {/* Ring 1 */}
+              <div className="ring-1" style={{
+                position: "absolute", inset: 4,
+                borderRadius: "50%", border: "1px solid rgba(0,0,0,0.1)",
+              }}/>
+              {/* Core */}
+              <div className="lock-core" style={{
+                width: 64, height: 64, borderRadius: "50%",
+                background: "#1A1A1A",
                 display: "flex", alignItems: "center", justifyContent: "center",
+                position: "relative", zIndex: 2,
               }}>
-                {/* Concentric rings */}
-                {/* Ring 1 */}
-                <div style={{
-                  position: "absolute", top: "50%", left: "50%",
-                  width: 72, height: 72,
-                  marginTop: -36, marginLeft: -36,
-                  borderRadius: "50%", border: "1px solid rgba(0,0,0,0.09)",
-                  animation: "ringP 5s ease-in-out infinite",
-                }} />
-                {/* Ring 2 */}
-                <div style={{
-                  position: "absolute", top: "50%", left: "50%",
-                  width: 88, height: 88,
-                  marginTop: -44, marginLeft: -44,
-                  borderRadius: "50%", border: "1px solid rgba(0,0,0,0.06)",
-                  animation: "ringP 5s ease-in-out infinite 0.5s",
-                }} />
-                {/* Ring 3 — spinning dashed */}
-                <div className="li-ring-spin" style={{
-                  position: "absolute", top: "50%", left: "50%",
-                  width: 106, height: 106,
-                  marginTop: -53, marginLeft: -53,
-                  borderRadius: "50%",
-                  border: "1px dashed rgba(0,0,0,0.035)",
-                  transformOrigin: "center",
-                }} />
-                {/* Ring 4 */}
-                <div style={{
-                  position: "absolute", top: "50%", left: "50%",
-                  width: 128, height: 128,
-                  marginTop: -64, marginLeft: -64,
-                  borderRadius: "50%", border: "1px solid rgba(0,0,0,0.018)",
-                  animation: "ringP 5s ease-in-out infinite 1.5s",
-                }} />
-
-                {/* Core */}
-                <div style={{
-                  position: "relative", zIndex: 2,
-                  width: 52, height: 52, borderRadius: "50%",
-                  background: "#E4E4E4",
-                  border: "1.5px solid #BEBEBE",
-                  animation: "coreBreath 5s ease-in-out infinite",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                }}>
-                  {/* Lock icon */}
-                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2 }}>
-                    {/* Arc */}
-                    <div style={{
-                      width: 13, height: 8,
-                      border: "1.5px solid #A8A8A8",
-                      borderBottom: "none",
-                      borderRadius: "7px 7px 0 0",
-                      marginBottom: -1,
-                    }} />
-                    {/* Body */}
-                    <div style={{
-                      width: 14, height: 9,
-                      border: "1.5px solid #A8A8A8",
-                      borderRadius: 2,
-                    }} />
-                  </div>
-                </div>
+                {/* Lock icon in white */}
+                <svg width="22" height="26" viewBox="0 0 22 26" fill="none">
+                  <rect x="1" y="12" width="20" height="13" rx="3" fill="white" opacity="0.95"/>
+                  <path d="M5 12V8.5C5 5.46 7.46 3 10.5 3h1C14.54 3 17 5.46 17 8.5V12" stroke="white" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.95"/>
+                  <circle cx="11" cy="18.5" r="2" fill="#1A1A1A"/>
+                </svg>
               </div>
+            </div>
+            {/* Label */}
+            <div style={{ textAlign: "center" }}>
+              <p style={{ fontSize: 13, fontWeight: 700, color: "#1A1A1A", letterSpacing: -0.3 }}>Escrow</p>
+              <p style={{ fontSize: 11, color: "#A0A0A0", marginTop: 1 }}>Dana aman</p>
+            </div>
+          </div>
 
-            </div>{/* /scene */}
-          </div>{/* /screen */}
-        </div>{/* /lid */}
+          {/* ── CONNECTOR RIGHT ── */}
+          <div style={{ position: "relative", width: 90, display: "flex", alignItems: "center", flexDirection: "column", gap: 4 }}>
+            <svg width="90" height="20" viewBox="0 0 90 20" overflow="visible">
+              <defs>
+                <marker id="arrowR2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                  <path d="M0,0 L0,6 L6,3 z" fill="#C0C0C0"/>
+                </marker>
+              </defs>
+              <line
+                className="flow-line-rev"
+                x1="4" y1="10" x2="80" y2="10"
+                stroke="#C0C0C0" strokeWidth="1.5"
+                strokeDasharray="6 4"
+                markerEnd="url(#arrowR2)"
+              />
+            </svg>
+            <span style={{ fontSize: 10, color: "#B8B8B8", fontWeight: 600, letterSpacing: 0.4 }}>Dana cair</span>
+          </div>
 
-        {/* ── HINGE ── */}
+          {/* ── PENJUAL NODE ── */}
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 10, width: 110 }}>
+            {/* Store circle */}
+            <div style={{
+              width: 64, height: 64, borderRadius: "50%",
+              background: "#F0F0F0", border: "1.5px solid #D4D4D4",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              boxShadow: "inset 0 1px 3px rgba(255,255,255,0.9), 0 1px 4px rgba(0,0,0,0.06)",
+            }}>
+              {/* Simple store icon */}
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <rect x="4" y="13" width="20" height="12" rx="1.5" fill="#B0B0B0"/>
+                <path d="M2 9h24l-2 4H4L2 9z" fill="#C4C4C4"/>
+                <rect x="11" y="17" width="6" height="8" rx="1" fill="#E8E8E8"/>
+              </svg>
+            </div>
+            {/* Label */}
+            <div style={{ textAlign: "center" }}>
+              <p style={{ fontSize: 13, fontWeight: 700, color: "#1A1A1A", letterSpacing: -0.3 }}>Penjual</p>
+              <p style={{ fontSize: 11, color: "#A0A0A0", marginTop: 1 }}>Kirim barang</p>
+            </div>
+          </div>
+        </div>
+
+        {/* ── STATUS BADGES ROW ── */}
         <div style={{
-          width: 390, height: 4,
-          background: "#B4B4B4",
-          borderRadius: "0 0 1px 1px",
-          boxShadow: "0 1px 2px rgba(0,0,0,0.1)",
-        }} />
-
-        {/* ── BASE ── */}
-        <div style={{
-          position: "relative",
-          width: 400, height: 14,
-          background: "linear-gradient(to bottom, #C8C8C8, #BBBBBB)",
-          borderRadius: "0 0 8px 8px",
-          border: "1px solid #AAAAAA",
-          borderTop: "none",
-          boxShadow: "0 4px 16px rgba(0,0,0,0.1)",
+          display: "flex", justifyContent: "space-between",
+          width: "100%", marginTop: 24, padding: "0 0",
+          gap: 8,
         }}>
-          {/* Trackpad notch */}
-          <div style={{
-            position: "absolute", bottom: 0, left: "50%",
-            transform: "translateX(-50%)",
-            width: 60, height: 3,
-            background: "#AAAAAA",
-            borderRadius: "2px 2px 0 0",
-          }} />
+          {/* Buyer badge */}
+          <div className="badge-buyer" style={{ flex: 1 }}>
+            <div style={{
+              background: "#F6F6F6", border: "1px solid #E4E4E4",
+              borderRadius: 8, padding: "7px 10px",
+              display: "flex", alignItems: "center", gap: 6,
+            }}>
+              <span style={{ fontSize: 10, color: "#52C41A", fontWeight: 700 }}>✓</span>
+              <span style={{ fontSize: 11, color: "#606060", fontWeight: 600 }}>Dana dikunci</span>
+            </div>
+          </div>
+
+          {/* Escrow badge */}
+          <div className="badge-escrow" style={{ flex: 1 }}>
+            <div style={{
+              background: "#F6F6F6", border: "1px solid #E4E4E4",
+              borderRadius: 8, padding: "7px 10px",
+              display: "flex", alignItems: "center", gap: 6,
+            }}>
+              <span style={{ fontSize: 10, color: "#1A1A1A", fontWeight: 700 }}>🔒</span>
+              <span style={{ fontSize: 11, color: "#606060", fontWeight: 600 }}>Terlindungi</span>
+            </div>
+          </div>
+
+          {/* Seller badge */}
+          <div className="badge-seller" style={{ flex: 1 }}>
+            <div style={{
+              background: "#F6F6F6", border: "1px solid #E4E4E4",
+              borderRadius: 8, padding: "7px 10px",
+              display: "flex", alignItems: "center", gap: 6,
+            }}>
+              <span style={{ fontSize: 10, color: "#52C41A", fontWeight: 700 }}>✓</span>
+              <span style={{ fontSize: 11, color: "#606060", fontWeight: 600 }}>Dana cair</span>
+            </div>
+          </div>
+        </div>
+
+        {/* ── KAHADE TAG ── */}
+        <div style={{ marginTop: 20, display: "flex", alignItems: "center", gap: 6 }}>
+          <div style={{ flex: 1, height: 1, background: "#E8E8E8", width: 60 }} />
+          <span style={{ fontSize: 11, color: "#B0B0B0", fontWeight: 600, letterSpacing: 0.5 }}>DIJAMIN KAHADE</span>
+          <div style={{ flex: 1, height: 1, background: "#E8E8E8", width: 60 }} />
         </div>
 
       </div>
@@ -234,7 +229,7 @@ function LaptopIllustration() {
 
 /* ─────────────────────────────────────────────────────────────────
    AVATARS
-───────────────────────────────────────────────────────────────── */
+─────────────────────────────────────────────────────────────────── */
 const testimonialAvatars = [
   { src: "/testimonials/user1.jpg", alt: "Pengguna 1" },
   { src: "/testimonials/user2.jpg", alt: "Pengguna 2" },
@@ -245,7 +240,7 @@ const testimonialAvatars = [
 
 /* ─────────────────────────────────────────────────────────────────
    HERO SECTION
-───────────────────────────────────────────────────────────────── */
+─────────────────────────────────────────────────────────────────── */
 export default function HeroSection() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => { setMounted(true); }, []);
@@ -264,7 +259,7 @@ export default function HeroSection() {
         style={{ background: "radial-gradient(ellipse 60% 50% at 65% 45%, hsl(220 40% 97%) 0%, transparent 70%)" }} />
 
       {/* ── DESKTOP ── */}
-      <div className="hidden lg:block relative z-10 container-base pt-12 pb-0">
+      <div className="hidden lg:block relative z-10 container-base pt-16 pb-16">
         <div className="grid grid-cols-2 gap-16 items-center">
 
           {/* Copy */}
@@ -275,7 +270,8 @@ export default function HeroSection() {
                 <span className="hero-title-light block">Tanpa Rasa Khawatir.</span>
               </h1>
             </div>
-            <p className={`anim-fade-up delay-200 ${inViewClass} text-lg text-muted-foreground`}>
+            {/* text-lg — konsisten dengan ProblemSection & ComplianceSection */}
+            <p className={`anim-fade-up delay-200 ${inViewClass} text-lg text-muted-foreground leading-relaxed`}>
               Dana Anda dijaga sampai transaksi selesai.<br />
               Pembeli pasti bayar. Penjual pasti kirim.<br />
               Kepercayaan bukan soal harapan — tapi jaminan.
@@ -305,23 +301,24 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Laptop illustration */}
+          {/* Escrow Flow Illustration */}
           <div className={`anim-fade-up delay-500 ${inViewClass} flex justify-center items-center`} aria-hidden="true">
-            <LaptopIllustration />
+            <EscrowFlowIllustration />
           </div>
         </div>
       </div>
 
       {/* ── MOBILE ── */}
-      <div className="lg:hidden relative z-10 pt-10 pb-0">
-        <div className="px-4 sm:px-6 flex flex-col gap-4 text-center mb-8">
+      <div className="lg:hidden relative z-10 pt-10 pb-10">
+        <div className="px-4 sm:px-6 flex flex-col gap-4 text-center mb-10">
           <div className={`anim-fade-up delay-100 ${inViewClass}`}>
             <h1>
               <span className="hero-title block">Transaksi Aman,</span>
               <span className="hero-title-light block">Tanpa Rasa Khawatir.</span>
             </h1>
           </div>
-          <p className={`anim-fade-up delay-200 ${inViewClass} text-base text-muted-foreground`}>
+          {/* text-lg — konsisten dengan section lain */}
+          <p className={`anim-fade-up delay-200 ${inViewClass} text-lg text-muted-foreground leading-relaxed`}>
             Dana Anda dijaga sampai transaksi selesai.<br />
             Pembeli pasti bayar. Penjual pasti kirim.<br />
             Kepercayaan bukan soal harapan — tapi jaminan.
@@ -351,40 +348,14 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Laptop scaled down for mobile */}
-        <div className={`anim-fade-up delay-500 ${inViewClass} flex justify-center items-center pb-8 overflow-hidden`}
-          aria-hidden="true">
-          <div style={{ transform: "scale(0.72)", transformOrigin: "top center" }}>
-            <LaptopIllustration />
+        {/* Escrow flow illustration — scaled for mobile */}
+        <div className={`anim-fade-up delay-500 ${inViewClass} flex justify-center items-center px-4`} aria-hidden="true">
+          <div style={{ transform: "scale(0.75)", transformOrigin: "top center" }}>
+            <EscrowFlowIllustration />
           </div>
         </div>
       </div>
 
-      {/* ── Compliance ── */}
-      <div className="relative z-10 container-base mt-8 pb-10">
-        <div className={`anim-fade-up delay-600 ${inViewClass}`}>
-          <div className="flex items-center justify-center mb-4">
-            <div className="flex-1 h-px bg-border" />
-            <span className="text-xs font-semibold tracking-wide uppercase text-muted-foreground px-4 whitespace-nowrap">
-              Komitmen pada kepatuhan
-            </span>
-            <div className="flex-1 h-px bg-border" />
-          </div>
-          <div className="flex items-center justify-center gap-6 lg:gap-10 flex-wrap">
-            {([
-              { src: "/compliance/bi_icon.svg",         alt: "Bank Indonesia" },
-              { src: "/compliance/kementrian_icon.svg", alt: "Kementerian Komunikasi" },
-              { src: "/compliance/kominfo_icon.svg",    alt: "Kominfo" },
-              { src: "/compliance/ppatk_icon.svg",      alt: "PPATK" },
-            ] as const).map((reg) => (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img key={reg.alt} src={reg.src} alt={reg.alt}
-                className="h-8 opacity-40 grayscale hover:opacity-70 hover:grayscale-0 transition-all duration-200"
-                width={48} height={32} />
-            ))}
-          </div>
-        </div>
-      </div>
     </section>
   );
 }
