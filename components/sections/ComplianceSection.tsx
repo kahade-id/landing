@@ -12,10 +12,6 @@ export default function ComplianceSection() {
         {/* Header */}
         <div className={`section-header anim-fade-up ${inView ? "in-view" : ""}`}>
           <h2 className="section-title">Komitmen Pada Kepatuhan</h2>
-          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            Kahade beroperasi sesuai regulasi keuangan Indonesia dan berkomitmen terhadap standar
-            kepatuhan tertinggi untuk menjaga kepercayaan seluruh pengguna.
-          </p>
         </div>
 
         {/* Logos */}
