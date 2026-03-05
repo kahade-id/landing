@@ -18,16 +18,11 @@ const footerEntries = Object.entries(footerLinks) as [string, { label: string; h
 function FooterColumn({ category, links }: { category: string; links: { label: string; href: string }[] }) {
   return (
     <div>
-      <p className="text-sm font-bold text-foreground mb-4 tracking-wide">
-        {category}
-      </p>
+      <p className="text-sm font-bold text-foreground mb-4 tracking-wide">{category}</p>
       <ul className="flex flex-col gap-3">
         {links.map((link) => (
           <li key={link.label}>
-            <Link
-              href={link.href}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors leading-snug"
-            >
+            <Link href={link.href} className="text-sm text-muted-foreground hover:text-foreground transition-colors leading-snug">
               {link.label}
             </Link>
           </li>
@@ -41,27 +36,15 @@ function FooterAccordion({ category, links }: { category: string; links: { label
   const [open, setOpen] = useState(false);
   return (
     <div className="border-b border-border last:border-b-0">
-      <button
-        type="button"
-        onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-center justify-between py-4 text-left"
-        aria-expanded={open}
-      >
+      <button type="button" onClick={() => setOpen((v) => !v)} className="w-full flex items-center justify-between py-4 text-left" aria-expanded={open}>
         <span className="text-sm font-bold text-foreground tracking-wide">{category}</span>
-        <ChevronDown
-          className={`w-4 h-4 text-muted-foreground transition-transform duration-200 ${open ? "rotate-180" : ""}`}
-        />
+        <ChevronDown className={`w-4 h-4 text-muted-foreground transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
       </button>
-      <div
-        className={`overflow-hidden transition-all duration-300 ${open ? "max-h-96 pb-4" : "max-h-0"}`}
-      >
+      <div className={`overflow-hidden transition-all duration-300 ${open ? "max-h-96 pb-4" : "max-h-0"}`}>
         <ul className="flex flex-col gap-3 pl-1">
           {links.map((link) => (
             <li key={link.label}>
-              <Link
-                href={link.href}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
+              <Link href={link.href} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 {link.label}
               </Link>
             </li>
@@ -80,14 +63,15 @@ export default function Footer() {
       <div className="container-base pt-14 pb-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8">
 
-          {/* BRAND COLUMN */}
+          {/* BRAND COLUMN — icon only, tanpa teks brand */}
           <div className="lg:col-span-3 flex flex-col gap-5">
-            <Link href="/" className="inline-flex items-center gap-2.5" aria-label="Kahade — Beranda">
-              <Image src="/favicon.svg" alt="Kahade" width={28} height={28} />
-              <span className="text-xl font-display font-bold tracking-tight text-foreground">kahade</span>
+            <Link href="/" aria-label="Kahade — Beranda">
+              {/* Icon saja, tanpa teks "Kahade" */}
+              <Image src="/favicon.svg" alt="Kahade" width={32} height={32} />
             </Link>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Platform escrow yang menjaga kepercayaan antara pembeli dan penjual — dana aman, transaksi jelas, hak kedua pihak terlindungi.
+            {/* Deskripsi singkat — ukuran text-base, konsisten dengan section lain */}
+            <p className="text-base text-muted-foreground leading-relaxed">
+              menjaga kepercayaan antara pembeli dan penjual
             </p>
           </div>
 
@@ -110,14 +94,11 @@ export default function Footer() {
       {/* SEPARATOR */}
       <div className="border-t border-border" />
 
-      {/* BOTTOM BAR */}
+      {/* BOTTOM BAR — company info + social */}
       <div className="container-base py-6">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
           <div className="flex flex-col gap-1">
-            <p className="text-sm text-foreground font-medium">
-              © {new Date().getFullYear()} Kahade. Seluruh hak cipta dilindungi.
-            </p>
-            <p className="text-sm text-muted-foreground">PT Kawal Hak Dengan Aman</p>
+            <p className="text-sm text-foreground font-medium">PT Kawal Hak Dengan Aman</p>
             <p className="text-sm text-muted-foreground">NIB : 0602260111196</p>
             <p className="text-sm text-muted-foreground">Jawa Barat, Indonesia</p>
           </div>
@@ -139,6 +120,16 @@ export default function Footer() {
             })}
           </div>
         </div>
+      </div>
+
+      {/* SEPARATOR sebelum copyright */}
+      <div className="border-t border-border" />
+
+      {/* COPYRIGHT — full-width center, paling bawah */}
+      <div className="py-5">
+        <p className="text-sm text-muted-foreground text-center">
+          © {new Date().getFullYear()} Kahade. Seluruh hak cipta dilindungi.
+        </p>
       </div>
 
     </footer>
