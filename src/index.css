@@ -179,7 +179,9 @@
      The marquee wrapper has aria-hidden="true", but sighted users still benefit
      from a hover pause to read individual testimonial cards. */
   .marquee-container:hover .animate-marquee,
-  .marquee-container:hover .animate-marquee-reverse {
+  .marquee-container:hover .animate-marquee-reverse,
+  .marquee-container:hover .animate-marquee-fast,
+  .marquee-container:hover .animate-marquee-reverse-fast {
     animation-play-state: paused;
   }
 
