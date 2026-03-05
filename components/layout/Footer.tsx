@@ -63,14 +63,13 @@ export default function Footer() {
       <div className="container-base pt-14 pb-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8">
 
-          {/* BRAND COLUMN — icon only, tanpa teks brand */}
+          {/* BRAND COLUMN */}
           <div className="lg:col-span-3 flex flex-col gap-5">
             <Link href="/" aria-label="Kahade — Beranda">
-              {/* Icon saja, tanpa teks "Kahade" */}
               <Image src="/favicon.svg" alt="Kahade" width={32} height={32} />
             </Link>
-            {/* Deskripsi singkat — ukuran text-base, konsisten dengan section lain */}
-            <p className="text-base text-muted-foreground leading-relaxed">
+            {/* ✅ Deskripsi hitam (text-foreground) */}
+            <p className="text-base text-foreground leading-relaxed">
               menjaga kepercayaan antara pembeli dan penjual
             </p>
           </div>
@@ -91,45 +90,48 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* SEPARATOR */}
+      {/* SEPARATOR — satu-satunya separator, sebelum bottom bar */}
       <div className="border-t border-border" />
 
-      {/* BOTTOM BAR — company info + social */}
+      {/* BOTTOM BAR — social di atas PT info */}
       <div className="container-base py-6">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
-          <div className="flex flex-col gap-1">
-            <p className="text-sm text-foreground font-medium">PT Kawal Hak Dengan Aman</p>
-            <p className="text-sm text-muted-foreground">NIB : 0602260111196</p>
-            <p className="text-sm text-muted-foreground">Jawa Barat, Indonesia</p>
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+
+          {/* ✅ Kiri: social icons di atas, lalu PT info di bawah */}
+          <div className="flex flex-col gap-3">
+            {/* Social icons — di atas PT */}
+            <div className="flex items-center gap-2">
+              {socialLinks.map((link) => {
+                const Icon = link.icon;
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={link.label}
+                    className="w-8 h-8 flex items-center justify-center rounded-lg border border-border text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-all"
+                  >
+                    <Icon className="w-3.5 h-3.5" />
+                  </a>
+                );
+              })}
+            </div>
+            {/* PT info */}
+            <div className="flex flex-col gap-0.5">
+              <p className="text-sm text-muted-foreground">PT Kawal Hak Dengan Aman</p>
+              <p className="text-sm text-muted-foreground">NIB : 0602260111196</p>
+              <p className="text-sm text-muted-foreground">Jawa Barat, Indonesia</p>
+            </div>
           </div>
-          <div className="flex items-center gap-2 shrink-0">
-            {socialLinks.map((link) => {
-              const Icon = link.icon;
-              return (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={link.label}
-                  className="w-9 h-9 flex items-center justify-center rounded-lg border border-border text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-all"
-                >
-                  <Icon className="w-4 h-4" />
-                </a>
-              );
-            })}
-          </div>
+
+          {/* Kanan: copyright */}
+          <p className="text-sm text-muted-foreground sm:text-right">
+            © {new Date().getFullYear()} Kahade.<br className="hidden sm:block" />
+            Seluruh hak cipta dilindungi.
+          </p>
+
         </div>
-      </div>
-
-      {/* SEPARATOR sebelum copyright */}
-      <div className="border-t border-border" />
-
-      {/* COPYRIGHT — full-width center, paling bawah */}
-      <div className="py-5">
-        <p className="text-sm text-muted-foreground text-center">
-          © {new Date().getFullYear()} Kahade. Seluruh hak cipta dilindungi.
-        </p>
       </div>
 
     </footer>
