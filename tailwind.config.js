@@ -91,10 +91,10 @@ module.exports = {
         },
         "marquee-fast": {
           "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-33.3333%)" },
+          "100%": { transform: "translateX(-50%)" },
         },
         "marquee-reverse-fast": {
-          "0%": { transform: "translateX(-33.3333%)" },
+          "0%": { transform: "translateX(-50%)" },
           "100%": { transform: "translateX(0)" },
         },
         "spin-slow": {
@@ -108,8 +108,8 @@ module.exports = {
         "fade-up": "fade-up 0.65s cubic-bezier(0.22, 0.68, 0, 1.15) forwards",
         marquee: "marquee 30s linear infinite",
         "marquee-reverse": "marquee-reverse 35s linear infinite",
-        "marquee-fast": "marquee-fast 18s linear infinite",
-        "marquee-reverse-fast": "marquee-reverse-fast 22s linear infinite",
+        "marquee-fast": "marquee-fast 14s linear infinite",
+        "marquee-reverse-fast": "marquee-reverse-fast 17s linear infinite",
         "spin-slow": "spin-slow 20s linear infinite",
       },
       zIndex: {
