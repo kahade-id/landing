@@ -1,7 +1,9 @@
 export { default as HeroSection } from "./HeroSection";
 export { default as ProblemSection } from "./ProblemSection";
-export { default as HowItWorksSection } from "./HowItWorksSection";
+export { default as SolusiSection } from "./SolusiSection";
 export { default as SecuritySection } from "./SecuritySection";
+export { default as HowItWorksSection } from "./HowItWorksSection";
+export { default as ComplianceSection } from "./ComplianceSection";
 export { default as TestimonialsSection } from "./TestimonialsSection";
 export { default as PricingSection } from "./PricingSection";
 export { default as FAQSection } from "./FAQSection";
