@@ -1,4 +1,4 @@
-import { Logo } from "@/components/logo";
+import { Header } from "@/components/header";
 import {
   APP_STORE_URL,
   EXPO_GO_URL,
@@ -110,20 +110,9 @@ const FEATURES = [
 export default function Home() {
   return (
     <>
-      {/* Nav */}
-      <header className="sticky top-0 z-10 border-b border-surface bg-paper/90 backdrop-blur">
-        <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
-          <Logo size="sm" />
-          <a
-            href="#download"
-            className="inline-flex items-center justify-center rounded-full bg-ink px-5 py-2 text-sm font-semibold text-paper transition-opacity hover:opacity-80"
-          >
-            Download
-          </a>
-        </div>
-      </header>
+      <Header />
 
-      <main className="flex-1">
+      <main id="top" className="flex-1">
         {/* Hero */}
         <section className="mx-auto max-w-5xl px-6 pb-24 pt-24 text-center sm:pt-32">
           <h1 className="mx-auto max-w-2xl text-4xl font-bold leading-tight tracking-tight sm:text-6xl">
@@ -154,7 +143,10 @@ export default function Home() {
         </section>
 
         {/* Cara kerja */}
-        <section className="border-t border-surface bg-surface/50">
+        <section
+          id="cara-kerja"
+          className="scroll-mt-24 border-t border-surface bg-surface/50"
+        >
           <div className="mx-auto max-w-5xl px-6 py-20">
             <h2 className="text-3xl font-bold tracking-tight">Cara kerja</h2>
             <div className="mt-10 grid gap-10 sm:grid-cols-3">
@@ -174,7 +166,7 @@ export default function Home() {
         </section>
 
         {/* Fitur */}
-        <section className="border-t border-surface">
+        <section id="fitur" className="scroll-mt-24 border-t border-surface">
           <div className="mx-auto max-w-5xl px-6 py-20">
             <h2 className="text-3xl font-bold tracking-tight">Fitur</h2>
             <div className="mt-10 grid gap-10 sm:grid-cols-3">
