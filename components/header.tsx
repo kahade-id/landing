@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Logo } from "@/components/logo";
+import { LogoMark } from "@/components/logo";
 
 const NAV_LINKS = [
   { id: "cara-kerja", label: "Cara kerja" },
@@ -118,13 +118,13 @@ export function Header() {
       }`}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center px-4 sm:px-6">
-        {/* Logo */}
+        {/* Logo — mark saja, diperbesar, tanpa wordmark */}
         <a
           href="#top"
           aria-label="Kahade — kembali ke atas"
           className="shrink-0 rounded-lg outline-offset-4"
         >
-          <Logo size="sm" />
+          <LogoMark size={40} />
         </a>
 
         {/* Nav desktop — kiri setelah logo */}
@@ -216,7 +216,7 @@ export function Header() {
         />
         <nav
           aria-label="Navigasi seluler"
-          className={`relative border-b border-black/10 bg-white px-6 pb-8 pt-2 shadow-[0_24px_48px_-16px_rgba(0,0,0,0.18)] transition-all duration-300 ease-out ${
+          className={`relative mx-4 mt-2 overflow-hidden rounded-3xl border border-black/10 bg-white px-6 pb-8 pt-2 shadow-[0_24px_48px_-16px_rgba(0,0,0,0.18)] transition-all duration-300 ease-out ${
             open ? "translate-y-0 opacity-100" : "-translate-y-4 opacity-0"
           }`}
         >
