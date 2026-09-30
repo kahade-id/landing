@@ -1,1 +1,1 @@
-{"applinks":{"apps":[],"details":[{"appID":"TEAMID.id.kahade","paths":["/payment/finish","/payment/finish/*"]}]}}
+{"applinks":{"apps":[],"details":[{"appID":"TEAMID.id.kahade","paths":["/payment/finish","/payment/finish/*","/order-link/*","/user/*","/showcase/*","/products/*","/profile/*","/transfer","/register","/help/*"]}]}}
