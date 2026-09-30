@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@theme {
+  /* Kahade monochrome palette — no other colors except status accents */
+  --color-ink: #000000;
+  --color-ink-soft: #262626;
+  --color-muted: #525252;
+  --color-surface: #f3f4f6;
+  --color-paper: #ffffff;
+
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
