@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { MotionProvider } from "@/components/motion-helpers";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -30,7 +31,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="id" className={inter.variable}>
-      <body className="bg-white font-sans text-[#262626]">{children}</body>
+      <body className="bg-white font-sans text-[#262626]">
+        <MotionProvider>{children}</MotionProvider>
+      </body>
     </html>
   );
 }
