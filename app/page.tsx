@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Header } from "@/components/header";
 import { Faq } from "@/components/faq";
+import { LogoMark } from "@/components/logo";
 import {
   APP_STORE_URL,
   EXPO_GO_URL,
@@ -87,15 +88,6 @@ function ShieldIcon() {
   );
 }
 
-function LockIcon() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="text-ink">
-      <rect x="5" y="10" width="14" height="10" rx="2.5" stroke="currentColor" strokeWidth="1.75" />
-      <path d="M8 10V7a4 4 0 018 0v3" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
-    </svg>
-  );
-}
-
 function ChatIcon() {
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="text-ink">
@@ -123,59 +115,28 @@ function UsersIcon() {
 
 /* ---------- Data section ---------- */
 
-const TRUST = [
+// Value props — gabungan "Kenapa aman?" + "Fitur", deduplikasi.
+// Prinsip: satu pesan satu kartu, tidak ada pengulangan.
+const VALUE_PROPS = [
   {
     icon: <ShieldIcon />,
     title: "Escrow di setiap transaksi",
-    desc: "Uang tidak langsung ke penjual — ditahan aman sampai barang diterima.",
+    desc: "Uang ditahan aman dan baru diteruskan ke penjual setelah kamu mengonfirmasi barang diterima.",
   },
-  {
-    icon: <LockIcon />,
-    title: "Dana cair setelah konfirmasi",
-    desc: "Penjual menerima uang hanya setelah pembeli mengonfirmasi penerimaan.",
-  },
-  {
-    icon: <ChatIcon />,
-    title: "Sengketa dibantu manusia",
-    desc: "Ada masalah? Tim kami menengahi dengan adil, bukan sekadar bot.",
-  },
-];
-
-const PROBLEMS = [
-  {
-    problem: "Takut transfer lalu penjual menghilang?",
-    solution: "Uang ditahan escrow — penjual tidak bisa kabur dengan uangmu.",
-  },
-  {
-    problem: "Barang datang tidak sesuai foto?",
-    solution: "Tahan konfirmasi, ajukan sengketa, dan uangmu bisa kembali.",
-  },
-  {
-    problem: "Komplain tidak pernah digubris?",
-    solution: "Tim Kahade menengahi sampai tuntas, dengan adil.",
-  },
-];
-
-const FEATURES = [
   {
     icon: <StoreIcon />,
     title: "Etalase sosial",
     desc: "Jualan semudah posting di medsos — like, komen, share.",
   },
   {
-    icon: <ShieldIcon />,
-    title: "Escrow otomatis",
-    desc: "Setiap transaksi terlindungi, tanpa langkah tambahan.",
-  },
-  {
-    icon: <ChatIcon />,
-    title: "Bantuan sengketa",
-    desc: "Tim manusia siap membantu saat terjadi masalah.",
-  },
-  {
     icon: <UsersIcon />,
     title: "Patungan & Jastip",
     desc: "Beli bareng atau titip beli — tetap aman dengan escrow.",
+  },
+  {
+    icon: <ChatIcon />,
+    title: "Bantuan sengketa manusia",
+    desc: "Ada masalah? Tim kami menengahi dengan adil, bukan sekadar bot.",
   },
 ];
 
@@ -236,82 +197,25 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Social Proof — jujur, tanpa klaim palsu */}
-        <section className="border-y border-surface bg-surface/50">
+        {/* Kenapa Kahade — value props, satu pesan satu kartu */}
+        <section id="fitur" className="scroll-mt-24 border-y border-surface bg-surface/50">
           <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
-            <SectionHead title="Kenapa aman?" />
-            <div className="mt-10 grid gap-8 sm:grid-cols-3">
-              {TRUST.map((t) => (
-                <div key={t.title} className="text-center sm:text-left">
-                  <div className="mx-auto flex h-11 w-11 items-center justify-center rounded-2xl bg-paper shadow-[0_8px_20px_-12px_rgba(0,0,0,0.2)] sm:mx-0">
-                    {t.icon}
-                  </div>
-                  <h3 className="mt-4 text-[17px] font-semibold tracking-tight">
-                    {t.title}
-                  </h3>
-                  <p className="mt-1.5 text-[15px] leading-relaxed text-muted">
-                    {t.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Masalah & Solusi */}
-        <section className="scroll-mt-24">
-          <div className="mx-auto max-w-5xl px-6 py-20 sm:py-24">
             <SectionHead
-              title="Masalahnya nyata. Solusinya sederhana."
-              sub="Ketakutan paling umum saat belanja online — dan cara Kahade mengatasinya."
-            />
-            <div className="mt-10 grid gap-4 md:grid-cols-3">
-              {PROBLEMS.map((p) => (
-                <div
-                  key={p.problem}
-                  className="rounded-3xl border border-surface bg-paper p-6"
-                >
-                  <p className="text-[11px] font-semibold uppercase tracking-widest text-muted">
-                    Masalah
-                  </p>
-                  <p className="mt-2 text-[17px] font-semibold leading-snug tracking-tight">
-                    {p.problem}
-                  </p>
-                  <div className="my-4 h-px bg-surface" aria-hidden="true" />
-                  <p className="text-[11px] font-semibold uppercase tracking-widest text-muted">
-                    Solusi Kahade
-                  </p>
-                  <p className="mt-2 text-[15px] leading-relaxed text-muted">
-                    {p.solution}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Fitur & Manfaat */}
-        <section
-          id="fitur"
-          className="scroll-mt-24 border-y border-surface bg-surface/50"
-        >
-          <div className="mx-auto max-w-5xl px-6 py-20 sm:py-24">
-            <SectionHead
-              title="Fitur & manfaat"
-              sub="Semua yang kamu butuhkan untuk jual beli dengan tenang."
+              title="Kenapa Kahade"
+              sub="Jual beli online tanpa takut ditipu."
             />
             <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {FEATURES.map((f) => (
+              {VALUE_PROPS.map((v) => (
                 <div
-                  key={f.title}
+                  key={v.title}
                   className="rounded-3xl bg-paper p-6 shadow-[0_12px_32px_-20px_rgba(0,0,0,0.25)]"
                 >
-                  {f.icon}
+                  {v.icon}
                   <h3 className="mt-4 text-[17px] font-semibold tracking-tight">
-                    {f.title}
+                    {v.title}
                   </h3>
                   <p className="mt-1.5 text-[15px] leading-relaxed text-muted">
-                    {f.desc}
+                    {v.desc}
                   </p>
                 </div>
               ))}
@@ -381,18 +285,77 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="border-t border-surface">
-        <div className="mx-auto flex max-w-5xl flex-col gap-4 px-6 py-10 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-sm text-muted">
-            © 2026 PT Kawal Hak Dengan Aman
-          </p>
-          <nav className="flex gap-6 text-sm text-muted" aria-label="Legal">
-            <a href="#" className="transition-colors hover:text-ink">
-              Syarat &amp; Ketentuan
-            </a>
-            <a href="#" className="transition-colors hover:text-ink">
-              Kebijakan Privasi
-            </a>
-          </nav>
+        <div className="mx-auto max-w-5xl px-6 pb-8 pt-14">
+          <div className="flex flex-col gap-10 md:flex-row md:justify-between">
+            {/* Brand */}
+            <div className="max-w-xs">
+              <a href="#top" aria-label="Kahade — kembali ke atas">
+                <LogoMark size={36} />
+              </a>
+              <p className="mt-4 text-[15px] leading-relaxed text-muted">
+                Jual beli online tanpa takut ditipu.
+              </p>
+            </div>
+
+            {/* Navigasi */}
+            <nav
+              className="grid grid-cols-2 gap-10 sm:gap-16"
+              aria-label="Navigasi footer"
+            >
+              <div>
+                <h3 className="text-[13px] font-semibold uppercase tracking-widest text-muted">
+                  Jelajahi
+                </h3>
+                <ul className="mt-4 space-y-3 text-[15px]">
+                  <li>
+                    <a href="#fitur" className="text-ink-soft transition-colors hover:text-ink">
+                      Kenapa Kahade
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#cara-kerja" className="text-ink-soft transition-colors hover:text-ink">
+                      Cara kerja
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#faq" className="text-ink-soft transition-colors hover:text-ink">
+                      FAQ
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#download" className="text-ink-soft transition-colors hover:text-ink">
+                      Download
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-[13px] font-semibold uppercase tracking-widest text-muted">
+                  Bantuan
+                </h3>
+                <ul className="mt-4 space-y-3 text-[15px]">
+                  <li>
+                    <a href="#faq" className="text-ink-soft transition-colors hover:text-ink">
+                      Pertanyaan umum
+                    </a>
+                  </li>
+                  <li>
+                    {/* Dokumen legal menyusul — jadi link saat dokumen 35 halaman selesai */}
+                    <span className="text-muted/60">Syarat &amp; Ketentuan</span>
+                  </li>
+                  <li>
+                    <span className="text-muted/60">Kebijakan Privasi</span>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+
+          {/* Bar bawah */}
+          <div className="mt-12 flex flex-col gap-1 border-t border-surface pt-6 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
+            <p>© 2026 PT Kawal Hak Dengan Aman</p>
+            <p>Escrow aman untuk jual beli online Indonesia.</p>
+          </div>
         </div>
       </footer>
     </>
