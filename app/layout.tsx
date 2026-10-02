@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   manifest: "/manifest.webmanifest",
   icons: {
     icon: "/favicon.svg",
-    apple: "/apple-touch-icon.png",
+    apple: "/icon.png",
   },
   openGraph: {
     title: "Kahade — Social commerce dengan escrow di setiap transaksi",
