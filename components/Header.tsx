@@ -24,6 +24,13 @@ export function Header() {
   }, []);
 
   useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open ]);
+
+  useEffect(() => {
     const sections = NAV.map((n) => document.getElementById(n.id)).filter(
       (el): el is HTMLElement => el !== null
     );
@@ -83,28 +90,28 @@ export function Header() {
         </button>
       </div>
 
-      {/* Mobile menu */}
-      <div className="mobile-menu md:hidden" data-open={open}>
-        <div>
-          <nav
-            aria-label="Navigasi seluler"
-            className="border-t border-black/5 bg-white/95 px-5 pb-6 pt-2 backdrop-blur-xl"
-          >
-            {NAV.map((item) => (
-              <a
-                key={item.id}
-                href={`#${item.id}`}
-                onClick={() => setOpen(false)}
-                className="flex min-h-[52px] items-center border-b border-black/5 text-base font-medium text-[#262626]"
-              >
-                {item.label}
-              </a>
-            ))}
-            <div className="pt-5">
-              <DownloadActions size="md" layout="column" showApk={false} />
-            </div>
-          </nav>
-        </div>
+      {/* Mobile menu — full-screen overlay */}
+      <div className="mobile-menu md:hidden" data-open={open} aria-hidden={!open}>
+        <nav
+          aria-label="Navigasi seluler"
+          className="flex flex-1 flex-col px-6 pb-8 pt-6"
+        >
+          {NAV.map((item, i) => (
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              onClick={() => setOpen(false)}
+              tabIndex={open ? 0 : -1}
+              className="flex min-h-[60px] items-center border-b border-black/5 text-2xl font-semibold tracking-tight text-[#262626]"
+              style={{ transitionDelay: open ? `${80 + i * 40}ms` : "0ms" }}
+            >
+              <span className="menu-link-inner">{item.label}</span>
+            </a>
+          ))}
+          <div className="mt-auto pt-8">
+            <DownloadActions size="md" layout="column" showApk={false} />
+          </div>
+        </nav>
       </div>
     </header>
   );

@@ -253,7 +253,7 @@ export function Showcase() {
   const tab = TABS[active];
 
   return (
-    <section id="aplikasi" className="hairline-t scroll-mt-20 bg-white">
+    <section id="aplikasi" className="hairline-t scroll-mt-20 overflow-hidden bg-white">
       <div className="mx-auto max-w-6xl px-5 section-pad sm:px-8">
         <SectionHeading
           kicker="Lihat aplikasinya"

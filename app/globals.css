@@ -215,17 +215,51 @@ body {
 }
 
 .mobile-menu {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.45s var(--ease-premium);
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding-top: 4rem; /* ruang untuk header fixed */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 0.35s var(--ease-premium), transform 0.35s var(--ease-premium), visibility 0s 0.35s;
 }
 
 .mobile-menu[data-open="true"] {
-  grid-template-rows: 1fr;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: opacity 0.35s var(--ease-premium), transform 0.35s var(--ease-premium);
 }
 
-.mobile-menu > div {
-  overflow: hidden;
+.mobile-menu .menu-link-inner {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.4s var(--ease-premium), transform 0.4s var(--ease-premium);
+}
+
+.mobile-menu[data-open="true"] .menu-link-inner {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu {
+    transform: none;
+    transition: opacity 0.2s ease, visibility 0s 0.2s;
+  }
+  .mobile-menu[data-open="true"] {
+    transition: opacity 0.2s ease;
+  }
+  .mobile-menu .menu-link-inner {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* ---------- FAQ accordion ---------- */

@@ -255,7 +255,7 @@ function MiniFeed() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.15 + i * 0.12, duration: 0.6, ease: EASE }}
-            className="w-36 shrink-0 overflow-hidden rounded-xl bg-white shadow-sm"
+            className="min-w-0 flex-1 overflow-hidden rounded-xl bg-white shadow-sm"
           >
             <div className={`aspect-[4/3] bg-gradient-to-br ${art}`} />
             <div className="p-2.5">
