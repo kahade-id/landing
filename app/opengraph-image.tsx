@@ -42,7 +42,7 @@ export default function OgImage() {
           <div>Jual beli di feed,</div>
           <div>aman dengan escrow.</div>
         </div>
-        <div style={{ marginTop: "32px", fontSize: "28px", color: "#a3a3a3" }}>kahade.id</div>
+        <div style={{ marginTop: "32px", fontSize: "28px", color: "#525252" }}>kahade.id</div>
       </div>
     ),
     { ...size }

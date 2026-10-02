@@ -2,9 +2,10 @@
 
 import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useSpring } from "motion/react";
-import { DrawIcon, EASE, Pop, Reveal, SectionHeading, staggerChild, staggerParent } from "./motion-helpers";
+import { EASE, Pop, Reveal, SectionHeading, staggerChild, staggerParent } from "./motion-helpers";
+import { Bank, ChatCircleDots, Check, CheckCircle, SealCheck, ShieldCheck, Storefront, Truck, Wallet, X } from "@/lib/icons";
 
-/* ================= Trust marquee ================= */
+/* ================= Trust strip ================= */
 
 const TRUST = [
   { title: "Escrow di setiap transaksi", desc: "Dana pembeli ditahan aman." },
@@ -13,35 +14,23 @@ const TRUST = [
   { title: "Sengketa ada jalurnya", desc: "Tim Kahade membantu menengahi." },
 ];
 
-function TrustIcon() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5 shrink-0" fill="none" stroke="currentColor" strokeWidth={1.8} aria-hidden="true">
-      <path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6l7-3z" strokeLinejoin="round" />
-      <path d="M9.5 12l2 2 3.5-4" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
 export function TrustStrip() {
-  const reduce = useReducedMotion();
-  const items = reduce ? TRUST : [...TRUST, ...TRUST];
-
   return (
-    <section id="keunggulan" aria-label="Keunggulan escrow" className="overflow-hidden border-y border-black/10 bg-white py-7">
-      <div className="marquee">
-        <div className="marquee-track">
-          {items.map((item, i) => (
-            <div key={i} className="mx-3 flex shrink-0 items-center gap-3 rounded-full border border-black/10 bg-[#F3F4F6]/70 py-2.5 pl-3 pr-6" aria-hidden={i >= TRUST.length}>
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-black text-white">
-                <TrustIcon />
+    <section id="keunggulan" aria-label="Keunggulan escrow" className="border-y border-black/10 bg-white">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-x-8 gap-y-7 px-5 py-12 sm:grid-cols-2 sm:px-8 lg:grid-cols-4 lg:py-14">
+        {TRUST.map((item, i) => (
+          <Reveal key={item.title} delay={i * 70} y={16}>
+            <div className="flex gap-4">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-black text-white">
+                <ShieldCheck weight="regular" className="h-5 w-5" aria-hidden="true" />
               </span>
-              <span className="whitespace-nowrap text-sm">
-                <span className="font-semibold text-black">{item.title}</span>
-                <span className="text-[#525252]"> — {item.desc}</span>
-              </span>
+              <div>
+                <h2 className="text-[15px] font-semibold text-black">{item.title}</h2>
+                <p className="mt-1 text-sm leading-relaxed text-[#525252]">{item.desc}</p>
+              </div>
             </div>
-          ))}
-        </div>
+          </Reveal>
+        ))}
       </div>
     </section>
   );
@@ -105,12 +94,7 @@ export function ProblemSolution() {
                     className="flex gap-3.5 text-[15px] leading-relaxed text-[#525252]"
                   >
                     <span className="mt-0.5 text-black/30">
-                      <DrawIcon
-                        paths={["M6 6l12 12", "M18 6L6 18"]}
-                        className="h-5 w-5"
-                        strokeWidth={2.2}
-                        duration={0.45}
-                      />
+                      <X weight="regular" className="h-5 w-5" aria-hidden="true" />
                     </span>
                     {t}
                   </motion.li>
@@ -153,9 +137,7 @@ export function ProblemSolution() {
                       viewport={{ once: true }}
                       transition={{ type: "spring", stiffness: 380, damping: 17, delay: 0.25 + i * 0.16 }}
                     >
-                      <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth={3} aria-hidden="true">
-                        <path d="M5 12.5l4.5 4.5L19 7.5" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
+                      <Check weight="bold" className="h-3.5 w-3.5" aria-hidden="true" />
                     </motion.span>
                     {t}
                   </motion.li>
@@ -176,25 +158,25 @@ const STEPS = [
     n: "01",
     title: "Bayar ke escrow",
     desc: "Dana ditahan aman oleh Kahade, bukan langsung ke penjual.",
-    icon: ["M4 10h16v9a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-9z", "M4 10l2.5-5h11L20 10", "M12 14v3"],
+    icon: <Wallet weight="regular" className="h-7 w-7" aria-hidden="true" />,
   },
   {
     n: "02",
     title: "Penjual mengirim",
     desc: "Penjual mengirim barang sesuai kesepakatan di chat.",
-    icon: ["M3 7h11v9H3z", "M14 10h4l3 3v3h-7z", "M7.5 19a1.8 1.8 0 1 0 0-.01", "M17.5 19a1.8 1.8 0 1 0 0-.01"],
+    icon: <Truck weight="regular" className="h-7 w-7" aria-hidden="true" />,
   },
   {
     n: "03",
     title: "Konfirmasi terima",
     desc: "Periksa barang, lalu konfirmasi penerimaan di aplikasi.",
-    icon: ["M12 21c-4.5-2-7-5.5-7-10V6l7-3 7 3v5c0 4.5-2.5 8-7 10z", "M9.5 12l2 2 3.5-4"],
+    icon: <CheckCircle weight="regular" className="h-7 w-7" aria-hidden="true" />,
   },
   {
     n: "04",
     title: "Dana cair",
     desc: "Setelah konfirmasi, dana diteruskan ke penjual.",
-    icon: ["M4 9h16v10H4z", "M4 9l2-4h12l2 4", "M12 12.5v4", "M9.5 13.2c0-1 1.1-1.7 2.5-1.7s2.5.7 2.5 1.7-1.1 1.4-2.5 1.7-2.5.7-2.5 1.7 1.1 1.7 2.5 1.7 2.5-.7 2.5-1.7"],
+    icon: <Bank weight="regular" className="h-7 w-7" aria-hidden="true" />,
   },
 ];
 
@@ -246,7 +228,7 @@ export function HowItWorks() {
                     {s.n}
                   </div>
                   <span className="relative z-10 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-black text-white shadow-[0_12px_26px_-10px_rgb(0_0_0/0.5)] transition-transform duration-500 ease-out group-hover:rotate-6 group-hover:scale-105">
-                    <DrawIcon paths={s.icon} className="h-7 w-7" strokeWidth={1.7} duration={0.55} />
+                    {s.icon}
                   </span>
                   <h3 className="relative z-10 mt-6 text-lg font-semibold tracking-tight text-black">{s.title}</h3>
                   <p className="relative z-10 mt-2 text-sm leading-relaxed text-[#525252]">{s.desc}</p>
@@ -266,7 +248,7 @@ function MiniFeed() {
   return (
     <div aria-hidden="true" className="relative mt-8 overflow-hidden rounded-2xl border border-black/10 bg-[#F3F4F6] p-4">
       <div className="flex gap-3">
-        {["from-[#e4e4e4] to-[#c9c9c9]", "from-[#d8d8d8] to-[#efefef]", "from-[#e9e9e9] to-[#d2d2d2]"].map((art, i) => (
+        {["from-black/[0.12] to-black/[0.05]", "from-black/[0.08] to-black/[0.03]", "from-black/[0.1] to-black/[0.04]"].map((art, i) => (
           <motion.div
             key={i}
             initial={{ opacity: 0, y: 18 }}
@@ -333,9 +315,7 @@ function MiniVerified() {
         transition={{ delay: 0.55, duration: 0.5, ease: EASE }}
         className="flex items-center gap-1.5 rounded-full bg-black px-3 py-1.5 text-[11px] font-semibold text-white"
       >
-        <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth={3} aria-hidden="true">
-          <path d="M5 12.5l4.5 4.5L19 7.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
+<Check weight="bold" className="h-3.5 w-3.5" aria-hidden="true" />
         Terverifikasi
       </motion.span>
     </div>
@@ -386,28 +366,28 @@ const BENTO = [
   {
     title: "Feed yang personal",
     desc: "Jelajahi etalase produk seperti media sosial — like, komen, dan follow penjual favoritmu.",
-    icon: ["M4 5h16v11H4z", "M4 20h16", "M9 9.5h6", "M9 12.5h4"],
+    icon: <Storefront weight="regular" className="h-6 w-6" aria-hidden="true" />,
     visual: <MiniFeed />,
     span: "lg:col-span-2",
   },
   {
     title: "Chat transaksi",
     desc: "Tawar, sepakati detail, dan pantau status pesanan — semua tercatat dalam satu chat.",
-    icon: ["M21 12a8 8 0 0 1-8 8H4l2.3-2.9A8 8 0 1 1 21 12z", "M8.5 12h7"],
+    icon: <ChatCircleDots weight="regular" className="h-6 w-6" aria-hidden="true" />,
     visual: <MiniChat />,
     span: "",
   },
   {
     title: "Penjual terverifikasi",
     desc: "Lencana verifikasi membantu kamu mengenali penjual yang identitasnya sudah dicek.",
-    icon: ["M12 3l2.4 2.4 3.4-.5 1 3.3 3.2 1.2-1.2 3.2 1.2 3.2-3.2 1.2-1 3.3-3.4-.5L12 22l-2.4-2.4-3.4.5-1-3.3-3.2-1.2L3.2 12 2 8.8l3.2-1.2 1-3.3 3.4.5L12 2z"],
+    icon: <SealCheck weight="regular" className="h-6 w-6" aria-hidden="true" />,
     visual: <MiniVerified />,
     span: "",
   },
   {
     title: "Escrow di setiap transaksi",
     desc: "Dana ditahan aman, cair setelah barang dikonfirmasi. Tanpa pengecualian.",
-    icon: ["M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6l7-3z", "M9.5 12l2 2 3.5-4"],
+    icon: <ShieldCheck weight="regular" className="h-6 w-6" aria-hidden="true" />,
     visual: <MiniEscrow />,
     span: "lg:col-span-2",
   },
@@ -430,7 +410,7 @@ function BentoCard({ item, index }: { item: (typeof BENTO)[number]; index: numbe
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "0px 0px -10% 0px" }}
       transition={{ duration: 0.85, ease: EASE, delay: (index % 2) * 0.1 }}
-      className={`h-full ${item.span}`}
+      className={`h-full min-w-0 ${item.span}`}
     >
       <div
         ref={ref}
@@ -439,7 +419,7 @@ function BentoCard({ item, index }: { item: (typeof BENTO)[number]; index: numbe
       >
         <div aria-hidden="true" className="spot-glow" />
         <span className="relative inline-flex w-fit items-center justify-center rounded-2xl bg-black p-3.5 text-white transition-transform duration-500 ease-out group-hover:-rotate-6 group-hover:scale-110">
-          <DrawIcon paths={item.icon} className="h-6 w-6" strokeWidth={1.8} duration={0.6} />
+          {item.icon}
         </span>
         <h3 className="relative mt-6 text-xl font-semibold tracking-tight text-black">{item.title}</h3>
         <p className="relative mt-2.5 max-w-md text-[15px] leading-relaxed text-[#525252]">{item.desc}</p>

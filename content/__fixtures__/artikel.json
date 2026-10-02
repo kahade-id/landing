@@ -1,0 +1,21 @@
+{
+  "headline": "[FIXTURE] Artikel",
+  "intro": "[FIXTURE] Intro artikel.",
+  "articles": [
+    {
+      "slug": "contoh-artikel",
+      "title": "[FIXTURE] Judul artikel",
+      "description": "[FIXTURE] Deskripsi artikel.",
+      "category": "[FIXTURE] Kategori",
+      "author": "[FIXTURE] Penulis",
+      "date": "2026-01-01",
+      "minutes": 3,
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "[FIXTURE] Isi artikel."
+        }
+      ]
+    }
+  ]
+}

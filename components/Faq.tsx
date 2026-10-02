@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { EASE, Reveal, SectionHeading } from "./motion-helpers";
+import { Plus } from "@/lib/icons";
+import { faqJsonLd, JsonLd } from "./site/JsonLd";
 
 const FAQS = [
   {
@@ -73,9 +75,7 @@ function FaqItem({
               open ? "bg-black text-white" : "bg-[#F3F4F6] text-black"
             }`}
           >
-            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2.4} aria-hidden="true">
-              <path d="M12 5v14M5 12h14" strokeLinecap="round" />
-            </svg>
+            <Plus weight="regular" className="h-4 w-4" aria-hidden="true" />
           </motion.span>
         </button>
         <AnimatePresence initial={false}>
@@ -109,6 +109,7 @@ export function Faq() {
 
   return (
     <section id="faq" className="relative scroll-mt-20 overflow-hidden bg-[#F3F4F6]">
+      <JsonLd data={faqJsonLd(FAQS)} />
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -left-40 top-1/3 h-[420px] w-[420px] rounded-full bg-white blur-3xl"
