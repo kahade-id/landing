@@ -58,3 +58,6 @@
 ## Log
 - 2026-10-03: Fase 0–3 selesai. Build 16 route hijau, tsc hijau, fixture/guard terverifikasi.
 - Berikutnya: QA Playwright (screenshot + overflow + console), grep anti-mismatch, push.
+- 2026-10-03: QA Playwright 48/48 hijau pasca-perbaikan D-011 & D-012. Lighthouse: a11y 100, BP 100, SEO 100, perf 69 (terbatas VM).
+- 2026-10-03: Push ke main via API: batch 1–3/4 berhasil (52 file). **Batch 4/4 (17 file: Sections.tsx, Faq.tsx, next.config.ts, dsb.) TERTUNDA — menunggu approval pengguna yang timeout berulang.** Remote dalam keadaan campuran; JANGAN anggap deploy sukses sebelum batch 4 masuk.
+- 2026-10-03 05:23 WIB: pengguna kembali, semua push disetujui. Batch 4/4 masuk (`a64220a0`), apple-touch-icon biner diperbaiki (pakai `/icon.png`), route lama & file rusak dihapus. **Remote main kini konsisten dan build hijau (16 route).**
