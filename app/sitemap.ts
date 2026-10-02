@@ -1,12 +1,25 @@
 import type { MetadataRoute } from "next";
+import { site } from "@/content/site";
+import { allPages } from "@/lib/content";
 
-const BASE = "https://kahade.id";
-
+/** Hanya halaman berstatus ready yang masuk sitemap. Draft: noindex + tidak di sitemap. */
 export default function sitemap(): MetadataRoute.Sitemap {
+  const base = site.siteUrl;
   const now = new Date();
-  return [
-    { url: BASE, lastModified: now, changeFrequency: "weekly", priority: 1 },
-    { url: `${BASE}/kebijakan-privasi`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
-    { url: `${BASE}/syarat-ketentuan`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
+  const entries: MetadataRoute.Sitemap = [
+    { url: base, lastModified: now, changeFrequency: "weekly", priority: 1 },
   ];
+
+  for (const page of allPages()) {
+    if (page.status === "ready") {
+      entries.push({
+        url: `${base}/${page.meta.slug}`,
+        lastModified: now,
+        changeFrequency: "monthly",
+        priority: 0.7,
+      });
+    }
+  }
+
+  return entries;
 }
