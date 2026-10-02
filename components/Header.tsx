@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { KahadeMark } from "./Logo";
 
 const NAV = [
+  { id: "aplikasi", label: "Aplikasi" },
   { id: "cara-kerja", label: "Cara kerja" },
   { id: "fitur", label: "Fitur" },
   { id: "faq", label: "FAQ" },

@@ -23,6 +23,31 @@ body {
   color: #fff;
 }
 
+/* ---------- Focus visibility (keyboard users) ---------- */
+:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ---------- Section rhythm ---------- */
+.section-pad {
+  padding-top: 5.5rem;
+  padding-bottom: 5.5rem;
+}
+
+@media (min-width: 1024px) {
+  .section-pad {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+}
+
+/* Hairline divider */
+.hairline-t {
+  border-top: 1px solid rgb(0 0 0 / 0.08);
+}
+
 /* ---------- Ambient motion ---------- */
 
 @keyframes marquee {
@@ -145,22 +170,6 @@ body {
 
 .spot-card:hover .spot-glow {
   opacity: 1;
-}
-
-/* ---------- Scroll reveal (legacy, kept for safety) ---------- */
-.reveal {
-  opacity: 0;
-  transform: translateY(26px);
-  transition:
-    opacity 0.9s var(--ease-premium),
-    transform 0.9s var(--ease-premium);
-  transition-delay: var(--reveal-delay, 0ms);
-  will-change: opacity, transform;
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 /* ---------- Buttons & cards ---------- */
@@ -307,12 +316,6 @@ body {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-
-  .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
   }
 
   .btn-press:hover,

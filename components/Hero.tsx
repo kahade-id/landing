@@ -154,17 +154,18 @@ export function Hero() {
             Segera hadir
           </motion.span>
 
-          <Words
-            as="h1"
-            text="Jual beli di feed,"
-            delay={0.22}
-            className="mt-7 block text-[2.7rem] font-semibold leading-[1.04] tracking-[-0.035em] text-black sm:text-6xl lg:text-[4.5rem]"
-          />
-          <Words
-            text="aman dengan escrow."
-            delay={0.42}
-            className="block text-[2.7rem] font-semibold leading-[1.04] tracking-[-0.035em] text-black/35 sm:text-6xl lg:text-[4.5rem]"
-          />
+          <h1>
+            <Words
+              text="Jual beli di feed,"
+              delay={0.22}
+              className="mt-7 block text-[2.7rem] font-semibold leading-[1.04] tracking-[-0.035em] text-black sm:text-6xl lg:text-[4.5rem]"
+            />
+            <Words
+              text="aman dengan escrow."
+              delay={0.42}
+              className="block text-[2.7rem] font-semibold leading-[1.04] tracking-[-0.035em] text-black/45 sm:text-6xl lg:text-[4.5rem]"
+            />
+          </h1>
 
           <Reveal delay={640} y={20}>
             <p className="mt-7 max-w-md text-lg leading-relaxed text-[#525252]">
@@ -174,7 +175,7 @@ export function Hero() {
           </Reveal>
 
           <Reveal delay={760} y={20}>
-            <div className="mt-10 flex flex-wrap items-center gap-5">
+            <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-5">
               <Magnetic>
                 <a
                   href="#download"
@@ -195,8 +196,17 @@ export function Hero() {
                   </motion.svg>
                 </a>
               </Magnetic>
-              <span className="text-sm text-[#525252]">Gratis · Segera hadir</span>
+              <a
+                href="#cara-kerja"
+                className="group inline-flex min-h-[44px] items-center gap-1.5 text-[15px] font-semibold text-black"
+              >
+                Lihat cara kerja
+                <svg viewBox="0 0 24 24" className="h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1" fill="none" stroke="currentColor" strokeWidth={2.2} aria-hidden="true">
+                  <path d="M5 12h14m0 0l-6-6m6 6l-6 6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
             </div>
+            <p className="mt-5 text-sm text-[#525252]">Gratis · Segera hadir</p>
           </Reveal>
         </motion.div>
 

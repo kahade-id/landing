@@ -113,7 +113,7 @@ export function Faq() {
         aria-hidden="true"
         className="pointer-events-none absolute -left-40 top-1/3 h-[420px] w-[420px] rounded-full bg-white blur-3xl"
       />
-      <div className="relative mx-auto max-w-3xl px-5 py-20 sm:px-8 lg:py-28">
+      <div className="relative mx-auto max-w-3xl px-5 section-pad sm:px-8">
         <SectionHeading kicker="FAQ" title="Pertanyaan yang sering ditanyakan." />
 
         <div className="mt-12 space-y-3.5">

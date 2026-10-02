@@ -63,8 +63,8 @@ const WITH = [
 
 export function ProblemSolution() {
   return (
-    <section className="relative bg-white">
-      <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 lg:py-28">
+    <section className="hairline-t relative bg-white">
+      <div className="mx-auto max-w-6xl px-5 section-pad sm:px-8">
         <SectionHeading
           kicker="Kenapa Kahade"
           title="Belanja online seharusnya tidak bikin was-was."
@@ -209,7 +209,7 @@ export function HowItWorks() {
 
   return (
     <section id="cara-kerja" className="scroll-mt-20 bg-[#F3F4F6]">
-      <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 lg:py-28">
+      <div className="mx-auto max-w-6xl px-5 section-pad sm:px-8">
         <SectionHeading
           kicker="Cara kerja"
           title="Empat langkah, semua terlindungi."
@@ -260,27 +260,160 @@ export function HowItWorks() {
   );
 }
 
-/* ================= Features ================= */
+/* ================= Features (bento) ================= */
 
-const FEATURES = [
+function MiniFeed() {
+  return (
+    <div aria-hidden="true" className="relative mt-8 overflow-hidden rounded-2xl border border-black/10 bg-[#F3F4F6] p-4">
+      <div className="flex gap-3">
+        {["from-[#e4e4e4] to-[#c9c9c9]", "from-[#d8d8d8] to-[#efefef]", "from-[#e9e9e9] to-[#d2d2d2]"].map((art, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.15 + i * 0.12, duration: 0.6, ease: EASE }}
+            className="w-36 shrink-0 overflow-hidden rounded-xl bg-white shadow-sm"
+          >
+            <div className={`aspect-[4/3] bg-gradient-to-br ${art}`} />
+            <div className="p-2.5">
+              <div className="h-2 w-3/4 rounded-full bg-black/10" />
+              <div className="mt-1.5 h-2 w-1/2 rounded-full bg-black/25" />
+            </div>
+          </motion.div>
+        ))}
+      </div>
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#F3F4F6] to-transparent" />
+    </div>
+  );
+}
+
+function MiniChat() {
+  return (
+    <div aria-hidden="true" className="mt-8 space-y-2.5 rounded-2xl border border-black/10 bg-[#F3F4F6] p-4">
+      {[
+        { me: true, w: "w-4/5" },
+        { me: false, w: "w-3/5" },
+        { me: true, w: "w-2/3" },
+      ].map((m, i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, y: 12, scale: 0.96 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.15 + i * 0.14, duration: 0.5, ease: EASE }}
+          className={`flex ${m.me ? "justify-end" : "justify-start"}`}
+        >
+          <div className={`h-8 rounded-2xl ${m.w} ${m.me ? "rounded-br-md bg-black" : "rounded-bl-md bg-white shadow-sm"}`} />
+        </motion.div>
+      ))}
+    </div>
+  );
+}
+
+function MiniVerified() {
+  return (
+    <div aria-hidden="true" className="mt-8 flex items-center gap-3 rounded-2xl border border-black/10 bg-[#F3F4F6] p-4">
+      {[0, 1, 2].map((i) => (
+        <motion.span
+          key={i}
+          initial={{ opacity: 0, scale: 0.6 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.15 + i * 0.14, type: "spring", stiffness: 320, damping: 17 }}
+          className="flex h-11 w-11 items-center justify-center rounded-full bg-black text-[13px] font-bold text-white"
+        >
+          {["T", "A", "R"][i]}
+        </motion.span>
+      ))}
+      <motion.span
+        initial={{ opacity: 0, x: -8 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.55, duration: 0.5, ease: EASE }}
+        className="flex items-center gap-1.5 rounded-full bg-black px-3 py-1.5 text-[11px] font-semibold text-white"
+      >
+        <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth={3} aria-hidden="true">
+          <path d="M5 12.5l4.5 4.5L19 7.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+        Terverifikasi
+      </motion.span>
+    </div>
+  );
+}
+
+function MiniEscrow() {
+  const steps = ["Bayar", "Kirim", "Konfirmasi", "Cair"];
+  return (
+    <div aria-hidden="true" className="mt-8 rounded-2xl border border-black/10 bg-[#F3F4F6] p-5">
+      <div className="flex items-center justify-between">
+        {steps.map((s, i) => (
+          <div key={s} className="flex flex-1 items-center last:flex-none">
+            <div className="flex flex-col items-center gap-2">
+              <motion.span
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.15 + i * 0.18, type: "spring", stiffness: 340, damping: 18 }}
+                className={`flex h-9 w-9 items-center justify-center rounded-full text-[11px] font-bold ${
+                  i < 2 ? "bg-black text-white" : i === 2 ? "border-2 border-black bg-white text-black" : "bg-white text-[#525252] shadow-sm"
+                }`}
+              >
+                {i + 1}
+              </motion.span>
+              <span className="text-[11px] font-medium text-[#525252]">{s}</span>
+            </div>
+            {i < steps.length - 1 && (
+              <div className="mx-1 mb-6 h-px flex-1 bg-black/15">
+                <motion.div
+                  className="h-full bg-black"
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: i < 2 ? 1 : 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 + i * 0.18, duration: 0.5, ease: EASE }}
+                  style={{ transformOrigin: "left" }}
+                />
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+const BENTO = [
   {
     title: "Feed yang personal",
     desc: "Jelajahi etalase produk seperti media sosial — like, komen, dan follow penjual favoritmu.",
     icon: ["M4 5h16v11H4z", "M4 20h16", "M9 9.5h6", "M9 12.5h4"],
+    visual: <MiniFeed />,
+    span: "lg:col-span-2",
   },
   {
     title: "Chat transaksi",
     desc: "Tawar, sepakati detail, dan pantau status pesanan — semua tercatat dalam satu chat.",
     icon: ["M21 12a8 8 0 0 1-8 8H4l2.3-2.9A8 8 0 1 1 21 12z", "M8.5 12h7"],
+    visual: <MiniChat />,
+    span: "",
   },
   {
     title: "Penjual terverifikasi",
     desc: "Lencana verifikasi membantu kamu mengenali penjual yang identitasnya sudah dicek.",
     icon: ["M12 3l2.4 2.4 3.4-.5 1 3.3 3.2 1.2-1.2 3.2 1.2 3.2-3.2 1.2-1 3.3-3.4-.5L12 22l-2.4-2.4-3.4.5-1-3.3-3.2-1.2L3.2 12 2 8.8l3.2-1.2 1-3.3 3.4.5L12 2z"],
+    visual: <MiniVerified />,
+    span: "",
+  },
+  {
+    title: "Escrow di setiap transaksi",
+    desc: "Dana ditahan aman, cair setelah barang dikonfirmasi. Tanpa pengecualian.",
+    icon: ["M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6l7-3z", "M9.5 12l2 2 3.5-4"],
+    visual: <MiniEscrow />,
+    span: "lg:col-span-2",
   },
 ];
 
-function SpotCard({ title, desc, icon, index }: { title: string; desc: string; icon: string[]; index: number }) {
+function BentoCard({ item, index }: { item: (typeof BENTO)[number]; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
 
   function onMove(e: React.MouseEvent) {
@@ -293,31 +426,24 @@ function SpotCard({ title, desc, icon, index }: { title: string; desc: string; i
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 34 }}
+      initial={{ opacity: 0, y: 36 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-      transition={{ duration: 0.85, ease: EASE, delay: index * 0.1 }}
-      className="h-full"
+      transition={{ duration: 0.85, ease: EASE, delay: (index % 2) * 0.1 }}
+      className={`h-full ${item.span}`}
     >
       <div
         ref={ref}
         onMouseMove={onMove}
-        className="spot-card group relative h-full overflow-hidden rounded-[1.75rem] border border-black/10 bg-white p-7 sm:p-8"
+        className="spot-card group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-black/10 bg-white p-7 sm:p-8"
       >
         <div aria-hidden="true" className="spot-glow" />
-        <span className="relative inline-flex h-13 w-13 items-center justify-center rounded-2xl bg-black p-3.5 text-white transition-transform duration-500 ease-out group-hover:-rotate-6 group-hover:scale-110">
-          <DrawIcon paths={icon} className="h-6 w-6" strokeWidth={1.8} duration={0.6} />
+        <span className="relative inline-flex w-fit items-center justify-center rounded-2xl bg-black p-3.5 text-white transition-transform duration-500 ease-out group-hover:-rotate-6 group-hover:scale-110">
+          <DrawIcon paths={item.icon} className="h-6 w-6" strokeWidth={1.8} duration={0.6} />
         </span>
-        <h3 className="relative mt-6 text-xl font-semibold tracking-tight text-black">{title}</h3>
-        <p className="relative mt-2.5 text-[15px] leading-relaxed text-[#525252]">{desc}</p>
-        <span
-          aria-hidden="true"
-          className="absolute bottom-6 right-7 translate-x-2 text-black opacity-0 transition-all duration-500 ease-out group-hover:translate-x-0 group-hover:opacity-100"
-        >
-          <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2}>
-            <path d="M5 12h14m0 0l-6-6m6 6l-6 6" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </span>
+        <h3 className="relative mt-6 text-xl font-semibold tracking-tight text-black">{item.title}</h3>
+        <p className="relative mt-2.5 max-w-md text-[15px] leading-relaxed text-[#525252]">{item.desc}</p>
+        <div className="relative mt-auto">{item.visual}</div>
       </div>
     </motion.div>
   );
@@ -325,17 +451,17 @@ function SpotCard({ title, desc, icon, index }: { title: string; desc: string; i
 
 export function Features() {
   return (
-    <section id="fitur" className="scroll-mt-20 bg-white">
-      <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 lg:py-28">
+    <section id="fitur" className="hairline-t scroll-mt-20 bg-white">
+      <div className="mx-auto max-w-6xl px-5 section-pad sm:px-8">
         <SectionHeading
           kicker="Fitur unggulan"
           title="Dibuat untuk jual beli yang tenang."
-          sub="Semua yang kamu butuhkan — tanpa ribet, tanpa drama."
+          sub="Empat pilar yang bekerja bersama — bukan sekadar daftar fitur."
         />
 
-        <div className="mt-14 grid gap-5 md:grid-cols-3">
-          {FEATURES.map((f, i) => (
-            <SpotCard key={f.title} title={f.title} desc={f.desc} icon={f.icon} index={i} />
+        <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {BENTO.map((item, i) => (
+            <BentoCard key={item.title} item={item} index={i} />
           ))}
         </div>
       </div>

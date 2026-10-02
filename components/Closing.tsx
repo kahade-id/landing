@@ -99,41 +99,96 @@ export function Closing() {
   );
 }
 
+const FOOTER_COLS: { title: string; links: { label: string; href?: string }[] }[] = [
+  {
+    title: "Produk",
+    links: [
+      { label: "Aplikasi", href: "#aplikasi" },
+      { label: "Cara kerja", href: "#cara-kerja" },
+      { label: "Fitur", href: "#fitur" },
+      { label: "FAQ", href: "#faq" },
+    ],
+  },
+  {
+    title: "Unduh",
+    links: [
+      { label: "Download Kahade", href: "#download" },
+      { label: "Segera hadir di iOS & Android" },
+    ],
+  },
+  {
+    title: "Legal",
+    links: [
+      { label: "Kebijakan Privasi", href: "/kebijakan-privasi" },
+      { label: "Syarat & Ketentuan", href: "/syarat-ketentuan" },
+    ],
+  },
+];
+
 export function Footer() {
   return (
     <footer className="border-t border-black/10 bg-white">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-5 px-5 py-10 sm:flex-row sm:justify-between sm:px-8">
-        <motion.div
-          className="flex items-center gap-3"
-          initial={{ opacity: 0, x: -14 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: EASE }}
-        >
-          <KahadeMark className="h-8 w-8" />
-          <p className="text-sm text-[#525252]">© 2026 Kahade</p>
-        </motion.div>
-        <motion.nav
-          aria-label="Tautan footer"
-          className="flex items-center gap-6"
-          initial={{ opacity: 0, x: 14 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: EASE, delay: 0.1 }}
-        >
-          <a
-            href="#top"
-            className="inline-flex min-h-[44px] items-center text-sm text-[#525252] transition-colors hover:text-black"
+      <div className="mx-auto max-w-6xl px-5 py-14 sm:px-8 lg:py-16">
+        <div className="grid gap-10 md:grid-cols-[1.2fr_2fr]">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: EASE }}
           >
-            Kebijakan Privasi
-          </a>
-          <a
-            href="#top"
-            className="inline-flex min-h-[44px] items-center text-sm text-[#525252] transition-colors hover:text-black"
-          >
-            Syarat &amp; Ketentuan
-          </a>
-        </motion.nav>
+            <a href="#top" aria-label="Kahade — kembali ke atas" className="inline-block">
+              <KahadeMark className="h-10 w-10" />
+            </a>
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-[#525252]">
+              Social commerce dengan escrow di setiap transaksi. Jual beli di
+              feed, tanpa was-was.
+            </p>
+            <p className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#F3F4F6] px-3.5 py-1.5 text-xs font-semibold text-[#525252]">
+              <span className="h-1.5 w-1.5 rounded-full bg-black" />
+              Segera hadir
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
+            {FOOTER_COLS.map((col, ci) => (
+              <motion.nav
+                key={col.title}
+                aria-label={`Tautan footer ${col.title}`}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, ease: EASE, delay: 0.08 + ci * 0.07 }}
+              >
+                <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-[#525252]">
+                  {col.title}
+                </p>
+                <ul className="mt-4 space-y-1">
+                  {col.links.map((l) => (
+                    <li key={l.label}>
+                      {l.href ? (
+                        <a
+                          href={l.href}
+                          className="inline-flex min-h-[40px] items-center text-[15px] text-[#262626] transition-colors hover:text-black"
+                        >
+                          {l.label}
+                        </a>
+                      ) : (
+                        <span className="inline-flex min-h-[40px] items-center text-[15px] text-[#525252]">
+                          {l.label}
+                        </span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </motion.nav>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-black/10 pt-7 sm:flex-row">
+          <p className="text-sm text-[#525252]">© 2026 Kahade. Seluruh hak cipta dilindungi.</p>
+          <p className="text-sm text-[#525252]">Dibuat dengan teliti di Indonesia</p>
+        </div>
       </div>
     </footer>
   );
