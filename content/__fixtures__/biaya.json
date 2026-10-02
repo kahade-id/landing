@@ -1,0 +1,11 @@
+{
+  "headline": "[FIXTURE] Biaya",
+  "intro": "[FIXTURE] Intro biaya.",
+  "rows": [
+    {
+      "item": "[FIXTURE] Item biaya",
+      "desc": "[FIXTURE] Deskripsi."
+    }
+  ],
+  "note": "[FIXTURE] Catatan biaya."
+}

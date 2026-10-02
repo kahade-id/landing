@@ -1,7 +1,8 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-import { EASE, Magnetic, Reveal, Words } from "./motion-helpers";
+import { EASE, Reveal, Words } from "./motion-helpers";
+import { DownloadActions } from "./DownloadActions";
 import { KahadeMark } from "./Logo";
 
 export function Closing() {
@@ -71,125 +72,18 @@ export function Closing() {
         </Reveal>
 
         <Reveal delay={540}>
-          <div className="mt-11">
-            <Magnetic strength={0.32}>
-              <a
-                href="#top"
-                className="btn-shine inline-flex min-h-[60px] items-center gap-2 overflow-hidden rounded-full bg-black px-11 text-base font-semibold text-white shadow-[0_24px_50px_-16px_rgb(0_0_0/0.55)] transition-transform duration-300 ease-out hover:scale-[1.04] active:scale-[0.98]"
-              >
-                Download Kahade
-                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2.2} aria-hidden="true">
-                  <path d="M12 5v13m0 0l-5-5m5 5l5-5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </a>
-            </Magnetic>
-            <motion.p
-              className="mt-5 text-sm text-[#525252]"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.7, duration: 0.6 }}
-            >
-              Gratis · Segera hadir
-            </motion.p>
-          </div>
+          <DownloadActions size="lg" layout="column" className="mt-11 items-center" />
+          <motion.p
+            className="mt-5 text-sm text-[#525252]"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.7, duration: 0.6 }}
+          >
+            Gratis · Segera hadir
+          </motion.p>
         </Reveal>
       </div>
     </section>
-  );
-}
-
-const FOOTER_COLS: { title: string; links: { label: string; href?: string }[] }[] = [
-  {
-    title: "Produk",
-    links: [
-      { label: "Aplikasi", href: "#aplikasi" },
-      { label: "Cara kerja", href: "#cara-kerja" },
-      { label: "Fitur", href: "#fitur" },
-      { label: "FAQ", href: "#faq" },
-    ],
-  },
-  {
-    title: "Unduh",
-    links: [
-      { label: "Download Kahade", href: "#download" },
-      { label: "Segera hadir di iOS & Android" },
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      { label: "Kebijakan Privasi", href: "/kebijakan-privasi" },
-      { label: "Syarat & Ketentuan", href: "/syarat-ketentuan" },
-    ],
-  },
-];
-
-export function Footer() {
-  return (
-    <footer className="border-t border-black/10 bg-white">
-      <div className="mx-auto max-w-6xl px-5 py-14 sm:px-8 lg:py-16">
-        <div className="grid gap-10 md:grid-cols-[1.2fr_2fr]">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: EASE }}
-          >
-            <a href="#top" aria-label="Kahade — kembali ke atas" className="inline-block">
-              <KahadeMark className="h-10 w-10" />
-            </a>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-[#525252]">
-              Social commerce dengan escrow di setiap transaksi. Jual beli di
-              feed, tanpa was-was.
-            </p>
-            <p className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#F3F4F6] px-3.5 py-1.5 text-xs font-semibold text-[#525252]">
-              <span className="h-1.5 w-1.5 rounded-full bg-black" />
-              Segera hadir
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
-            {FOOTER_COLS.map((col, ci) => (
-              <motion.nav
-                key={col.title}
-                aria-label={`Tautan footer ${col.title}`}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, ease: EASE, delay: 0.08 + ci * 0.07 }}
-              >
-                <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-[#525252]">
-                  {col.title}
-                </p>
-                <ul className="mt-4 space-y-1">
-                  {col.links.map((l) => (
-                    <li key={l.label}>
-                      {l.href ? (
-                        <a
-                          href={l.href}
-                          className="inline-flex min-h-[40px] items-center text-[15px] text-[#262626] transition-colors hover:text-black"
-                        >
-                          {l.label}
-                        </a>
-                      ) : (
-                        <span className="inline-flex min-h-[40px] items-center text-[15px] text-[#525252]">
-                          {l.label}
-                        </span>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </motion.nav>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-black/10 pt-7 sm:flex-row">
-          <p className="text-sm text-[#525252]">© 2026 Kahade. Seluruh hak cipta dilindungi.</p>
-          <p className="text-sm text-[#525252]">Dibuat dengan teliti di Indonesia</p>
-        </div>
-      </div>
-    </footer>
   );
 }

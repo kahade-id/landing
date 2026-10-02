@@ -59,22 +59,34 @@ type WordsProps = {
 
 export function Words({ text, className = "", delay = 0, stagger = 0.055, as = "span" }: WordsProps) {
   const words = text.split(" ");
+  // Penting: whileInView dipasang pada pembungkus overflow-hidden (yang tidak
+  // terpotong sehingga terlihat observer), BUKAN pada teks yang bergeser —
+  // elemen yang terpotong penuh oleh overflow-hidden tidak pernah memicu
+  // IntersectionObserver sehingga animasinya macet selamanya.
   const inner = (
     <>
       {words.map((w, i) => (
         <Fragment key={i}>
           {i > 0 ? " " : null}
-          <span className="inline-block overflow-hidden pb-[0.1em] -mb-[0.1em] align-bottom">
+          <motion.span
+            className="inline-block overflow-hidden pb-[0.1em] -mb-[0.1em] align-bottom"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "0px 0px -12% 0px" }}
+          >
             <motion.span
               className="inline-block will-change-transform"
-              initial={{ y: "115%" }}
-              whileInView={{ y: "0%" }}
-              viewport={{ once: true, margin: "0px 0px -12% 0px" }}
-              transition={{ duration: 0.95, ease: EASE, delay: delay + i * stagger }}
+              variants={{
+                hidden: { y: "115%" },
+                show: {
+                  y: "0%",
+                  transition: { duration: 0.95, ease: EASE, delay: delay + i * stagger },
+                },
+              }}
             >
               {w}
             </motion.span>
-          </span>
+          </motion.span>
         </Fragment>
       ))}
     </>
@@ -186,35 +198,6 @@ export function Magnetic({ children, className = "", strength = 0.28 }: Magnetic
     >
       {children}
     </motion.div>
-  );
-}
-
-/* ---------------- SVG stroke-draw icon ---------------- */
-
-type DrawIconProps = {
-  paths: string[];
-  className?: string;
-  strokeWidth?: number;
-  delay?: number;
-  duration?: number;
-};
-
-export function DrawIcon({ paths, className = "", strokeWidth = 2, delay = 0, duration = 0.7 }: DrawIconProps) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth={strokeWidth} aria-hidden="true">
-      {paths.map((d, i) => (
-        <motion.path
-          key={i}
-          d={d}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          initial={{ pathLength: 0, opacity: 0 }}
-          whileInView={{ pathLength: 1, opacity: 1 }}
-          viewport={{ once: true, margin: "0px 0px -15% 0px" }}
-          transition={{ duration, ease: "easeInOut", delay: delay + i * 0.14 }}
-        />
-      ))}
-    </svg>
   );
 }
 

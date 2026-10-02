@@ -1,7 +1,8 @@
 @import "tailwindcss";
+@import "../styles/tokens.css";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --color-mist: #f3f4f6;
   --color-smoke: #525252;
   --color-ink: #262626;
@@ -19,13 +20,13 @@ body {
 }
 
 ::selection {
-  background: #000;
+  background: #000000;
   color: #fff;
 }
 
 /* ---------- Focus visibility (keyboard users) ---------- */
 :focus-visible {
-  outline: 2px solid #000;
+  outline: 2px solid #000000;
   outline-offset: 3px;
   border-radius: 6px;
 }
@@ -48,78 +49,39 @@ body {
   border-top: 1px solid rgb(0 0 0 / 0.08);
 }
 
-/* ---------- Ambient motion ---------- */
-
-@keyframes marquee {
-  to {
-    transform: translateX(-50%);
-  }
+/* ---------- Fluid type scale (Plus Jakarta Sans) ---------- */
+.type-display {
+  font-size: clamp(2.5rem, 1.55rem + 4.8vw, 5.5rem);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  font-weight: 700;
+  text-wrap: balance;
 }
 
-.marquee {
-  overflow: hidden;
-  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+.type-h2 {
+  font-size: clamp(1.75rem, 1.32rem + 2.1vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  text-wrap: balance;
 }
 
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee 32s linear infinite;
+.type-h3 {
+  font-size: clamp(1.25rem, 1.16rem + 0.45vw, 1.5rem);
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  font-weight: 700;
+  text-wrap: balance;
 }
 
-.marquee:hover .marquee-track {
-  animation-play-state: paused;
+.type-body {
+  font-size: clamp(1rem, 0.97rem + 0.15vw, 1.125rem);
+  line-height: 1.6;
+  text-wrap: pretty;
 }
 
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
+/* ---------- Shine sweep on primary CTAs (hover only, bukan loop) ---------- */
 
-.animate-float {
-  animation: float 5.5s ease-in-out infinite;
-}
-
-@keyframes float-slow {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-14px);
-  }
-}
-
-.animate-float-slow {
-  animation: float-slow 7.5s ease-in-out infinite;
-}
-
-/* Subtle blueprint grid for hero */
-.bg-grid {
-  background-image:
-    linear-gradient(to right, rgb(0 0 0 / 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(0 0 0 / 0.05) 1px, transparent 1px);
-  background-size: 54px 54px;
-}
-
-/* Diagonal pinstripes for the "tanpa escrow" card */
-.stripes {
-  background-image: repeating-linear-gradient(
-    -45deg,
-    transparent,
-    transparent 12px,
-    rgb(0 0 0 / 0.028) 12px,
-    rgb(0 0 0 / 0.028) 24px
-  );
-}
-
-/* Shine sweep on primary CTAs */
 .btn-shine {
   position: relative;
 }
@@ -220,7 +182,7 @@ body {
   bottom: -6px;
   height: 2px;
   border-radius: 999px;
-  background: #000;
+  background: #000000;
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.35s var(--ease-premium);
@@ -308,8 +270,8 @@ body {
 
 .like-btn[data-liked="true"] svg {
   transform: scale(1.15);
-  fill: #000;
-  stroke: #000;
+  fill: #000000;
+  stroke: #000000;
 }
 
 /* ---------- Reduced motion ---------- */
@@ -333,12 +295,8 @@ body {
   .burger span,
   .faq-icon,
   .like-btn svg,
-  .marquee-track,
-  .animate-float,
-  .animate-float-slow,
   .spot-glow {
     transition: none;
-    animation: none;
   }
 
   .btn-shine:hover::after {
