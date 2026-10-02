@@ -2,8 +2,8 @@
 
 import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useSpring } from "motion/react";
-import { EASE, Pop, Reveal, SectionHeading, staggerChild, staggerParent } from "./motion-helpers";
-import { Bank, ChatCircleDots, Check, CheckCircle, SealCheck, ShieldCheck, Storefront, Truck, Wallet, X } from "@/lib/icons";
+import { EASE, Reveal, SectionHeading, staggerChild, staggerParent } from "./motion-helpers";
+import { Bank, ChatCircleDots, Check, CheckCircle, Handshake, Minus, SealCheck, ShieldCheck, Storefront, Truck, Wallet, X } from "@/lib/icons";
 
 /* ================= Trust strip ================= */
 
@@ -38,114 +38,216 @@ export function TrustStrip() {
 
 /* ================= Problem & Solution ================= */
 
-const WITHOUT = [
-  "Transfer langsung ke penjual yang belum dikenal",
-  "Barang tak kunjung datang, penjual menghilang",
-  "Uang yang sudah terkirim sulit kembali",
+/* ================= Perbandingan ================= */
+
+type CellStatus = "check" | "minus" | "x";
+
+interface CompareRow {
+  aspect: string;
+  mp: { status: CellStatus; text: string };
+  rekber: { status: CellStatus; text: string };
+  kahade: string;
+}
+
+const COMPARE_ROWS: CompareRow[] = [
+  {
+    aspect: "Etalase produk",
+    mp: { status: "check", text: "Katalog toko" },
+    rekber: { status: "minus", text: "Foto dikirim via chat" },
+    kahade: "Feed seperti media sosial",
+  },
+  {
+    aspect: "Interaksi pembeli",
+    mp: { status: "check", text: "Chat & ulasan" },
+    rekber: { status: "minus", text: "Chat manual" },
+    kahade: "Like, komen, share, follow",
+  },
+  {
+    aspect: "Keamanan dana",
+    mp: { status: "check", text: "Proteksi pembeli" },
+    rekber: { status: "minus", text: "Via admin perantara" },
+    kahade: "Escrow otomatis",
+  },
+  {
+    aspect: "Alur transaksi",
+    mp: { status: "check", text: "Dalam satu aplikasi" },
+    rekber: { status: "x", text: "Chat & dana terpisah" },
+    kahade: "Chat terhubung ke escrow",
+  },
+  {
+    aspect: "Penyelesaian sengketa",
+    mp: { status: "check", text: "CS platform" },
+    rekber: { status: "minus", text: "Mediasi admin" },
+    kahade: "Jalur jelas di aplikasi",
+  },
 ];
 
-const WITH = [
-  "Dana ditahan aman oleh escrow",
-  "Penjual kirim barang dulu, dana cair setelahnya",
-  "Ada jalur penyelesaian jika terjadi sengketa",
+function StatusIcon({ status, dark }: { status: CellStatus; dark?: boolean }) {
+  if (status === "check")
+    return (
+      <span
+        className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${
+          dark ? "bg-white text-black" : "bg-black/[0.06] text-black"
+        }`}
+      >
+        <Check weight="bold" className="h-3.5 w-3.5" aria-hidden="true" />
+      </span>
+    );
+  if (status === "minus")
+    return (
+      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-black/[0.06] text-[#525252]">
+        <Minus weight="bold" className="h-3.5 w-3.5" aria-hidden="true" />
+      </span>
+    );
+  return (
+    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-black/[0.06] text-black/40">
+      <X weight="bold" className="h-3.5 w-3.5" aria-hidden="true" />
+    </span>
+  );
+}
+
+const COMPARE_COLS = [
+  {
+    id: "mp",
+    icon: <Storefront weight="regular" className="h-5 w-5" aria-hidden="true" />,
+    title: "Marketplace",
+    sub: "Platform jual beli besar",
+  },
+  {
+    id: "rekber",
+    icon: <Handshake weight="regular" className="h-5 w-5" aria-hidden="true" />,
+    title: "Rekber",
+    sub: "Jasa perantara manual",
+  },
+  {
+    id: "kahade",
+    icon: <ShieldCheck weight="regular" className="h-5 w-5" aria-hidden="true" />,
+    title: "Kahade",
+    sub: "Social commerce + escrow",
+  },
 ];
 
 export function ProblemSolution() {
   return (
-    <section className="hairline-t relative bg-white">
+    <section className="hairline-t relative overflow-hidden bg-white">
       <div className="mx-auto max-w-6xl px-5 section-pad sm:px-8">
         <SectionHeading
           kicker="Kenapa Kahade"
-          title="Belanja online seharusnya tidak bikin was-was."
+          title="Marketplace, rekber, atau Kahade?"
+          sub="Tiga pendekatan jual beli online yang berbeda. Bandingkan, lalu putuskan mana yang paling pas untukmu."
         />
 
-        <div className="relative mt-14 grid gap-5 md:grid-cols-2">
-          {/* VS badge */}
-          <Pop
-            delay={0.35}
-            className="absolute left-1/2 top-1/2 z-10 hidden -translate-x-1/2 -translate-y-1/2 md:block"
-          >
-            <span className="flex h-14 w-14 items-center justify-center rounded-full border border-black/10 bg-white text-sm font-bold tracking-wide text-black shadow-[0_14px_34px_-12px_rgb(0_0_0/0.3)]">
-              VS
-            </span>
-          </Pop>
+        <Reveal className="relative mt-14">
+          <div className="overflow-x-auto pb-1">
+            <table className="w-full min-w-[760px] border-separate border-spacing-0">
+              <caption className="sr-only">
+                Perbandingan marketplace, jasa rekber manual, dan Kahade
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col" className="w-[26%] p-0 text-left">
+                    <span className="sr-only">Aspek</span>
+                  </th>
+                  {COMPARE_COLS.map((col) =>
+                    col.id === "kahade" ? (
+                      <th
+                        key={col.id}
+                        scope="col"
+                        className="w-[24.66%] rounded-t-[1.5rem] bg-black p-0"
+                      >
+                        <div className="flex flex-col items-center gap-1.5 px-4 pb-5 pt-6 text-center">
+                          <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white text-black">
+                            {col.icon}
+                          </span>
+                          <span className="text-base font-semibold text-white">
+                            {col.title}
+                          </span>
+                          <span className="text-[13px] text-white/60">{col.sub}</span>
+                        </div>
+                      </th>
+                    ) : (
+                      <th
+                        key={col.id}
+                        scope="col"
+                        className="w-[24.66%] border-b border-black/10 p-0"
+                      >
+                        <div className="flex flex-col items-center gap-1.5 px-4 pb-5 pt-2 text-center">
+                          <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-black/[0.06] text-black">
+                            {col.icon}
+                          </span>
+                          <span className="text-base font-semibold text-black">
+                            {col.title}
+                          </span>
+                          <span className="text-[13px] text-[#525252]">{col.sub}</span>
+                        </div>
+                      </th>
+                    )
+                  )}
+                </tr>
+              </thead>
+              <tbody>
+                {COMPARE_ROWS.map((row, ri) => {
+                  const last = ri === COMPARE_ROWS.length - 1;
+                  return (
+                    <tr key={row.aspect}>
+                      <th
+                        scope="row"
+                        className={`sticky left-0 border-b border-black/10 bg-white px-4 py-5 text-left align-top text-[15px] font-semibold text-black sm:static sm:px-6 ${
+                          last ? "border-b-0" : ""
+                        }`}
+                      >
+                        {row.aspect}
+                      </th>
+                      {(
+                        [
+                          { key: "mp", cell: row.mp },
+                          { key: "rekber", cell: row.rekber },
+                        ] as const
+                      ).map(({ key, cell }) => (
+                        <td
+                          key={key}
+                          className={`border-b border-black/10 px-4 py-5 align-top ${
+                            last ? "border-b-0" : ""
+                          }`}
+                        >
+                          <div className="flex items-start gap-2.5">
+                            <StatusIcon status={cell.status} />
+                            <span className="text-[15px] leading-relaxed text-[#525252]">
+                              {cell.text}
+                            </span>
+                          </div>
+                        </td>
+                      ))}
+                      <td
+                        className={`bg-black px-4 py-5 align-top sm:px-6 ${
+                          last ? "rounded-b-[1.5rem]" : ""
+                        }`}
+                      >
+                        <div className="flex items-start gap-2.5">
+                          <StatusIcon status="check" dark />
+                          <span className="text-[15px] font-medium leading-relaxed text-white">
+                            {row.kahade}
+                          </span>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-white to-transparent sm:hidden"
+          />
+        </Reveal>
 
-          {/* Tanpa escrow */}
-          <Reveal>
-            <motion.div
-              whileHover={{ y: -5, rotate: -0.4 }}
-              transition={{ type: "spring", stiffness: 260, damping: 22 }}
-              className="stripes h-full rounded-[1.75rem] border border-black/10 bg-white p-7 sm:p-9"
-            >
-              <p className="text-[13px] font-semibold uppercase tracking-[0.18em] text-[#525252]">
-                Tanpa escrow
-              </p>
-              <motion.ul
-                variants={staggerParent}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, margin: "0px 0px -12% 0px" }}
-                className="mt-7 space-y-5"
-              >
-                {WITHOUT.map((t) => (
-                  <motion.li
-                    key={t}
-                    variants={staggerChild}
-                    className="flex gap-3.5 text-[15px] leading-relaxed text-[#525252]"
-                  >
-                    <span className="mt-0.5 text-black/30">
-                      <X weight="regular" className="h-5 w-5" aria-hidden="true" />
-                    </span>
-                    {t}
-                  </motion.li>
-                ))}
-              </motion.ul>
-            </motion.div>
-          </Reveal>
-
-          {/* Dengan Kahade */}
-          <Reveal delay={140}>
-            <motion.div
-              whileHover={{ y: -5, rotate: 0.4 }}
-              transition={{ type: "spring", stiffness: 260, damping: 22 }}
-              className="relative h-full overflow-hidden rounded-[1.75rem] bg-black p-7 text-white shadow-[0_30px_60px_-24px_rgb(0_0_0/0.55)] sm:p-9"
-            >
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-white/10 blur-3xl"
-              />
-              <p className="relative text-[13px] font-semibold uppercase tracking-[0.18em] text-white/55">
-                Dengan Kahade
-              </p>
-              <motion.ul
-                variants={staggerParent}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, margin: "0px 0px -12% 0px" }}
-                className="relative mt-7 space-y-5"
-              >
-                {WITH.map((t, i) => (
-                  <motion.li
-                    key={t}
-                    variants={staggerChild}
-                    className="flex gap-3.5 text-[15px] leading-relaxed text-white/90"
-                  >
-                    <motion.span
-                      className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white text-black"
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ type: "spring", stiffness: 380, damping: 17, delay: 0.25 + i * 0.16 }}
-                    >
-                      <Check weight="bold" className="h-3.5 w-3.5" aria-hidden="true" />
-                    </motion.span>
-                    {t}
-                  </motion.li>
-                ))}
-              </motion.ul>
-            </motion.div>
-          </Reveal>
-        </div>
+        <Reveal delay={120}>
+          <p className="mx-auto mt-8 max-w-xl text-center text-[13px] leading-relaxed text-[#525252]/80">
+            Perbandingan berdasarkan pola umum masing-masing layanan. Detail
+            ketentuan dapat berbeda di tiap penyedia.
+          </p>
+        </Reveal>
       </div>
     </section>
   );
