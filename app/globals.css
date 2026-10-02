@@ -156,111 +156,65 @@ body {
   box-shadow: 0 20px 44px -20px rgb(0 0 0 / 0.18);
 }
 
-/* ---------- Header ---------- */
-.site-header {
-  transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-  border-bottom: 1px solid transparent;
+/* ---------- Header (pola Mobbin: floating glass pill) ---------- */
+.mobbin-pill {
+  border-radius: 30px;
+  background: rgb(243 244 246 / 0.64);
+  -webkit-backdrop-filter: blur(48px);
+  backdrop-filter: blur(48px);
+  max-width: calc(100vw - 48px);
+  transition: background-color 0.3s ease;
 }
 
-.site-header.is-scrolled {
-  background: rgb(255 255 255 / 0.72);
-  -webkit-backdrop-filter: blur(20px) saturate(1.4);
-  backdrop-filter: blur(20px) saturate(1.4);
-  border-bottom-color: rgb(0 0 0 / 0.08);
-  box-shadow: 0 8px 30px -18px rgb(0 0 0 / 0.25);
+/* Panel terbuka: lebih solid agar teks terbaca */
+.mobbin-pill[data-open="true"] {
+  background: rgb(243 244 246 / 0.94);
 }
 
-.nav-link {
-  position: relative;
-}
-
-.nav-link::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -6px;
-  height: 2px;
+/* Hamburger 20x20, dua garis 12x1px -> X */
+.burger span {
+  display: block;
+  width: 12px;
+  height: 1px;
   border-radius: 999px;
-  background: #000000;
-  transform: scaleX(0);
-  transform-origin: left;
+  background: currentColor;
   transition: transform 0.35s var(--ease-premium);
 }
 
-.nav-link[data-active="true"]::after {
-  transform: scaleX(1);
-}
-
-/* Hamburger -> X */
-.burger span {
-  display: block;
-  width: 22px;
-  height: 2px;
-  border-radius: 999px;
-  background: currentColor;
-  transition: transform 0.35s var(--ease-premium), opacity 0.25s ease;
-}
-
 .burger span + span {
-  margin-top: 6px;
+  margin-top: 5px;
 }
 
 .burger[data-open="true"] span:first-child {
-  transform: translateY(4px) rotate(45deg);
+  transform: translateY(3px) rotate(45deg);
 }
 
 .burger[data-open="true"] span:last-child {
-  transform: translateY(-4px) rotate(-45deg);
+  transform: translateY(-3px) rotate(-45deg);
 }
 
-.mobile-menu {
-  position: fixed;
-  inset: 0;
-  z-index: 40;
-  background: #ffffff;
-  display: flex;
-  flex-direction: column;
-  padding-top: 4rem; /* ruang untuk header fixed */
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-8px);
-  transition: opacity 0.35s var(--ease-premium), transform 0.35s var(--ease-premium), visibility 0s 0.35s;
+/* Panel dropdown mobile di dalam pill */
+.mobile-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s var(--ease-premium);
 }
 
-.mobile-menu[data-open="true"] {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-  transition: opacity 0.35s var(--ease-premium), transform 0.35s var(--ease-premium);
+.mobile-panel[data-open="true"] {
+  grid-template-rows: 1fr;
 }
 
-.mobile-menu .menu-link-inner {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.4s var(--ease-premium), transform 0.4s var(--ease-premium);
-}
-
-.mobile-menu[data-open="true"] .menu-link-inner {
-  opacity: 1;
-  transform: translateY(0);
+.mobile-panel > div {
+  overflow: hidden;
+  min-height: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .mobile-menu {
-    transform: none;
-    transition: opacity 0.2s ease, visibility 0s 0.2s;
-  }
-  .mobile-menu[data-open="true"] {
-    transition: opacity 0.2s ease;
-  }
-  .mobile-menu .menu-link-inner {
-    opacity: 1;
-    transform: none;
+  .mobile-panel {
     transition: none;
   }
 }
+
 
 /* ---------- FAQ accordion ---------- */
 .faq-answer {
@@ -324,8 +278,7 @@ body {
   }
 
   .faq-answer,
-  .mobile-menu,
-  .nav-link::after,
+  .mobile-panel,
   .burger span,
   .faq-icon,
   .like-btn svg,

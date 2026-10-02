@@ -11,13 +11,24 @@ const NAV = [
   { id: "faq", label: "FAQ" },
 ];
 
+/**
+ * Header pola Mobbin: floating glass pill terpusat.
+ * - Pill 60px, radius 30px, kaca #F3F4F6/64 + blur 48px, tanpa border/shadow.
+ * - Offset atas 24px (desktop) / 8px (mobile ≤810px).
+ * - Nav 16px/600/0.2px, tanpa hover visual.
+ * - CTA "Unduh" hanya muncul setelah scroll (pola Mobbin).
+ * - Mobile: hamburger kiri 20×20, menu jadi panel dropdown (bukan full-screen).
+ */
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const [ctaVisible, setCtaVisible] = useState(false);
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState<string>("");
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 8);
+      setCtaVisible(window.scrollY > 320);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -30,88 +41,101 @@ export function Header() {
     };
   }, [open ]);
 
-  useEffect(() => {
-    const sections = NAV.map((n) => document.getElementById(n.id)).filter(
-      (el): el is HTMLElement => el !== null
-    );
-    if (sections.length === 0) return;
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) setActive(entry.target.id);
-        }
-      },
-      { rootMargin: "-40% 0px -55% 0px" }
-    );
-
-    sections.forEach((s) => io.observe(s));
-    return () => io.disconnect();
-  }, []);
-
   return (
-    <header
-      className={`site-header fixed inset-x-0 top-0 z-50 ${scrolled ? "is-scrolled" : ""}`}
-    >
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
-        <a href="#top" aria-label="Kahade — kembali ke atas" className="shrink-0">
-          <KahadeMark className="h-9 w-9" />
-        </a>
+    <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-6 pt-2 md:px-0 md:pt-6">
+      <div
+        className={`mobbin-pill w-full md:w-auto ${
+          scrolled ? "is-scrolled" : ""
+        }`}
+        data-open={open}
+      >
+        {/* Baris utama pill */}
+        <div className="flex h-[60px] items-center gap-5 px-5 md:px-6">
+          {/* Hamburger (mobile) */}
+          <button
+            type="button"
+            className="burger inline-flex min-h-[44px] min-w-[44px] items-center justify-center text-[#262626] md:hidden"
+            data-open={open}
+            aria-expanded={open}
+            aria-label={open ? "Tutup menu" : "Buka menu"}
+            onClick={() => setOpen((v) => !v)}
+          >
+            <span aria-hidden="true" />
+            <span aria-hidden="true" />
+          </button>
 
-        {/* Desktop nav */}
-        <nav aria-label="Navigasi utama" className="hidden items-center gap-8 md:flex">
-          {NAV.map((item) => (
+          {/* Logo */}
+          <a
+            href="#top"
+            aria-label="Kahade — kembali ke atas"
+            className="shrink-0"
+            onClick={() => setOpen(false)}
+          >
+            <KahadeMark className="h-8 w-8" />
+          </a>
+
+          {/* Nav desktop */}
+          <nav
+            aria-label="Navigasi utama"
+            className="hidden items-center gap-5 md:flex"
+          >
+            {NAV.map((item) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                className="inline-flex min-h-[44px] items-center text-[16px] font-semibold leading-[22px] tracking-[0.2px] text-[#262626]"
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+
+          {/* CTA muncul saat scroll (desktop) */}
+          <div
+            className={`hidden md:block transition-all duration-300 ${
+              ctaVisible
+                ? "translate-x-0 opacity-100"
+                : "pointer-events-none -translate-x-2 opacity-0"
+            }`}
+            aria-hidden={!ctaVisible}
+          >
             <a
-              key={item.id}
-              href={`#${item.id}`}
-              data-active={active === item.id}
-              className="nav-link min-h-[44px] text-sm font-medium text-[#525252] transition-colors hover:text-black inline-flex items-center"
+              href="#download"
+              tabIndex={ctaVisible ? 0 : -1}
+              className="inline-flex h-11 items-center whitespace-nowrap rounded-full bg-black px-4 text-[16px] font-semibold leading-[22px] tracking-[0.2px] text-white"
             >
-              {item.label}
+              Unduh
             </a>
-          ))}
-        </nav>
+          </div>
 
-        <div className="hidden items-center gap-2 md:flex">
-          <DownloadActions compact />
+          {/* Spacer mobile */}
+          <span className="flex-1 md:hidden" />
         </div>
 
-        {/* Mobile hamburger */}
-        <button
-          type="button"
-          className="burger inline-flex min-h-[44px] min-w-[44px] items-center justify-center text-black md:hidden"
-          data-open={open}
-          aria-expanded={open}
-          aria-label={open ? "Tutup menu" : "Buka menu"}
-          onClick={() => setOpen((v) => !v)}
-        >
-          <span aria-hidden="true" />
-          <span aria-hidden="true" />
-        </button>
-      </div>
-
-      {/* Mobile menu — full-screen overlay */}
-      <div className="mobile-menu md:hidden" data-open={open} aria-hidden={!open}>
-        <nav
-          aria-label="Navigasi seluler"
-          className="flex flex-1 flex-col px-6 pb-8 pt-6"
-        >
-          {NAV.map((item, i) => (
-            <a
-              key={item.id}
-              href={`#${item.id}`}
-              onClick={() => setOpen(false)}
-              tabIndex={open ? 0 : -1}
-              className="flex min-h-[60px] items-center border-b border-black/5 text-2xl font-semibold tracking-tight text-[#262626]"
-              style={{ transitionDelay: open ? `${80 + i * 40}ms` : "0ms" }}
+        {/* Panel menu mobile (dropdown) */}
+        <div className="mobile-panel md:hidden" data-open={open}>
+          <div>
+            <nav
+              aria-label="Navigasi seluler"
+              className="flex flex-col gap-4 px-5 pb-2 pt-1"
             >
-              <span className="menu-link-inner">{item.label}</span>
-            </a>
-          ))}
-          <div className="mt-auto pt-8">
-            <DownloadActions size="md" layout="column" showApk={false} />
+              {NAV.map((item) => (
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  onClick={() => setOpen(false)}
+                  tabIndex={open ? 0 : -1}
+                  className="text-[16px] font-semibold leading-[22px] tracking-[0.2px] text-[#262626]"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+            <div className="px-5 pb-5 pt-4">
+              <DownloadActions size="md" layout="column" showApk={false} />
+            </div>
           </div>
-        </nav>
+        </div>
       </div>
     </header>
   );
