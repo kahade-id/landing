@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { meta, required, data } from "@/content/privasi";
+import { meta, required, data } from "@/content/tentang";
 import { resolvePage } from "@/lib/content";
 import { Breadcrumb } from "@/components/site/Breadcrumb";
 import { DraftState } from "@/components/site/DraftState";
@@ -37,25 +37,28 @@ function DraftView() {
   );
 }
 
-export default function PrivasiPage() {
+export default function TentangPage() {
   const page = resolvePage(meta, required, data);
   if (page.status === "draft") return <DraftView />;
   const d = page.data;
   return (
-    <PageShell trail={TRAIL} kicker="Legal" title={d.headline} desc={`Terakhir diperbarui: ${d.updatedAt}`}>
-      <div className="mx-auto max-w-3xl px-5 pb-24 sm:px-8 print:pb-0">
-        <div className="max-w-[680px] space-y-10">
-          {d.sections.map((s, i) => (
-            <section key={s.title} aria-labelledby={`privasi-${i}`}>
-              <h2 id={`privasi-${i}`} className="type-h3 text-black">{s.title}</h2>
-              <div className="mt-4 space-y-4">
-                {s.body.map((p, j) => (
-                  <p key={j} className="type-body text-[#262626]">{p}</p>
-                ))}
-              </div>
-            </section>
+    <PageShell trail={TRAIL} kicker="Perusahaan" title={d.headline} desc={d.subheadline}>
+      <div className="mx-auto max-w-3xl px-5 pb-24 sm:px-8">
+        <div className="max-w-[680px] space-y-5">
+          {d.body.map((p, i) => (
+            <p key={i} className="type-body text-[#262626]">{p}</p>
           ))}
         </div>
+        {d.values.length > 0 && (
+          <div className="mt-14 grid gap-5 sm:grid-cols-2">
+            {d.values.map((v) => (
+              <div key={v.title} className="rounded-[1.75rem] border border-black/10 bg-white p-7">
+                <h2 className="type-h3 text-black">{v.title}</h2>
+                <p className="mt-2 text-[15px] leading-relaxed text-[#525252]">{v.desc}</p>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </PageShell>
   );

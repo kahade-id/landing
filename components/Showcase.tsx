@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { EASE, Reveal, SectionHeading } from "./motion-helpers";
+import { Check, Heart, ShieldCheck } from "@/lib/icons";
 import { KahadeMark } from "./Logo";
 
 /* ================= Device frame ================= */
@@ -28,8 +29,8 @@ function DeviceFrame({ children, label }: { children: React.ReactNode; label: st
 
 function FeedVisual() {
   const cards = [
-    { seller: "tokokamera", title: "Kamera mirrorless, mulus", price: "Rp4.250.000", art: "from-[#e8e8e8] to-[#cfcfcf]" },
-    { seller: "audiohub", title: "Headphone wireless", price: "Rp1.890.000", art: "from-[#dcdcdc] to-[#f0f0f0]" },
+    { title: "Contoh produk", price: "Rp –", art: "from-black/[0.12] to-black/[0.05]" },
+    { title: "Contoh produk", price: "Rp –", art: "from-black/[0.08] to-black/[0.03]" },
   ];
   return (
     <DeviceFrame label="Tampilan feed produk Kahade">
@@ -41,7 +42,7 @@ function FeedVisual() {
       <div className="space-y-3 px-3">
         {cards.map((c, i) => (
           <motion.div
-            key={c.seller}
+            key={i}
             initial={{ opacity: 0, y: 26 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25 + i * 0.16, duration: 0.7, ease: EASE }}
@@ -53,7 +54,7 @@ function FeedVisual() {
               </span>
             </div>
             <div className="p-3">
-              <p className="text-xs font-semibold text-[#262626]">@{c.seller}</p>
+              <p className="text-xs font-semibold text-[#262626]">Toko contoh</p>
               <p className="mt-0.5 truncate text-[13px] text-[#525252]">{c.title}</p>
               <p className="mt-0.5 text-sm font-bold text-black">{c.price}</p>
             </div>
@@ -65,9 +66,7 @@ function FeedVisual() {
           transition={{ delay: 0.7, type: "spring", stiffness: 260, damping: 18 }}
           className="mx-auto flex w-fit items-center gap-2 rounded-full bg-black px-4 py-2 text-xs font-semibold text-white"
         >
-          <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="currentColor" aria-hidden="true">
-            <path d="M12 20.7C6.4 17.2 3 13.6 3 9.9 3 7.2 5.1 5 7.8 5c1.7 0 3.2.9 4.2 2.3C13 5.9 14.5 5 16.2 5 18.9 5 21 7.2 21 9.9c0 3.7-3.4 7.3-9 10.8z" />
-          </svg>
+          <Heart weight="fill" aria-hidden="true" className="h-3.5 w-3.5" />
           Tambah ke favorit
         </motion.div>
       </div>
@@ -79,17 +78,17 @@ function FeedVisual() {
 
 function ChatVisual() {
   const msgs = [
-    { from: "buyer", text: "Halo, kamera ini masih ada?", me: true },
-    { from: "seller", text: "Masih kak, mulus like new 👍", me: false },
-    { from: "buyer", text: "Bisa Rp4.000.000? Saya bayar via escrow.", me: true },
-    { from: "seller", text: "Deal! Saya kirim hari ini ya.", me: false },
+    { text: "Halo, produk ini masih tersedia?", me: true },
+    { text: "Masih tersedia, silakan.", me: false },
+    { text: "Saya ambil ya, bayar via escrow.", me: true },
+    { text: "Baik, saya kirim hari ini.", me: false },
   ];
   return (
     <DeviceFrame label="Tampilan chat transaksi Kahade">
       <div className="flex items-center gap-2.5 border-b border-black/10 px-4 pb-3 pt-11">
         <span className="flex h-8 w-8 items-center justify-center rounded-full bg-black text-xs font-bold text-white">T</span>
         <div>
-          <p className="text-[13px] font-bold text-black">tokokamera</p>
+          <p className="text-[13px] font-bold text-black">Toko contoh</p>
           <p className="flex items-center gap-1 text-[11px] text-[#525252]">
             <span className="h-1.5 w-1.5 rounded-full bg-black" /> Terverifikasi
           </p>
@@ -122,13 +121,11 @@ function ChatVisual() {
           className="flex items-center gap-2 rounded-2xl border border-black/10 bg-white p-3 shadow-sm"
         >
           <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-black text-white">
-            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2.2} aria-hidden="true">
-              <path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6l7-3z" strokeLinejoin="round" />
-            </svg>
+            <ShieldCheck weight="regular" aria-hidden="true" className="h-4 w-4" />
           </span>
           <div>
-            <p className="text-xs font-bold text-black">Transaksi #KD-2481 dibuat</p>
-            <p className="text-[11px] text-[#525252]">Dana Rp4.000.000 ditahan escrow</p>
+            <p className="text-xs font-bold text-black">Transaksi dibuat</p>
+            <p className="text-[11px] text-[#525252]">Dana ditahan escrow</p>
           </div>
         </motion.div>
       </div>
@@ -140,8 +137,8 @@ function ChatVisual() {
 
 function EscrowVisual() {
   const steps = [
-    { t: "Dana ditahan", d: "Rp4.000.000 aman di escrow", done: true },
-    { t: "Barang dikirim", d: "Resi JNE-88213 tercatat", done: true },
+    { t: "Dana ditahan", d: "Aman di escrow", done: true },
+    { t: "Barang dikirim", d: "Resi tercatat", done: true },
     { t: "Konfirmasi terima", d: "Menunggu kamu", done: false, active: true },
     { t: "Dana cair", d: "Ke penjual setelah konfirmasi", done: false },
   ];
@@ -149,7 +146,7 @@ function EscrowVisual() {
     <DeviceFrame label="Tampilan status escrow Kahade">
       <div className="px-4 pb-3 pt-11">
         <p className="text-sm font-bold text-black">Status transaksi</p>
-        <p className="text-[11px] text-[#525252]">#KD-2481 · Kamera mirrorless</p>
+        <p className="text-[11px] text-[#525252]">Contoh produk</p>
       </div>
       <div className="px-4">
         <motion.div
@@ -159,7 +156,7 @@ function EscrowVisual() {
           className="rounded-2xl bg-black p-4 text-white"
         >
           <p className="text-[11px] uppercase tracking-[0.16em] text-white/55">Dana ditahan</p>
-          <p className="mt-1 text-2xl font-bold tracking-tight">Rp4.000.000</p>
+          <p className="mt-1 text-2xl font-bold tracking-tight">Rp –</p>
           <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-white/15">
             <motion.div
               className="h-full rounded-full bg-white"
@@ -185,9 +182,7 @@ function EscrowVisual() {
                   }`}
                 >
                   {s.done ? (
-                    <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth={3} aria-hidden="true">
-                      <path d="M5 12.5l4.5 4.5L19 7.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
+<Check weight="bold" className="h-3.5 w-3.5" aria-hidden="true" />
                   ) : (
                     <span className={`h-2 w-2 rounded-full ${s.active ? "animate-pulse bg-black" : "bg-black/25"}`} />
                   )}
@@ -321,9 +316,7 @@ export function Showcase() {
                     className="flex items-center gap-3 text-[15px] font-medium text-[#262626]"
                   >
                     <span className="flex h-6 w-6 items-center justify-center rounded-full bg-black text-white">
-                      <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth={3} aria-hidden="true">
-                        <path d="M5 12.5l4.5 4.5L19 7.5" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
+                      <Check weight="bold" className="h-3.5 w-3.5" aria-hidden="true" />
                     </span>
                     {p}
                   </motion.li>

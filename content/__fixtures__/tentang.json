@@ -1,0 +1,14 @@
+{
+  "headline": "[FIXTURE] Tentang Kahade",
+  "subheadline": "[FIXTURE] Subjudul tentang.",
+  "body": [
+    "[FIXTURE] Paragraf satu tentang Kahade.",
+    "[FIXTURE] Paragraf dua tentang Kahade."
+  ],
+  "values": [
+    {
+      "title": "[FIXTURE] Nilai satu",
+      "desc": "[FIXTURE] Deskripsi nilai satu."
+    }
+  ]
+}

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { KahadeMark } from "./Logo";
+import { DownloadActions } from "./DownloadActions";
 
 const NAV = [
   { id: "aplikasi", label: "Aplikasi" },
@@ -65,18 +66,7 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-2 md:flex">
-          <a
-            href="#download"
-            className="btn-press inline-flex min-h-[44px] items-center rounded-full px-5 text-sm font-medium text-[#262626] hover:bg-[#F3F4F6]"
-          >
-            Masuk
-          </a>
-          <a
-            href="#download"
-            className="btn-press inline-flex min-h-[44px] items-center rounded-full bg-black px-5 text-sm font-medium text-white"
-          >
-            Download
-          </a>
+          <DownloadActions compact />
         </div>
 
         {/* Mobile hamburger */}
@@ -110,21 +100,8 @@ export function Header() {
                 {item.label}
               </a>
             ))}
-            <div className="flex gap-3 pt-5">
-              <a
-                href="#download"
-                onClick={() => setOpen(false)}
-                className="btn-press inline-flex min-h-[48px] flex-1 items-center justify-center rounded-full border border-black/10 text-sm font-medium"
-              >
-                Masuk
-              </a>
-              <a
-                href="#download"
-                onClick={() => setOpen(false)}
-                className="btn-press inline-flex min-h-[48px] flex-1 items-center justify-center rounded-full bg-black text-sm font-medium text-white"
-              >
-                Download
-              </a>
+            <div className="pt-5">
+              <DownloadActions size="md" layout="column" showApk={false} />
             </div>
           </nav>
         </div>

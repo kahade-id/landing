@@ -1,0 +1,16 @@
+{
+  "headline": "[FIXTURE] Bantuan",
+  "intro": "[FIXTURE] Intro bantuan.",
+  "topics": [
+    {
+      "title": "[FIXTURE] Topik",
+      "desc": "[FIXTURE] Deskripsi topik."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "[FIXTURE] Pertanyaan?",
+      "a": "[FIXTURE] Jawaban."
+    }
+  ]
+}
