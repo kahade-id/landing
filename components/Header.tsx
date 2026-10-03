@@ -61,9 +61,9 @@ export function Header() {
             <img
               src="/icon_logo.svg"
               alt="Kahade"
-              className="h-9 w-auto"
-              width={30}
-              height={37}
+              className="h-7 w-auto"
+              width={23}
+              height={28}
             />
           </a>
 
