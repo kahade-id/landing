@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 import { EASE, Reveal, SectionHeading } from "./motion-helpers";
 import { Bank, ChatCircleDots, Check, CheckCircle, Handshake, Minus, SealCheck, ShieldCheck, Storefront, Truck, Wallet, X } from "@/lib/icons";
@@ -484,49 +485,46 @@ export function HowItWorks() {
 
 function MiniFeed() {
   return (
-    <div aria-hidden="true" className="relative mt-8 overflow-hidden rounded-2xl border border-black/10 bg-[#F3F4F6] p-4">
-      <div className="flex gap-3">
-        {["from-black/[0.12] to-black/[0.05]", "from-black/[0.08] to-black/[0.03]", "from-black/[0.1] to-black/[0.04]"].map((art, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.15 + i * 0.12, duration: 0.6, ease: EASE }}
-            className="min-w-0 flex-1 overflow-hidden rounded-xl bg-white shadow-sm"
-          >
-            <div className={`aspect-[4/3] bg-gradient-to-br ${art}`} />
-            <div className="p-2.5">
-              <div className="h-2 w-3/4 rounded-full bg-black/10" />
-              <div className="mt-1.5 h-2 w-1/2 rounded-full bg-black/25" />
-            </div>
-          </motion.div>
-        ))}
-      </div>
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#F3F4F6] to-transparent" />
+    <div aria-hidden="true" className="relative mt-8 overflow-hidden rounded-2xl border border-black/10">
+      <motion.div
+        initial={{ opacity: 0, y: 18 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, ease: EASE }}
+        className="relative aspect-[16/10] w-full"
+      >
+        <Image
+          src="/IMG_20261003_200600_623.jpg"
+          alt=""
+          fill
+          sizes="(max-width: 768px) 100vw, 600px"
+          className="object-cover object-top"
+        />
+      </motion.div>
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white to-transparent" />
     </div>
   );
 }
 
 function MiniChat() {
   return (
-    <div aria-hidden="true" className="mt-8 space-y-2.5 rounded-2xl border border-black/10 bg-[#F3F4F6] p-4">
-      {[
-        { me: true, w: "w-4/5" },
-        { me: false, w: "w-3/5" },
-        { me: true, w: "w-2/3" },
-      ].map((m, i) => (
-        <motion.div
-          key={i}
-          initial={{ opacity: 0, y: 12, scale: 0.96 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.15 + i * 0.14, duration: 0.5, ease: EASE }}
-          className={`flex ${m.me ? "justify-end" : "justify-start"}`}
-        >
-          <div className={`h-8 rounded-2xl ${m.w} ${m.me ? "rounded-br-md bg-black" : "rounded-bl-md bg-white shadow-sm"}`} />
-        </motion.div>
-      ))}
+    <div aria-hidden="true" className="relative mt-8 overflow-hidden rounded-2xl border border-black/10">
+      <motion.div
+        initial={{ opacity: 0, y: 18 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, ease: EASE }}
+        className="relative aspect-[16/10] w-full"
+      >
+        <Image
+          src="/IMG_20261003_200436_464.jpg"
+          alt=""
+          fill
+          sizes="(max-width: 768px) 100vw, 600px"
+          className="object-cover object-top"
+        />
+      </motion.div>
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white to-transparent" />
     </div>
   );
 }
