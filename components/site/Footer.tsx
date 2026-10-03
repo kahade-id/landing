@@ -83,7 +83,6 @@ export function Footer() {
           <p className="text-sm text-[#525252]">
             © {year} {site.companyName}
           </p>
-          <p className="text-sm text-[#525252]">Dibuat dengan teliti di Indonesia</p>
         </div>
       </div>
     </footer>
