@@ -1,77 +1,46 @@
-# Kahade Landing
+# Kahade — Landing Page
 
-Landing page + deep link handler untuk **kahade.id**. Next.js 16 (App Router,
-TypeScript, Tailwind v4) — siap deploy ke Vercel tanpa konfigurasi khusus.
+Landing page Kahade (PT Kawal Hak Dengan Aman): social commerce feed platform
+Indonesia dengan escrow di setiap transaksi. Next.js 16 App Router + TypeScript
++ Tailwind v4, deploy ke Vercel dari `main`.
 
-## Struktur
+## Mulai
 
-```
-app/
-  page.tsx                 Landing (/)
-  payment/finish/page.tsx  Finish redirect DANA (/payment/finish)
-  layout.tsx               Font Plus Jakarta Sans + SEO/OG (lang="id")
-  globals.css              Palet monokrom Kahade
-  icon.png                 Favicon (app icon)
-components/logo.tsx        Logo SVG brand (dari repo frontend)
-lib/constants.ts           URL download — SATU tempat konfigurasi
-lib/logo-paths.ts          Data path logo (jangan edit manual)
-public/.well-known/
-  apple-app-site-association   Universal Links iOS (appID = TEAMID.id.kahade)
-  assetlinks.json              App Links Android (package id.kahade)
+```bash
+npm ci
+npm run dev      # http://localhost:3000
+npm run build    # build produksi
+npm run content:check  # status halaman konten (draft/ready)
 ```
 
-## Deploy ke Vercel
+## Sistem konten
 
-1. Buka [vercel.com/new](https://vercel.com/new), import repo
-   `kahade-id/landing`.
-2. Framework terdeteksi otomatis (Next.js). Tidak perlu env variable.
-3. Klik **Deploy**. Selesai.
+Teks halaman (kecuali Home) berasal dari modul bertipe di `content/`.
+Status halaman diturunkan otomatis dari kelengkapan field wajib:
+belum lengkap = `draft` (tampil "Sedang kami siapkan", `noindex`, tidak masuk
+sitemap); lengkap = `ready`. Lihat `docs/CONTENT_GUIDE.md`.
 
-## TODO sebelum go-live
+Nilai yang diisi pemilik (`content/site.ts`): URL App Store / Google Play / APK,
+email & WhatsApp kontak, URL produksi. Selagi kosong, tombol unduh tampil
+nonaktif "Segera hadir" — tidak ada link mati.
 
-- [ ] **Apple Team ID** — ganti `TEAMID` di
-      `public/.well-known/apple-app-site-association` dengan Team ID asli
-      (10 karakter, lihat di
-      [developer.apple.com](https://developer.apple.com/account) →
-      Membership). Format: `TEAMID.id.kahade`.
-- [ ] **SHA256 fingerprint Android** — ganti `SHA256_PLACEHOLDER` di
-      `public/.well-known/assetlinks.json` dengan fingerprint sertifikat
-      signing APK/AAB production:
-      ```bash
-      keytool -list -v -keystore <keystore-production>.keystore | grep SHA256
-      ```
-      (Untuk AAB via Play App Signing, ambil dari Play Console →
-      Setup → App signing.)
-- [ ] **URL Expo** — isi `EXPO_GO_URL` di `lib/constants.ts` dengan URL
-      halaman project Expo setelah diunggah. Kosong = tombol Expo Go
-      disembunyikan otomatis.
-- [ ] **App Store / Google Play** — isi `APP_STORE_URL` dan
-      `PLAY_STORE_URL` di `lib/constants.ts` setelah aplikasi terbit.
-      Kosong = tombol tampil badge "Segera hadir" (disabled).
-- [ ] **Halaman legal** — link "Syarat & Ketentuan" dan "Kebijakan Privasi"
-      di footer masih placeholder (`#`).
+Uji template dengan data contoh (lokal saja):
 
-## DNS
+```bash
+KAHADE_FIXTURES=1 npm run build
+```
 
-Arahkan `kahade.id` (dan `www.kahade.id`) ke Vercel:
+Build sengaja digagalkan bila `KAHADE_FIXTURES=1` terdeteksi di Vercel.
 
-1. Di dashboard Vercel project → **Settings → Domains** → tambah
-   `kahade.id` dan `www.kahade.id`.
-2. Di DNS provider, buat record sesuai instruksi Vercel (A `76.76.21.21`
-   untuk apex, atau CNAME `cname.vercel-dns.com` untuk www).
-3. Setelah propagasi, verifikasi deep link:
-   - `https://kahade.id/.well-known/apple-app-site-association`
-     → JSON valid, content-type `application/json`.
-   - `https://kahade.id/.well-known/assetlinks.json` → JSON valid.
+## Desain
 
-## Catatan
+Monokrom (`#FFFFFF` `#F3F4F6` `#525252` `#262626` `#000000`), light mode saja,
+font Plus Jakarta Sans, ikon Phosphor (`lib/icons.ts`), token di
+`styles/tokens.css`. Lihat `CLAUDE.md` untuk aturan main dan batasan.
 
-- `/payment/finish` adalah **Finish Redirect URL DANA** yang terdaftar di
-  dashboard DANA. Jangan ubah path-nya tanpa update juga di dashboard DANA.
-- Halaman ini membaca query params DANA (`status`,
-  `latestTransactionStatus`, `transactionStatus`, `responseCode`) dan
-  menampilkan status berhasil/menunggu/gagal, plus tombol deep link
-  `kahade://payment/finish?...` untuk kembali ke aplikasi.
-- Desain mengikuti prinsip Apple-clean: palet monokrom
-  (#000000, #262626, #525252, #F3F4F6, #FFFFFF), font Plus Jakarta Sans,
-  tanpa animasi berlebihan.
+## Dokumen kerja
+
+- `docs/PROGRESS.md` — checklist fase, defect register, log
+- `docs/DECISIONS.md` — keputusan + alasan
+- `docs/CONTENT_GUIDE.md` — panduan pengisian konten
+- `docs/qa/REPORT.md` — bukti gate kualitas

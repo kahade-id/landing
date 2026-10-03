@@ -1,15 +1,12 @@
 @import "tailwindcss";
+@import "../styles/tokens.css";
 
 @theme {
-  /* Kahade monochrome palette — no other colors except status accents */
-  --color-ink: #000000;
-  --color-ink-soft: #262626;
-  --color-muted: #525252;
-  --color-surface: #f3f4f6;
-  --color-paper: #ffffff;
-
-  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", sans-serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --color-mist: #f3f4f6;
+  --color-smoke: #525252;
+  --color-ink: #262626;
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 html {
@@ -17,14 +14,265 @@ html {
 }
 
 body {
-  background: var(--color-paper);
-  color: var(--color-ink);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
   text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background: var(--color-ink);
-  color: var(--color-paper);
+  background: #000000;
+  color: #fff;
+}
+
+/* ---------- Focus visibility (keyboard users) ---------- */
+:focus-visible {
+  outline: 2px solid #000000;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ---------- Section rhythm ---------- */
+.section-pad {
+  padding-top: 5.5rem;
+  padding-bottom: 5.5rem;
+}
+
+@media (min-width: 1024px) {
+  .section-pad {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+}
+
+/* Hairline divider */
+.hairline-t {
+  border-top: 1px solid rgb(0 0 0 / 0.08);
+}
+
+/* ---------- Fluid type scale (Plus Jakarta Sans) ---------- */
+.type-display {
+  font-size: clamp(2.5rem, 1.55rem + 4.8vw, 5.5rem);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+.type-h2 {
+  font-size: clamp(1.75rem, 1.32rem + 2.1vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+.type-h3 {
+  font-size: clamp(1.25rem, 1.16rem + 0.45vw, 1.5rem);
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+.type-body {
+  font-size: clamp(1rem, 0.97rem + 0.15vw, 1.125rem);
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+/* ---------- Shine sweep on primary CTAs (hover only, bukan loop) ---------- */
+
+.btn-shine {
+  position: relative;
+}
+
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(105deg, transparent 42%, rgb(255 255 255 / 0.38) 50%, transparent 58%);
+  transform: translateX(-130%);
+  pointer-events: none;
+}
+
+.btn-shine:hover::after {
+  animation: shine 0.9s ease;
+}
+
+@keyframes shine {
+  to {
+    transform: translateX(130%);
+  }
+}
+
+/* Cursor spotlight for feature cards */
+.spot-card {
+  transition: transform 0.4s var(--ease-premium), box-shadow 0.4s var(--ease-premium), border-color 0.4s ease;
+}
+
+.spot-card:hover {
+  transform: translateY(-5px);
+  border-color: rgb(0 0 0 / 0.18);
+  box-shadow: 0 24px 50px -22px rgb(0 0 0 / 0.22);
+}
+
+.spot-glow {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  background: radial-gradient(
+    420px circle at var(--mx, 50%) var(--my, 50%),
+    rgb(0 0 0 / 0.055),
+    transparent 65%
+  );
+  pointer-events: none;
+}
+
+.spot-card:hover .spot-glow {
+  opacity: 1;
+}
+
+/* ---------- Buttons & cards ---------- */
+.btn-press {
+  transition: transform 0.25s var(--ease-premium), background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-press:hover {
+  transform: translateY(-1px);
+}
+
+.btn-press:active {
+  transform: scale(0.97);
+}
+
+.card-lift {
+  transition: transform 0.35s var(--ease-premium), box-shadow 0.35s var(--ease-premium);
+}
+
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 44px -20px rgb(0 0 0 / 0.18);
+}
+
+/* ---------- Header (pola Mobbin: floating glass pill) ---------- */
+.mobbin-pill {
+  border-radius: 30px;
+  background: rgb(243 244 246 / 0.64);
+  -webkit-backdrop-filter: blur(48px);
+  backdrop-filter: blur(48px);
+  max-width: calc(100vw - 48px);
+  transition: background-color 0.3s ease;
+}
+
+/* Panel terbuka: lebih solid agar teks terbaca */
+.mobbin-pill[data-open="true"] {
+  background: rgb(243 244 246 / 0.94);
+}
+
+/* Panel dropdown mobile di dalam pill */
+.mobile-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s var(--ease-premium);
+}
+
+.mobile-panel[data-open="true"] {
+  grid-template-rows: 1fr;
+}
+
+.mobile-panel > div {
+  overflow: hidden;
+  min-height: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-panel {
+    transition: none;
+  }
+}
+
+
+/* ---------- util: sembunyikan scrollbar ---------- */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---------- FAQ accordion ---------- */
+.faq-answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.5s var(--ease-premium);
+}
+
+.faq-item[data-open="true"] .faq-answer {
+  grid-template-rows: 1fr;
+}
+
+.faq-answer > div {
+  overflow: hidden;
+}
+
+.faq-icon {
+  transition: transform 0.45s var(--ease-premium);
+}
+
+.faq-item[data-open="true"] .faq-icon {
+  transform: rotate(45deg);
+}
+
+/* ---------- Phone mockup ---------- */
+.phone-screen {
+  scrollbar-width: none;
+}
+
+.phone-screen::-webkit-scrollbar {
+  display: none;
+}
+
+.like-btn svg {
+  transition: transform 0.3s var(--ease-premium), fill 0.2s ease, stroke 0.2s ease;
+}
+
+.like-btn:active svg {
+  transform: scale(0.8);
+}
+
+.like-btn[data-liked="true"] svg {
+  transform: scale(1.15);
+  fill: #000000;
+  stroke: #000000;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .btn-press:hover,
+  .card-lift:hover {
+    transform: none;
+  }
+
+  .btn-press:active {
+    transform: scale(0.99);
+  }
+
+  .faq-answer,
+  .mobile-panel,
+  .faq-icon,
+  .like-btn svg,
+  .spot-glow {
+    transition: none;
+  }
+
+  .btn-shine:hover::after {
+    animation: none;
+  }
 }

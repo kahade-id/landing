@@ -1,9 +1,8 @@
 "use client";
 
 import { Suspense, useEffect, useState } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
-import { Logo } from "@/components/logo";
-import { DOWNLOAD_ANCHOR } from "@/lib/constants";
+import { useSearchParams } from "next/navigation";
+import { KahadeMark } from "@/components/Logo";
 
 export type FallbackCopy = {
   title: string;
@@ -21,17 +20,17 @@ export type FallbackCopy = {
  * 1. Saat mount, coba buka deep link `kahade://...` (berhasil bila
  *    aplikasi terinstal; gagal diam-diam bila tidak).
  * 2. Tampilkan tombol "Buka di aplikasi" (percobaan manual) +
- *    "Download aplikasi" (fallback).
+ *    "Download aplikasi" (fallback ke /#download).
+ *
+ * `appPath`: path di aplikasi (tanpa scheme), mis. `user/budi` untuk
+ * `kahade://user/budi`. Perlu karena URL web ala Instagram
+ * (`kahade.id/budi`) berbeda dengan route aplikasi (`user/budi`).
  */
-function FallbackContent({ copy }: { copy: FallbackCopy }) {
-  const pathname = usePathname();
+function FallbackContent({ copy, appPath }: { copy: FallbackCopy; appPath: string }) {
   const params = useSearchParams();
   const [attempted, setAttempted] = useState(false);
 
-  // Deep link skema kustom — path tanpa leading slash mengikuti konvensi
-  // expo-router (kahade://order-link/abc → route /order-link/abc).
   const query = params.toString();
-  const appPath = pathname.startsWith("/") ? pathname.slice(1) : pathname;
   const deepLink = `kahade://${appPath}${query ? `?${query}` : ""}`;
 
   useEffect(() => {
@@ -45,32 +44,40 @@ function FallbackContent({ copy }: { copy: FallbackCopy }) {
   }, []);
 
   return (
-    <div className="flex min-h-full flex-1 flex-col items-center justify-center px-6 py-16 text-center">
-      <Logo size="sm" />
-      <h1 className="mt-10 text-3xl font-bold tracking-tight">{copy.title}</h1>
-      <p className="mt-3 max-w-sm text-muted">{copy.desc}</p>
-      <div className="mt-10 flex w-full max-w-xs flex-col gap-3">
+    <main className="flex min-h-screen flex-col items-center justify-center bg-white px-5 text-center">
+      <KahadeMark className="h-14 w-14" />
+      <h1 className="mt-8 text-3xl font-semibold tracking-[-0.02em] text-black sm:text-4xl">
+        {copy.title}
+      </h1>
+      <p className="mt-3 max-w-sm text-[17px] leading-relaxed text-[#525252]">{copy.desc}</p>
+      <div className="mt-9 flex w-full max-w-xs flex-col gap-3">
         <a
           href={deepLink}
-          className="inline-flex items-center justify-center rounded-full bg-ink px-7 py-3 text-[15px] font-semibold text-paper transition-opacity hover:opacity-80"
+          className="inline-flex min-h-[56px] items-center justify-center rounded-full bg-black px-9 text-base font-semibold text-white transition-transform duration-300 ease-out hover:scale-[1.03] active:scale-[0.98]"
         >
           Buka di aplikasi
         </a>
         <a
-          href={DOWNLOAD_ANCHOR}
-          className="inline-flex items-center justify-center rounded-full border border-ink/15 px-7 py-3 text-[15px] font-semibold text-ink transition-colors hover:bg-surface"
+          href="/#download"
+          className="inline-flex min-h-[56px] items-center justify-center rounded-full border border-black/15 px-9 text-base font-semibold text-black transition-colors hover:bg-black/5"
         >
           Download aplikasi
         </a>
       </div>
-    </div>
+    </main>
   );
 }
 
-export default function DeeplinkFallback({ copy }: { copy: FallbackCopy }) {
+export default function DeeplinkFallback({
+  copy,
+  appPath,
+}: {
+  copy: FallbackCopy;
+  appPath: string;
+}) {
   return (
     <Suspense>
-      <FallbackContent copy={copy} />
+      <FallbackContent copy={copy} appPath={appPath} />
     </Suspense>
   );
 }

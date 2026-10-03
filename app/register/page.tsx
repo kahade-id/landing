@@ -1,8 +1,17 @@
-import type { Metadata } from "next";
-import DeeplinkFallback from "@/components/deeplink-fallback";
+import { redirect } from "next/navigation";
 
-export const metadata: Metadata = { title: "Daftar" };
-
-export default function Page() {
-  return <DeeplinkFallback copy={{ title: "Daftar Akun", desc: "Buat akun Kahade di aplikasi — gratis." }} />;
+/**
+ * /register?ref=<code> — format referral lama.
+ * Teruskan ke format baru /r/<code>. Tanpa ref → ke beranda.
+ */
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: Promise<{ ref?: string }>;
+}) {
+  const { ref } = await searchParams;
+  if (ref && /^[a-zA-Z0-9_-]{1,64}$/.test(ref)) {
+    redirect(`/r/${encodeURIComponent(ref)}`);
+  }
+  redirect("/");
 }

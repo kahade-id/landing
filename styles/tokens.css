@@ -1,0 +1,54 @@
+/**
+ * Kahade design tokens — satu sumber kebenaran.
+ * Dipetakan ke Tailwind v4 via @theme di globals.css.
+ */
+
+:root {
+  /* ---- Brand palette (satu-satunya warna yang boleh dipakai) ---- */
+  --kahade-white: #ffffff;
+  --kahade-mist: #f3f4f6;
+  --kahade-smoke: #525252;
+  --kahade-ink: #262626;
+  --kahade-black: #000000;
+
+  color-scheme: light;
+
+  /* ---- Spacing scale (4/8px) ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+  --space-40: 160px;
+
+  /* ---- Radius (maks 4 nilai) ---- */
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+  --radius-full: 999px;
+
+  /* ---- Border ---- */
+  --border-hairline: 1px solid rgb(0 0 0 / 0.08);
+
+  /* ---- Shadow (maks 2 level, sangat lembut) ---- */
+  --shadow-soft: 0 16px 40px -24px rgb(0 0 0 / 0.18);
+  --shadow-lift: 0 24px 56px -28px rgb(0 0 0 / 0.22);
+
+  /* ---- Layout ---- */
+  --container-max: 1200px;
+  --reading-max: 680px;
+
+  /* ---- Motion ---- */
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+  --reveal-distance: 16px;
+  --reveal-duration: 700ms;
+  --reveal-stagger: 70ms;
+}

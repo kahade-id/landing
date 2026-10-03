@@ -1,0 +1,11 @@
+{
+  "headline": "[FIXTURE] Karier di Kahade",
+  "intro": "[FIXTURE] Intro karier.",
+  "benefits": [
+    {
+      "title": "[FIXTURE] Benefit",
+      "desc": "[FIXTURE] Deskripsi benefit."
+    }
+  ],
+  "jobs": []
+}

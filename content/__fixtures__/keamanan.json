@@ -1,0 +1,10 @@
+{
+  "headline": "[FIXTURE] Keamanan",
+  "intro": "[FIXTURE] Intro keamanan.",
+  "points": [
+    {
+      "title": "[FIXTURE] Poin",
+      "desc": "[FIXTURE] Deskripsi poin."
+    }
+  ]
+}

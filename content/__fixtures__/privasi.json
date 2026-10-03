@@ -1,0 +1,12 @@
+{
+  "headline": "[FIXTURE] Kebijakan Privasi",
+  "updatedAt": "[FIXTURE] 2026-01-01",
+  "sections": [
+    {
+      "title": "[FIXTURE] Bagian",
+      "body": [
+        "[FIXTURE] Isi bagian."
+      ]
+    }
+  ]
+}
