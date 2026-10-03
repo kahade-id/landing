@@ -11,7 +11,7 @@ export default function ErrorPage({
 }) {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-white px-5 text-center">
-      <KahadeMark className="h-14 w-14" />
+      <KahadeMark className="h-14" />
       <h1 className="type-h2 mt-8 text-black">Terjadi kesalahan.</h1>
       <p className="mt-4 max-w-md text-[17px] leading-relaxed text-[#525252]">
         Maaf, ada yang tidak beres di sisi kami. Silakan coba lagi atau kembali ke beranda.

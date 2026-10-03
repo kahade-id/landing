@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { EASE, Reveal, SectionHeading } from "./motion-helpers";
-import { Check } from "@/lib/icons";
+import { Check, Heart, ShieldCheck } from "@/lib/icons";
+import { KahadeMark } from "./Logo";
 
 /* ================= Device frame ================= */
 
@@ -27,15 +28,47 @@ function DeviceFrame({ children, label }: { children: React.ReactNode; label: st
 /* ================= Tab 1: Feed visual ================= */
 
 function FeedVisual() {
+  const cards = [
+    { title: "Contoh produk", price: "Rp –", art: "from-black/[0.12] to-black/[0.05]" },
+    { title: "Contoh produk", price: "Rp –", art: "from-black/[0.08] to-black/[0.03]" },
+  ];
   return (
     <DeviceFrame label="Tampilan feed produk Kahade">
-      <div className="relative min-h-[560px] overflow-hidden">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/IMG_20261003_200600_623.jpg"
-          alt="Screenshot feed produk Kahade"
-          className="h-full w-full object-cover object-top"
-        />
+      <div className="flex items-center justify-between px-4 pb-2 pt-11">
+        <KahadeMark className="h-7" />
+        <span className="text-sm font-bold text-black">Feed</span>
+        <span className="h-5 w-5" />
+      </div>
+      <div className="space-y-3 px-3">
+        {cards.map((c, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 26 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25 + i * 0.16, duration: 0.7, ease: EASE }}
+            className="overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_10px_30px_-18px_rgb(0_0_0/0.25)]"
+          >
+            <div className={`relative flex aspect-[16/9] items-center justify-center bg-gradient-to-br ${c.art}`}>
+              <span className="absolute left-2.5 top-2.5 rounded-full bg-black/85 px-2 py-1 text-[10px] font-semibold text-white">
+                Escrow
+              </span>
+            </div>
+            <div className="p-3">
+              <p className="text-xs font-semibold text-[#262626]">Toko contoh</p>
+              <p className="mt-0.5 truncate text-[13px] text-[#525252]">{c.title}</p>
+              <p className="mt-0.5 text-sm font-bold text-black">{c.price}</p>
+            </div>
+          </motion.div>
+        ))}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.7, type: "spring", stiffness: 260, damping: 18 }}
+          className="mx-auto flex w-fit items-center gap-2 rounded-full bg-black px-4 py-2 text-xs font-semibold text-white"
+        >
+          <Heart weight="fill" aria-hidden="true" className="h-3.5 w-3.5" />
+          Tambah ke favorit
+        </motion.div>
       </div>
     </DeviceFrame>
   );
@@ -44,31 +77,73 @@ function FeedVisual() {
 /* ================= Tab 2: Chat visual ================= */
 
 function ChatVisual() {
+  const msgs = [
+    { text: "Halo, produk ini masih tersedia?", me: true },
+    { text: "Masih tersedia, silakan.", me: false },
+    { text: "Saya ambil ya, bayar via escrow.", me: true },
+    { text: "Baik, saya kirim hari ini.", me: false },
+  ];
   return (
     <DeviceFrame label="Tampilan chat transaksi Kahade">
-      <div className="relative min-h-[560px] overflow-hidden bg-white">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/IMG_20261003_200436_464.jpg"
-          alt="Screenshot chat transaksi Kahade"
-          className="h-full w-full object-cover object-top"
-        />
+      <div className="flex items-center gap-2.5 border-b border-black/10 px-4 pb-3 pt-11">
+        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-black text-xs font-bold text-white">T</span>
+        <div>
+          <p className="text-[13px] font-bold text-black">Toko contoh</p>
+          <p className="flex items-center gap-1 text-[11px] text-[#525252]">
+            <span className="h-1.5 w-1.5 rounded-full bg-black" /> Terverifikasi
+          </p>
+        </div>
+      </div>
+      <div className="space-y-2.5 px-4 py-4">
+        {msgs.map((m, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 14, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ delay: 0.3 + i * 0.28, duration: 0.5, ease: EASE }}
+            className={`flex ${m.me ? "justify-end" : "justify-start"}`}
+          >
+            <p
+              className={`max-w-[80%] rounded-2xl px-3.5 py-2.5 text-[13px] leading-snug ${
+                m.me
+                  ? "rounded-br-md bg-black text-white"
+                  : "rounded-bl-md bg-[#F3F4F6] text-[#262626]"
+              }`}
+            >
+              {m.text}
+            </p>
+          </motion.div>
+        ))}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.6, duration: 0.5, ease: EASE }}
+          className="flex items-center gap-2 rounded-2xl border border-black/10 bg-white p-3 shadow-sm"
+        >
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-black text-white">
+            <ShieldCheck weight="regular" aria-hidden="true" className="h-4 w-4" />
+          </span>
+          <div>
+            <p className="text-xs font-bold text-black">Transaksi dibuat</p>
+            <p className="text-[11px] text-[#525252]">Dana ditahan escrow</p>
+          </div>
+        </motion.div>
       </div>
     </DeviceFrame>
   );
 }
 
-/* ================= Tab 3: Transaksi visual ================= */
+/* ================= Tab 3: Escrow visual ================= */
 
-function TransactionVisual() {
+function EscrowVisual() {
   const steps = [
-    { t: "Pembayaran diterima", d: "Aman", done: true },
+    { t: "Dana ditahan", d: "Aman di escrow", done: true },
     { t: "Barang dikirim", d: "Resi tercatat", done: true },
     { t: "Konfirmasi terima", d: "Menunggu kamu", done: false, active: true },
     { t: "Dana cair", d: "Ke penjual setelah konfirmasi", done: false },
   ];
   return (
-    <DeviceFrame label="Tampilan status transaksi Kahade">
+    <DeviceFrame label="Tampilan status escrow Kahade">
       <div className="px-4 pb-3 pt-11">
         <p className="text-sm font-bold text-black">Status transaksi</p>
         <p className="text-[11px] text-[#525252]">Contoh produk</p>
@@ -80,7 +155,7 @@ function TransactionVisual() {
           transition={{ delay: 0.25, duration: 0.6, ease: EASE }}
           className="rounded-2xl bg-black p-4 text-white"
         >
-          <p className="text-[11px] uppercase tracking-[0.16em] text-white/55">Status pembayaran</p>
+          <p className="text-[11px] uppercase tracking-[0.16em] text-white/55">Dana ditahan</p>
           <p className="mt-1 text-2xl font-bold tracking-tight">Rp –</p>
           <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-white/15">
             <motion.div
@@ -151,17 +226,17 @@ const TABS = [
     id: "chat",
     label: "Chat",
     title: "Semua kesepakatan tercatat.",
-    desc: "Tawar menawar, atur pengiriman, dan buat transaksi — dalam satu chat yang terhubung langsung ke pembayaran.",
+    desc: "Tawar menawar, atur pengiriman, dan buat transaksi — dalam satu chat yang terhubung langsung ke escrow.",
     points: ["Riwayat chat tersimpan rapi", "Transaksi dibuat dari chat", "Status pesanan real-time"],
     visual: <ChatVisual />,
   },
   {
-    id: "aman",
-    label: "Aman",
+    id: "escrow",
+    label: "Escrow",
     title: "Dana aman sampai barang diterima.",
-    desc: "Keamanan yang baik adalah keamanan yang tidak terasa. Transaksi berjalan dalam satu alur yang tercatat — dari chat sampai konfirmasi.",
-    points: ["Dana aman sampai konfirmasi", "Status transaksi real-time", "Jalur sengketa yang jelas"],
-    visual: <TransactionVisual />,
+    desc: "Setiap transaksi dilindungi escrow. Kamu selalu tahu persis danamu ada di mana.",
+    points: ["Dana ditahan pihak netral", "Cair setelah konfirmasi", "Jalur sengketa yang jelas"],
+    visual: <EscrowVisual />,
   },
 ];
 
@@ -183,7 +258,7 @@ export function Showcase() {
         <SectionHeading
           kicker="Lihat aplikasinya"
           title="Satu aplikasi untuk seluruh jual beli."
-          sub="Feed, chat, dan pembayaran bekerja sebagai satu alur — bukan tiga aplikasi terpisah."
+          sub="Feed, chat, dan escrow bekerja sebagai satu alur — bukan tiga aplikasi terpisah."
         />
 
         {/* Tab bar */}

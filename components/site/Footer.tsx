@@ -42,15 +42,15 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-[1.2fr_2fr]">
           <div>
             <Link href="/" aria-label="Kahade — kembali ke beranda" className="inline-block">
-              <KahadeMark className="h-10 w-10" />
+              <KahadeMark className="h-10" />
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-[#525252]">
-              Kahade adalah aplikasi jual-beli pengguna ke pengguna yang
-              tampilannya seperti media sosial.
+              Social commerce dengan escrow di setiap transaksi. Jual beli di
+              feed, tanpa was-was.
             </p>
             <p className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#F3F4F6] px-3.5 py-1.5 text-xs font-semibold text-[#525252]">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#FFD200]" aria-hidden="true" />
-              Meluncur 8 Desember 2026
+              <span className="h-1.5 w-1.5 rounded-full bg-black" aria-hidden="true" />
+              Segera hadir
             </p>
           </div>
 
