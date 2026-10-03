@@ -19,6 +19,8 @@ const nextConfig: NextConfig = {
       { source: "/profile/:id", destination: "/p/:id", permanent: true },
       { source: "/products/:id", destination: "/p/:id", permanent: true },
       { source: "/showcase/:id", destination: "/p/:id", permanent: true },
+      // Order link pendek (Okt 2026): /order-link/:token → /o/:token.
+      { source: "/order-link/:token", destination: "/o/:token", permanent: true },
       {
         source: "/syarat-ketentuan",
         destination: "/syarat-dan-ketentuan",

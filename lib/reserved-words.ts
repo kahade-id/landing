@@ -18,6 +18,7 @@ export const RESERVED_WORDS = new Set([
   "p",
   "v",
   "r",
+  "o",
   // Route aplikasi yang sudah ada
   "payment",
   "transfer",
