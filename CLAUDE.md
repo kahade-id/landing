@@ -10,8 +10,8 @@ Repo: `kahade-id/landing`. Landing page Kahade — Next.js 16 App Router + TypeS
 5. Boleh push langsung ke `main` (setiap push = live). Push hanya saat konsisten + gate lokal hijau. Conventional Commits. Dilarang force-push.
 
 ## Fakta produk (sumber kebenaran)
-- Kahade oleh PT Kawal Hak Dengan Aman (Indonesia). **Social Commerce Feed Platform**: feed, like, comment, share, follow; etalase produk yang bisa langsung ditransaksikan; setiap transaksi dilindungi escrow.
-- Alur escrow di landing = acuan fakta. Jangan ubah makna, jangan tambah janji baru.
+- Kahade oleh PT Kawal Hak Dengan Aman (Indonesia). **Social Commerce Feed Platform**: feed, like, comment, share, follow; etalase produk yang bisa langsung ditransaksikan; setiap transaksi dilindungi.
+- Alur perlindungan transaksi di landing = acuan fakta. Jangan ubah makna, jangan tambah janji baru.
 - CTA utama: unduh aplikasi (App Store, Google Play, APK langsung).
 
 ## Batasan keras

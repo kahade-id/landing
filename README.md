@@ -1,7 +1,7 @@
 # Kahade — Landing Page
 
 Landing page Kahade (PT Kawal Hak Dengan Aman): social commerce feed platform
-Indonesia dengan escrow di setiap transaksi. Next.js 16 App Router + TypeScript
+Indonesia yang aman di setiap transaksi. Next.js 16 App Router + TypeScript
 + Tailwind v4, deploy ke Vercel dari `main`.
 
 ## Mulai

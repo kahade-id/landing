@@ -18,7 +18,7 @@
 
 ### Fase 2 — Home
 - [x] Hero (H1 6 kata, sub 11 kata, DownloadActions, mockup tanpa angka/nama nyata)
-- [x] Trust strip 4 prinsip faktual (grid statis); Masalah & Solusi; Cara kerja escrow 4 langkah
+- [x] Trust strip 4 prinsip faktual (grid statis); Masalah & Solusi; Cara kerja perlindungan transaksi 4 langkah
 - [x] Showcase tab; bento fitur; tabel perbandingan; FAQ + JSON-LD FAQPage; Closing + DownloadActions
 
 ### Fase 3 — Semua halaman
