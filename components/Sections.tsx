@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useReducedMotion, useScroll, useSpring } from "motion/react";
-import { EASE, Reveal, SectionHeading, staggerChild, staggerParent } from "./motion-helpers";
+import { useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion } from "motion/react";
+import { EASE, Reveal, SectionHeading } from "./motion-helpers";
 import { Bank, ChatCircleDots, Check, CheckCircle, Handshake, Minus, SealCheck, ShieldCheck, Storefront, Truck, Wallet, X } from "@/lib/icons";
 
 /* ================= Trust strip ================= */
@@ -258,92 +258,215 @@ export function ProblemSolution() {
 const STEPS = [
   {
     n: "01",
-    title: "Bayar ke escrow",
-    desc: "Dana ditahan aman oleh Kahade, bukan langsung ke penjual.",
-    icon: <Wallet weight="regular" className="h-7 w-7" aria-hidden="true" />,
+    title: "Chat & sepakat",
+    desc: "Tawar-menawar dan sepakati detail barang di chat.",
+    icon: <ChatCircleDots weight="regular" className="h-7 w-7" aria-hidden="true" />,
+    // posisi node pada wave (persen dari 1200x420)
+    x: 9.17, y: 28.57, top: true,
   },
   {
     n: "02",
-    title: "Penjual mengirim",
-    desc: "Penjual mengirim barang sesuai kesepakatan di chat.",
-    icon: <Truck weight="regular" className="h-7 w-7" aria-hidden="true" />,
+    title: "Bayar ke escrow",
+    desc: "Dana ditahan aman oleh Kahade, bukan langsung ke penjual.",
+    icon: <Wallet weight="regular" className="h-7 w-7" aria-hidden="true" />,
+    x: 29.58, y: 71.43, top: false,
   },
   {
     n: "03",
-    title: "Konfirmasi terima",
-    desc: "Periksa barang, lalu konfirmasi penerimaan di aplikasi.",
-    icon: <CheckCircle weight="regular" className="h-7 w-7" aria-hidden="true" />,
+    title: "Penjual mengirim",
+    desc: "Penjual mengirim barang sesuai kesepakatan di chat.",
+    icon: <Truck weight="regular" className="h-7 w-7" aria-hidden="true" />,
+    x: 50, y: 28.57, top: true,
   },
   {
     n: "04",
+    title: "Konfirmasi terima",
+    desc: "Periksa barang, lalu konfirmasi penerimaan di aplikasi.",
+    icon: <CheckCircle weight="regular" className="h-7 w-7" aria-hidden="true" />,
+    x: 70.42, y: 71.43, top: false,
+  },
+  {
+    n: "05",
     title: "Dana cair",
     desc: "Setelah konfirmasi, dana diteruskan ke penjual.",
     icon: <Bank weight="regular" className="h-7 w-7" aria-hidden="true" />,
+    x: 90.83, y: 28.57, top: true,
   },
 ];
 
-export function HowItWorks() {
+const WAVE_PATH =
+  "M 0,210 C 40,160 70,120 110,120 C 190,120 275,300 355,300 C 435,300 520,120 600,120 C 680,120 765,300 845,300 C 925,300 1010,120 1090,120 C 1130,120 1160,160 1200,210";
+
+/** Wave desktop: garis mengalir + node di atasnya, draw-in saat scroll. */
+function WaveDesktop() {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start 0.75", "end 0.45"],
-  });
-  const progress = useSpring(scrollYProgress, { stiffness: 90, damping: 22 });
+  const inView = useRef(false);
+  const [drawn, setDrawn] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting && !inView.current) {
+          inView.current = true;
+          setDrawn(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.25 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   return (
-    <section id="cara-kerja" className="scroll-mt-20 bg-[#F3F4F6]">
+    <div ref={ref} className="relative hidden h-[420px] lg:block" aria-hidden="true">
+      {/* angka latar raksasa */}
+      {STEPS.map((s) => (
+        <span
+          key={s.n}
+          className="pointer-events-none absolute select-none text-[9rem] font-bold leading-none text-black/[0.05]"
+          style={{
+            left: `${s.x}%`,
+            top: s.top ? "2%" : "58%",
+            transform: "translateX(-50%)",
+          }}
+        >
+          {s.n.replace(/^0/, "")}
+        </span>
+      ))}
+
+      {/* garis wave */}
+      <svg
+        viewBox="0 0 1200 420"
+        className="absolute inset-0 h-full w-full"
+        fill="none"
+        preserveAspectRatio="none"
+      >
+        <motion.path
+          d={WAVE_PATH}
+          stroke="#000"
+          strokeOpacity={0.22}
+          strokeWidth={3}
+          strokeLinecap="round"
+          vectorEffect="non-scaling-stroke"
+          initial={false}
+          animate={{ pathLength: drawn && !reduce ? 1 : 0 }}
+          transition={{ duration: 1.8, ease: EASE }}
+          style={{ pathLength: drawn && !reduce ? undefined : 0 }}
+        />
+      </svg>
+
+      {/* node */}
+      {STEPS.map((s, i) => (
+        <motion.div
+          key={s.n}
+          className="absolute w-52"
+          style={{ left: `${s.x}%`, top: `${s.y}%`, transform: "translate(-50%,-50%)" }}
+          initial={{ opacity: 0, y: s.top ? -18 : 18, scale: 0.92 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+          transition={{ delay: 0.35 + i * 0.22, duration: 0.7, ease: EASE }}
+        >
+          <div className={`flex flex-col items-center ${s.top ? "flex-col-reverse" : ""}`}>
+            <span className="relative z-10 flex h-[72px] w-[72px] shrink-0 items-center justify-center rounded-full border border-black/10 bg-white text-black shadow-[0_18px_40px_-16px_rgb(0_0_0/0.3)]">
+              {s.icon}
+            </span>
+            <div className={`text-center ${s.top ? "mb-5" : "mt-5"}`}>
+              <h3 className="text-lg font-semibold tracking-tight text-black">{s.title}</h3>
+              <p className="mx-auto mt-1.5 max-w-[190px] text-sm leading-relaxed text-[#525252]">
+                {s.desc}
+              </p>
+            </div>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  );
+}
+
+/** Carousel mobile: swipe horizontal dengan snap + dots. */
+function SwipeMobile() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+
+  const onScroll = () => {
+    const el = trackRef.current;
+    if (!el) return;
+    const slide = el.firstElementChild as HTMLElement | null;
+    if (!slide) return;
+    const w = slide.offsetWidth + 20; // gap-5
+    setActive(Math.min(STEPS.length - 1, Math.max(0, Math.round(el.scrollLeft / w))));
+  };
+
+  return (
+    <div className="lg:hidden">
+      <div
+        ref={trackRef}
+        onScroll={onScroll}
+        className="no-scrollbar -mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-2 pt-2"
+      >
+        {STEPS.map((s) => (
+          <div
+            key={s.n}
+            className="w-[76%] shrink-0 snap-center rounded-[1.75rem] bg-white p-7 shadow-[0_16px_40px_-24px_rgb(0_0_0/0.25)]"
+          >
+            <div className="flex items-center gap-4">
+              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-black text-white">
+                {s.icon}
+              </span>
+              <span className="text-5xl font-bold tracking-tight text-black/10">
+                {s.n}
+              </span>
+            </div>
+            <h3 className="mt-6 text-xl font-semibold tracking-tight text-black">
+              {s.title}
+            </h3>
+            <p className="mt-2 text-[15px] leading-relaxed text-[#525252]">{s.desc}</p>
+          </div>
+        ))}
+        {/* spacer akhir agar slide terakhir bisa center */}
+        <div className="w-1 shrink-0" aria-hidden="true" />
+      </div>
+
+      {/* dots */}
+      <div className="mt-6 flex items-center justify-center gap-2" aria-hidden="true">
+        {STEPS.map((s, i) => (
+          <span
+            key={s.n}
+            className={`h-2 rounded-full transition-all duration-300 ${
+              i === active ? "w-7 bg-black" : "w-2 bg-black/15"
+            }`}
+          />
+        ))}
+      </div>
+      <p className="sr-only" aria-live="polite">
+        Langkah {active + 1} dari {STEPS.length}
+      </p>
+    </div>
+  );
+}
+
+export function HowItWorks() {
+  return (
+    <section id="cara-kerja" className="scroll-mt-20 overflow-hidden bg-[#F3F4F6]">
       <div className="mx-auto max-w-6xl px-5 section-pad sm:px-8">
         <SectionHeading
           kicker="Cara kerja"
-          title="Empat langkah, semua terlindungi."
+          title="Lima langkah, semua terlindungi."
           sub="Alurnya sederhana — kamu selalu tahu danamu ada di mana."
         />
 
-        <div ref={ref} className="relative mt-16">
-          {/* Connector line (desktop) */}
-          <div aria-hidden="true" className="absolute left-0 right-0 top-10 hidden h-[3px] rounded-full bg-black/10 lg:block">
-            <motion.div
-              className="h-full origin-left rounded-full bg-black"
-              style={{ scaleX: reduce ? 1 : progress }}
-            />
-          </div>
-
-          <motion.div
-            variants={staggerParent}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-            className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
-          >
-            {STEPS.map((s) => (
-              <motion.div key={s.n} variants={staggerChild} className="h-full">
-                <motion.div
-                  whileHover={{ y: -6 }}
-                  transition={{ type: "spring", stiffness: 280, damping: 22 }}
-                  className="group relative h-full overflow-hidden rounded-[1.75rem] bg-white p-7 shadow-[0_16px_40px_-24px_rgb(0_0_0/0.25)]"
-                >
-                  <div
-                    aria-hidden="true"
-                    className="absolute -bottom-8 -right-4 select-none text-[7rem] font-bold leading-none text-black/[0.045] transition-colors duration-500 group-hover:text-black/[0.08]"
-                  >
-                    {s.n}
-                  </div>
-                  <span className="relative z-10 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-black text-white shadow-[0_12px_26px_-10px_rgb(0_0_0/0.5)] transition-transform duration-500 ease-out group-hover:rotate-6 group-hover:scale-105">
-                    {s.icon}
-                  </span>
-                  <h3 className="relative z-10 mt-6 text-lg font-semibold tracking-tight text-black">{s.title}</h3>
-                  <p className="relative z-10 mt-2 text-sm leading-relaxed text-[#525252]">{s.desc}</p>
-                </motion.div>
-              </motion.div>
-            ))}
-          </motion.div>
+        <div className="mt-10 lg:mt-6">
+          <WaveDesktop />
+          <SwipeMobile />
         </div>
       </div>
     </section>
   );
 }
-
 /* ================= Features (bento) ================= */
 
 function MiniFeed() {
