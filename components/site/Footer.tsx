@@ -48,10 +48,6 @@ export function Footer() {
               Social commerce dengan escrow di setiap transaksi. Jual beli di
               feed, tanpa was-was.
             </p>
-            <p className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#F3F4F6] px-3.5 py-1.5 text-xs font-semibold text-[#525252]">
-              <span className="h-1.5 w-1.5 rounded-full bg-black" aria-hidden="true" />
-              Segera hadir
-            </p>
           </div>
 
           <nav aria-label="Navigasi footer" className="grid grid-cols-2 gap-8 sm:grid-cols-4">

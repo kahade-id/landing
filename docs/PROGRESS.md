@@ -18,7 +18,7 @@
 
 ### Fase 2 — Home
 - [x] Hero (H1 6 kata, sub 11 kata, DownloadActions, mockup tanpa angka/nama nyata)
-- [x] Trust strip 4 prinsip faktual (grid statis); Masalah & Solusi; Cara kerja perlindungan transaksi 4 langkah
+- [x] Trust strip 4 prinsip faktual (grid statis); Masalah & Solusi; Cara kerja escrow 4 langkah
 - [x] Showcase tab; bento fitur; tabel perbandingan; FAQ + JSON-LD FAQPage; Closing + DownloadActions
 
 ### Fase 3 — Semua halaman
@@ -61,3 +61,17 @@
 - 2026-10-03: QA Playwright 48/48 hijau pasca-perbaikan D-011 & D-012. Lighthouse: a11y 100, BP 100, SEO 100, perf 69 (terbatas VM).
 - 2026-10-03: Push ke main via API: batch 1–3/4 berhasil (52 file). **Batch 4/4 (17 file: Sections.tsx, Faq.tsx, next.config.ts, dsb.) TERTUNDA — menunggu approval pengguna yang timeout berulang.** Remote dalam keadaan campuran; JANGAN anggap deploy sukses sebelum batch 4 masuk.
 - 2026-10-03 05:23 WIB: pengguna kembali, semua push disetujui. Batch 4/4 masuk (`a64220a0`), apple-touch-icon biner diperbaiki (pakai `/icon.png`), route lama & file rusak dihapus. **Remote main kini konsisten dan build hijau (16 route).**
+- 2026-10-03 05:45 WIB: audit UI/UX mendalam + fix, terpush ke main:
+  - Menu mobile jadi full-screen overlay (sebelumnya dropdown, tombol store ganda terlihat).
+  - Fix overflow horizontal 22px di 320px: MiniFeed `w-36` → `flex-1`, showcase section `overflow-hidden`.
+  - QA 44/48 hijau (4 "gagal" = slug fixture tak ada di mode produksi, ekspektasi salah).
+- 2026-10-03 06:05 WIB: build Vercel gagal — `styles/tokens.css` terlewat saat push batch (ada lokal, tidak di remote). Sudah dipush ke main; Vercel auto-redeploy.
+- 2026-10-03 06:30 WIB: section "Kenapa Kahade" diredesain jadi tabel perbandingan 3 kolom (Marketplace vs Rekber vs Kahade), 5 aspek, kolom Kahade hitam, sticky kolom aspek di mobile. Terpush ke main.
+- 2026-10-03 06:56 WIB: header direbuild ala mobbin.com (riset via browser langsung): floating glass pill 60px/radius 30px terpusat, blur 48px, nav 16px/600 tanpa hover, CTA "Unduh" hanya muncul saat scroll, mobile hamburger kiri + panel dropdown. Terpush ke main.
+- 2026-10-03 07:30 WIB: header pakai logo asli `public/icon_logo.svg` (diupload pemilik ke remote), hamburger pindah ke kanan pakai Phosphor Equals bold (X bold saat terbuka). Terpush ke main.
+- 2026-10-03 07:50 WIB: hamburger jadi Phosphor List bold; hero phone mockup pakai screenshot asli aplikasi (`IMG_20261003_073351_971.jpg`) gantikan mockup generik. Terpush ke main.
+- 2026-10-03 08:05 WIB: hero jadi terpusat (judul+deskripsi tengah, phone di bawah), kartu melayang "Escrow aktif"/"Dana cair" dihapus, tombol App Store & Google Play sebaris tanpa "Segera hadir" (siap diisi link). Terpush ke main.
+- 2026-10-03 08:30 WIB: cara kerja diredesain ala referensi — desktop: garis wave mengalir dengan 5 node (ikon + angka raksasa), animasi draw-in; mobile: swipe carousel dengan snap + dots. 5 langkah (tambah "Chat & sepakat"). Terpush ke main.
+- 2026-10-04 00:20 WIB: closing diredesain ala referensi — kartu kuning brand (#FFD500), badge store hitam, phone mockup dengan status bar (9:41, dynamic island, signal/wifi/baterai). Siap diganti screenshot asli nanti. Terpush ke main.
+- 2026-10-04 00:30 WIB: hero tambah strip "Bekerja sama dengan" + logo SVG BI & PPATK (sumber Wikimedia Commons, grayscale + hover warna). Logo ASPI belum didapat (situs resmi diblokir Cloudflare, tidak ada di Commons) — perlu file manual dari pemilik. Terpush ke main.
+- 2026-10-04 00:35 WIB: logo "K" diganti logo asli header (icon_logo.svg) di semua titik (Showcase, Footer, 404, error). Perbandingan diredesain premium (kartu + shadow + aksen kuning + hover + stagger). Phone mockup 100% realistis (frame titanium, tombol samping, Dynamic Island + kamera, kilau layar) dipakai di hero & CTA. Terpush ke main.

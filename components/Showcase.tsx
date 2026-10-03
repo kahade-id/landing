@@ -1,76 +1,29 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { EASE, Reveal, SectionHeading } from "./motion-helpers";
-import { Check, Heart, ShieldCheck } from "@/lib/icons";
-import { KahadeMark } from "./Logo";
+import { Check, ShieldCheck } from "@/lib/icons";
+import { RealisticPhone } from "./RealisticPhone";
 
-/* ================= Device frame ================= */
-
-function DeviceFrame({ children, label }: { children: React.ReactNode; label: string }) {
-  return (
-    <div className="relative mx-auto w-[290px] sm:w-[320px]" role="img" aria-label={label}>
-      <div className="rounded-[3rem] bg-black p-[10px] shadow-[0_44px_90px_-32px_rgb(0_0_0/0.5)]">
-        <div className="relative min-h-[560px] overflow-hidden rounded-[2.4rem] bg-white">
-          <div className="absolute left-1/2 top-2.5 z-10 h-6 w-24 -translate-x-1/2 rounded-full bg-black" />
-          {children}
-        </div>
-      </div>
-      <div
-        aria-hidden="true"
-        className="absolute -inset-8 -z-10 rounded-[4rem] bg-gradient-to-b from-[#F3F4F6] to-transparent blur-2xl"
-      />
-    </div>
-  );
-}
-
-/* ================= Tab 1: Feed visual ================= */
+/* ================= Tab 1: Feed — screenshot asli ================= */
 
 function FeedVisual() {
-  const cards = [
-    { title: "Contoh produk", price: "Rp –", art: "from-black/[0.12] to-black/[0.05]" },
-    { title: "Contoh produk", price: "Rp –", art: "from-black/[0.08] to-black/[0.03]" },
-  ];
   return (
-    <DeviceFrame label="Tampilan feed produk Kahade">
-      <div className="flex items-center justify-between px-4 pb-2 pt-11">
-        <KahadeMark className="h-7" />
-        <span className="text-sm font-bold text-black">Feed</span>
-        <span className="h-5 w-5" />
+    <RealisticPhone
+      className="mx-auto w-[290px] sm:w-[320px]"
+    >
+      <div className="relative h-[560px] w-full bg-[#F3F4F6]">
+        <Image
+          src="/IMG_20261003_073351_971.jpg"
+          alt="Tampilan asli feed Kahade"
+          fill
+          sizes="(max-width: 640px) 270px, 300px"
+          className="object-cover object-top"
+        />
       </div>
-      <div className="space-y-3 px-3">
-        {cards.map((c, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 26 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.25 + i * 0.16, duration: 0.7, ease: EASE }}
-            className="overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_10px_30px_-18px_rgb(0_0_0/0.25)]"
-          >
-            <div className={`relative flex aspect-[16/9] items-center justify-center bg-gradient-to-br ${c.art}`}>
-              <span className="absolute left-2.5 top-2.5 rounded-full bg-black/85 px-2 py-1 text-[10px] font-semibold text-white">
-                Escrow
-              </span>
-            </div>
-            <div className="p-3">
-              <p className="text-xs font-semibold text-[#262626]">Toko contoh</p>
-              <p className="mt-0.5 truncate text-[13px] text-[#525252]">{c.title}</p>
-              <p className="mt-0.5 text-sm font-bold text-black">{c.price}</p>
-            </div>
-          </motion.div>
-        ))}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.7, type: "spring", stiffness: 260, damping: 18 }}
-          className="mx-auto flex w-fit items-center gap-2 rounded-full bg-black px-4 py-2 text-xs font-semibold text-white"
-        >
-          <Heart weight="fill" aria-hidden="true" className="h-3.5 w-3.5" />
-          Tambah ke favorit
-        </motion.div>
-      </div>
-    </DeviceFrame>
+    </RealisticPhone>
   );
 }
 
@@ -84,8 +37,9 @@ function ChatVisual() {
     { text: "Baik, saya kirim hari ini.", me: false },
   ];
   return (
-    <DeviceFrame label="Tampilan chat transaksi Kahade">
-      <div className="flex items-center gap-2.5 border-b border-black/10 px-4 pb-3 pt-11">
+    <RealisticPhone className="mx-auto w-[290px] sm:w-[320px]">
+      <div className="relative min-h-[560px] bg-white">
+      <div className="flex items-center gap-2.5 border-b border-black/10 px-4 pb-3 pt-12">
         <span className="flex h-8 w-8 items-center justify-center rounded-full bg-black text-xs font-bold text-white">T</span>
         <div>
           <p className="text-[13px] font-bold text-black">Toko contoh</p>
@@ -129,7 +83,8 @@ function ChatVisual() {
           </div>
         </motion.div>
       </div>
-    </DeviceFrame>
+      </div>
+    </RealisticPhone>
   );
 }
 
@@ -143,8 +98,9 @@ function EscrowVisual() {
     { t: "Dana cair", d: "Ke penjual setelah konfirmasi", done: false },
   ];
   return (
-    <DeviceFrame label="Tampilan status escrow Kahade">
-      <div className="px-4 pb-3 pt-11">
+    <RealisticPhone className="mx-auto w-[290px] sm:w-[320px]">
+      <div className="relative min-h-[560px] bg-white">
+      <div className="px-4 pb-3 pt-12">
         <p className="text-sm font-bold text-black">Status transaksi</p>
         <p className="text-[11px] text-[#525252]">Contoh produk</p>
       </div>
@@ -207,7 +163,8 @@ function EscrowVisual() {
           Konfirmasi barang diterima
         </motion.button>
       </div>
-    </DeviceFrame>
+      </div>
+    </RealisticPhone>
   );
 }
 
@@ -256,7 +213,6 @@ export function Showcase() {
     <section id="aplikasi" className="hairline-t scroll-mt-20 overflow-hidden bg-white">
       <div className="mx-auto max-w-6xl px-5 section-pad sm:px-8">
         <SectionHeading
-          kicker="Lihat aplikasinya"
           title="Satu aplikasi untuk seluruh jual beli."
           sub="Feed, chat, dan escrow bekerja sebagai satu alur — bukan tiga aplikasi terpisah."
         />

@@ -100,7 +100,7 @@ export function Words({ text, className = "", delay = 0, stagger = 0.055, as = "
 /* ---------------- Section heading: kicker + animated title ---------------- */
 
 type SectionHeadingProps = {
-  kicker: string;
+  kicker?: string;
   title: string;
   sub?: string;
   align?: "center" | "left";
@@ -111,28 +111,30 @@ export function SectionHeading({ kicker, title, sub, align = "center", dark = fa
   const alignCls = align === "center" ? "mx-auto text-center items-center" : "text-left items-start";
   return (
     <div className={`flex max-w-2xl flex-col ${alignCls}`}>
-      <Reveal>
-        <p
-          className={`inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.18em] ${
-            dark ? "text-white/60" : "text-[#525252]"
-          }`}
-        >
-          <motion.span
-            aria-hidden="true"
-            className={`inline-block h-1.5 w-1.5 rounded-full ${dark ? "bg-white" : "bg-[#FFD200]"}`}
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ type: "spring", stiffness: 400, damping: 16 }}
-          />
-          {kicker}
-        </p>
-      </Reveal>
+      {kicker ? (
+        <Reveal>
+          <p
+            className={`inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.18em] ${
+              dark ? "text-white/60" : "text-[#525252]"
+            }`}
+          >
+            <motion.span
+              aria-hidden="true"
+              className={`inline-block h-1.5 w-1.5 rounded-full ${dark ? "bg-white" : "bg-black"}`}
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ type: "spring", stiffness: 400, damping: 16 }}
+            />
+            {kicker}
+          </p>
+        </Reveal>
+      ) : null}
       <Words
         as="h2"
         text={title}
         delay={0.08}
-        className={`mt-4 text-3xl font-semibold tracking-[-0.02em] sm:text-[2.6rem] sm:leading-[1.1] ${
+        className={`${kicker ? "mt-4 " : ""}text-3xl font-semibold tracking-[-0.02em] sm:text-[2.6rem] sm:leading-[1.1] ${
           dark ? "text-white" : "text-black"
         }`}
       />

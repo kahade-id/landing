@@ -132,7 +132,6 @@ export function ProblemSolution() {
     <section className="hairline-t relative overflow-hidden bg-white">
       <div className="mx-auto max-w-6xl px-5 section-pad sm:px-8">
         <SectionHeading
-          kicker="Kenapa Kahade"
           title="Marketplace, rekber, atau Kahade?"
           sub="Tiga pendekatan jual beli online yang berbeda. Bandingkan, lalu putuskan mana yang paling pas untukmu."
         />
@@ -469,7 +468,6 @@ export function HowItWorks() {
     <section id="cara-kerja" className="scroll-mt-20 overflow-hidden bg-[#F3F4F6]">
       <div className="mx-auto max-w-6xl px-5 section-pad sm:px-8">
         <SectionHeading
-          kicker="Cara kerja"
           title="Lima langkah, semua terlindungi."
           sub="Alurnya sederhana — kamu selalu tahu danamu ada di mana."
         />
@@ -674,7 +672,6 @@ export function Features() {
     <section id="fitur" className="hairline-t scroll-mt-20 bg-white">
       <div className="mx-auto max-w-6xl px-5 section-pad sm:px-8">
         <SectionHeading
-          kicker="Fitur unggulan"
           title="Dibuat untuk jual beli yang tenang."
           sub="Empat pilar yang bekerja bersama — bukan sekadar daftar fitur."
         />

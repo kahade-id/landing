@@ -8,16 +8,20 @@ import { faqJsonLd, JsonLd } from "./site/JsonLd";
 
 const FAQS = [
   {
-    q: "Bagaimana Kahade melindungi transaksi saya?",
-    a: "Setiap transaksi berjalan dalam satu alur yang tercatat — dari chat, pembayaran, pengiriman, sampai konfirmasi penerimaan. Penjual terverifikasi membantu kamu mengenali penjual tepercaya, dan kalau ada masalah, ada jalur sengketa yang jelas di aplikasi.",
+    q: "Apa itu escrow?",
+    a: "Escrow adalah pihak ketiga netral yang menahan dana pembeli selama transaksi berlangsung. Dana baru diteruskan ke penjual setelah pembeli mengonfirmasi barang diterima sesuai kesepakatan.",
   },
   {
-    q: "Kapan penjual menerima dananya?",
-    a: "Setelah pembeli mengonfirmasi barang sudah diterima dan sesuai, dana diteruskan ke penjual.",
+    q: "Apakah uang saya aman selama ditahan escrow?",
+    a: "Ya. Dana yang kamu bayarkan tidak langsung masuk ke penjual, melainkan ditahan aman oleh Kahade sampai kamu mengonfirmasi penerimaan barang.",
   },
   {
     q: "Bagaimana cara mulai menjual di Kahade?",
     a: "Buat akun, unggah foto produkmu ke feed seperti memposting di media sosial, lalu atur harga. Saat ada pembeli, seluruh proses transaksi berjalan di dalam aplikasi.",
+  },
+  {
+    q: "Kapan penjual menerima dananya?",
+    a: "Setelah pembeli mengonfirmasi bahwa barang sudah diterima dan sesuai, dana yang ditahan escrow akan dicairkan ke penjual.",
   },
   {
     q: "Bagaimana jika barang tidak sesuai atau tidak sampai?",
@@ -111,7 +115,7 @@ export function Faq() {
         className="pointer-events-none absolute -left-40 top-1/3 h-[420px] w-[420px] rounded-full bg-white blur-3xl"
       />
       <div className="relative mx-auto max-w-3xl px-5 section-pad sm:px-8">
-        <SectionHeading kicker="FAQ" title="Pertanyaan yang sering ditanyakan." />
+        <SectionHeading title="Pertanyaan yang sering ditanyakan." />
 
         <div className="mt-12 space-y-3.5">
           {FAQS.map((item, i) => (
