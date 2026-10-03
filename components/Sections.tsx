@@ -8,15 +8,15 @@ import { Bank, ChatCircleDots, Check, CheckCircle, Handshake, Minus, SealCheck, 
 /* ================= Trust strip ================= */
 
 const TRUST = [
-  { title: "Penjual terverifikasi", desc: "Kenali penjual tepercaya lewat lencana verifikasi." },
-  { title: "Transaksi tercatat rapi", desc: "Chat, pembayaran, dan status tersimpan dalam satu alur." },
-  { title: "Dana aman sampai diterima", desc: "Dana aman sampai kamu konfirmasi terima barang." },
-  { title: "Sengketa ada jalurnya", desc: "Tim Kahade siap menengahi jika ada masalah." },
+  { title: "Escrow di setiap transaksi", desc: "Dana pembeli ditahan aman." },
+  { title: "Cair saat barang diterima", desc: "Dana diteruskan setelah konfirmasi." },
+  { title: "Jejak transaksi jelas", desc: "Chat & status tercatat rapi." },
+  { title: "Sengketa ada jalurnya", desc: "Tim Kahade membantu menengahi." },
 ];
 
 export function TrustStrip() {
   return (
-    <section id="keunggulan" aria-label="Keunggulan Kahade" className="border-y border-black/10 bg-white">
+    <section id="keunggulan" aria-label="Keunggulan escrow" className="border-y border-black/10 bg-white">
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-x-8 gap-y-7 px-5 py-12 sm:grid-cols-2 sm:px-8 lg:grid-cols-4 lg:py-14">
         {TRUST.map((item, i) => (
           <Reveal key={item.title} delay={i * 70} y={16}>
@@ -45,7 +45,7 @@ type CellStatus = "check" | "minus" | "x";
 interface CompareRow {
   aspect: string;
   mp: { status: CellStatus; text: string };
-  perantara: { status: CellStatus; text: string };
+  rekber: { status: CellStatus; text: string };
   kahade: string;
 }
 
@@ -53,31 +53,31 @@ const COMPARE_ROWS: CompareRow[] = [
   {
     aspect: "Etalase produk",
     mp: { status: "check", text: "Katalog toko" },
-    perantara: { status: "minus", text: "Foto dikirim via chat" },
+    rekber: { status: "minus", text: "Foto dikirim via chat" },
     kahade: "Feed seperti media sosial",
   },
   {
     aspect: "Interaksi pembeli",
     mp: { status: "check", text: "Chat & ulasan" },
-    perantara: { status: "minus", text: "Chat manual" },
+    rekber: { status: "minus", text: "Chat manual" },
     kahade: "Like, komen, share, follow",
   },
   {
     aspect: "Keamanan dana",
     mp: { status: "check", text: "Proteksi pembeli" },
-    perantara: { status: "minus", text: "Via admin perantara" },
-    kahade: "Terlindungi otomatis",
+    rekber: { status: "minus", text: "Via admin perantara" },
+    kahade: "Escrow otomatis",
   },
   {
     aspect: "Alur transaksi",
     mp: { status: "check", text: "Dalam satu aplikasi" },
-    perantara: { status: "x", text: "Chat & dana terpisah" },
-    kahade: "Chat terhubung ke pembayaran",
+    rekber: { status: "x", text: "Chat & dana terpisah" },
+    kahade: "Chat terhubung ke escrow",
   },
   {
     aspect: "Penyelesaian sengketa",
     mp: { status: "check", text: "CS platform" },
-    perantara: { status: "minus", text: "Mediasi admin" },
+    rekber: { status: "minus", text: "Mediasi admin" },
     kahade: "Jalur jelas di aplikasi",
   },
 ];
@@ -114,16 +114,16 @@ const COMPARE_COLS = [
     sub: "Platform jual beli besar",
   },
   {
-    id: "perantara",
+    id: "rekber",
     icon: <Handshake weight="regular" className="h-5 w-5" aria-hidden="true" />,
-    title: "Perantara manual",
-    sub: "Jasa perantara komunitas",
+    title: "Rekber",
+    sub: "Jasa perantara manual",
   },
   {
     id: "kahade",
     icon: <ShieldCheck weight="regular" className="h-5 w-5" aria-hidden="true" />,
     title: "Kahade",
-    sub: "Social commerce yang aman",
+    sub: "Social commerce + escrow",
   },
 ];
 
@@ -133,113 +133,128 @@ export function ProblemSolution() {
       <div className="mx-auto max-w-6xl px-5 section-pad sm:px-8">
         <SectionHeading
           kicker="Kenapa Kahade"
-          title="Marketplace, perantara manual, atau Kahade?"
+          title="Marketplace, rekber, atau Kahade?"
           sub="Tiga pendekatan jual beli online yang berbeda. Bandingkan, lalu putuskan mana yang paling pas untukmu."
         />
 
-        <Reveal className="relative mt-14">
-          <div className="overflow-x-auto pb-1">
-            <table className="w-full min-w-[760px] border-separate border-spacing-0">
-              <caption className="sr-only">
-                Perbandingan marketplace, perantara manual komunitas, dan Kahade
-              </caption>
-              <thead>
-                <tr>
-                  <th scope="col" className="w-[26%] p-0 text-left">
-                    <span className="sr-only">Aspek</span>
-                  </th>
-                  {COMPARE_COLS.map((col) =>
-                    col.id === "kahade" ? (
-                      <th
-                        key={col.id}
-                        scope="col"
-                        className="w-[24.66%] rounded-t-[1.5rem] bg-black p-0"
+        <Reveal className="mt-14">
+          {/* Kartu perbandingan */}
+          <div className="overflow-hidden rounded-[2rem] border border-black/10 bg-white shadow-[0_24px_60px_-32px_rgb(0_0_0/0.18)]">
+            <div className="no-scrollbar overflow-x-auto">
+              <table className="w-full min-w-[720px] border-separate border-spacing-0">
+                <caption className="sr-only">
+                  Perbandingan marketplace, jasa rekber manual, dan Kahade
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col" className="w-[26%] bg-[#F3F4F6]/60 p-0 text-left">
+                      <span className="sr-only">Aspek</span>
+                    </th>
+                    {COMPARE_COLS.map((col) =>
+                      col.id === "kahade" ? (
+                        <th
+                          key={col.id}
+                          scope="col"
+                          className="relative w-[24.66%] bg-black p-0"
+                        >
+                          {/* Aksen kuning brand */}
+                          <span
+                            aria-hidden="true"
+                            className="absolute inset-x-0 top-0 h-1 bg-[#FFD500]"
+                          />
+                          <div className="flex flex-col items-center gap-1.5 px-4 pb-6 pt-7 text-center">
+                            <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-black">
+                              {col.icon}
+                            </span>
+                            <span className="text-base font-semibold text-white">
+                              {col.title}
+                            </span>
+                            <span className="text-[13px] text-white/60">
+                              {col.sub}
+                            </span>
+                          </div>
+                        </th>
+                      ) : (
+                        <th
+                          key={col.id}
+                          scope="col"
+                          className="w-[24.66%] border-b border-black/10 bg-[#F3F4F6]/60 p-0"
+                        >
+                          <div className="flex flex-col items-center gap-1.5 px-4 pb-6 pt-7 text-center">
+                            <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-black shadow-sm ring-1 ring-black/10">
+                              {col.icon}
+                            </span>
+                            <span className="text-base font-semibold text-black">
+                              {col.title}
+                            </span>
+                            <span className="text-[13px] text-[#525252]">
+                              {col.sub}
+                            </span>
+                          </div>
+                        </th>
+                      )
+                    )}
+                  </tr>
+                </thead>
+                <tbody>
+                  {COMPARE_ROWS.map((row, ri) => {
+                    const last = ri === COMPARE_ROWS.length - 1;
+                    return (
+                      <motion.tr
+                        key={row.aspect}
+                        initial={{ opacity: 0, y: 12 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "0px 0px -40px 0px" }}
+                        transition={{
+                          duration: 0.5,
+                          ease: EASE,
+                          delay: ri * 0.06,
+                        }}
+                        className="group"
                       >
-                        <div className="flex flex-col items-center gap-1.5 px-4 pb-5 pt-6 text-center">
-                          <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white text-black">
-                            {col.icon}
-                          </span>
-                          <span className="text-base font-semibold text-white">
-                            {col.title}
-                          </span>
-                          <span className="text-[13px] text-white/60">{col.sub}</span>
-                        </div>
-                      </th>
-                    ) : (
-                      <th
-                        key={col.id}
-                        scope="col"
-                        className="w-[24.66%] border-b border-black/10 p-0"
-                      >
-                        <div className="flex flex-col items-center gap-1.5 px-4 pb-5 pt-2 text-center">
-                          <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-black/[0.06] text-black">
-                            {col.icon}
-                          </span>
-                          <span className="text-base font-semibold text-black">
-                            {col.title}
-                          </span>
-                          <span className="text-[13px] text-[#525252]">{col.sub}</span>
-                        </div>
-                      </th>
-                    )
-                  )}
-                </tr>
-              </thead>
-              <tbody>
-                {COMPARE_ROWS.map((row, ri) => {
-                  const last = ri === COMPARE_ROWS.length - 1;
-                  return (
-                    <tr key={row.aspect}>
-                      <th
-                        scope="row"
-                        className={`sticky left-0 border-b border-black/10 bg-white px-4 py-5 text-left align-top text-[15px] font-semibold text-black sm:static sm:px-6 ${
-                          last ? "border-b-0" : ""
-                        }`}
-                      >
-                        {row.aspect}
-                      </th>
-                      {(
-                        [
-                          { key: "mp", cell: row.mp },
-                          { key: "perantara", cell: row.perantara },
-                        ] as const
-                      ).map(({ key, cell }) => (
-                        <td
-                          key={key}
-                          className={`border-b border-black/10 px-4 py-5 align-top ${
+                        <th
+                          scope="row"
+                          className={`sticky left-0 border-b border-black/10 bg-white px-5 py-5 text-left align-top text-[15px] font-semibold text-black transition-colors group-hover:bg-[#F3F4F6]/50 sm:static sm:px-7 ${
                             last ? "border-b-0" : ""
                           }`}
                         >
+                          {row.aspect}
+                        </th>
+                        {(
+                          [
+                            { key: "mp", cell: row.mp },
+                            { key: "rekber", cell: row.rekber },
+                          ] as const
+                        ).map(({ key, cell }) => (
+                          <td
+                            key={key}
+                            className={`border-b border-black/10 px-5 py-5 align-top transition-colors group-hover:bg-[#F3F4F6]/50 sm:px-7 ${
+                              last ? "border-b-0" : ""
+                            }`}
+                          >
+                            <div className="flex items-start gap-2.5">
+                              <StatusIcon status={cell.status} />
+                              <span className="text-[15px] leading-relaxed text-[#525252]">
+                                {cell.text}
+                              </span>
+                            </div>
+                          </td>
+                        ))}
+                        <td className="bg-black px-5 py-5 align-top sm:px-7">
                           <div className="flex items-start gap-2.5">
-                            <StatusIcon status={cell.status} />
-                            <span className="text-[15px] leading-relaxed text-[#525252]">
-                              {cell.text}
+                            <StatusIcon status="check" dark />
+                            <span className="text-[15px] font-medium leading-relaxed text-white">
+                              {row.kahade}
                             </span>
                           </div>
                         </td>
-                      ))}
-                      <td
-                        className={`bg-black px-4 py-5 align-top sm:px-6 ${
-                          last ? "rounded-b-[1.5rem]" : ""
-                        }`}
-                      >
-                        <div className="flex items-start gap-2.5">
-                          <StatusIcon status="check" dark />
-                          <span className="text-[15px] font-medium leading-relaxed text-white">
-                            {row.kahade}
-                          </span>
-                        </div>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+                      </motion.tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
           </div>
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-white to-transparent sm:hidden"
-          />
         </Reveal>
 
         <Reveal delay={120}>
@@ -266,8 +281,8 @@ const STEPS = [
   },
   {
     n: "02",
-    title: "Bayar via Kahade",
-    desc: "Selesaikan pembayaran — danamu aman sampai kamu konfirmasi terima barang.",
+    title: "Bayar ke escrow",
+    desc: "Dana ditahan aman oleh Kahade, bukan langsung ke penjual.",
     icon: <Wallet weight="regular" className="h-7 w-7" aria-hidden="true" />,
     x: 29.58, y: 71.43, top: false,
   },
@@ -471,47 +486,83 @@ export function HowItWorks() {
 
 function MiniFeed() {
   return (
-    <div aria-hidden="true" className="relative mt-8 overflow-hidden rounded-2xl border border-black/10">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/IMG_20261003_200600_623.jpg"
-        alt=""
-        className="h-48 w-full object-cover object-top"
-      />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent" />
+    <div aria-hidden="true" className="relative mt-8 overflow-hidden rounded-2xl border border-black/10 bg-[#F3F4F6] p-4">
+      <div className="flex gap-3">
+        {["from-black/[0.12] to-black/[0.05]", "from-black/[0.08] to-black/[0.03]", "from-black/[0.1] to-black/[0.04]"].map((art, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.15 + i * 0.12, duration: 0.6, ease: EASE }}
+            className="min-w-0 flex-1 overflow-hidden rounded-xl bg-white shadow-sm"
+          >
+            <div className={`aspect-[4/3] bg-gradient-to-br ${art}`} />
+            <div className="p-2.5">
+              <div className="h-2 w-3/4 rounded-full bg-black/10" />
+              <div className="mt-1.5 h-2 w-1/2 rounded-full bg-black/25" />
+            </div>
+          </motion.div>
+        ))}
+      </div>
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#F3F4F6] to-transparent" />
     </div>
   );
 }
 
 function MiniChat() {
   return (
-    <div aria-hidden="true" className="relative mt-8 overflow-hidden rounded-2xl border border-black/10">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/IMG_20261003_200436_464.jpg"
-        alt=""
-        className="h-48 w-full object-cover object-top"
-      />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent" />
+    <div aria-hidden="true" className="mt-8 space-y-2.5 rounded-2xl border border-black/10 bg-[#F3F4F6] p-4">
+      {[
+        { me: true, w: "w-4/5" },
+        { me: false, w: "w-3/5" },
+        { me: true, w: "w-2/3" },
+      ].map((m, i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, y: 12, scale: 0.96 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.15 + i * 0.14, duration: 0.5, ease: EASE }}
+          className={`flex ${m.me ? "justify-end" : "justify-start"}`}
+        >
+          <div className={`h-8 rounded-2xl ${m.w} ${m.me ? "rounded-br-md bg-black" : "rounded-bl-md bg-white shadow-sm"}`} />
+        </motion.div>
+      ))}
     </div>
   );
 }
 
 function MiniVerified() {
   return (
-    <div aria-hidden="true" className="relative mt-8 overflow-hidden rounded-2xl border border-black/10">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/IMG_20261003_195651_068.jpg"
-        alt=""
-        className="h-48 w-full object-cover object-top"
-      />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent" />
+    <div aria-hidden="true" className="mt-8 flex items-center gap-3 rounded-2xl border border-black/10 bg-[#F3F4F6] p-4">
+      {[0, 1, 2].map((i) => (
+        <motion.span
+          key={i}
+          initial={{ opacity: 0, scale: 0.6 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.15 + i * 0.14, type: "spring", stiffness: 320, damping: 17 }}
+          className="flex h-11 w-11 items-center justify-center rounded-full bg-black text-[13px] font-bold text-white"
+        >
+          {["T", "A", "R"][i]}
+        </motion.span>
+      ))}
+      <motion.span
+        initial={{ opacity: 0, x: -8 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.55, duration: 0.5, ease: EASE }}
+        className="flex items-center gap-1.5 rounded-full bg-black px-3 py-1.5 text-[11px] font-semibold text-white"
+      >
+<Check weight="bold" className="h-3.5 w-3.5" aria-hidden="true" />
+        Terverifikasi
+      </motion.span>
     </div>
   );
 }
 
-function MiniTransaction() {
+function MiniEscrow() {
   const steps = ["Bayar", "Kirim", "Konfirmasi", "Cair"];
   return (
     <div aria-hidden="true" className="mt-8 rounded-2xl border border-black/10 bg-[#F3F4F6] p-5">
@@ -574,15 +625,25 @@ const BENTO = [
     span: "",
   },
   {
-    title: "Keamanan yang tidak terasa",
-    desc: "Perlindungan transaksi berjalan di balik layar. Kamu tidak perlu memikirkan mekanismenya — cukup tekan Beli via Kahade.",
+    title: "Escrow di setiap transaksi",
+    desc: "Dana ditahan aman, cair setelah barang dikonfirmasi. Tanpa pengecualian.",
     icon: <ShieldCheck weight="regular" className="h-6 w-6" aria-hidden="true" />,
-    visual: <MiniTransaction />,
+    visual: <MiniEscrow />,
     span: "lg:col-span-2",
   },
 ];
 
 function BentoCard({ item, index }: { item: (typeof BENTO)[number]; index: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  function onMove(e: React.MouseEvent) {
+    const el = ref.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    el.style.setProperty("--mx", `${e.clientX - r.left}px`);
+    el.style.setProperty("--my", `${e.clientY - r.top}px`);
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 36 }}
@@ -591,10 +652,18 @@ function BentoCard({ item, index }: { item: (typeof BENTO)[number]; index: numbe
       transition={{ duration: 0.85, ease: EASE, delay: (index % 2) * 0.1 }}
       className={`h-full min-w-0 ${item.span}`}
     >
-      <div className="flex h-full flex-col">
-        <h3 className="text-xl font-semibold tracking-tight text-black">{item.title}</h3>
-        <p className="mt-2.5 max-w-md text-[15px] leading-relaxed text-[#525252]">{item.desc}</p>
-        <div className="mt-6">{item.visual}</div>
+      <div
+        ref={ref}
+        onMouseMove={onMove}
+        className="spot-card group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-black/10 bg-white p-7 sm:p-8"
+      >
+        <div aria-hidden="true" className="spot-glow" />
+        <span className="relative inline-flex w-fit items-center justify-center rounded-2xl bg-black p-3.5 text-white transition-transform duration-500 ease-out group-hover:-rotate-6 group-hover:scale-110">
+          {item.icon}
+        </span>
+        <h3 className="relative mt-6 text-xl font-semibold tracking-tight text-black">{item.title}</h3>
+        <p className="relative mt-2.5 max-w-md text-[15px] leading-relaxed text-[#525252]">{item.desc}</p>
+        <div className="relative mt-auto">{item.visual}</div>
       </div>
     </motion.div>
   );

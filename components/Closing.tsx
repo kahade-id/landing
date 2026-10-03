@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import { Reveal, Words } from "./motion-helpers";
 import { AppleLogo, GooglePlayLogo } from "@/lib/icons";
+import { RealisticPhone } from "./RealisticPhone";
 import { site } from "@/content/site";
 
 /* ---------- Ikon status bar ---------- */
@@ -87,67 +88,68 @@ function StoreBadge({
 
 function CtaPhone() {
   return (
-    <div className="relative mx-auto w-[270px] sm:w-[310px]">
-      <div className="rounded-[3rem] bg-black p-[10px] shadow-[0_50px_100px_-30px_rgb(0_0_0/0.5)]">
-        <div className="relative overflow-hidden rounded-[2.4rem] bg-[#FFD500]">
-          {/* Status bar */}
-          <div className="relative flex items-center justify-between px-7 pt-4 text-black">
-            <span className="w-12 text-[15px] font-semibold tracking-tight">9:41</span>
-            <span
-              aria-hidden="true"
-              className="absolute left-1/2 top-3.5 h-[26px] w-[100px] -translate-x-1/2 rounded-full bg-black"
-            />
-            <span className="flex w-12 items-center justify-end gap-1.5">
-              <SignalIcon />
-              <WifiIcon />
-              <BatteryIcon />
-            </span>
-          </div>
+    <RealisticPhone className="mx-auto w-[270px] sm:w-[310px]">
+      <div className="relative bg-[#FFD500]">
+        {/* Status bar */}
+        <div className="relative flex items-center justify-between px-7 pt-4 text-black">
+          <span className="w-12 text-[15px] font-semibold tracking-tight">
+            9:41
+          </span>
+          <span className="flex w-12 items-center justify-end gap-1.5">
+            <SignalIcon />
+            <WifiIcon />
+            <BatteryIcon />
+          </span>
+        </div>
 
-          {/* App header */}
-          <div className="flex items-center justify-between px-6 pt-4">
-            <img src="/icon_logo.svg" alt="" aria-hidden="true" className="h-7 w-auto" />
-            <span className="text-[15px] font-bold text-black">Feed</span>
-            <span className="w-7" aria-hidden="true" />
-          </div>
+        {/* App header */}
+        <div className="flex items-center justify-between px-6 pt-4">
+          <img
+            src="/icon_logo.svg"
+            alt=""
+            aria-hidden="true"
+            className="h-7 w-auto"
+          />
+          <span className="text-[15px] font-bold text-black">Feed</span>
+          <span className="w-7" aria-hidden="true" />
+        </div>
 
-          {/* Tab */}
-          <div className="mt-3 flex gap-5 px-6 text-[13px] font-medium">
-            <span className="border-b-2 border-black pb-1 font-bold text-black">
-              Untuk Anda
-            </span>
-            <span className="text-black/50">Mengikuti</span>
-            <span className="text-black/50">Terbaru</span>
-          </div>
+        {/* Tab */}
+        <div className="mt-3 flex gap-5 px-6 text-[13px] font-medium">
+          <span className="border-b-2 border-black pb-1 font-bold text-black">
+            Untuk Anda
+          </span>
+          <span className="text-black/50">Mengikuti</span>
+          <span className="text-black/50">Terbaru</span>
+        </div>
 
-          {/* White sheet */}
-          <div className="mt-3 min-h-[290px] rounded-t-[1.8rem] bg-white px-4 pb-6 pt-4 sm:min-h-[320px]">
-            {[0, 1].map((i) => (
+        {/* White sheet */}
+        <div className="mt-3 min-h-[290px] rounded-t-[1.8rem] bg-white px-4 pb-6 pt-4 sm:min-h-[320px]">
+          {[0, 1].map((i) => (
+            <div
+              key={i}
+              className="mb-3 overflow-hidden rounded-2xl border border-black/10 bg-white"
+            >
               <div
-                key={i}
-                className="mb-3 overflow-hidden rounded-2xl border border-black/10 bg-white"
-              >
-                <div
-                  className={`aspect-[16/9] bg-gradient-to-br ${
-                    i === 0
-                      ? "from-black/[0.12] to-black/[0.04]"
-                      : "from-black/[0.08] to-black/[0.03]"
-                  }`}
-                />
-                <div className="p-3">
-                  <div className="h-2.5 w-2/3 rounded-full bg-black/10" />
-                  <div className="mt-2 h-2.5 w-1/3 rounded-full bg-black/10" />
-                  <div className="mt-3 flex items-center gap-2">
-                    <div className="h-2 w-16 rounded-full bg-black/25" />
-                    <div className="h-2 w-10 rounded-full bg-black/10" />
-                  </div>
+                className={`aspect-[16/9] bg-gradient-to-br ${
+                  i === 0
+                    ? "from-black/[0.12] to-black/[0.04]"
+                    : "from-black/[0.08] to-black/[0.03]"
+                }`}
+              />
+              <div className="p-3">
+                <div className="h-2.5 w-2/3 rounded-full bg-black/10" />
+                <div className="mt-2 h-2.5 w-1/3 rounded-full bg-black/10" />
+                <div className="mt-3 flex items-center gap-2">
+                  <div className="h-2 w-16 rounded-full bg-black/25" />
+                  <div className="h-2 w-10 rounded-full bg-black/10" />
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
-    </div>
+    </RealisticPhone>
   );
 }
 
