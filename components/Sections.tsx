@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 import { EASE, Reveal, SectionHeading } from "./motion-helpers";
-import { Bank, ChatCircleDots, Check, CheckCircle, Handshake, Minus, SealCheck, ShieldCheck, Storefront, Truck, Wallet, X } from "@/lib/icons";
+import { Bank, ChatCircleDots, Check, CheckCircle, Handshake, Minus, ShieldCheck, Storefront, Truck, Wallet, X } from "@/lib/icons";
 
 /* ================= Trust strip ================= */
 
@@ -602,28 +602,24 @@ const BENTO = [
   {
     title: "Feed yang personal",
     desc: "Jelajahi etalase produk seperti media sosial — like, komen, dan follow penjual favoritmu.",
-    icon: <Storefront weight="regular" className="h-6 w-6" aria-hidden="true" />,
     visual: <MiniFeed />,
     span: "lg:col-span-2",
   },
   {
     title: "Chat transaksi",
     desc: "Tawar, sepakati detail, dan pantau status pesanan — semua tercatat dalam satu chat.",
-    icon: <ChatCircleDots weight="regular" className="h-6 w-6" aria-hidden="true" />,
     visual: <MiniChat />,
     span: "",
   },
   {
     title: "Penjual terverifikasi",
     desc: "Lencana verifikasi membantu kamu mengenali penjual yang identitasnya sudah dicek.",
-    icon: <SealCheck weight="regular" className="h-6 w-6" aria-hidden="true" />,
     visual: <MiniVerified />,
     span: "",
   },
   {
     title: "Escrow di setiap transaksi",
     desc: "Dana ditahan aman, cair setelah barang dikonfirmasi. Tanpa pengecualian.",
-    icon: <ShieldCheck weight="regular" className="h-6 w-6" aria-hidden="true" />,
     visual: <MiniEscrow />,
     span: "lg:col-span-2",
   },
@@ -654,10 +650,7 @@ function BentoCard({ item, index }: { item: (typeof BENTO)[number]; index: numbe
         className="spot-card group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-black/10 bg-white p-7 sm:p-8"
       >
         <div aria-hidden="true" className="spot-glow" />
-        <span className="relative inline-flex w-fit items-center justify-center rounded-2xl bg-black p-3.5 text-white transition-transform duration-500 ease-out group-hover:-rotate-6 group-hover:scale-110">
-          {item.icon}
-        </span>
-        <h3 className="relative mt-6 text-xl font-semibold tracking-tight text-black">{item.title}</h3>
+        <h3 className="relative text-xl font-semibold tracking-tight text-black">{item.title}</h3>
         <p className="relative mt-2.5 max-w-md text-[15px] leading-relaxed text-[#525252]">{item.desc}</p>
         <div className="relative mt-auto">{item.visual}</div>
       </div>
