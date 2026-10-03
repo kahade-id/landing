@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { EASE, Reveal, SectionHeading } from "./motion-helpers";
-import { Check, Heart, ShieldCheck } from "@/lib/icons";
+import { Check, Heart, SealCheck, ShieldCheck } from "@/lib/icons";
 import { KahadeMark } from "./Logo";
 
 /* ================= Device frame ================= */
@@ -40,6 +40,25 @@ function FeedVisual() {
         <span className="h-5 w-5" />
       </div>
       <div className="space-y-3 px-3">
+        {/* Card penjual terverifikasi — sesuai desain aplikasi */}
+        <motion.div
+          initial={{ opacity: 0, y: 26 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.15, duration: 0.7, ease: EASE }}
+          className="flex items-center gap-2.5 rounded-2xl border border-black/10 bg-white px-3 py-2.5 shadow-[0_10px_30px_-18px_rgb(0_0_0/0.25)]"
+        >
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-black text-xs font-bold text-white">
+            D
+          </span>
+          <div className="min-w-0 flex-1">
+            <p className="flex items-center gap-1 truncate text-[13px] font-bold text-black">
+              Diki Wahyudi darma
+              <SealCheck weight="fill" aria-label="Terverifikasi" className="h-4 w-4 shrink-0 text-[#B8860B]" />
+            </p>
+            <p className="truncate text-[11px] text-[#525252]">@darma · 26 Sep 2026</p>
+          </div>
+          <span aria-hidden="true" className="text-lg font-bold tracking-widest text-[#525252]">···</span>
+        </motion.div>
         {cards.map((c, i) => (
           <motion.div
             key={i}
