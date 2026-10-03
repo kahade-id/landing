@@ -119,7 +119,7 @@ export function SectionHeading({ kicker, title, sub, align = "center", dark = fa
         >
           <motion.span
             aria-hidden="true"
-            className={`inline-block h-1.5 w-1.5 rounded-full ${dark ? "bg-white" : "bg-black"}`}
+            className={`inline-block h-1.5 w-1.5 rounded-full ${dark ? "bg-white" : "bg-[#FFD200]"}`}
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
             viewport={{ once: true }}

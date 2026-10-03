@@ -50,6 +50,16 @@ export function Hero() {
       <div className="relative mx-auto max-w-6xl px-5 pb-20 pt-28 sm:px-8 sm:pt-36 lg:pb-28 lg:pt-44">
         {/* Copy — terpusat */}
         <div className="mx-auto max-w-3xl text-center">
+          <Reveal delay={80} y={12}>
+            <p className="mb-7 inline-flex items-center gap-2.5 rounded-full border border-black/10 bg-white px-4 py-2 text-[13px] font-semibold text-[#262626] shadow-[0_10px_28px_-14px_rgb(0_0_0/0.25)]">
+              <span
+                aria-hidden="true"
+                className="h-2 w-2 rounded-full bg-[#FFD200] shadow-[0_0_0_4px_rgb(255_210_0/0.25)]"
+              />
+              Meluncur 8 Desember 2026
+            </p>
+          </Reveal>
+
           <h1>
             <Words
               text="Jual beli semudah"
@@ -59,7 +69,7 @@ export function Hero() {
             <Words
               text="scroll medsos."
               delay={0.42}
-              className="type-display block text-[#525252]"
+              className="type-display block text-black underline decoration-[#FFD200] decoration-[0.09em] underline-offset-[0.16em]"
             />
           </h1>
 
@@ -81,6 +91,10 @@ export function Hero() {
           transition={{ duration: 1.1, ease: EASE, delay: 0.35 }}
           className="relative mt-16 flex justify-center sm:mt-20"
         >
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#FFD200]/25 blur-[110px]"
+          />
           <TiltPhone>
             <PhoneMockup />
           </TiltPhone>
