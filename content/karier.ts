@@ -4,7 +4,7 @@ export const meta: PageMeta = {
   slug: "karier",
   title: "Karier di Kahade",
   navTitle: "Karier",
-  description: "Bergabung membangun social commerce Indonesia yang aman dengan escrow.",
+  description: "Bergabung membangun aplikasi jual-beli Indonesia yang aman dan seru.",
   group: "perusahaan",
   showInHeader: false,
 };

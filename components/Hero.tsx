@@ -52,12 +52,12 @@ export function Hero() {
         <div className="mx-auto max-w-3xl text-center">
           <h1>
             <Words
-              text="Jual beli di feed,"
+              text="Jual beli semudah"
               delay={0.22}
               className="type-display block text-black"
             />
             <Words
-              text="aman dengan escrow."
+              text="scroll medsos."
               delay={0.42}
               className="type-display block text-[#525252]"
             />
@@ -65,7 +65,7 @@ export function Hero() {
 
           <Reveal delay={640} y={16}>
             <p className="type-body mx-auto mt-6 max-w-md text-[#525252]">
-              Social commerce rasa media sosial, setiap transaksi dilindungi escrow.
+              Kahade adalah aplikasi jual-beli pengguna ke pengguna yang tampilannya seperti media sosial.
             </p>
           </Reveal>
 

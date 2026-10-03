@@ -45,8 +45,8 @@ export function Footer() {
               <KahadeMark className="h-10 w-10" />
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-[#525252]">
-              Social commerce dengan escrow di setiap transaksi. Jual beli di
-              feed, tanpa was-was.
+              Kahade adalah aplikasi jual-beli pengguna ke pengguna yang
+              tampilannya seperti media sosial.
             </p>
             <p className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#F3F4F6] px-3.5 py-1.5 text-xs font-semibold text-[#525252]">
               <span className="h-1.5 w-1.5 rounded-full bg-black" aria-hidden="true" />

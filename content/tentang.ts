@@ -4,7 +4,7 @@ export const meta: PageMeta = {
   slug: "tentang",
   title: "Tentang Kahade",
   navTitle: "Tentang",
-  description: "Mengenal Kahade: social commerce feed platform Indonesia dengan escrow di setiap transaksi.",
+  description: "Mengenal Kahade: aplikasi jual-beli pengguna ke pengguna yang tampilannya seperti media sosial.",
   group: "perusahaan",
   showInHeader: false,
 };

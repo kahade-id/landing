@@ -66,8 +66,8 @@ export function Closing() {
 
         <Reveal delay={420}>
           <p className="mx-auto mt-6 max-w-md text-lg leading-relaxed text-[#525252]">
-            Setiap transaksi dilindungi escrow. Jadilah yang pertama saat
-            Kahade meluncur.
+            Jual beli semudah scroll medsos. Jadilah yang pertama saat
+            Kahade meluncur 8 Desember 2026.
           </p>
         </Reveal>
 

@@ -8,15 +8,15 @@ import { Bank, ChatCircleDots, Check, CheckCircle, Handshake, Minus, SealCheck, 
 /* ================= Trust strip ================= */
 
 const TRUST = [
-  { title: "Escrow di setiap transaksi", desc: "Dana pembeli ditahan aman." },
-  { title: "Cair saat barang diterima", desc: "Dana diteruskan setelah konfirmasi." },
-  { title: "Jejak transaksi jelas", desc: "Chat & status tercatat rapi." },
-  { title: "Sengketa ada jalurnya", desc: "Tim Kahade membantu menengahi." },
+  { title: "Penjual terverifikasi", desc: "Kenali penjual tepercaya lewat lencana verifikasi." },
+  { title: "Transaksi tercatat rapi", desc: "Chat, pembayaran, dan status tersimpan dalam satu alur." },
+  { title: "Dana aman sampai diterima", desc: "Dana aman sampai kamu konfirmasi terima barang." },
+  { title: "Sengketa ada jalurnya", desc: "Tim Kahade siap menengahi jika ada masalah." },
 ];
 
 export function TrustStrip() {
   return (
-    <section id="keunggulan" aria-label="Keunggulan escrow" className="border-y border-black/10 bg-white">
+    <section id="keunggulan" aria-label="Keunggulan Kahade" className="border-y border-black/10 bg-white">
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-x-8 gap-y-7 px-5 py-12 sm:grid-cols-2 sm:px-8 lg:grid-cols-4 lg:py-14">
         {TRUST.map((item, i) => (
           <Reveal key={item.title} delay={i * 70} y={16}>
@@ -45,7 +45,7 @@ type CellStatus = "check" | "minus" | "x";
 interface CompareRow {
   aspect: string;
   mp: { status: CellStatus; text: string };
-  rekber: { status: CellStatus; text: string };
+  perantara: { status: CellStatus; text: string };
   kahade: string;
 }
 
@@ -53,31 +53,31 @@ const COMPARE_ROWS: CompareRow[] = [
   {
     aspect: "Etalase produk",
     mp: { status: "check", text: "Katalog toko" },
-    rekber: { status: "minus", text: "Foto dikirim via chat" },
+    perantara: { status: "minus", text: "Foto dikirim via chat" },
     kahade: "Feed seperti media sosial",
   },
   {
     aspect: "Interaksi pembeli",
     mp: { status: "check", text: "Chat & ulasan" },
-    rekber: { status: "minus", text: "Chat manual" },
+    perantara: { status: "minus", text: "Chat manual" },
     kahade: "Like, komen, share, follow",
   },
   {
     aspect: "Keamanan dana",
     mp: { status: "check", text: "Proteksi pembeli" },
-    rekber: { status: "minus", text: "Via admin perantara" },
-    kahade: "Escrow otomatis",
+    perantara: { status: "minus", text: "Via admin perantara" },
+    kahade: "Terlindungi otomatis",
   },
   {
     aspect: "Alur transaksi",
     mp: { status: "check", text: "Dalam satu aplikasi" },
-    rekber: { status: "x", text: "Chat & dana terpisah" },
-    kahade: "Chat terhubung ke escrow",
+    perantara: { status: "x", text: "Chat & dana terpisah" },
+    kahade: "Chat terhubung ke pembayaran",
   },
   {
     aspect: "Penyelesaian sengketa",
     mp: { status: "check", text: "CS platform" },
-    rekber: { status: "minus", text: "Mediasi admin" },
+    perantara: { status: "minus", text: "Mediasi admin" },
     kahade: "Jalur jelas di aplikasi",
   },
 ];
@@ -114,16 +114,16 @@ const COMPARE_COLS = [
     sub: "Platform jual beli besar",
   },
   {
-    id: "rekber",
+    id: "perantara",
     icon: <Handshake weight="regular" className="h-5 w-5" aria-hidden="true" />,
-    title: "Rekber",
-    sub: "Jasa perantara manual",
+    title: "Perantara manual",
+    sub: "Jasa perantara komunitas",
   },
   {
     id: "kahade",
     icon: <ShieldCheck weight="regular" className="h-5 w-5" aria-hidden="true" />,
     title: "Kahade",
-    sub: "Social commerce + escrow",
+    sub: "Social commerce yang aman",
   },
 ];
 
@@ -133,7 +133,7 @@ export function ProblemSolution() {
       <div className="mx-auto max-w-6xl px-5 section-pad sm:px-8">
         <SectionHeading
           kicker="Kenapa Kahade"
-          title="Marketplace, rekber, atau Kahade?"
+          title="Marketplace, perantara manual, atau Kahade?"
           sub="Tiga pendekatan jual beli online yang berbeda. Bandingkan, lalu putuskan mana yang paling pas untukmu."
         />
 
@@ -141,7 +141,7 @@ export function ProblemSolution() {
           <div className="overflow-x-auto pb-1">
             <table className="w-full min-w-[760px] border-separate border-spacing-0">
               <caption className="sr-only">
-                Perbandingan marketplace, jasa rekber manual, dan Kahade
+                Perbandingan marketplace, perantara manual komunitas, dan Kahade
               </caption>
               <thead>
                 <tr>
@@ -201,7 +201,7 @@ export function ProblemSolution() {
                       {(
                         [
                           { key: "mp", cell: row.mp },
-                          { key: "rekber", cell: row.rekber },
+                          { key: "perantara", cell: row.perantara },
                         ] as const
                       ).map(({ key, cell }) => (
                         <td
@@ -266,8 +266,8 @@ const STEPS = [
   },
   {
     n: "02",
-    title: "Bayar ke escrow",
-    desc: "Dana ditahan aman oleh Kahade, bukan langsung ke penjual.",
+    title: "Bayar via Kahade",
+    desc: "Selesaikan pembayaran — danamu aman sampai kamu konfirmasi terima barang.",
     icon: <Wallet weight="regular" className="h-7 w-7" aria-hidden="true" />,
     x: 29.58, y: 71.43, top: false,
   },
@@ -547,7 +547,7 @@ function MiniVerified() {
   );
 }
 
-function MiniEscrow() {
+function MiniTransaction() {
   const steps = ["Bayar", "Kirim", "Konfirmasi", "Cair"];
   return (
     <div aria-hidden="true" className="mt-8 rounded-2xl border border-black/10 bg-[#F3F4F6] p-5">
@@ -610,10 +610,10 @@ const BENTO = [
     span: "",
   },
   {
-    title: "Escrow di setiap transaksi",
-    desc: "Dana ditahan aman, cair setelah barang dikonfirmasi. Tanpa pengecualian.",
+    title: "Keamanan yang tidak terasa",
+    desc: "Perlindungan transaksi berjalan di balik layar. Kamu tidak perlu memikirkan mekanismenya — cukup tekan Beli via Kahade.",
     icon: <ShieldCheck weight="regular" className="h-6 w-6" aria-hidden="true" />,
-    visual: <MiniEscrow />,
+    visual: <MiniTransaction />,
     span: "lg:col-span-2",
   },
 ];

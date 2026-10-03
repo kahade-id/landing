@@ -4,7 +4,7 @@ export const meta: PageMeta = {
   slug: "bantuan",
   title: "Pusat Bantuan Kahade",
   navTitle: "Bantuan",
-  description: "Jawaban atas pertanyaan seputar akun, transaksi, dan escrow Kahade.",
+  description: "Jawaban atas pertanyaan seputar akun dan transaksi di Kahade.",
   group: "bantuan",
   showInHeader: false,
 };

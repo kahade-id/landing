@@ -30,7 +30,7 @@ export default async function Page({ params }: Props) {
       </h1>
       <p className="mt-3 max-w-sm text-[17px] leading-relaxed text-[#525252]">
         Daftar dengan kode referral <span className="font-semibold text-black">{code}</span> dan
-        mulai jual-beli aman dengan escrow.
+        mulai jual-beli tanpa was-was.
       </p>
       <div className="mt-9 flex w-full max-w-xs flex-col gap-3">
         <a

@@ -48,11 +48,7 @@ function FeedVisual() {
             transition={{ delay: 0.25 + i * 0.16, duration: 0.7, ease: EASE }}
             className="overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_10px_30px_-18px_rgb(0_0_0/0.25)]"
           >
-            <div className={`relative flex aspect-[16/9] items-center justify-center bg-gradient-to-br ${c.art}`}>
-              <span className="absolute left-2.5 top-2.5 rounded-full bg-black/85 px-2 py-1 text-[10px] font-semibold text-white">
-                Escrow
-              </span>
-            </div>
+            <div className={`relative flex aspect-[16/9] items-center justify-center bg-gradient-to-br ${c.art}`} />
             <div className="p-3">
               <p className="text-xs font-semibold text-[#262626]">Toko contoh</p>
               <p className="mt-0.5 truncate text-[13px] text-[#525252]">{c.title}</p>
@@ -80,7 +76,7 @@ function ChatVisual() {
   const msgs = [
     { text: "Halo, produk ini masih tersedia?", me: true },
     { text: "Masih tersedia, silakan.", me: false },
-    { text: "Saya ambil ya, bayar via escrow.", me: true },
+    { text: "Saya ambil ya, bayar via Kahade.", me: true },
     { text: "Baik, saya kirim hari ini.", me: false },
   ];
   return (
@@ -125,7 +121,7 @@ function ChatVisual() {
           </span>
           <div>
             <p className="text-xs font-bold text-black">Transaksi dibuat</p>
-            <p className="text-[11px] text-[#525252]">Dana ditahan escrow</p>
+            <p className="text-[11px] text-[#525252]">Dana aman sampai konfirmasi</p>
           </div>
         </motion.div>
       </div>
@@ -133,17 +129,17 @@ function ChatVisual() {
   );
 }
 
-/* ================= Tab 3: Escrow visual ================= */
+/* ================= Tab 3: Transaksi visual ================= */
 
-function EscrowVisual() {
+function TransactionVisual() {
   const steps = [
-    { t: "Dana ditahan", d: "Aman di escrow", done: true },
+    { t: "Pembayaran diterima", d: "Aman", done: true },
     { t: "Barang dikirim", d: "Resi tercatat", done: true },
     { t: "Konfirmasi terima", d: "Menunggu kamu", done: false, active: true },
     { t: "Dana cair", d: "Ke penjual setelah konfirmasi", done: false },
   ];
   return (
-    <DeviceFrame label="Tampilan status escrow Kahade">
+    <DeviceFrame label="Tampilan status transaksi Kahade">
       <div className="px-4 pb-3 pt-11">
         <p className="text-sm font-bold text-black">Status transaksi</p>
         <p className="text-[11px] text-[#525252]">Contoh produk</p>
@@ -155,7 +151,7 @@ function EscrowVisual() {
           transition={{ delay: 0.25, duration: 0.6, ease: EASE }}
           className="rounded-2xl bg-black p-4 text-white"
         >
-          <p className="text-[11px] uppercase tracking-[0.16em] text-white/55">Dana ditahan</p>
+          <p className="text-[11px] uppercase tracking-[0.16em] text-white/55">Status pembayaran</p>
           <p className="mt-1 text-2xl font-bold tracking-tight">Rp –</p>
           <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-white/15">
             <motion.div
@@ -226,17 +222,17 @@ const TABS = [
     id: "chat",
     label: "Chat",
     title: "Semua kesepakatan tercatat.",
-    desc: "Tawar menawar, atur pengiriman, dan buat transaksi — dalam satu chat yang terhubung langsung ke escrow.",
+    desc: "Tawar menawar, atur pengiriman, dan buat transaksi — dalam satu chat yang terhubung langsung ke pembayaran.",
     points: ["Riwayat chat tersimpan rapi", "Transaksi dibuat dari chat", "Status pesanan real-time"],
     visual: <ChatVisual />,
   },
   {
-    id: "escrow",
-    label: "Escrow",
+    id: "aman",
+    label: "Aman",
     title: "Dana aman sampai barang diterima.",
-    desc: "Setiap transaksi dilindungi escrow. Kamu selalu tahu persis danamu ada di mana.",
-    points: ["Dana ditahan pihak netral", "Cair setelah konfirmasi", "Jalur sengketa yang jelas"],
-    visual: <EscrowVisual />,
+    desc: "Keamanan yang baik adalah keamanan yang tidak terasa. Transaksi berjalan dalam satu alur yang tercatat — dari chat sampai konfirmasi.",
+    points: ["Dana aman sampai konfirmasi", "Status transaksi real-time", "Jalur sengketa yang jelas"],
+    visual: <TransactionVisual />,
   },
 ];
 
@@ -258,7 +254,7 @@ export function Showcase() {
         <SectionHeading
           kicker="Lihat aplikasinya"
           title="Satu aplikasi untuk seluruh jual beli."
-          sub="Feed, chat, dan escrow bekerja sebagai satu alur — bukan tiga aplikasi terpisah."
+          sub="Feed, chat, dan pembayaran bekerja sebagai satu alur — bukan tiga aplikasi terpisah."
         />
 
         {/* Tab bar */}

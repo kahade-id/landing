@@ -10,10 +10,10 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Kahade — Social commerce dengan escrow di setiap transaksi",
+  title: "Kahade — Jual Beli Semudah Scroll Medsos",
   description:
-    "Kahade adalah platform social commerce Indonesia: feed produk seperti media sosial, setiap transaksi dilindungi escrow.",
-  keywords: ["kahade", "escrow", "rekber", "social commerce", "jual beli online aman", "marketplace indonesia"],
+    "Kahade adalah aplikasi jual-beli pengguna ke pengguna yang tampilannya seperti media sosial.",
+  keywords: ["kahade", "social commerce", "jual beli online aman", "marketplace indonesia", "jual beli p2p"],
   metadataBase: new URL("https://kahade.id"),
   alternates: { canonical: "/" },
   manifest: "/manifest.webmanifest",
@@ -22,17 +22,17 @@ export const metadata: Metadata = {
     apple: "/icon.png",
   },
   openGraph: {
-    title: "Kahade — Social commerce dengan escrow di setiap transaksi",
+    title: "Kahade — Jual Beli Semudah Scroll Medsos",
     description:
-      "Jual beli di feed seperti media sosial. Setiap transaksi dilindungi escrow.",
+      "Kahade adalah aplikasi jual-beli pengguna ke pengguna yang tampilannya seperti media sosial.",
     type: "website",
     locale: "id_ID",
     siteName: "Kahade",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kahade — Social commerce dengan escrow di setiap transaksi",
-    description: "Jual beli di feed seperti media sosial. Setiap transaksi dilindungi escrow.",
+    title: "Kahade — Jual Beli Semudah Scroll Medsos",
+    description: "Kahade adalah aplikasi jual-beli pengguna ke pengguna yang tampilannya seperti media sosial.",
   },
 };
 

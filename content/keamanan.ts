@@ -4,7 +4,7 @@ export const meta: PageMeta = {
   slug: "keamanan",
   title: "Keamanan di Kahade",
   navTitle: "Keamanan",
-  description: "Bagaimana Kahade melindungi transaksi dan datamu lewat escrow.",
+  description: "Bagaimana Kahade menjaga transaksi dan datamu tetap aman.",
   group: "bantuan",
   showInHeader: false,
 };
