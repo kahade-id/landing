@@ -583,16 +583,6 @@ const BENTO = [
 ];
 
 function BentoCard({ item, index }: { item: (typeof BENTO)[number]; index: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  function onMove(e: React.MouseEvent) {
-    const el = ref.current;
-    if (!el) return;
-    const r = el.getBoundingClientRect();
-    el.style.setProperty("--mx", `${e.clientX - r.left}px`);
-    el.style.setProperty("--my", `${e.clientY - r.top}px`);
-  }
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 36 }}
@@ -601,18 +591,10 @@ function BentoCard({ item, index }: { item: (typeof BENTO)[number]; index: numbe
       transition={{ duration: 0.85, ease: EASE, delay: (index % 2) * 0.1 }}
       className={`h-full min-w-0 ${item.span}`}
     >
-      <div
-        ref={ref}
-        onMouseMove={onMove}
-        className="spot-card group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-black/10 bg-white p-7 sm:p-8"
-      >
-        <div aria-hidden="true" className="spot-glow" />
-        <span className="relative inline-flex w-fit items-center justify-center rounded-2xl bg-black p-3.5 text-white transition-transform duration-500 ease-out group-hover:-rotate-6 group-hover:scale-110">
-          {item.icon}
-        </span>
-        <h3 className="relative mt-6 text-xl font-semibold tracking-tight text-black">{item.title}</h3>
-        <p className="relative mt-2.5 max-w-md text-[15px] leading-relaxed text-[#525252]">{item.desc}</p>
-        <div className="relative mt-auto">{item.visual}</div>
+      <div className="flex h-full flex-col">
+        <h3 className="text-xl font-semibold tracking-tight text-black">{item.title}</h3>
+        <p className="mt-2.5 max-w-md text-[15px] leading-relaxed text-[#525252]">{item.desc}</p>
+        <div className="mt-6">{item.visual}</div>
       </div>
     </motion.div>
   );
