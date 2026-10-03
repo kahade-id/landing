@@ -7,7 +7,7 @@ type Size = "md" | "lg";
 
 const SIZES: Record<Size, string> = {
   md: "min-h-[48px] px-6 text-[15px]",
-  lg: "min-h-[58px] px-9 text-base",
+  lg: "min-h-[56px] px-5 text-[15px] sm:min-h-[58px] sm:px-9 sm:text-base",
 };
 
 function StoreButton({
@@ -29,7 +29,7 @@ function StoreButton({
     primary
       ? "bg-black text-white hover:bg-[#262626]"
       : "border border-black/15 bg-white text-black hover:border-black/30"
-  } ${href ? "" : "cursor-not-allowed opacity-60"}`;
+  }`;
 
   const inner = (
     <>
@@ -43,7 +43,7 @@ function StoreButton({
 
   if (!href) {
     return (
-      <button type="button" disabled aria-disabled="true" className={cls} title="Segera hadir">
+      <button type="button" className={cls}>
         {inner}
       </button>
     );
@@ -110,42 +110,34 @@ export function DownloadActions({
     );
   }
 
-  const ready = Boolean(site.appStoreUrl || site.playStoreUrl);
-
   return (
-    <div className={`flex ${layout === "row" ? "flex-row flex-wrap" : "flex-col"} items-stretch gap-3 ${className}`}>
+    <div className={`flex ${layout === "row" ? "flex-row" : "flex-col"} items-stretch gap-3 ${className}`}>
       <StoreButton
         href={site.appStoreUrl}
         icon={<AppleLogo weight="regular" />}
-        sub={ready ? "Unduh di" : "Segera hadir"}
+        sub="Unduh di"
         label="App Store"
         size={size}
       />
       <StoreButton
         href={site.playStoreUrl}
         icon={<GooglePlayLogo weight="regular" />}
-        sub={ready ? "Dapatkan di" : "Segera hadir"}
+        sub="Dapatkan di"
         label="Google Play"
         size={size}
         primary={false}
       />
-      {showApk &&
-        (site.apkUrl ? (
-          <a
-            href={site.apkUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex min-h-[44px] items-center justify-center gap-2 px-2 text-[15px] font-semibold text-black underline decoration-black/25 underline-offset-4 transition-colors hover:decoration-black"
-          >
-            <DownloadSimple weight="regular" aria-hidden="true" />
-            Unduh APK langsung
-          </a>
-        ) : (
-          <span className="inline-flex min-h-[44px] items-center justify-center gap-2 px-2 text-[15px] font-medium text-[#525252]">
-            <DownloadSimple weight="regular" aria-hidden="true" />
-            APK langsung · Segera hadir
-          </span>
-        ))}
+      {showApk && site.apkUrl && (
+        <a
+          href={site.apkUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex min-h-[44px] items-center justify-center gap-2 px-2 text-[15px] font-semibold text-black underline decoration-black/25 underline-offset-4 transition-colors hover:decoration-black"
+        >
+          <DownloadSimple weight="regular" aria-hidden="true" />
+          Unduh APK langsung
+        </a>
+      )}
     </div>
   );
 }
