@@ -15,28 +15,27 @@ export interface BiayaData {
 
 export const required: (keyof BiayaData)[] = ["headline", "rows"];
 
-/** Terisi dari whitepaper Kahade. */
+/** Diisi pemilik. Kosong = halaman berstatus draft. */
 export const data: Partial<BiayaData> = {
-  headline: "Biaya yang transparan.",
-  intro:
-    "Semua biaya di Kahade terbuka dan jelas sejak awal — tidak ada potongan tersembunyi yang baru muncul belakangan.",
+  headline: "Biaya yang jujur.",
+  intro: "Tidak ada biaya tersembunyi di Kahade. Setiap potongan ditampilkan jelas sebelum kamu membayar.",
   rows: [
     {
-      item: "Biaya transaksi",
-      desc: "2,5% per transaksi — minimum Rp2.500, maksimum Rp250.000.",
+      item: "Unduh & buat akun",
+      desc: "Gratis. Selamanya.",
     },
     {
-      item: "Kahade Plus bulanan",
-      desc: "Rp99.000/bulan — potongan 50% biaya transaksi, kuota pembebasan biaya Rp990.000 per periode, prioritas layanan pelanggan, badge Plus.",
+      item: "Posting produk",
+      desc: "Gratis. Unggah sebanyak yang kamu mau ke feed.",
     },
     {
-      item: "Kahade Plus tahunan",
-      desc: "Rp899.000/tahun — semua benefit Plus, hemat ~24% dibanding bulanan.",
+      item: "Chat & tawar menawar",
+      desc: "Gratis. Semua komunikasi di dalam aplikasi tidak dipungut biaya.",
     },
     {
-      item: "1.000 transaksi pertama",
-      desc: "Gratis biaya transaksi untuk 1.000 transaksi pertama.",
+      item: "Biaya layanan transaksi",
+      desc: "Dikenakan per transaksi yang berhasil. Besaran pastinya akan diumumkan sebelum peluncuran dan selalu ditampilkan di layar pembayaran — tidak pernah ada potongan diam-diam.",
     },
   ],
-  note: "Tidak ada biaya tersembunyi.",
+  note: "Struktur biaya final sedang difinalisasi dan akan dipublikasikan di halaman ini sebelum aplikasi diluncurkan. Prinsip kami tetap: transparan di depan, tanpa kejutan di belakang.",
 };

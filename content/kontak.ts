@@ -16,4 +16,7 @@ export interface KontakData {
 export const required: (keyof KontakData)[] = ["headline"];
 
 /** Diisi pemilik. Kosong = halaman berstatus draft. */
-export const data: Partial<KontakData> = {};
+export const data: Partial<KontakData> = {
+  headline: "Hubungi kami.",
+  intro: "Ada pertanyaan, masukan, atau butuh bantuan transaksi? Tim kami siap membantu.",
+};
