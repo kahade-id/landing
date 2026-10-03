@@ -3,8 +3,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { EASE, Reveal, SectionHeading } from "./motion-helpers";
-import { Check, Heart, SealCheck, ShieldCheck } from "@/lib/icons";
-import { KahadeMark } from "./Logo";
+import { Check } from "@/lib/icons";
 
 /* ================= Device frame ================= */
 
@@ -28,62 +27,15 @@ function DeviceFrame({ children, label }: { children: React.ReactNode; label: st
 /* ================= Tab 1: Feed visual ================= */
 
 function FeedVisual() {
-  const cards = [
-    { title: "Contoh produk", price: "Rp –", art: "from-black/[0.12] to-black/[0.05]" },
-    { title: "Contoh produk", price: "Rp –", art: "from-black/[0.08] to-black/[0.03]" },
-  ];
   return (
     <DeviceFrame label="Tampilan feed produk Kahade">
-      <div className="flex items-center justify-between px-4 pb-2 pt-11">
-        <KahadeMark className="h-7 w-7" />
-        <span className="text-sm font-bold text-black">Feed</span>
-        <span className="h-5 w-5" />
-      </div>
-      <div className="space-y-3 px-3">
-        {/* Card penjual terverifikasi — sesuai desain aplikasi */}
-        <motion.div
-          initial={{ opacity: 0, y: 26 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15, duration: 0.7, ease: EASE }}
-          className="flex items-center gap-2.5 rounded-2xl border border-black/10 bg-white px-3 py-2.5 shadow-[0_10px_30px_-18px_rgb(0_0_0/0.25)]"
-        >
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-black text-xs font-bold text-white">
-            D
-          </span>
-          <div className="min-w-0 flex-1">
-            <p className="flex items-center gap-1 truncate text-[13px] font-bold text-black">
-              Diki Wahyudi darma
-              <SealCheck weight="fill" aria-label="Terverifikasi" className="h-4 w-4 shrink-0 text-[#B8860B]" />
-            </p>
-            <p className="truncate text-[11px] text-[#525252]">@darma · 26 Sep 2026</p>
-          </div>
-          <span aria-hidden="true" className="text-lg font-bold tracking-widest text-[#525252]">···</span>
-        </motion.div>
-        {cards.map((c, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 26 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.25 + i * 0.16, duration: 0.7, ease: EASE }}
-            className="overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_10px_30px_-18px_rgb(0_0_0/0.25)]"
-          >
-            <div className={`relative flex aspect-[16/9] items-center justify-center bg-gradient-to-br ${c.art}`} />
-            <div className="p-3">
-              <p className="text-xs font-semibold text-[#262626]">Toko contoh</p>
-              <p className="mt-0.5 truncate text-[13px] text-[#525252]">{c.title}</p>
-              <p className="mt-0.5 text-sm font-bold text-black">{c.price}</p>
-            </div>
-          </motion.div>
-        ))}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.7, type: "spring", stiffness: 260, damping: 18 }}
-          className="mx-auto flex w-fit items-center gap-2 rounded-full bg-black px-4 py-2 text-xs font-semibold text-white"
-        >
-          <Heart weight="fill" aria-hidden="true" className="h-3.5 w-3.5" />
-          Tambah ke favorit
-        </motion.div>
+      <div className="relative min-h-[560px] overflow-hidden">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/IMG_20261003_200600_623.jpg"
+          alt="Screenshot feed produk Kahade"
+          className="h-full w-full object-cover object-top"
+        />
       </div>
     </DeviceFrame>
   );
@@ -92,57 +44,15 @@ function FeedVisual() {
 /* ================= Tab 2: Chat visual ================= */
 
 function ChatVisual() {
-  const msgs = [
-    { text: "Halo, produk ini masih tersedia?", me: true },
-    { text: "Masih tersedia, silakan.", me: false },
-    { text: "Saya ambil ya, bayar via Kahade.", me: true },
-    { text: "Baik, saya kirim hari ini.", me: false },
-  ];
   return (
     <DeviceFrame label="Tampilan chat transaksi Kahade">
-      <div className="flex items-center gap-2.5 border-b border-black/10 px-4 pb-3 pt-11">
-        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-black text-xs font-bold text-white">T</span>
-        <div>
-          <p className="text-[13px] font-bold text-black">Toko contoh</p>
-          <p className="flex items-center gap-1 text-[11px] text-[#525252]">
-            <span className="h-1.5 w-1.5 rounded-full bg-black" /> Terverifikasi
-          </p>
-        </div>
-      </div>
-      <div className="space-y-2.5 px-4 py-4">
-        {msgs.map((m, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 14, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ delay: 0.3 + i * 0.28, duration: 0.5, ease: EASE }}
-            className={`flex ${m.me ? "justify-end" : "justify-start"}`}
-          >
-            <p
-              className={`max-w-[80%] rounded-2xl px-3.5 py-2.5 text-[13px] leading-snug ${
-                m.me
-                  ? "rounded-br-md bg-black text-white"
-                  : "rounded-bl-md bg-[#F3F4F6] text-[#262626]"
-              }`}
-            >
-              {m.text}
-            </p>
-          </motion.div>
-        ))}
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.6, duration: 0.5, ease: EASE }}
-          className="flex items-center gap-2 rounded-2xl border border-black/10 bg-white p-3 shadow-sm"
-        >
-          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-black text-white">
-            <ShieldCheck weight="regular" aria-hidden="true" className="h-4 w-4" />
-          </span>
-          <div>
-            <p className="text-xs font-bold text-black">Transaksi dibuat</p>
-            <p className="text-[11px] text-[#525252]">Dana aman sampai konfirmasi</p>
-          </div>
-        </motion.div>
+      <div className="relative min-h-[560px] overflow-hidden bg-white">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/IMG_20261003_200436_464.jpg"
+          alt="Screenshot chat transaksi Kahade"
+          className="h-full w-full object-cover object-top"
+        />
       </div>
     </DeviceFrame>
   );
