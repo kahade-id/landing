@@ -499,29 +499,14 @@ function MiniChat() {
 
 function MiniVerified() {
   return (
-    <div aria-hidden="true" className="mt-8 flex items-center gap-3 rounded-2xl border border-black/10 bg-[#F3F4F6] p-4">
-      {[0, 1, 2].map((i) => (
-        <motion.span
-          key={i}
-          initial={{ opacity: 0, scale: 0.6 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.15 + i * 0.14, type: "spring", stiffness: 320, damping: 17 }}
-          className="flex h-11 w-11 items-center justify-center rounded-full bg-black text-[13px] font-bold text-white"
-        >
-          {["T", "A", "R"][i]}
-        </motion.span>
-      ))}
-      <motion.span
-        initial={{ opacity: 0, x: -8 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.55, duration: 0.5, ease: EASE }}
-        className="flex items-center gap-1.5 rounded-full bg-black px-3 py-1.5 text-[11px] font-semibold text-white"
-      >
-<Check weight="bold" className="h-3.5 w-3.5" aria-hidden="true" />
-        Terverifikasi
-      </motion.span>
+    <div aria-hidden="true" className="relative mt-8 overflow-hidden rounded-2xl border border-black/10">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/IMG_20261003_195651_068.jpg"
+        alt=""
+        className="h-48 w-full object-cover object-top"
+      />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent" />
     </div>
   );
 }
