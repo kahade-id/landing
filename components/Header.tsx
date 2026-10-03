@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Equals, X } from "@/lib/icons";
+import { List, X } from "@/lib/icons";
 import { DownloadActions } from "./DownloadActions";
 
 const NAV = [
@@ -115,7 +115,7 @@ export function Header() {
             {open ? (
               <X weight="bold" className="h-6 w-6" aria-hidden="true" />
             ) : (
-              <Equals weight="bold" className="h-6 w-6" aria-hidden="true" />
+              <List weight="bold" className="h-6 w-6" aria-hidden="true" />
             )}
           </button>
         </div>
