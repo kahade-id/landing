@@ -2,6 +2,7 @@ import Link from "next/link";
 import { allPages } from "@/lib/content";
 import { site } from "@/content/site";
 import { KahadeMark } from "@/components/Logo";
+import { DownloadActions } from "@/components/DownloadActions";
 import type { PageGroup } from "@/content/types";
 
 const GROUP_TITLES: Record<PageGroup, string> = {
@@ -37,23 +38,28 @@ export function Footer() {
   ];
 
   return (
-    <footer className="border-t border-black/10 bg-white">
-      <div className="mx-auto max-w-6xl px-5 py-14 sm:px-8 lg:py-16">
-        <div className="grid gap-10 md:grid-cols-[1.2fr_2fr]">
+    <footer className="border-t border-black/10 bg-[#FAFAFA]">
+      <div className="mx-auto max-w-6xl px-5 py-14 sm:px-8 lg:py-20">
+        <div className="grid gap-12 md:grid-cols-[1.3fr_2fr] lg:gap-16">
           <div>
             <Link href="/" aria-label="Kahade — kembali ke beranda" className="inline-block">
               <KahadeMark className="h-10" />
             </Link>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-[#525252]">
+            <p className="mt-5 max-w-xs text-[15px] leading-relaxed text-[#525252]">
               Social commerce dengan escrow di setiap transaksi. Jual beli di
               feed, tanpa was-was.
             </p>
+            <DownloadActions
+              size="md"
+              showApk={false}
+              className="mt-6 flex-wrap"
+            />
           </div>
 
-          <nav aria-label="Navigasi footer" className="grid grid-cols-2 gap-8 sm:grid-cols-4">
+          <nav aria-label="Navigasi footer" className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-4">
             {groups.map((col) => (
               <div key={col.title}>
-                <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-[#525252]">
+                <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-black">
                   {col.title}
                 </p>
                 <ul className="mt-4 space-y-1">
@@ -61,7 +67,7 @@ export function Footer() {
                     <li key={l.label}>
                       <Link
                         href={l.href}
-                        className="inline-flex min-h-[40px] items-center text-[15px] text-[#262626] transition-colors hover:text-black"
+                        className="inline-flex min-h-[40px] items-center text-[15px] text-[#525252] transition-colors hover:text-black"
                       >
                         {l.label}
                       </Link>
@@ -73,9 +79,9 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-black/10 pt-7 sm:flex-row">
+        <div className="mt-14 flex flex-col items-center justify-between gap-2 border-t border-black/10 pt-8 sm:flex-row">
           <p className="text-sm text-[#525252]">
-            © {year} {site.companyName}. Seluruh hak cipta dilindungi.
+            © {year} {site.companyName}
           </p>
           <p className="text-sm text-[#525252]">Dibuat dengan teliti di Indonesia</p>
         </div>
