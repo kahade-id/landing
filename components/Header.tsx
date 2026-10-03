@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { KahadeMark } from "./Logo";
+import { Equals, X } from "@/lib/icons";
 import { DownloadActions } from "./DownloadActions";
 
 const NAV = [
@@ -51,27 +51,20 @@ export function Header() {
       >
         {/* Baris utama pill */}
         <div className="flex h-[60px] items-center gap-5 px-5 md:px-6">
-          {/* Hamburger (mobile) */}
-          <button
-            type="button"
-            className="burger inline-flex min-h-[44px] min-w-[44px] items-center justify-center text-[#262626] md:hidden"
-            data-open={open}
-            aria-expanded={open}
-            aria-label={open ? "Tutup menu" : "Buka menu"}
-            onClick={() => setOpen((v) => !v)}
-          >
-            <span aria-hidden="true" />
-            <span aria-hidden="true" />
-          </button>
-
-          {/* Logo */}
+          {/* Logo asli */}
           <a
             href="#top"
             aria-label="Kahade — kembali ke atas"
             className="shrink-0"
             onClick={() => setOpen(false)}
           >
-            <KahadeMark className="h-8 w-8" />
+            <img
+              src="/icon_logo.svg"
+              alt="Kahade"
+              className="h-9 w-auto"
+              width={30}
+              height={37}
+            />
           </a>
 
           {/* Nav desktop */}
@@ -108,8 +101,23 @@ export function Header() {
             </a>
           </div>
 
-          {/* Spacer mobile */}
-          <span className="flex-1 md:hidden" />
+          {/* Spacer: hamburger kanan di mobile */}
+          <span className="flex-1 md:hidden" aria-hidden="true" />
+
+          {/* Hamburger kanan (mobile) */}
+          <button
+            type="button"
+            className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center text-black md:hidden"
+            aria-expanded={open}
+            aria-label={open ? "Tutup menu" : "Buka menu"}
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? (
+              <X weight="bold" className="h-6 w-6" aria-hidden="true" />
+            ) : (
+              <Equals weight="bold" className="h-6 w-6" aria-hidden="true" />
+            )}
+          </button>
         </div>
 
         {/* Panel menu mobile (dropdown) */}

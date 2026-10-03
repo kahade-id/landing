@@ -21,6 +21,7 @@ export {
   CheckCircle,
   X,
   XCircle,
+  Equals,
   Plus,
   Minus,
   ArrowRight,

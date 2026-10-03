@@ -171,28 +171,6 @@ body {
   background: rgb(243 244 246 / 0.94);
 }
 
-/* Hamburger 20x20, dua garis 12x1px -> X */
-.burger span {
-  display: block;
-  width: 12px;
-  height: 1px;
-  border-radius: 999px;
-  background: currentColor;
-  transition: transform 0.35s var(--ease-premium);
-}
-
-.burger span + span {
-  margin-top: 5px;
-}
-
-.burger[data-open="true"] span:first-child {
-  transform: translateY(3px) rotate(45deg);
-}
-
-.burger[data-open="true"] span:last-child {
-  transform: translateY(-3px) rotate(-45deg);
-}
-
 /* Panel dropdown mobile di dalam pill */
 .mobile-panel {
   display: grid;
@@ -279,7 +257,6 @@ body {
 
   .faq-answer,
   .mobile-panel,
-  .burger span,
   .faq-icon,
   .like-btn svg,
   .spot-glow {
