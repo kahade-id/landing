@@ -23,7 +23,7 @@ const PRODUCT_LINKS = [
 const SUBDOMAIN_LINKS = [
   { label: "Karir", href: "https://karir.kahade.id" },
   { label: "Legalitas", href: "https://legal.kahade.id" },
-  { label: "Pusat Bantuan", href: "https://bantuan.kahade.id" },
+  { label: "Bantuan", href: "https://bantuan.kahade.id" },
   { label: "Status Layanan", href: "https://status.kahade.id" },
 ];
 
@@ -62,7 +62,7 @@ export function Footer() {
               <KahadeMark className="h-10" />
             </Link>
             <p className="mt-5 max-w-xs text-[15px] leading-relaxed text-[#525252]">
-              Social commerce dengan escrow di setiap transaksi. Jual beli di
+              Social commerce dengan perlindungan di setiap transaksi. Jual beli di
               feed, tanpa was-was.
             </p>
             <DownloadActions

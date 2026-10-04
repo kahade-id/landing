@@ -57,7 +57,7 @@ export function Hero() {
               className="type-display block text-black"
             />
             <Words
-              text="aman dengan escrow."
+              text="aman dan terlindungi."
               delay={0.42}
               className="type-display block text-[#525252]"
             />
@@ -65,7 +65,7 @@ export function Hero() {
 
           <Reveal delay={640} y={16}>
             <p className="type-body mx-auto mt-6 max-w-md text-[#525252]">
-              Social commerce rasa media sosial, setiap transaksi dilindungi escrow.
+              Social commerce rasa media sosial, setiap transaksi terlindungi.
             </p>
           </Reveal>
 

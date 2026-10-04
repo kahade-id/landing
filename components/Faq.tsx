@@ -8,12 +8,12 @@ import { faqJsonLd, JsonLd } from "./site/JsonLd";
 
 const FAQS = [
   {
-    q: "Apa itu escrow?",
-    a: "Escrow adalah pihak ketiga netral yang menahan dana pembeli selama transaksi berlangsung. Dana baru diteruskan ke penjual setelah pembeli mengonfirmasi barang diterima sesuai kesepakatan.",
+    q: "Bagaimana Kahade melindungi transaksiku?",
+    a: "Setiap transaksi berjalan dalam sistem pembayaran yang aman: dana pembeli diamankan sampai pembeli mengonfirmasi barang diterima sesuai kesepakatan, baru diteruskan ke penjual.",
   },
   {
-    q: "Apakah uang saya aman selama ditahan escrow?",
-    a: "Ya. Dana yang kamu bayarkan tidak langsung masuk ke penjual, melainkan ditahan aman oleh Kahade sampai kamu mengonfirmasi penerimaan barang.",
+    q: "Apakah uang saya aman selama transaksi?",
+    a: "Ya. Dana yang kamu bayarkan tidak langsung masuk ke penjual, melainkan diamankan oleh Kahade sampai kamu mengonfirmasi penerimaan barang.",
   },
   {
     q: "Bagaimana cara mulai menjual di Kahade?",
@@ -21,7 +21,7 @@ const FAQS = [
   },
   {
     q: "Kapan penjual menerima dananya?",
-    a: "Setelah pembeli mengonfirmasi bahwa barang sudah diterima dan sesuai, dana yang ditahan escrow akan dicairkan ke penjual.",
+    a: "Setelah pembeli mengonfirmasi bahwa barang sudah diterima dan sesuai, dana yang diamankan akan diteruskan ke penjual.",
   },
   {
     q: "Bagaimana jika barang tidak sesuai atau tidak sampai?",

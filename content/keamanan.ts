@@ -4,7 +4,7 @@ export const meta: PageMeta = {
   slug: "keamanan",
   title: "Keamanan di Kahade",
   navTitle: "Keamanan",
-  description: "Bagaimana Kahade melindungi transaksi dan datamu lewat escrow.",
+  description: "Bagaimana Kahade melindungi transaksi dan datamu.",
   group: "bantuan",
   showInHeader: false,
 };
@@ -21,8 +21,8 @@ export const data: Partial<KeamananData> = {
   intro: "Kahade dirancang agar kamu tidak perlu percaya pada orang asing — cukup percaya pada sistemnya.",
   points: [
     {
-      title: "Escrow di setiap transaksi",
-      desc: "Dana pembeli ditahan pihak netral dan hanya cair setelah barang dikonfirmasi diterima. Tanpa pengecualian.",
+      title: "Perlindungan di setiap transaksi",
+      desc: "Dana pembeli diamankan dan hanya diteruskan setelah barang dikonfirmasi diterima. Tanpa pengecualian.",
     },
     {
       title: "Verifikasi penjual",
@@ -34,7 +34,7 @@ export const data: Partial<KeamananData> = {
     },
     {
       title: "Jalur sengketa yang jelas",
-      desc: "Jika ada masalah, buka sengketa dari halaman transaksi. Dana tetap ditahan selama penengahan berlangsung.",
+      desc: "Jika ada masalah, buka sengketa dari halaman transaksi. Dana tetap aman selama penengahan berlangsung.",
     },
     {
       title: "Data yang dijaga",

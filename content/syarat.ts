@@ -45,12 +45,12 @@ export const data: Partial<SyaratData> = {
       ],
     },
     {
-      title: "4. Escrow dan aliran dana",
+      title: "4. Sistem pembayaran dan aliran dana",
       body: [
-        "Setiap transaksi pembelian dilindungi escrow: dana pembeli ditahan oleh pihak netral dan tidak diteruskan ke penjual sebelum pembeli mengonfirmasi penerimaan barang.",
+        "Setiap transaksi pembelian terlindungi: dana pembeli diamankan oleh Kahade dan tidak diteruskan ke penjual sebelum pembeli mengonfirmasi penerimaan barang.",
         "Penjual wajib mengirim barang dalam batas waktu yang disepakati di chat transaksi. Keterlambatan melewati batas waktu tanpa kesepakatan baru dapat mengakibatkan pembatalan otomatis dan pengembalian dana ke pembeli.",
         "Dana akan diteruskan ke penjual setelah pembeli mengonfirmasi penerimaan, atau otomatis setelah masa konfirmasi berakhir tanpa sengketa.",
-        "Jika terjadi sengketa, dana tetap ditahan hingga sengketa diselesaikan melalui mekanisme penengahan kami. Keputusan penengahan bersifat final untuk penyelesaian dana di dalam Layanan.",
+        "Jika terjadi sengketa, dana tetap diamankan hingga sengketa diselesaikan melalui mekanisme penengahan kami. Keputusan penengahan bersifat final untuk penyelesaian dana di dalam Layanan.",
       ],
     },
     {
@@ -71,8 +71,8 @@ export const data: Partial<SyaratData> = {
     {
       title: "7. Batasan tanggung jawab",
       body: [
-        "Kahade menyediakan platform dan layanan escrow, bukan penjual barang. Kualitas dan keaslian barang adalah tanggung jawab penjual.",
-        "Tanggung jawab Kami terbatas pada nilai transaksi yang ditahan dalam escrow dan tidak mencakup kerugian tidak langsung.",
+        "Kahade menyediakan platform dan sistem pembayaran yang aman, bukan penjual barang. Kualitas dan keaslian barang adalah tanggung jawab penjual.",
+        "Tanggung jawab Kami terbatas pada nilai transaksi yang diamankan dalam sistem pembayaran Kami dan tidak mencakup kerugian tidak langsung.",
         "Kami berupaya menjaga Layanan selalu tersedia, namun tidak menjamin bebas gangguan sepenuhnya.",
       ],
     },

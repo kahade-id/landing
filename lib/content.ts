@@ -49,7 +49,6 @@ export { useFixtures };
 /* ---------- Registry semua halaman konten ---------- */
 
 import { meta as tentangMeta, required as tentangRequired, data as tentangData } from "@/content/tentang";
-import { meta as karierMeta, required as karierRequired, data as karierData } from "@/content/karier";
 import { meta as artikelMeta, required as artikelRequired, data as artikelData } from "@/content/artikel";
 import { meta as kontakMeta, required as kontakRequired, data as kontakData } from "@/content/kontak";
 import { meta as bantuanMeta, required as bantuanRequired, data as bantuanData } from "@/content/bantuan";
@@ -61,7 +60,6 @@ import { meta as privasiMeta, required as privasiRequired, data as privasiData }
 
 const pageModules = [
   { meta: tentangMeta, required: tentangRequired, data: tentangData },
-  { meta: karierMeta, required: karierRequired, data: karierData },
   { meta: artikelMeta, required: artikelRequired, data: artikelData },
   { meta: kontakMeta, required: kontakRequired, data: kontakData },
   { meta: bantuanMeta, required: bantuanRequired, data: bantuanData },

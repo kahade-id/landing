@@ -25,14 +25,14 @@ export const data: Partial<PrivasiData> = {
       body: [
         "Data akun: nama, nomor telepon, alamat email, dan foto profil yang Anda berikan saat mendaftar.",
         "Data verifikasi: dokumen identitas yang Anda unggah untuk verifikasi penjual.",
-        "Data transaksi: riwayat pembelian, penjualan, chat transaksi, dan status escrow.",
+        "Data transaksi: riwayat pembelian, penjualan, chat transaksi, dan status pembayaran.",
         "Data teknis: jenis perangkat, versi aplikasi, dan log aktivitas untuk keamanan dan peningkatan layanan.",
       ],
     },
     {
       title: "2. Cara kami menggunakan data",
       body: [
-        "Mengoperasikan Layanan: memproses transaksi, menahan dan meneruskan dana escrow, serta menampilkan feed.",
+        "Mengoperasikan Layanan: memproses transaksi, mengamankan dan meneruskan dana, serta menampilkan feed.",
         "Keamanan: mencegah penipuan, memverifikasi identitas, dan menyelesaikan sengketa.",
         "Komunikasi: mengirim notifikasi transaksi, pembaruan layanan, dan informasi penting lainnya.",
         "Peningkatan: menganalisis penggunaan agregat untuk memperbaiki pengalaman pengguna.",

@@ -4,7 +4,7 @@ export const meta: PageMeta = {
   slug: "bantuan",
   title: "Pusat Bantuan Kahade",
   navTitle: "Bantuan",
-  description: "Jawaban atas pertanyaan seputar akun, transaksi, dan escrow Kahade.",
+  description: "Jawaban atas pertanyaan seputar akun, transaksi, dan keamanan Kahade.",
   group: "bantuan",
   showInHeader: false,
 };
@@ -26,15 +26,15 @@ export const data: Partial<BantuanData> = {
     },
     {
       title: "Jual",
-      desc: "Posting produk ke feed, kelola chat pembeli, dan kirim barang setelah dana ditahan.",
+      desc: "Posting produk ke feed, kelola chat pembeli, dan kirim barang setelah pembayaran terkonfirmasi.",
     },
     {
       title: "Beli",
-      desc: "Temukan produk, chat dengan penjual, bayar ke escrow, dan konfirmasi saat barang tiba.",
+      desc: "Temukan produk, chat dengan penjual, bayar via Kahade, dan konfirmasi saat barang tiba.",
     },
     {
-      title: "Escrow & dana",
-      desc: "Pahami cara kerja penahanan dana, pencairan, dan apa yang terjadi saat sengketa.",
+      title: "Dana & pembayaran",
+      desc: "Pahami cara kerja pengamanan dana, pencairan, dan apa yang terjadi saat sengketa.",
     },
     {
       title: "Akun & keamanan",
@@ -43,8 +43,8 @@ export const data: Partial<BantuanData> = {
   ],
   faqs: [
     {
-      q: "Bagaimana cara kerja escrow di Kahade?",
-      a: "Saat kamu membeli, danamu ditahan oleh pihak netral — bukan langsung ke penjual. Penjual mengirim barang, kamu mengonfirmasi penerimaan, barulah dana diteruskan ke penjual.",
+      q: "Bagaimana cara kerja pembayaran di Kahade?",
+      a: "Saat kamu membeli, danamu diamankan oleh Kahade — bukan langsung ke penjual. Penjual mengirim barang, kamu mengonfirmasi penerimaan, barulah dana diteruskan ke penjual.",
     },
     {
       q: "Apa yang terjadi jika barang tidak dikirim?",
@@ -52,7 +52,7 @@ export const data: Partial<BantuanData> = {
     },
     {
       q: "Bagaimana jika barang yang diterima tidak sesuai?",
-      a: "Jangan konfirmasi penerimaan dulu. Buka sengketa dari halaman transaksi — tim kami akan menengahi dan dana tetap ditahan selama proses berlangsung.",
+      a: "Jangan konfirmasi penerimaan dulu. Buka sengketa dari halaman transaksi — tim kami akan menengahi dan dana tetap aman selama proses berlangsung.",
     },
     {
       q: "Apakah ada biaya untuk memakai Kahade?",

@@ -180,8 +180,8 @@ export function Closing() {
 
             <Reveal delay={300}>
               <p className="mt-6 max-w-xl text-[17px] leading-relaxed text-black/70 sm:text-lg">
-                Unduh Kahade dan rasakan social commerce dengan escrow di setiap
-                transaksi. Jual semudah posting, beli senyaman scroll.
+                Unduh Kahade dan rasakan social commerce dengan transaksi yang
+                terlindungi. Jual semudah posting, beli senyaman scroll.
               </p>
             </Reveal>
 

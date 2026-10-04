@@ -33,7 +33,7 @@ function ChatVisual() {
   const msgs = [
     { text: "Halo, produk ini masih tersedia?", me: true },
     { text: "Masih tersedia, silakan.", me: false },
-    { text: "Saya ambil ya, bayar via escrow.", me: true },
+    { text: "Saya ambil ya, bayar via Kahade.", me: true },
     { text: "Baik, saya kirim hari ini.", me: false },
   ];
   return (
@@ -79,7 +79,7 @@ function ChatVisual() {
           </span>
           <div>
             <p className="text-xs font-bold text-black">Transaksi dibuat</p>
-            <p className="text-[11px] text-[#525252]">Dana ditahan escrow</p>
+            <p className="text-[11px] text-[#525252]">Dana diamankan</p>
           </div>
         </motion.div>
       </div>
@@ -88,11 +88,11 @@ function ChatVisual() {
   );
 }
 
-/* ================= Tab 3: Escrow visual ================= */
+/* ================= Tab 3: Visual perlindungan dana ================= */
 
-function EscrowVisual() {
+function ProtectionVisual() {
   const steps = [
-    { t: "Dana ditahan", d: "Aman di escrow", done: true },
+    { t: "Dana diamankan", d: "Aman di Kahade", done: true },
     { t: "Barang dikirim", d: "Resi tercatat", done: true },
     { t: "Konfirmasi terima", d: "Menunggu kamu", done: false, active: true },
     { t: "Dana cair", d: "Ke penjual setelah konfirmasi", done: false },
@@ -111,7 +111,7 @@ function EscrowVisual() {
           transition={{ delay: 0.25, duration: 0.6, ease: EASE }}
           className="rounded-2xl bg-black p-4 text-white"
         >
-          <p className="text-[11px] uppercase tracking-[0.16em] text-white/55">Dana ditahan</p>
+          <p className="text-[11px] uppercase tracking-[0.16em] text-white/55">Dana diamankan</p>
           <p className="mt-1 text-2xl font-bold tracking-tight">Rp –</p>
           <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-white/15">
             <motion.div
@@ -183,17 +183,17 @@ const TABS = [
     id: "chat",
     label: "Chat",
     title: "Semua kesepakatan tercatat.",
-    desc: "Tawar menawar, atur pengiriman, dan buat transaksi — dalam satu chat yang terhubung langsung ke escrow.",
+    desc: "Tawar menawar, atur pengiriman, dan buat transaksi — dalam satu chat yang terhubung langsung ke pembayaran.",
     points: ["Riwayat chat tersimpan rapi", "Transaksi dibuat dari chat", "Status pesanan real-time"],
     visual: <ChatVisual />,
   },
   {
-    id: "escrow",
-    label: "Escrow",
+    id: "perlindungan",
+    label: "Perlindungan",
     title: "Dana aman sampai barang diterima.",
-    desc: "Setiap transaksi dilindungi escrow. Kamu selalu tahu persis danamu ada di mana.",
-    points: ["Dana ditahan pihak netral", "Cair setelah konfirmasi", "Jalur sengketa yang jelas"],
-    visual: <EscrowVisual />,
+    desc: "Setiap transaksi terlindungi. Kamu selalu tahu persis danamu ada di mana.",
+    points: ["Dana diamankan", "Diteruskan setelah konfirmasi", "Jalur sengketa yang jelas"],
+    visual: <ProtectionVisual />,
   },
 ];
 
@@ -214,7 +214,7 @@ export function Showcase() {
       <div className="mx-auto max-w-6xl px-5 section-pad sm:px-8">
         <SectionHeading
           title="Satu aplikasi untuk seluruh jual beli."
-          sub="Feed, chat, dan escrow bekerja sebagai satu alur — bukan tiga aplikasi terpisah."
+          sub="Feed, chat, dan pembayaran bekerja sebagai satu alur — bukan tiga aplikasi terpisah."
         />
 
         {/* Tab bar */}

@@ -19,5 +19,5 @@ export const required: (keyof PressData)[] = ["headline", "boilerplate"];
 export const data: Partial<PressData> = {
   headline: "Untuk media.",
   intro: "Materi dan kontak pers Kahade. Untuk pertanyaan wawancara atau liputan, hubungi tim kami melalui halaman Kontak.",
-  boilerplate: "Kahade adalah platform social commerce Indonesia yang menggabungkan feed ala media sosial dengan escrow di setiap transaksi. Pembeli membayar, dana ditahan aman oleh pihak netral, penjual mengirim barang, dan dana cair setelah pembeli mengonfirmasi penerimaan. Kahade dioperasikan oleh PT Kawal Hak Dengan Aman.",
+  boilerplate: "Kahade adalah platform social commerce Indonesia yang menggabungkan feed ala media sosial dengan perlindungan di setiap transaksi. Pembeli membayar, dana diamankan oleh Kahade, penjual mengirim barang, dan dana diteruskan setelah pembeli mengonfirmasi penerimaan. Kahade dioperasikan oleh PT Kawal Hak Dengan Aman.",
 };

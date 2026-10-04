@@ -11,7 +11,7 @@ export function PhoneMockup() {
       <div className="relative h-[580px] w-full bg-[#F3F4F6] sm:h-[620px]">
         <Image
           src="/IMG_20261003_073351_971.jpg"
-          alt="Tampilan asli aplikasi Kahade — feed jual beli dengan escrow"
+          alt="Tampilan asli aplikasi Kahade — feed jual beli yang aman"
           fill
           priority
           sizes="(max-width: 640px) 280px, 310px"
