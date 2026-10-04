@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { List, X } from "@/lib/icons";
 import { DownloadActions } from "./DownloadActions";
+import { Button } from "./site/Button";
 
 const NAV = [
   { id: "aplikasi", label: "Aplikasi" },
@@ -107,13 +108,14 @@ export function Header() {
             }`}
             aria-hidden={!ctaVisible}
           >
-            <a
+            <Button
+              size="sm"
               href="#download"
               tabIndex={ctaVisible ? 0 : -1}
-              className="inline-flex h-11 items-center whitespace-nowrap rounded-full bg-black px-4 text-[16px] font-semibold leading-[22px] tracking-[0.2px] text-white"
+              className="whitespace-nowrap leading-[22px] tracking-[0.2px]"
             >
               Unduh
-            </a>
+            </Button>
           </div>
 
           {/* Spacer: hamburger kanan di mobile */}

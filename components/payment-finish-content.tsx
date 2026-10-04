@@ -2,6 +2,7 @@
 
 import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
+import { DeeplinkLayout } from "@/components/site/DeeplinkLayout";
 import { KahadeMark } from "@/components/Logo";
 
 type PayState = "success" | "pending" | "failed";
@@ -113,32 +114,19 @@ function FinishContent() {
   const deepLink = `kahade://payment/finish${query ? `?${query}` : ""}`;
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-white px-5 text-center">
-      <KahadeMark className="h-14 w-14" />
-      <div className="mt-10">
-        <StatusIcon state={state} />
-      </div>
-      <h1 className="mt-8 text-3xl font-semibold tracking-[-0.02em] text-black sm:text-4xl">
-        {copy.title}
-      </h1>
-      <p className="mt-3 max-w-sm text-[17px] leading-relaxed text-[#525252]">
-        {copy.desc}
-      </p>
-      <div className="mt-9 flex w-full max-w-xs flex-col gap-3">
-        <a
-          href={deepLink}
-          className="inline-flex min-h-[56px] items-center justify-center rounded-full bg-black px-9 text-base font-semibold text-white transition-transform duration-300 ease-out hover:scale-[1.03] active:scale-[0.98]"
-        >
-          Buka di aplikasi
-        </a>
-        <a
-          href="/#download"
-          className="inline-flex min-h-[56px] items-center justify-center rounded-full border border-black/15 px-9 text-base font-semibold text-black transition-colors hover:bg-black/5"
-        >
-          Download aplikasi
-        </a>
-      </div>
-    </main>
+    <DeeplinkLayout
+      deepLink={deepLink}
+      media={
+        <>
+          <KahadeMark className="h-14 w-14" />
+          <div className="mt-10">
+            <StatusIcon state={state} />
+          </div>
+        </>
+      }
+      title={copy.title}
+      desc={copy.desc}
+    />
   );
 }
 

@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { Reveal, Words } from "./motion-helpers";
 import { AppleLogo, GooglePlayLogo } from "@/lib/icons";
 import { RealisticPhone } from "./RealisticPhone";
+import { StoreButton } from "./DownloadActions";
 import { site } from "@/content/site";
 
 /* ---------- Ikon status bar ---------- */
@@ -37,67 +38,7 @@ function BatteryIcon() {
   );
 }
 
-/* ---------- Badge store hitam ala referensi ---------- */
-
-function StoreBadge({
-  href,
-  icon,
-  small,
-  big,
-  label,
-}: {
-  href?: string;
-  icon: React.ReactNode;
-  small: string;
-  big: string;
-  label: string;
-}) {
-  const cls =
-    "btn-press inline-flex items-center gap-3 rounded-2xl bg-black px-6 py-3.5 text-white transition-transform";
-  const inner = (
-    <>
-      <span aria-hidden="true" className="text-[28px] leading-none">
-        {icon}
-      </span>
-      <span className="flex flex-col items-start leading-tight">
-        <span className="text-[11px] font-medium opacity-80">{small}</span>
-        <span className="text-[22px] font-semibold tracking-tight">{big}</span>
-      </span>
-    </>
-  );
-  if (!href)
-    return (
-      <button
-        type="button"
-        disabled
-        aria-disabled="true"
-        aria-label={`${label} — segera hadir`}
-        title="Segera hadir"
-        className={`${cls} cursor-not-allowed opacity-60`}
-      >
-        <>
-          <span aria-hidden="true" className="text-[28px] leading-none">
-            {icon}
-          </span>
-          <span className="flex flex-col items-start leading-tight">
-            <span className="text-[11px] font-medium opacity-80">Segera hadir di</span>
-            <span className="text-[22px] font-semibold tracking-tight">{big}</span>
-          </span>
-        </>
-      </button>
-    );
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={label}
-      className={cls}
-    >
-      {inner}
-    </a>
-  );
-}
+/* ---------- Store badges (pakai StoreButton bersama dari DownloadActions) ---------- */
 
 /* ---------- Phone mockup dengan status bar ---------- */
 
@@ -203,19 +144,19 @@ export function Closing() {
             {/* Store badges */}
             <Reveal delay={420}>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <StoreBadge
+                <StoreButton
                   href={site.appStoreUrl}
                   icon={<AppleLogo weight="regular" aria-hidden="true" />}
-                  small="Unduh di"
-                  big="App Store"
-                  label="Unduh di App Store"
+                  sub="Unduh di"
+                  label="App Store"
+                  size="hero"
                 />
-                <StoreBadge
+                <StoreButton
                   href={site.playStoreUrl}
                   icon={<GooglePlayLogo weight="regular" aria-hidden="true" />}
-                  small="Dapatkan di"
-                  big="Google Play"
-                  label="Dapatkan di Google Play"
+                  sub="Dapatkan di"
+                  label="Google Play"
+                  size="hero"
                 />
               </div>
             </Reveal>

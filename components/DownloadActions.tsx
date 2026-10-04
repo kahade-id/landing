@@ -3,14 +3,15 @@
 import { AppleLogo, DownloadSimple, GooglePlayLogo } from "@/lib/icons";
 import { site } from "@/content/site";
 
-type Size = "md" | "lg";
+type Size = "md" | "lg" | "hero";
 
 const SIZES: Record<Size, string> = {
   md: "min-h-[48px] px-6 text-[15px]",
   lg: "min-h-[56px] px-5 text-[15px] sm:min-h-[58px] sm:px-9 sm:text-base",
+  hero: "min-h-[64px] px-6",
 };
 
-function StoreButton({
+export function StoreButton({
   href,
   icon,
   label,
@@ -25,6 +26,7 @@ function StoreButton({
   size: Size;
   primary?: boolean;
 }) {
+  const hero = size === "hero";
   const cls = `btn-press inline-flex items-center gap-3 rounded-2xl ${SIZES[size]} font-semibold transition-colors ${
     primary
       ? "bg-black text-white hover:bg-[#262626]"
@@ -33,10 +35,10 @@ function StoreButton({
 
   const inner = (
     <>
-      <span aria-hidden="true" className="text-[22px] leading-none">{icon}</span>
+      <span aria-hidden="true" className={`${hero ? "text-[28px]" : "text-[22px]"} leading-none`}>{icon}</span>
       <span className="flex flex-col items-start leading-tight">
-        <span className="text-[11px] font-medium opacity-70">{sub}</span>
-        <span>{label}</span>
+        <span className={`text-[11px] font-medium ${hero ? "opacity-80" : "opacity-70"}`}>{sub}</span>
+        <span className={hero ? "text-[22px] font-semibold tracking-tight" : undefined}>{label}</span>
       </span>
     </>
   );
@@ -47,14 +49,15 @@ function StoreButton({
         type="button"
         disabled
         aria-disabled="true"
+        aria-label={`${label} — segera hadir`}
         title="Segera hadir"
         className={`${cls} cursor-not-allowed opacity-60`}
       >
         <>
-          <span aria-hidden="true" className="text-[22px] leading-none">{icon}</span>
+          <span aria-hidden="true" className={`${hero ? "text-[28px]" : "text-[22px]"} leading-none`}>{icon}</span>
           <span className="flex flex-col items-start leading-tight">
-            <span className="text-[11px] font-medium opacity-70">Segera hadir di</span>
-            <span>{label}</span>
+            <span className={`text-[11px] font-medium ${hero ? "opacity-80" : "opacity-70"}`}>Segera hadir di</span>
+            <span className={hero ? "text-[22px] font-semibold tracking-tight" : undefined}>{label}</span>
           </span>
         </>
       </button>

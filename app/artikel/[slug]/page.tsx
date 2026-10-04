@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Button } from "@/components/site/Button";
 import { notFound } from "next/navigation";
 import { meta, required, data, type ArtikelData } from "@/content/artikel";
 import { resolvePage } from "@/lib/content";
@@ -87,9 +87,9 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             ))}
           </div>
           <div className="mt-14 border-t border-black/10 pt-8">
-            <Link href="/artikel" className="inline-flex min-h-[48px] items-center rounded-full border border-black/15 px-7 text-[15px] font-semibold text-black transition-colors hover:border-black/40">
+            <Button variant="secondary" size="md" href="/artikel">
               Semua artikel
-            </Link>
+            </Button>
           </div>
         </div>
       </PageShell>

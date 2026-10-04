@@ -2,7 +2,7 @@
 
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { KahadeMark } from "@/components/Logo";
+import { DeeplinkLayout } from "@/components/site/DeeplinkLayout";
 
 export type FallbackCopy = {
   title: string;
@@ -43,29 +43,7 @@ function FallbackContent({ copy, appPath }: { copy: FallbackCopy; appPath: strin
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-white px-5 text-center">
-      <KahadeMark className="h-14 w-14" />
-      <h1 className="mt-8 text-3xl font-semibold tracking-[-0.02em] text-black sm:text-4xl">
-        {copy.title}
-      </h1>
-      <p className="mt-3 max-w-sm text-[17px] leading-relaxed text-[#525252]">{copy.desc}</p>
-      <div className="mt-9 flex w-full max-w-xs flex-col gap-3">
-        <a
-          href={deepLink}
-          className="inline-flex min-h-[56px] items-center justify-center rounded-full bg-black px-9 text-base font-semibold text-white transition-transform duration-300 ease-out hover:scale-[1.03] active:scale-[0.98]"
-        >
-          Buka di aplikasi
-        </a>
-        <a
-          href="/#download"
-          className="inline-flex min-h-[56px] items-center justify-center rounded-full border border-black/15 px-9 text-base font-semibold text-black transition-colors hover:bg-black/5"
-        >
-          Download aplikasi
-        </a>
-      </div>
-    </main>
-  );
+  return <DeeplinkLayout deepLink={deepLink} title={copy.title} desc={copy.desc} />;
 }
 
 export default function DeeplinkFallback({

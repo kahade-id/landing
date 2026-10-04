@@ -1,7 +1,9 @@
 /**
  * Satu-satunya pintu masuk ikon di situs ini.
- * Wajib Phosphor (@phosphor-icons/react), weight `regular` di seluruh situs.
- * `fill` hanya untuk status aktif/terpilih. Tanpa duotone.
+ * Wajib Phosphor (@phosphor-icons/react). Default weight `regular`;
+ * `bold` hanya untuk ikon checklist kecil dan toggle navigasi
+ * (agar terbaca di ukuran kecil). `fill` hanya untuk status
+ * aktif/terpilih. Tanpa duotone.
  * Entry SSR agar aman dirender di Server Component.
  */
 export {
