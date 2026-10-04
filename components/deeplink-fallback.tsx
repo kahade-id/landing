@@ -20,7 +20,7 @@ export type FallbackCopy = {
  * 1. Saat mount, coba buka deep link `kahade://...` (berhasil bila
  *    aplikasi terinstal; gagal diam-diam bila tidak).
  * 2. Tampilkan tombol "Buka di aplikasi" (percobaan manual) +
- *    "Download aplikasi" (fallback ke /#download).
+ *    "Unduh aplikasi" (fallback ke /#download).
  *
  * `appPath`: path di aplikasi (tanpa scheme), mis. `user/budi` untuk
  * `kahade://user/budi`. Perlu karena URL web ala Instagram

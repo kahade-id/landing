@@ -4,10 +4,14 @@ import { DeeplinkLayout } from "@/components/site/DeeplinkLayout";
 
 type Props = { params: Promise<{ code: string }> };
 
-export const metadata: Metadata = {
-  title: "Undang Teman — Kahade",
-  description: "Daftar di Kahade dengan kode referral temanmu.",
-};
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { code } = await params;
+  return {
+    title: "Undang Teman — Kahade",
+    description: "Daftar di Kahade dengan kode referral temanmu.",
+    alternates: { canonical: `/r/${encodeURIComponent(code)}` },
+  };
+}
 
 /**
  * kahade.id/r/<code> — undangan referral pendek (BARU).

@@ -14,6 +14,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${name} (@${username}) — Kahade`,
     description: profile?.identity?.bio || `Lihat profil @${username} di Kahade.`,
+    alternates: { canonical: `/${encodeURIComponent(username)}` },
   };
 }
 

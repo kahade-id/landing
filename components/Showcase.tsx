@@ -111,7 +111,7 @@ function ProtectionVisual() {
           transition={{ delay: 0.25, duration: 0.6, ease: EASE }}
           className="rounded-2xl bg-black p-4 text-white"
         >
-          <p className="text-[11px] uppercase tracking-[0.16em] text-white/55">Dana diamankan</p>
+          <p className="text-[11px] uppercase tracking-[0.16em] text-white/75">Dana diamankan</p>
           <p className="mt-1 text-2xl font-bold tracking-tight">Rp –</p>
           <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-white/15">
             <motion.div

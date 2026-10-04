@@ -12,6 +12,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: payload?.title ? `${payload.title} — Kahade` : "Produk — Kahade",
     description: payload?.description || "Lihat produk di aplikasi Kahade.",
+    alternates: { canonical: `/p/${encodeURIComponent(id)}` },
   };
 }
 

@@ -9,7 +9,7 @@ import { Button } from "./Button";
  *
  * Menggantikan 5 salinan hand-made dari pola yang sama:
  * main terpusat + mark/avatar + h1 + deskripsi + tombol
- * "Buka di aplikasi" / "Download aplikasi".
+ * "Buka di aplikasi" / "Unduh aplikasi".
  */
 export function DeeplinkLayout({
   deepLink,
@@ -40,7 +40,7 @@ export function DeeplinkLayout({
       <div className="mt-9 flex w-full max-w-xs flex-col gap-3">
         <Button href={deepLink}>{primaryLabel}</Button>
         <Button variant="secondary" href="/#download">
-          Download aplikasi
+          Unduh aplikasi
         </Button>
       </div>
     </main>

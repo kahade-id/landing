@@ -4,6 +4,7 @@ import DeeplinkFallback from "@/components/deeplink-fallback";
 export const metadata: Metadata = {
   title: "Transfer — Kahade",
   description: "Lanjutkan transfer di aplikasi Kahade.",
+  alternates: { canonical: "/transfer" },
 };
 
 /** kahade.id/transfer — deep link transfer, fallback ke browser bila aplikasi belum terinstal. */

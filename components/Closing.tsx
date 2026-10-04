@@ -75,8 +75,8 @@ function CtaPhone() {
           <span className="border-b-2 border-black pb-1 font-bold text-black">
             Untuk Anda
           </span>
-          <span className="text-black/50">Mengikuti</span>
-          <span className="text-black/50">Terbaru</span>
+          <span className="text-black/70">Mengikuti</span>
+          <span className="text-black/70">Terbaru</span>
         </div>
 
         {/* White sheet */}

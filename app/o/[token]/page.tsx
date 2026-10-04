@@ -4,7 +4,14 @@ import DeeplinkFallback from "@/components/deeplink-fallback";
 
 type Props = { params: Promise<{ token: string }> };
 
-export const metadata: Metadata = { title: "Order — Kahade" };
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { token } = await params;
+  return {
+    title: "Pesanan — Kahade",
+    description: "Buka detail pesanan ini di aplikasi Kahade.",
+    alternates: { canonical: `/o/${encodeURIComponent(token)}` },
+  };
+}
 
 /**
  * kahade.id/o/<token> — alias pendek untuk order link.
@@ -23,8 +30,8 @@ export default async function Page({ params }: Props) {
     <DeeplinkFallback
       appPath={`order-link/${encodeURIComponent(token)}`}
       copy={{
-        title: "Lihat Order",
-        desc: "Buka detail order ini di aplikasi Kahade.",
+        title: "Lihat Pesanan",
+        desc: "Buka detail pesanan ini di aplikasi Kahade.",
       }}
     />
   );

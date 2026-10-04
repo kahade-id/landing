@@ -101,7 +101,7 @@ function StatusIcon({ status, dark }: { status: CellStatus; dark?: boolean }) {
       </span>
     );
   return (
-    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-black/[0.06] text-black/40">
+    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-black/[0.06] text-black/60">
       <X weight="bold" className="h-3.5 w-3.5" aria-hidden="true" />
     </span>
   );
@@ -143,7 +143,7 @@ export function ProblemSolution() {
             <div className="no-scrollbar overflow-x-auto">
               <table className="w-full min-w-[720px] border-separate border-spacing-0">
                 <caption className="sr-only">
-                  Perbandingan marketplace, jasa manual manual, dan Kahade
+                  Perbandingan marketplace, perantara manual, dan Kahade
                 </caption>
                 <thead>
                   <tr>
@@ -169,7 +169,7 @@ export function ProblemSolution() {
                             <span className="text-base font-semibold text-white">
                               {col.title}
                             </span>
-                            <span className="text-[13px] text-white/60">
+                            <span className="text-[13px] text-white/75">
                               {col.sub}
                             </span>
                           </div>

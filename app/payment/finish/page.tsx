@@ -4,6 +4,9 @@ import PaymentFinishContent from "@/components/payment-finish-content";
 export const metadata: Metadata = {
   title: "Pembayaran — Kahade",
   description: "Status pembayaran Kahade.",
+  // URL callback payment gateway — tidak ada nilai konten untuk indeks mesin
+  // pencari; status dibaca dari query params per kunjungan.
+  robots: { index: false, follow: true },
 };
 
 /**

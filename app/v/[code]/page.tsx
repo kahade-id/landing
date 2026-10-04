@@ -4,7 +4,14 @@ import DeeplinkFallback from "@/components/deeplink-fallback";
 
 type Props = { params: Promise<{ code: string }> };
 
-export const metadata: Metadata = { title: "Voucher — Kahade" };
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { code } = await params;
+  return {
+    title: "Voucher — Kahade",
+    description: "Klaim voucher Kahade di aplikasi.",
+    alternates: { canonical: `/v/${encodeURIComponent(code)}` },
+  };
+}
 
 /**
  * kahade.id/v/<code> — voucher/promo publik (BARU).
