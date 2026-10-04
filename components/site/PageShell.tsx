@@ -16,7 +16,7 @@ export function PageShell({
   children: ReactNode;
 }) {
   return (
-    <main className="bg-white">
+    <main id="konten-utama" tabIndex={-1} className="bg-white">
       <div className="mx-auto max-w-6xl px-5 pt-28 sm:px-8 sm:pt-32">
         <Breadcrumb trail={trail} />
         <div className="mt-8 max-w-3xl pb-12">

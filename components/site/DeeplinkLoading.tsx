@@ -9,6 +9,8 @@ import { KahadeMark } from "@/components/Logo";
 export default function DeeplinkLoading() {
   return (
     <main
+      id="konten-utama"
+      tabIndex={-1}
       aria-label="Memuat"
       className="flex min-h-screen flex-col items-center justify-center bg-white px-5 text-center"
     >

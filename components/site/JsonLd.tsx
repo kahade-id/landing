@@ -62,19 +62,3 @@ export function faqJsonLd(faqs: { q: string; a: string }[]) {
     })),
   };
 }
-
-export function articleJsonLd(
-  siteUrl: string,
-  a: { slug: string; title: string; description: string; author: string; date: string }
-) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: a.title,
-    description: a.description,
-    author: { "@type": "Person", name: a.author },
-    datePublished: a.date,
-    mainEntityOfPage: `${siteUrl}/artikel/${a.slug}`,
-    inLanguage: "id",
-  };
-}

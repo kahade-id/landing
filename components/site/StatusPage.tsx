@@ -17,7 +17,7 @@ export function StatusPage({
   actions: ReactNode;
 }) {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-white px-5 text-center">
+    <main id="konten-utama" tabIndex={-1} className="flex min-h-screen flex-col items-center justify-center bg-white px-5 text-center">
       <KahadeMark className="h-14" />
       {kicker ? (
         <p className="mt-8 text-sm font-semibold uppercase tracking-[0.2em] text-[#525252]">

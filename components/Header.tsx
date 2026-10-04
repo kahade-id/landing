@@ -48,6 +48,16 @@ export function Header() {
     };
   }, [open ]);
 
+  // Tutup panel menu dengan Esc (pola keyboard standar untuk popup).
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open ]);
+
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-6 pt-2 md:px-0 md:pt-6">
       <div
@@ -137,8 +147,9 @@ export function Header() {
           </button>
         </div>
 
-        {/* Panel menu mobile (dropdown) */}
-        <div className="mobile-panel md:hidden" data-open={open}>
+        {/* Panel menu mobile (dropdown). inert saat tertutup agar tombol
+            yang tak terlihat tidak bisa di-tab (jebakan keyboard). */}
+        <div className="mobile-panel md:hidden" data-open={open} inert={!open}>
           <div>
             <nav
               aria-label="Navigasi seluler"

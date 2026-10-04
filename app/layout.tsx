@@ -48,6 +48,9 @@ export default function RootLayout({
   return (
     <html lang="id" className={jakarta.variable}>
       <body className="bg-white font-sans text-[#262626]">
+        <a href="#konten-utama" className="skip-link">
+          Lewati ke konten utama
+        </a>
         <MotionProvider>{children}</MotionProvider>
       </body>
     </html>

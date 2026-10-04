@@ -13,7 +13,7 @@ export default function Page() {
     <>
       <JsonLd data={orgJsonLd(site.siteUrl, site.companyName)} />
       <Header />
-      <main>
+      <main id="konten-utama" tabIndex={-1}>
         <Hero />
         <TrustStrip />
         <Showcase />

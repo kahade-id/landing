@@ -6,7 +6,6 @@ import {
   useMotionValue,
   useReducedMotion,
   useSpring,
-  type Variants,
 } from "motion/react";
 import {
   Fragment,
@@ -148,18 +147,6 @@ export function SectionHeading({ kicker, title, sub, align = "center", dark = fa
     </div>
   );
 }
-
-/* ---------------- Stagger container / item ---------------- */
-
-export const staggerParent: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.09, delayChildren: 0.05 } },
-};
-
-export const staggerChild: Variants = {
-  hidden: { opacity: 0, y: 26 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: EASE } },
-};
 
 /* ---------------- Magnetic hover (desktop pointers only) ---------------- */
 

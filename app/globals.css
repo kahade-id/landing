@@ -32,6 +32,28 @@ body {
   border-radius: 6px;
 }
 
+/* ---------- Skip-to-content link (muncul saat fokus keyboard) ---------- */
+.skip-link {
+  position: fixed;
+  top: -200px;
+  left: 16px;
+  z-index: 100;
+  background: #000000;
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus-visible {
+  top: 12px;
+  outline-color: #ffffff;
+  color: #ffffff;
+}
+
 /* ---------- Section rhythm ---------- */
 .section-pad {
   padding-top: 5.5rem;
@@ -257,8 +279,14 @@ body {
   }
 
   .btn-press:hover,
-  .card-lift:hover {
+  .card-lift:hover,
+  .spot-card:hover {
     transform: none;
+  }
+
+  /* Skeleton pulse Tailwind: matikan animasinya, biarkan statis. */
+  .animate-pulse {
+    animation: none;
   }
 
   .btn-press:active {

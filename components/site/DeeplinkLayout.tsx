@@ -30,7 +30,7 @@ export function DeeplinkLayout({
   primaryLabel?: string;
 }) {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-white px-5 text-center">
+    <main id="konten-utama" tabIndex={-1} className="flex min-h-screen flex-col items-center justify-center bg-white px-5 text-center">
       {autoOpenPath ? <DeeplinkAutoOpen appPath={autoOpenPath} /> : null}
       {media ?? <KahadeMark className="h-14 w-14" />}
       <h1 className="type-h2 mt-8 max-w-md text-black">{title}</h1>
