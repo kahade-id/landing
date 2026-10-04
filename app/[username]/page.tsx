@@ -10,6 +10,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { username } = await params;
   if (isReservedWord(username)) return { title: "Tidak ditemukan" };
   const profile = await fetchPublicProfile(username);
+  if (!profile) {
+    // Username tidak dikenal → halaman fallback (fail-open untuk deeplink).
+    // Tandai noindex agar URL sembarang tidak terindeks sebagai soft-404.
+    return {
+      title: `@${username} — Kahade`,
+      robots: { index: false, follow: false },
+    };
+  }
   const name = profile?.identity?.fullName || profile?.identity?.nickname || `@${username}`;
   return {
     title: `${name} (@${username}) — Kahade`,

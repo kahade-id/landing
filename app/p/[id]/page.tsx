@@ -9,8 +9,17 @@ type Props = { params: Promise<{ id: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   const payload = await fetchSharePayload(id);
+  if (!payload?.title) {
+    // Produk tidak dikenal → halaman fallback (fail-open untuk deeplink).
+    // Tandai noindex agar URL sembarang tidak terindeks sebagai soft-404.
+    return {
+      title: "Produk — Kahade",
+      description: "Lihat produk di aplikasi Kahade.",
+      robots: { index: false, follow: false },
+    };
+  }
   return {
-    title: payload?.title ? `${payload.title} — Kahade` : "Produk — Kahade",
+    title: `${payload.title} — Kahade`,
     description: payload?.description || "Lihat produk di aplikasi Kahade.",
     alternates: { canonical: `/p/${encodeURIComponent(id)}` },
   };

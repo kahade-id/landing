@@ -17,6 +17,13 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        // Kanonik: www.kahade.id → kahade.id (hindari konten duplikat).
+        source: "/:path*",
+        destination: "https://kahade.id/:path*",
+        permanent: true,
+        has: [{ type: "host", value: "www.kahade.id" }],
+      },
+      {
         source: "/syarat-ketentuan",
         destination: "/syarat-dan-ketentuan",
         permanent: true,
