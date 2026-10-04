@@ -25,6 +25,8 @@ const SUBDOMAIN_LINKS = [
   { label: "Legalitas", href: "https://legal.kahade.id" },
   { label: "Bantuan", href: "https://bantuan.kahade.id" },
   { label: "Status Layanan", href: "https://status.kahade.id" },
+  { label: "Investor", href: "https://investor.kahade.id" },
+  { label: "Artikel", href: "https://artikel.kahade.id" },
 ];
 
 /** Footer lengkap: memuat semua halaman (termasuk yang draft). */
