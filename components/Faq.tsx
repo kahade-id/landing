@@ -8,28 +8,28 @@ import { faqJsonLd, JsonLd } from "./site/JsonLd";
 
 const FAQS = [
   {
-    q: "Bagaimana Kahade melindungi transaksiku?",
-    a: "Setiap transaksi berjalan dalam sistem pembayaran yang aman: dana pembeli diamankan sampai pembeli mengonfirmasi barang diterima sesuai kesepakatan, baru diteruskan ke penjual.",
+    q: "Apakah Kahade aman?",
+    a: "Ya. Setiap transaksi di Kahade berjalan dalam sistem pembayaran yang aman — dana pembeli diamankan sampai pembeli mengonfirmasi barang diterima sesuai kesepakatan, baru diteruskan ke penjual.",
   },
   {
-    q: "Apakah uang saya aman selama transaksi?",
-    a: "Ya. Dana yang kamu bayarkan tidak langsung masuk ke penjual, melainkan diamankan oleh Kahade sampai kamu mengonfirmasi penerimaan barang.",
+    q: "Bagaimana cara kerja Kahade?",
+    a: "Pilih barang di feed seperti scroll media sosial, bayar lewat aplikasi dengan tombol \u201cBeli via Kahade\u201d, penjual mengirim barang, dan dana diteruskan ke penjual setelah kamu mengonfirmasi penerimaan.",
   },
   {
-    q: "Bagaimana cara mulai menjual di Kahade?",
-    a: "Buat akun, unggah foto produkmu ke feed seperti memposting di media sosial, lalu atur harga. Saat ada pembeli, seluruh proses transaksi berjalan di dalam aplikasi.",
+    q: "Berapa biaya transaksi di Kahade?",
+    a: "Biaya transaksi 2,5% per transaksi, dengan minimum Rp2.500 dan maksimum Rp250.000. Tidak ada biaya tersembunyi.",
   },
   {
-    q: "Kapan penjual menerima dananya?",
-    a: "Setelah pembeli mengonfirmasi bahwa barang sudah diterima dan sesuai, dana yang diamankan akan diteruskan ke penjual.",
+    q: "Kapan Kahade diluncurkan?",
+    a: "Kahade ditargetkan meluncur pada 8 Desember 2026. Unduh aplikasinya agar menjadi yang pertama tahu saat kami resmi meluncur.",
   },
   {
-    q: "Bagaimana jika barang tidak sesuai atau tidak sampai?",
-    a: "Jangan konfirmasi penerimaan terlebih dahulu. Kamu bisa mengajukan sengketa melalui aplikasi, dan tim Kahade akan membantu menengahi penyelesaiannya.",
+    q: "Apa itu Kahade Plus?",
+    a: "Kahade Plus adalah langganan premium Rp99.000 per bulan atau Rp899.000 per tahun — dapat potongan 50% biaya transaksi, prioritas layanan pelanggan, dan badge Plus.",
   },
   {
-    q: "Apakah Kahade sudah bisa digunakan?",
-    a: "Kahade sedang dalam tahap persiapan menuju peluncuran. Download aplikasinya agar menjadi yang pertama tahu saat kami resmi meluncur.",
+    q: "Bagaimana cara jualan di Kahade?",
+    a: "Buat akun, unggah foto produk ke feed seperti memposting di media sosial, atur harga, dan mulai terima pesanan. Seluruh proses transaksi berjalan di dalam aplikasi.",
   },
 ];
 

@@ -10,10 +10,10 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Kahade — Jual Beli Semudah Scroll Medsos",
+  title: "Kahade — Aplikasi Jual Beli Aman Seperti Media Sosial",
   description:
-    "Kahade adalah aplikasi jual-beli pengguna ke pengguna yang tampilannya seperti media sosial.",
-  keywords: ["kahade", "social commerce", "jual beli online aman", "marketplace indonesia", "jual beli p2p"],
+    "Kahade adalah aplikasi jual-beli pengguna ke pengguna yang tampilannya seperti media sosial. Jual beli aman tanpa takut tertipu.",
+  keywords: ["kahade", "aplikasi jual beli", "aplikasi jual beli aman", "jual beli online aman", "jual beli seperti media sosial", "social commerce", "marketplace indonesia", "jual beli p2p"],
   metadataBase: new URL("https://kahade.id"),
   alternates: { canonical: "/" },
   manifest: "/manifest.webmanifest",
@@ -22,17 +22,17 @@ export const metadata: Metadata = {
     apple: "/icon.png",
   },
   openGraph: {
-    title: "Kahade — Jual Beli Semudah Scroll Medsos",
+    title: "Kahade — Aplikasi Jual Beli Aman Seperti Media Sosial",
     description:
-      "Kahade adalah aplikasi jual-beli pengguna ke pengguna yang tampilannya seperti media sosial.",
+      "Kahade adalah aplikasi jual-beli pengguna ke pengguna yang tampilannya seperti media sosial. Jual beli aman tanpa takut tertipu.",
     type: "website",
     locale: "id_ID",
     siteName: "Kahade",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kahade — Jual Beli Semudah Scroll Medsos",
-    description: "Kahade adalah aplikasi jual-beli pengguna ke pengguna yang tampilannya seperti media sosial.",
+    title: "Kahade — Aplikasi Jual Beli Aman Seperti Media Sosial",
+    description: "Kahade adalah aplikasi jual-beli pengguna ke pengguna yang tampilannya seperti media sosial. Jual beli aman tanpa takut tertipu.",
   },
 };
 

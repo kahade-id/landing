@@ -39,8 +39,8 @@ export default function OgImage() {
           </div>
         </div>
         <div style={{ marginTop: "48px", display: "flex", flexDirection: "column", fontSize: "76px", fontWeight: 700, lineHeight: 1.15, letterSpacing: "-2px" }}>
-          <div>Jual beli semudah</div>
-          <div>scroll medsos.</div>
+          <div>Jual beli aman</div>
+          <div>seperti medsos.</div>
         </div>
         <div style={{ marginTop: "32px", fontSize: "28px", color: "#525252" }}>kahade.id</div>
       </div>
