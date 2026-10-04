@@ -19,21 +19,37 @@ const PRODUCT_LINKS = [
   { label: "Unduh", href: "/#download" },
 ];
 
+/** Link subdomain Kahade — dibuka di tab yang sama (satu ekosistem). */
+const SUBDOMAIN_LINKS = [
+  { label: "Karir", href: "https://karir.kahade.id" },
+  { label: "Legalitas", href: "https://legal.kahade.id" },
+  { label: "Pusat Bantuan", href: "https://bantuan.kahade.id" },
+  { label: "Status Layanan", href: "https://status.kahade.id" },
+];
+
 /** Footer lengkap: memuat semua halaman (termasuk yang draft). */
 export function Footer() {
   const pages = allPages();
   const year = new Date().getFullYear();
 
-  const groups: { title: string; links: { label: string; href: string }[] }[] = [
+  const groups: {
+    title: string;
+    links: { label: string; href: string; external?: boolean }[];
+  }[] = [
     {
       title: "Produk",
       links: PRODUCT_LINKS,
     },
     ...(Object.keys(GROUP_TITLES) as PageGroup[]).map((g) => ({
       title: GROUP_TITLES[g],
-      links: pages
-        .filter((p) => p.meta.group === g)
-        .map((p) => ({ label: p.meta.navTitle, href: `/${p.meta.slug}` })),
+      links: [
+        ...pages
+          .filter((p) => p.meta.group === g)
+          .map((p) => ({ label: p.meta.navTitle, href: `/${p.meta.slug}` })),
+        ...(g === "perusahaan"
+          ? SUBDOMAIN_LINKS.map((l) => ({ ...l, external: true }))
+          : []),
+      ],
     })),
   ];
 
@@ -65,12 +81,21 @@ export function Footer() {
                 <ul className="mt-4 space-y-1">
                   {col.links.map((l) => (
                     <li key={l.label}>
-                      <Link
-                        href={l.href}
-                        className="inline-flex min-h-[40px] items-center text-[15px] text-[#525252] transition-colors hover:text-black"
-                      >
-                        {l.label}
-                      </Link>
+                      {l.external ? (
+                        <a
+                          href={l.href}
+                          className="inline-flex min-h-[40px] items-center text-[15px] text-[#525252] transition-colors hover:text-black"
+                        >
+                          {l.label}
+                        </a>
+                      ) : (
+                        <Link
+                          href={l.href}
+                          className="inline-flex min-h-[40px] items-center text-[15px] text-[#525252] transition-colors hover:text-black"
+                        >
+                          {l.label}
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>

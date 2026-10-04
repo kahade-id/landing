@@ -11,6 +11,12 @@ const NAV = [
   { id: "faq", label: "FAQ" },
 ];
 
+/** Link subdomain — tab yang sama agar terasa satu ekosistem. */
+const NAV_EXTERNAL = [
+  { label: "Karir", href: "https://karir.kahade.id" },
+  { label: "Bantuan", href: "https://bantuan.kahade.id" },
+];
+
 /**
  * Header pola Mobbin: floating glass pill terpusat.
  * - Pill 60px, radius 30px, kaca #F3F4F6/64 + blur 48px, tanpa border/shadow.
@@ -81,6 +87,15 @@ export function Header() {
                 {item.label}
               </a>
             ))}
+            {NAV_EXTERNAL.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="inline-flex min-h-[44px] items-center text-[16px] font-semibold leading-[22px] tracking-[0.2px] text-[#262626]"
+              >
+                {item.label}
+              </a>
+            ))}
           </nav>
 
           {/* CTA muncul saat scroll (desktop) */}
@@ -131,6 +146,17 @@ export function Header() {
                 <a
                   key={item.id}
                   href={`#${item.id}`}
+                  onClick={() => setOpen(false)}
+                  tabIndex={open ? 0 : -1}
+                  className="text-[16px] font-semibold leading-[22px] tracking-[0.2px] text-[#262626]"
+                >
+                  {item.label}
+                </a>
+              ))}
+              {NAV_EXTERNAL.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
                   onClick={() => setOpen(false)}
                   tabIndex={open ? 0 : -1}
                   className="text-[16px] font-semibold leading-[22px] tracking-[0.2px] text-[#262626]"
