@@ -31,6 +31,16 @@ const nextConfig: NextConfig = {
         destination: "https://karir.kahade.id",
         permanent: true,
       },
+      {
+        source: "/bantuan/:path*",
+        destination: "https://bantuan.kahade.id/:path*",
+        permanent: true,
+      },
+      {
+        source: "/artikel/:path*",
+        destination: "https://artikel.kahade.id/:path*",
+        permanent: true,
+      },
     ];
   },
 };

@@ -85,31 +85,6 @@ export function Hero() {
             <PhoneMockup />
           </TiltPhone>
         </motion.div>
-
-        {/* Partner strip — ala referensi */}
-        <Reveal delay={200} y={16}>
-          <div className="mt-20 text-center sm:mt-24">
-            <p className="text-[15px] font-medium text-[#525252]">
-              Bekerja sama dengan
-            </p>
-            <div className="mt-7 flex flex-wrap items-center justify-center gap-x-12 gap-y-6 sm:gap-x-16">
-              <img
-                src="/partners/bi.svg"
-                alt="Bank Indonesia"
-                width={220}
-                height={40}
-                className="h-8 w-auto opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0 sm:h-10"
-              />
-              <img
-                src="/partners/ppatk.svg"
-                alt="PPATK"
-                width={44}
-                height={44}
-                className="h-11 w-auto opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0 sm:h-[52px]"
-              />
-            </div>
-          </div>
-        </Reveal>
       </div>
     </section>
   );

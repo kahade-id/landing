@@ -67,8 +67,23 @@ function StoreBadge({
   );
   if (!href)
     return (
-      <button type="button" aria-label={label} className={cls}>
-        {inner}
+      <button
+        type="button"
+        disabled
+        aria-disabled="true"
+        aria-label={`${label} — segera hadir`}
+        title="Segera hadir"
+        className={`${cls} cursor-not-allowed opacity-60`}
+      >
+        <>
+          <span aria-hidden="true" className="text-[28px] leading-none">
+            {icon}
+          </span>
+          <span className="flex flex-col items-start leading-tight">
+            <span className="text-[11px] font-medium opacity-80">Segera hadir di</span>
+            <span className="text-[22px] font-semibold tracking-tight">{big}</span>
+          </span>
+        </>
       </button>
     );
   return (

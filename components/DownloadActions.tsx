@@ -43,8 +43,20 @@ function StoreButton({
 
   if (!href) {
     return (
-      <button type="button" className={cls}>
-        {inner}
+      <button
+        type="button"
+        disabled
+        aria-disabled="true"
+        title="Segera hadir"
+        className={`${cls} cursor-not-allowed opacity-60`}
+      >
+        <>
+          <span aria-hidden="true" className="text-[22px] leading-none">{icon}</span>
+          <span className="flex flex-col items-start leading-tight">
+            <span className="text-[11px] font-medium opacity-70">Segera hadir di</span>
+            <span>{label}</span>
+          </span>
+        </>
       </button>
     );
   }
