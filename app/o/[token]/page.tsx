@@ -6,12 +6,15 @@ type Props = { params: Promise<{ token: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { token } = await params;
+  const title = "Pesanan — Kahade";
+  const description = "Buka detail pesanan ini di aplikasi Kahade.";
   return {
-    title: "Pesanan — Kahade",
-    description: "Buka detail pesanan ini di aplikasi Kahade.",
+    title,
+    description,
     alternates: { canonical: `/o/${encodeURIComponent(token)}` },
     // Token order-link adalah capability URL yang privat — jangan indeks.
     robots: { index: false, follow: false },
+    openGraph: { title, description },
   };
 }
 

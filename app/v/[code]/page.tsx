@@ -6,13 +6,16 @@ type Props = { params: Promise<{ code: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { code } = await params;
+  const title = "Voucher — Kahade";
+  const description = "Klaim voucher Kahade di aplikasi.";
   return {
-    title: "Voucher — Kahade",
-    description: "Klaim voucher Kahade di aplikasi.",
+    title,
+    description,
     alternates: { canonical: `/v/${encodeURIComponent(code)}` },
     // Kode voucher adalah capability URL per pengguna — semua kode berbagi
     // salinan yang sama, jadi jangan indeks agar tidak jadi duplikat.
     robots: { index: false, follow: false },
+    openGraph: { title, description },
   };
 }
 

@@ -13,16 +13,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!profile) {
     // Username tidak dikenal → halaman fallback (fail-open untuk deeplink).
     // Tandai noindex agar URL sembarang tidak terindeks sebagai soft-404.
+    const title = `@${username} — Kahade`;
+    const description = `Lihat profil @${username} di Kahade.`;
     return {
-      title: `@${username} — Kahade`,
+      title,
+      description,
       robots: { index: false, follow: false },
+      openGraph: { title, description },
     };
   }
   const name = profile?.identity?.fullName || profile?.identity?.nickname || `@${username}`;
+  const title = `${name} (@${username}) — Kahade`;
+  const description = profile?.identity?.bio || `Lihat profil @${username} di Kahade.`;
   return {
-    title: `${name} (@${username}) — Kahade`,
-    description: profile?.identity?.bio || `Lihat profil @${username} di Kahade.`,
+    title,
+    description,
     alternates: { canonical: `/${encodeURIComponent(username)}` },
+    openGraph: { title, description },
   };
 }
 

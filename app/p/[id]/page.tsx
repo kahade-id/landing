@@ -12,16 +12,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!payload?.title) {
     // Produk tidak dikenal → halaman fallback (fail-open untuk deeplink).
     // Tandai noindex agar URL sembarang tidak terindeks sebagai soft-404.
+    const title = "Produk — Kahade";
+    const description = "Lihat produk di aplikasi Kahade.";
     return {
-      title: "Produk — Kahade",
-      description: "Lihat produk di aplikasi Kahade.",
+      title,
+      description,
       robots: { index: false, follow: false },
+      openGraph: { title, description },
     };
   }
+  const title = `${payload.title} — Kahade`;
+  const description = payload?.description || "Lihat produk di aplikasi Kahade.";
   return {
-    title: `${payload.title} — Kahade`,
-    description: payload?.description || "Lihat produk di aplikasi Kahade.",
+    title,
+    description,
     alternates: { canonical: `/p/${encodeURIComponent(id)}` },
+    openGraph: { title, description },
   };
 }
 

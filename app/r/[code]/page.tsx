@@ -6,13 +6,16 @@ type Props = { params: Promise<{ code: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { code } = await params;
+  const title = "Undang Teman — Kahade";
+  const description = "Daftar di Kahade dengan kode referral temanmu.";
   return {
-    title: "Undang Teman — Kahade",
-    description: "Daftar di Kahade dengan kode referral temanmu.",
+    title,
+    description,
     alternates: { canonical: `/r/${encodeURIComponent(code)}` },
     // Kode referral adalah capability URL per pengguna — salinan sama untuk
     // semua kode, jadi jangan indeks agar tidak jadi duplikat.
     robots: { index: false, follow: false },
+    openGraph: { title, description },
   };
 }
 
