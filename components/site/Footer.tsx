@@ -47,6 +47,15 @@ export function Footer() {
       links: [
         ...pages
           .filter((p) => p.meta.group === g)
+          // Jangan duplikat: halaman konten yang sudah terwakili link subdomain
+          // (mis. "Artikel" → artikel.kahade.id) hanya tampil sekali via subdomain.
+          .filter(
+            (p) =>
+              !(
+                g === "perusahaan" &&
+                SUBDOMAIN_LINKS.some((s) => s.label === p.meta.navTitle)
+              ),
+          )
           .map((p) => ({ label: p.meta.navTitle, href: `/${p.meta.slug}` })),
         ...(g === "perusahaan"
           ? SUBDOMAIN_LINKS.map((l) => ({ ...l, external: true }))
