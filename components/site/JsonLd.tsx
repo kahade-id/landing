@@ -12,9 +12,19 @@ export function orgJsonLd(siteUrl: string, companyName: string) {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Kahade",
+    name: companyName,
     legalName: companyName,
     url: siteUrl,
+    logo: `${siteUrl}/icon_logo.svg`,
+    sameAs: [
+      "https://kahade.id",
+      "https://karir.kahade.id",
+      "https://legal.kahade.id",
+      "https://bantuan.kahade.id",
+      "https://status.kahade.id",
+      "https://investor.kahade.id",
+      "https://artikel.kahade.id",
+    ],
   };
 }
 

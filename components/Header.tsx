@@ -150,7 +150,7 @@ export function Header() {
                   href={`#${item.id}`}
                   onClick={() => setOpen(false)}
                   tabIndex={open ? 0 : -1}
-                  className="text-[16px] font-semibold leading-[22px] tracking-[0.2px] text-[#262626]"
+                  className="flex min-h-[44px] items-center text-[16px] font-semibold leading-[22px] tracking-[0.2px] text-[#262626]"
                 >
                   {item.label}
                 </a>
@@ -161,7 +161,7 @@ export function Header() {
                   href={item.href}
                   onClick={() => setOpen(false)}
                   tabIndex={open ? 0 : -1}
-                  className="text-[16px] font-semibold leading-[22px] tracking-[0.2px] text-[#262626]"
+                  className="flex min-h-[44px] items-center text-[16px] font-semibold leading-[22px] tracking-[0.2px] text-[#262626]"
                 >
                   {item.label}
                 </a>
