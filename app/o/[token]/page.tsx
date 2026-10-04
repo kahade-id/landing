@@ -10,6 +10,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: "Pesanan — Kahade",
     description: "Buka detail pesanan ini di aplikasi Kahade.",
     alternates: { canonical: `/o/${encodeURIComponent(token)}` },
+    // Token order-link adalah capability URL yang privat — jangan indeks.
+    robots: { index: false, follow: false },
   };
 }
 

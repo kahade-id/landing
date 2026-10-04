@@ -10,6 +10,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: "Undang Teman — Kahade",
     description: "Daftar di Kahade dengan kode referral temanmu.",
     alternates: { canonical: `/r/${encodeURIComponent(code)}` },
+    // Kode referral adalah capability URL per pengguna — salinan sama untuk
+    // semua kode, jadi jangan indeks agar tidak jadi duplikat.
+    robots: { index: false, follow: false },
   };
 }
 

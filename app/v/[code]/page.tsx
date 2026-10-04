@@ -10,6 +10,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: "Voucher — Kahade",
     description: "Klaim voucher Kahade di aplikasi.",
     alternates: { canonical: `/v/${encodeURIComponent(code)}` },
+    // Kode voucher adalah capability URL per pengguna — semua kode berbagi
+    // salinan yang sama, jadi jangan indeks agar tidak jadi duplikat.
+    robots: { index: false, follow: false },
   };
 }
 

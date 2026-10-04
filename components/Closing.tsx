@@ -45,7 +45,7 @@ function BatteryIcon() {
 function CtaPhone() {
   return (
     <RealisticPhone className="mx-auto w-[270px] sm:w-[310px]">
-      <div className="relative bg-[#FFD500]">
+      <div className="relative bg-[#FFD200]">
         {/* Status bar */}
         <div className="relative flex items-center justify-between px-7 pt-4 text-black">
           <span className="w-12 text-[15px] font-semibold tracking-tight">
@@ -116,7 +116,7 @@ export function Closing() {
     <section id="download" className="scroll-mt-20 bg-white">
       <div className="mx-auto max-w-6xl px-5 pb-20 pt-4 sm:px-8 lg:pb-28">
         <Reveal>
-          <div className="relative overflow-hidden rounded-[2.5rem] bg-[#FFD500] px-6 pt-12 sm:rounded-[3rem] sm:px-14 sm:pt-16 lg:px-20 lg:pt-20">
+          <div className="relative overflow-hidden rounded-[2.5rem] bg-[#FFD200] px-6 pt-12 sm:rounded-[3rem] sm:px-14 sm:pt-16 lg:px-20 lg:pt-20">
             {/* Top row: ikon store + label */}
             <div className="flex items-center gap-3 text-black">
               <AppleLogo weight="regular" className="h-7 w-7" aria-hidden="true" />

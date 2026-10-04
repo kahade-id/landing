@@ -160,7 +160,7 @@ export function ProblemSolution() {
                           {/* Aksen kuning brand */}
                           <span
                             aria-hidden="true"
-                            className="absolute inset-x-0 top-0 h-1 bg-[#FFD500]"
+                            className="absolute inset-x-0 top-0 h-1 bg-[#FFD200]"
                           />
                           <div className="flex flex-col items-center gap-1.5 px-4 pb-6 pt-7 text-center">
                             <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-black">

@@ -112,7 +112,7 @@ function ProtectionVisual() {
           className="rounded-2xl bg-black p-4 text-white"
         >
           <p className="text-[11px] uppercase tracking-[0.16em] text-white/75">Dana diamankan</p>
-          <p className="mt-1 text-2xl font-bold tracking-tight">Rp –</p>
+          <p className="mt-1 text-2xl font-bold tracking-tight">Rp250.000</p>
           <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-white/15">
             <motion.div
               className="h-full rounded-full bg-white"
