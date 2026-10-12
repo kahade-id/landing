@@ -76,4 +76,7 @@ export {
   ShoppingBag,
   Headphones,
   DeviceMobile,
+  CellSignalFull,
+  WifiHigh,
+  BatteryFull,
 } from "@phosphor-icons/react/dist/ssr";

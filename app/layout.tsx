@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-import { MotionProvider } from "@/components/motion-helpers";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -50,12 +49,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="id" className={jakarta.variable}>
-      <body className="bg-white font-sans text-[#262626]">
-        <a href="#konten-utama" className="skip-link">
+    <html lang="id" className={jakarta.variable} data-scroll-behavior="smooth">
+      <body className="bg-surface font-sans text-fg">
+        <a href="#konten-utama" className="kh-skip-link">
           Lewati ke konten utama
         </a>
-        <MotionProvider>{children}</MotionProvider>
+        {children}
       </body>
     </html>
   );

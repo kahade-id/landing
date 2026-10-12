@@ -54,6 +54,19 @@
 | D-010 | /syarat-ketentuan | semua | Route lama, misi memakai /syarat-dan-ketentuan | minor | **fixed** (redirect 301) |
 | D-011 | semua | semua | **KRITIS:** komponen `Words` — `whileInView` dipasang pada teks yang terpotong penuh oleh parent `overflow-hidden`, sehingga IntersectionObserver tak pernah fire dan SEMUA headline (hero + section) tidak tampil. Ditemukan via QA Playwright. | kritis | **fixed** (observer dipindah ke parent via variants; terverifikasi di browser) |
 | D-012 | / | 390 | Kartu bento 548px di viewport 390px (MiniFeed `w-36 shrink-0` × 3 memaksa grid melebar; grid item min-width auto). | mayor | **fixed** (`min-w-0` pada wrapper kartu; scrollWidth 390 = OK) |
+| D-013 | semua | semua | Favicon/app icon/OG memakai logo "K" gambar ulang | mayor | **fixed** |
+| D-014 | /tentang dll. | semua | Halaman konten tanpa header/footer | mayor | **fixed** |
+| D-015 | / | semua | Showcase auto-rotate (carousel auto-play) | mayor | **fixed** |
+| D-016 | / | 390 | Tabel perbandingan sticky → scroll horizontal 591px | mayor | **fixed** |
+
+## Fase 6 — Redesign ekosistem (Kahade Design Language v1)
+- [x] Audit 8 repo → `design-system/docs/AUDIT-2026-10.md`
+- [x] Landing memakai `@kahade/ui` v1: SiteHeader/SiteFooter, token, pola halaman
+- [x] Beranda baru: hero rata kiri + ponsel, strip prinsip, fitur bergantian, cara kerja (seksi gelap), perbandingan, FAQ, penutup
+- [x] Subhalaman: PageHeader + DescriptionList / daftar bernomor / dokumen dengan daftar isi
+- [x] Brand: favicon, ikon aplikasi, OG image → mark zigzag resmi
+- [x] Build 19 rute hijau, tsc hijau, screenshot 390/1440 tanpa scroll horizontal, 0 console error
+
 
 ## Log
 - 2026-10-03: Fase 0–3 selesai. Build 16 route hijau, tsc hijau, fixture/guard terverifikasi.
@@ -75,3 +88,4 @@
 - 2026-10-04 00:20 WIB: closing diredesain ala referensi — kartu kuning brand (#FFD500), badge store hitam, phone mockup dengan status bar (9:41, dynamic island, signal/wifi/baterai). Siap diganti screenshot asli nanti. Terpush ke main.
 - 2026-10-04 00:30 WIB: hero tambah strip "Bekerja sama dengan" + logo SVG BI & PPATK (sumber Wikimedia Commons, grayscale + hover warna). Logo ASPI belum didapat (situs resmi diblokir Cloudflare, tidak ada di Commons) — perlu file manual dari pemilik. Terpush ke main.
 - 2026-10-04 00:35 WIB: logo "K" diganti logo asli header (icon_logo.svg) di semua titik (Showcase, Footer, 404, error). Perbandingan diredesain premium (kartu + shadow + aksen kuning + hover + stagger). Phone mockup 100% realistis (frame titanium, tombol samping, Dynamic Island + kamera, kilau layar) dipakai di hero & CTA. Terpush ke main.
+- 2026-10-12: Redesign ekosistem Kahade Design Language v1 (lihat Fase 6 & DECISIONS).

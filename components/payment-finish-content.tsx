@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { DeeplinkLayout } from "@/components/site/DeeplinkLayout";
 import { KahadeMark } from "@/components/Logo";
+import { CheckCircle, Timer, XCircle } from "@/lib/icons";
 
 type PayState = "success" | "pending" | "failed";
 
@@ -52,56 +53,15 @@ const COPY: Record<PayState, { title: string; desc: string }> = {
   },
 };
 
-const ACCENT: Record<PayState, string> = {
-  success: "#15803d",
-  pending: "#b45309",
-  failed: "#b91c1c",
+const STATUS_ICON: Record<PayState, { Icon: typeof CheckCircle; cls: string }> = {
+  success: { Icon: CheckCircle, cls: "text-positive" },
+  pending: { Icon: Timer, cls: "text-caution" },
+  failed: { Icon: XCircle, cls: "text-critical" },
 };
 
 function StatusIcon({ state }: { state: PayState }) {
-  const color = ACCENT[state];
-  if (state === "success") {
-    return (
-      <svg width="72" height="72" viewBox="0 0 72 72" aria-hidden="true">
-        <circle cx="36" cy="36" r="34" fill="none" stroke={color} strokeWidth="3" />
-        <path
-          d="M23 37.5 32 46l17-19"
-          fill="none"
-          stroke={color}
-          strokeWidth="4"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    );
-  }
-  if (state === "pending") {
-    return (
-      <svg width="72" height="72" viewBox="0 0 72 72" aria-hidden="true">
-        <circle cx="36" cy="36" r="34" fill="none" stroke={color} strokeWidth="3" />
-        <path
-          d="M36 20v16l11 7"
-          fill="none"
-          stroke={color}
-          strokeWidth="4"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    );
-  }
-  return (
-    <svg width="72" height="72" viewBox="0 0 72 72" aria-hidden="true">
-      <circle cx="36" cy="36" r="34" fill="none" stroke={color} strokeWidth="3" />
-      <path
-        d="M26 26l20 20M46 26L26 46"
-        fill="none"
-        stroke={color}
-        strokeWidth="4"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
+  const { Icon, cls } = STATUS_ICON[state];
+  return <Icon weight="regular" aria-hidden="true" className={`h-16 w-16 ${cls}`} />;
 }
 
 function FinishContent() {
@@ -118,7 +78,7 @@ function FinishContent() {
       deepLink={deepLink}
       media={
         <>
-          <KahadeMark className="h-14 w-14" />
+          <KahadeMark size={48} />
           <div className="mt-10">
             <StatusIcon state={state} />
           </div>
