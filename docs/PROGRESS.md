@@ -5,7 +5,7 @@
 ### Fase 0 — Bootstrap & baseline
 - [x] Baca repo, pastikan di `main` dan bersih
 - [x] Buat `CLAUDE.md`, `docs/PROGRESS.md`, `docs/DECISIONS.md`
-- [x] Build baseline hijau; tsc strict + noUnusedLocals hijau (`next lint` tidak ada di Next 16)
+- [x] Build baseline hijau; tsc strict + noUnusedLocals hijau; lint `oxlint --deny-warnings` 0 temuan (pengganti `next lint` yang dihapus di Next 16)
 - [x] Chromium Playwright berhasil diunduh → QA browser nyata dimungkinkan
 - [x] Defect register awal (D-001…D-008)
 

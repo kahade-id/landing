@@ -5,9 +5,18 @@ import { site } from "@/content/site";
 type Size = "md" | "lg";
 type Tone = "light" | "dark";
 
+/** `lg` turun ke ukuran `md` di bawah 640px agar dua lencana muat sebaris di ponsel. */
 const SIZES: Record<Size, string> = {
   md: "h-12 pl-4 pr-5 gap-2.5",
-  lg: "h-14 pl-5 pr-6 gap-3",
+  lg: "h-12 pl-4 pr-5 gap-2.5 sm:h-14 sm:pl-5 sm:pr-6 sm:gap-3",
+};
+const ICON: Record<Size, string> = {
+  md: "text-[22px]",
+  lg: "text-[22px] sm:text-[26px]",
+};
+const LABEL: Record<Size, string> = {
+  md: "text-[15px]",
+  lg: "text-[15px] sm:text-[17px]",
 };
 
 /**
@@ -51,12 +60,12 @@ function StoreBadge({
 
   const body = (subLabel: string) => (
     <>
-      <span aria-hidden="true" className={size === "lg" ? "text-[26px] leading-none" : "text-[22px] leading-none"}>
+      <span aria-hidden="true" className={`${ICON[size]} leading-none`}>
         {icon}
       </span>
       <span className="flex flex-col items-start leading-none">
         <span className="text-[11px] font-medium opacity-75">{subLabel}</span>
-        <span className={`mt-1 tracking-[-0.01em] ${size === "lg" ? "text-[17px]" : "text-[15px]"}`}>{label}</span>
+        <span className={`mt-1 tracking-[-0.01em] ${LABEL[size]}`}>{label}</span>
       </span>
     </>
   );
