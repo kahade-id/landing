@@ -1,11 +1,14 @@
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import { Container, Eyebrow } from "@kahade/ui";
 import { DownloadActions } from "@/components/DownloadActions";
+import { ShieldCheck } from "@/lib/icons";
 import { Phone } from "./Phone";
 
 /**
  * Hero: rata kiri, judul display, CTA unduh, ponsel dengan screenshot asli
- * yang "muncul" dari tepi bawah seksi.
+ * yang "muncul" dari tepi bawah seksi. Kartu "Dana diamankan" menumpang di
+ * tepi ponsel: janji inti (perlindungan transaksi) terbaca di layar pertama.
  */
 export function Hero() {
   return (
@@ -39,6 +42,19 @@ export function Hero() {
                 className="object-cover object-top"
               />
             </Phone>
+            <div
+              aria-hidden="true"
+              style={{ "--kh-rise-delay": "450ms" } as CSSProperties}
+              className="kh-rise absolute top-[38%] -left-3 z-10 flex items-center gap-3 rounded-control border border-line bg-surface py-3 pr-5 pl-3 shadow-lift sm:-left-16 lg:-left-16 xl:-left-32"
+            >
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-fg text-fg-inverse">
+                <ShieldCheck weight="regular" className="h-5 w-5" />
+              </span>
+              <span className="flex flex-col">
+                <span className="text-[14px] leading-5 font-semibold text-fg">Dana diamankan</span>
+                <span className="text-[12px] leading-4 text-fg-muted">Cair setelah barang diterima</span>
+              </span>
+            </div>
           </div>
         </div>
       </Container>

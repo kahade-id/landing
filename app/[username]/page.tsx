@@ -64,13 +64,20 @@ export default async function Page({ params }: Props) {
             alt={displayName}
             className="h-20 w-20 rounded-full object-cover"
           />
-        ) : undefined
+        ) : (
+          <span
+            aria-hidden="true"
+            className="flex h-20 w-20 items-center justify-center rounded-full bg-fg text-[28px] font-bold text-fg-inverse uppercase"
+          >
+            {(identity?.nickname || identity?.fullName || username).charAt(0)}
+          </span>
+        )
       }
       title={displayName}
       desc={
         <>
-          <span className="block">@{username}</span>
-          <span className="mt-3 block">
+          {displayName !== `@${username}` ? <span className="mb-3 block">@{username}</span> : null}
+          <span className="block">
             {identity?.bio || "Lihat profil di aplikasi Kahade."}
           </span>
         </>

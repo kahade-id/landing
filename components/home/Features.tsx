@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
 import { Eyebrow, Reveal, Section, SectionHeader } from "@kahade/ui";
-import { Check, SealCheck, ShieldCheck } from "@/lib/icons";
+import { Check, Receipt, SealCheck, ShieldCheck } from "@/lib/icons";
 
 function Stage({ children }: { children: ReactNode }) {
   return (
@@ -28,19 +28,58 @@ function FeedVisual() {
   );
 }
 
+/** Gelembung chat — meniru UI chat aplikasi (hitam = kamu, abu = lawan bicara). */
+function Bubble({ out = false, time, read = false, children }: { out?: boolean; time: string; read?: boolean; children: ReactNode }) {
+  return (
+    <div className={`flex ${out ? "justify-end" : "justify-start"}`}>
+      <div
+        className={`max-w-[78%] rounded-[14px] px-3.5 pt-2.5 pb-1.5 text-[13px] leading-[1.45] sm:text-[14px] ${
+          out ? "bg-fg text-fg-inverse" : "bg-surface-2 text-fg"
+        }`}
+      >
+        <p>{children}</p>
+        <p className={`mt-1 flex items-center justify-end gap-1 text-[11px] tabular-nums ${out ? "text-white/45" : "text-fg-subtle"}`}>
+          {time}
+          {read && <Check weight="bold" className="h-3 w-3" />}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Chat transaksi, dibangun ulang dari UI chat aplikasi (gelembung, pil
+ * tanggal, cap waktu) dengan percakapan jual beli yang relevan: tawar →
+ * transaksi dibuat dari chat → dana diamankan.
+ */
 function ChatVisual() {
   return (
     <Stage>
-      <div className="absolute top-1/2 left-1/2 w-[78%] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-control border border-line bg-surface shadow-lift">
-        <Image
-          src="/IMG_20261003_200436_464.jpg"
-          alt="Tampilan asli chat transaksi di Kahade antara pembeli dan penjual"
-          width={1080}
-          height={896}
-          sizes="(max-width: 1024px) 75vw, 440px"
-          className="h-auto w-full"
-        />
-      </div>
+      <figure className="absolute top-1/2 left-1/2 w-[84%] max-w-[440px] -translate-x-1/2 -translate-y-1/2 space-y-2.5 rounded-control border border-line bg-surface p-4 shadow-lift sm:p-5">
+        <figcaption className="sr-only">
+          Ilustrasi chat di Kahade: pembeli menanyakan ukuran, penjual membuat transaksi langsung dari chat, dan dana pembeli diamankan.
+        </figcaption>
+        <p className="mx-auto w-fit rounded-full bg-surface-2 px-3 py-1 text-[11px] text-fg-muted">Hari ini</p>
+        <Bubble out time="17:18">Kak, sneakers-nya masih ada ukuran 42?</Bubble>
+        <Bubble time="17:20">Masih, kak. Aku buatkan transaksinya di sini ya.</Bubble>
+        <div className="flex justify-start">
+          <div className="w-[78%] rounded-[14px] border border-line p-3">
+            <p className="flex items-center gap-1.5 text-[11px] font-medium text-fg-muted">
+              <Receipt weight="regular" className="h-3.5 w-3.5" />
+              Transaksi dibuat dari chat
+            </p>
+            <div className="mt-2 flex items-baseline justify-between gap-3">
+              <p className="text-[13px] font-semibold text-fg">Sneakers · ukuran 42</p>
+              <p className="text-[13px] font-semibold text-fg tabular-nums">Rp450.000</p>
+            </div>
+            <p className="mt-2.5 flex items-center gap-1.5 border-t border-line pt-2.5 text-[12px] text-fg-2">
+              <ShieldCheck weight="regular" className="h-3.5 w-3.5 shrink-0" />
+              Dana diamankan sampai barang diterima
+            </p>
+          </div>
+        </div>
+        <Bubble out read time="17:26">Sudah kubayar. Ditunggu kirimannya, kak.</Bubble>
+      </figure>
     </Stage>
   );
 }
@@ -54,11 +93,11 @@ function VerifiedVisual() {
       >
         <div className="flex items-center gap-3">
           <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-fg text-[15px] font-bold text-fg-inverse">
-            T
+            L
           </span>
           <div className="min-w-0">
             <p className="flex items-center gap-1.5 text-[15px] font-semibold text-fg">
-              Toko contoh
+              Lemari Thrift
               <SealCheck weight="fill" className="h-4 w-4 text-fg" />
             </p>
             <p className="text-[13px] text-fg-muted">Penjual terverifikasi</p>

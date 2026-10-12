@@ -3,6 +3,7 @@
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { DeeplinkLayout } from "@/components/site/DeeplinkLayout";
+import { isMobileDevice } from "@/lib/device";
 
 export type FallbackCopy = {
   title: string;
@@ -36,6 +37,9 @@ function FallbackContent({ copy, appPath }: { copy: FallbackCopy; appPath: strin
   useEffect(() => {
     if (attempted) return;
     setAttempted(true);
+    // Skema kahade:// hanya ada di ponsel; di desktop percobaan otomatis
+    // cuma memicu galat konsol "user gesture is required".
+    if (!isMobileDevice()) return;
     const t = setTimeout(() => {
       window.location.href = deepLink;
     }, 600);
