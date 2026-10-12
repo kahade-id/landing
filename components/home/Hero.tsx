@@ -11,9 +11,9 @@ export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden border-b border-line">
       <Container className="grid gap-12 pt-12 sm:pt-16 lg:grid-cols-12 lg:gap-8 lg:pt-24">
-        <div className="lg:col-span-7 lg:pb-32">
+        <div className="lg:col-span-8 lg:pb-32">
           <Eyebrow>Social commerce Indonesia</Eyebrow>
-          <h1 className="mt-6 text-display text-fg">
+          <h1 className="mt-6 text-display text-fg lg:text-[min(4.75rem,6.4vw)]">
             <span className="block">Jual beli aman,</span>
             <span className="block text-fg-muted">rasa media sosial.</span>
           </h1>
@@ -27,8 +27,8 @@ export function Hero() {
           </p>
         </div>
 
-        <div className="relative h-[420px] sm:h-[500px] lg:col-span-5 lg:h-auto">
-          <div className="kh-rise absolute inset-x-0 top-0 mx-auto w-[276px] sm:w-[310px] lg:top-2 lg:right-4 lg:left-auto lg:mx-0 lg:w-[330px]">
+        <div className="relative h-[420px] sm:h-[500px] lg:col-span-4 lg:h-auto">
+          <div className="kh-rise absolute inset-x-0 top-0 mx-auto w-[276px] sm:w-[310px] lg:top-2 lg:right-0 lg:left-auto lg:mx-0 lg:w-[320px]">
             <Phone>
               <Image
                 src="/IMG_20261003_073351_971.jpg"
