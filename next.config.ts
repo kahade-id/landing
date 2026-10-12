@@ -11,6 +11,10 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // @kahade/ui dikirim sebagai source TypeScript (tanpa build step).
+  transpilePackages: ["@kahade/ui"],
+  // AVIF lebih kecil ~20–30% dari WebP untuk screenshot aplikasi (LCP hero).
+  images: { formats: ["image/avif", "image/webp"] },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

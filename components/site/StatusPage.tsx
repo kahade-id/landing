@@ -3,7 +3,7 @@ import { KahadeMark } from "@/components/Logo";
 
 /**
  * Kerangka halaman status (error 500 & 404).
- * Dipakai app/error.tsx dan app/not-found.tsx.
+ * Dipakai app/error.tsx dan app/not-found.tsx (di dalam header/footer situs).
  */
 export function StatusPage({
   kicker,
@@ -17,18 +17,14 @@ export function StatusPage({
   actions: ReactNode;
 }) {
   return (
-    <main id="konten-utama" tabIndex={-1} className="flex min-h-screen flex-col items-center justify-center bg-white px-5 text-center">
-      <KahadeMark className="h-14" />
+    <div className="flex min-h-[70dvh] flex-col items-center justify-center bg-surface px-5 py-20 text-center">
+      <KahadeMark size={48} />
       {kicker ? (
-        <p className="mt-8 text-sm font-semibold uppercase tracking-[0.2em] text-[#525252]">
-          {kicker}
-        </p>
+        <p className="mt-8 text-eyebrow tabular-nums text-fg-subtle">{kicker}</p>
       ) : null}
-      <h1 className={`type-h2 text-black ${kicker ? "mt-3" : "mt-8"}`}>
-        {title}
-      </h1>
-      <p className="type-body mt-4 max-w-md text-[#525252]">{desc}</p>
+      <h1 className={`text-h2 text-fg ${kicker ? "mt-3" : "mt-8"}`}>{title}</h1>
+      <p className="mt-4 max-w-md text-body-lg text-fg-muted">{desc}</p>
       <div className="mt-9 flex flex-wrap justify-center gap-3">{actions}</div>
-    </main>
+    </div>
   );
 }

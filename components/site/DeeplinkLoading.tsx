@@ -12,16 +12,16 @@ export default function DeeplinkLoading() {
       id="konten-utama"
       tabIndex={-1}
       aria-label="Memuat"
-      className="flex min-h-screen flex-col items-center justify-center bg-white px-5 text-center"
+      className="flex min-h-dvh flex-col items-center justify-center bg-surface px-5 py-16 text-center"
     >
-      <div className="animate-pulse" aria-hidden="true">
-        <KahadeMark className="h-14 w-14" />
+      <div aria-hidden="true">
+        <KahadeMark size={48} title="" />
       </div>
-      <div className="mt-8 h-8 w-56 max-w-xs animate-pulse rounded-full bg-black/10" aria-hidden="true" />
-      <div className="mt-3 h-4 w-40 max-w-xs animate-pulse rounded-full bg-black/10" aria-hidden="true" />
+      <div className="animate-shimmer mt-8 h-8 w-56 max-w-xs rounded-full" aria-hidden="true" />
+      <div className="animate-shimmer mt-3 h-4 w-40 max-w-xs rounded-full" aria-hidden="true" />
       <div className="mt-9 flex w-full max-w-xs flex-col gap-3" aria-hidden="true">
-        <div className="h-[52px] animate-pulse rounded-full bg-black/10" />
-        <div className="h-[52px] animate-pulse rounded-full bg-black/10" />
+        <div className="animate-shimmer h-[52px] rounded-full" />
+        <div className="animate-shimmer h-[52px] rounded-full" />
       </div>
       <span className="sr-only">Memuat halaman…</span>
     </main>
