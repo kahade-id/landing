@@ -3,7 +3,6 @@
 import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { DeeplinkLayout } from "@/components/site/DeeplinkLayout";
-import { KahadeMark } from "@/components/Logo";
 import { CheckCircle, Timer, XCircle } from "@/lib/icons";
 
 type PayState = "success" | "pending" | "failed";
@@ -54,14 +53,19 @@ const COPY: Record<PayState, { title: string; desc: string }> = {
 };
 
 const STATUS_ICON: Record<PayState, { Icon: typeof CheckCircle; cls: string }> = {
-  success: { Icon: CheckCircle, cls: "text-positive" },
-  pending: { Icon: Timer, cls: "text-caution" },
-  failed: { Icon: XCircle, cls: "text-critical" },
+  success: { Icon: CheckCircle, cls: "bg-positive-soft text-positive" },
+  pending: { Icon: Timer, cls: "bg-caution-soft text-caution" },
+  failed: { Icon: XCircle, cls: "bg-critical-soft text-critical" },
 };
 
+/** Ikon status di lingkaran berwarna lembut — mark sudah ada di bilah atas. */
 function StatusIcon({ state }: { state: PayState }) {
   const { Icon, cls } = STATUS_ICON[state];
-  return <Icon weight="regular" aria-hidden="true" className={`h-16 w-16 ${cls}`} />;
+  return (
+    <span aria-hidden="true" className={`flex h-20 w-20 items-center justify-center rounded-full ${cls}`}>
+      <Icon weight="regular" className="h-10 w-10" />
+    </span>
+  );
 }
 
 function FinishContent() {
@@ -76,14 +80,7 @@ function FinishContent() {
   return (
     <DeeplinkLayout
       deepLink={deepLink}
-      media={
-        <>
-          <KahadeMark size={48} />
-          <div className="mt-10">
-            <StatusIcon state={state} />
-          </div>
-        </>
-      }
+      media={<StatusIcon state={state} />}
       title={copy.title}
       desc={copy.desc}
     />
